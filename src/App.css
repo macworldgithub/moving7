@@ -1,0 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  width: 1280px !important;
+  /* background-color: blanchedalmond; */
+  margin: 0 auto;
+}
