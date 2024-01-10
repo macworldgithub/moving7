@@ -1,0 +1,7 @@
+.experience-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #787878;
+    padding-top: 118px;
+}
