@@ -45,14 +45,16 @@ function Footer() {
 
       <div className="flex items-center justify-evenly">
         <div className="border-dashed border-t-2 w-[80%]">
-          <div>
-            <h4>Copyright © 2023</h4>
+          <div className="flex justify-between pt-5">
+            <div>
+              <h4>Copyright © 2023</h4>
+            </div>
+            <ul className="flex items-end gap-8">
+              <li>Legal</li>
+              <li>Privacy</li>
+              <li>Cookies</li>
+            </ul>
           </div>
-          <ul className="flex gap-8">
-            <li>Legal</li>
-            <li>Privacy</li>
-            <li>Cookies</li>
-          </ul>
         </div>
       </div>
     </div>
