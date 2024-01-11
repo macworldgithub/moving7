@@ -1,11 +1,11 @@
 import "./footer.css";
 function Footer() {
   return (
-    <div className="bg-[#333] text-white  mt-20 w-full h-[421px]">
-      <div className="flex items-center justify-around leading-loose p-20">
+    <div className="bg-[#333] text-white  mt-20 w-full h-[371px]">
+      <div className="flex justify-around leading-loose p-20">
         <div>
           <img src="images/icon-32-logo 2.svg" alt="" />
-          <p className="text-gray-400	">
+          <p className="text-gray-400">
             We connect people and removal companies
           </p>
         </div>
@@ -49,7 +49,7 @@ function Footer() {
             <div>
               <h4>Copyright © 2023</h4>
             </div>
-            <ul className="flex items-end gap-8">
+            <ul className="flex items-end gap-8 text-gray-400">
               <li>Legal</li>
               <li>Privacy</li>
               <li>Cookies</li>
