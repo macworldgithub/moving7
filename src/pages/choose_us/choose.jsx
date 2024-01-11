@@ -12,9 +12,9 @@ function ChooseUs() {
       </div>
       <div className="flex justify-evenly items-center basis-1/2 gap-8">
         <div className="bg-[#F5F5F5] rounded-[28px] p-8 w-[170px] flex items-center justify-center">
-          <img  src="images/Frame(3).svg" alt="" />
+          <img src="images/Frame(3).svg" alt="" />
         </div>
-    <div className="img-height bg-[#F5F5F5] rounded-[28px] p-8 w-[170px] flex items-center justify-center">
+        <div className="img-height bg-[#F5F5F5] rounded-[28px] p-8 w-[170px] flex items-center justify-center">
           <img src="images/Frame (1).svg" alt="" />
         </div>
         <div className="bg-[#F5F5F5] rounded-[28px] p-8 w-[170px] flex items-center justify-center">
