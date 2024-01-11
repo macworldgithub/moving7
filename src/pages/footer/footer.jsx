@@ -6,7 +6,8 @@ function Footer() {
         <div>
           <img src="images/icon-32-logo 2.svg" alt="" />
           <p className="text-gray-400">
-            We connect people and removal companies
+            We connect people and removal
+            <br /> companies
           </p>
         </div>
         <div>
@@ -40,8 +41,6 @@ function Footer() {
           </ul>
         </div>
       </div>
-
-      {/* <div className=" flex items-center justify-center footer-dots"></div> */}
 
       <div className="flex items-center justify-evenly">
         <div className="border-dashed border-t-2 w-[80%]">
