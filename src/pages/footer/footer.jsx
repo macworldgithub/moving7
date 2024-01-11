@@ -2,7 +2,7 @@ import "./footer.css";
 function Footer() {
   return (
     <div className="bg-[#333] text-white  mt-20 w-full h-[421px]">
-      <div className="flex items-center justify-around leading-loose p-20 border-dashed border-2">
+      <div className="flex items-center justify-around leading-loose p-20">
         <div>
           <img src="images/icon-32-logo 2.svg" alt="" />
           <p className="text-gray-400	">
@@ -40,15 +40,20 @@ function Footer() {
           </ul>
         </div>
       </div>
-      <div className="flex items-center justify-around">
-        <div>
-          <h4>Copyright © 2023</h4>
+
+      {/* <div className=" flex items-center justify-center footer-dots"></div> */}
+
+      <div className="flex items-center justify-evenly">
+        <div className="border-dashed border-t-2 w-[80%]">
+          <div>
+            <h4>Copyright © 2023</h4>
+          </div>
+          <ul className="flex gap-8">
+            <li>Legal</li>
+            <li>Privacy</li>
+            <li>Cookies</li>
+          </ul>
         </div>
-        <ul className="flex gap-6">
-          <li>Copyright © 2023 </li>
-          <li>Copyright © 2023 </li>
-          <li>Copyright © 2023 </li>
-        </ul>
       </div>
     </div>
   );
