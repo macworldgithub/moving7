@@ -17,3 +17,9 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.box-shadow:hover {
+  object-fit: contain;
+  transition: 0.3s ease;
+  cursor: pointer;
+  transform: scale(1.2);
+}

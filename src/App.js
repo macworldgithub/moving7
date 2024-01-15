@@ -15,9 +15,9 @@ function App() {
       <HeroSection />
       <Experience />
       <ChooseUs />
-      <Compare />
-      <Service /> */}
-      <Footer />
+      <Compare /> */}
+      <Service />
+      {/* <Footer /> */}
     </div>
   );
 }
