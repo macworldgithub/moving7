@@ -18,7 +18,7 @@
 }
 
 .box-shadow:hover {
-  object-fit: contain;
+  object-fit: cover;
   transition: 0.3s ease;
   cursor: pointer;
   transform: scale(1.2);

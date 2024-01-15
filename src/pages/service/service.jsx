@@ -8,7 +8,7 @@ function Service() {
       </div>
       <div className="flex justify-evenly gap-2 flex-col items-center flex-wrap sm:flex sm:flex-row w-ful sm:py-0 sm:px-24">
         <div>
-          <div className="flex flex-col items-center justify-center rounded-2xl w-44 bg-[#f5f5f5] h-38 p-6  box-shadow">
+          <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-6  box-shadow">
             <img src="images/Group 38.svg" alt="" />
           </div>
           <div>
@@ -17,7 +17,7 @@ function Service() {
         </div>
 
         <div>
-          <div className="flex flex-col items-center justify-center rounded-2xl w-44 bg-[#f5f5f5] h-38 p-8 box-shadow">
+          <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-8 box-shadow">
             <img src="images/Moving_Truck.svg" alt="" />
           </div>
           <div>
@@ -26,7 +26,7 @@ function Service() {
         </div>
 
         <div>
-          <div className="flex flex-col items-center justify-center rounded-2xl w-44 bg-[#f5f5f5] h-38 p-6 box-shadow">
+          <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-8 box-shadow">
             <img src="images/Group 34.svg" alt="" />
           </div>
           <div>
