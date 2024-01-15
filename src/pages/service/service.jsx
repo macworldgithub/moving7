@@ -21,7 +21,7 @@ function Service() {
             <img src="images/Moving_Truck.svg" alt="" />
           </div>
           <div>
-            <h4 className="text-3xl pt-6 text-gray-400">International</h4>
+            <h4 className="text-3xl pt-6 text-gray-400">Commercial</h4>
           </div>
         </div>
 
