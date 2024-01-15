@@ -1,12 +1,12 @@
-/* @media screen and (max-width: 640px) {
-    .footer {
-        width: 100% !important;
-        height: auto !important;
-        padding: unset !important;
-        background-color: wheat;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        font-size: 3rem;
-    }
-} */
+.footer {
+    position: relative;
+    /* width: 1280px; */
+    margin: 0 auto;
+}
+
+.footer-truck img {
+    position: absolute;
+    left: 0%;
+    top: 1%;
+    height: 99%;
+}

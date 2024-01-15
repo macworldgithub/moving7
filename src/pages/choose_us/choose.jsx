@@ -11,15 +11,26 @@ function ChooseUs() {
             stress-free relocation process.
           </p>
         </div>
-        <div className="flex flex-wrap sm:flex justify-evenly pt-4 basis-1/2 gap-6  md:flex md:flex-row lg:flex lg:flex-nowrap lg:gap-4">
-          <div className="bg-[#F5F5F5] rounded-[28px] p-8 w-44 flex items-center justify-center">
-            <img src="images/Frame(3).svg" alt="" />
+        <div className="flex flex-wrap text-center sm:flex justify-evenly pt-4 basis-1/2 gap-6  md:flex md:flex-row lg:flex lg:flex-nowrap lg:gap-4">
+          <div>
+            <div className="bg-[#F5F5F5] rounded-[28px] p-8 w-44 flex items-center justify-center">
+              <img src="images/Frame(3).svg" alt="" />
+            </div>
+            <h3>Save Time</h3>
           </div>
-          <div className="img-height bg-[#F5F5F5] rounded-[28px] p-8 w-44 flex items-center justify-center">
-            <img src="images/Frame (1).svg" alt="" />
+
+          <div>
+            <div className="img-height bg-[#F5F5F5] rounded-[28px] p-8 w-44 flex items-center justify-center">
+              <img src="images/Frame (1).svg" alt="" />
+            </div>
+            <h3>Save Time</h3>
           </div>
-          <div className="bg-[#F5F5F5] rounded-[28px] p-8 w-44 flex items-center justify-center">
-            <img src="images/Frame (2).svg" alt="" />
+
+          <div>
+            <div className="bg-[#F5F5F5] rounded-[28px] p-8 w-44 flex items-center justify-center">
+              <img src="images/Frame (2).svg" alt="" />
+            </div>
+            <h3>Save Time</h3>
           </div>
         </div>
       </div>

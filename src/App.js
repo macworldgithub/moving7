@@ -14,10 +14,10 @@ function App() {
       {/* <Header />
       <HeroSection />
       <Experience /> */}
-      {/* <Compare />
-      <Service /> */}
+      <Compare />
+      <Service />
       <ChooseUs />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

@@ -1,8 +1,12 @@
-import "./footer.css";
+import "./footer.css"
 function Footer() {
   return (
-    <div className="bg-[#333] text-white w-full h-auto md:w-full py-10 md:h-[371px] md:mt-20 pl-8 pt-7 footer ">
-      <div className="flex flex-wrap flex-col sm:flex  gap-y-4 md:flex justify-around leading-loose lg:flex-row lg:mt-6 md:p-0">
+    <div className="bg-[#333] text-white w-full md:w-full py-10 md:mt-20 pl-8 pt-7 footer lg:p-10 lg:w-[1280pxX] ">
+      <div className="flex flex-wrap flex-col sm:flex  gap-y-4 md:flex justify-around leading-loose lg:flex-row lg:mt-6 md:p-0 size-full">
+
+        <div className="footer-truck">
+          <img src="images/Truck.svg" alt="" />
+        </div>
 
         <div>
           <img src="images/icon-32-logo 2.svg" alt="" />
@@ -11,7 +15,7 @@ function Footer() {
             <br /> companies
           </p>
         </div>
-        <div className="flex flex-wrap justify-between gap-8">
+        <div className="flex flex-wrap justify-between gap-8 p-3">
           <div>
             <h1 className="text-base md:text-xl tracking-wider">
               For consumer
@@ -51,7 +55,7 @@ function Footer() {
       </div>
 
       <div className="flex items-start pt-8 md:justify-evenly">
-        <div className="border-dashed border-t-2 w-[90%]">
+        <div className="border-dashed border-t-2 w-[90%] border-gray-400">
           <div className="flex flex-col text-center items-start sm:flex sm:items-center sm:flex-row sm:justify-around md:justify-between pt-5 flex-wrap lg:items-start">
             <div>
               <h4 className="pb-3">Copyright © 2023</h4>
