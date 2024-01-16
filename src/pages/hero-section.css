@@ -1,17 +1,3 @@
-.hero_section {
-    height: auto;
-    position: relative;
-}
-
-.inner_section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 195px;
-    overflow-x: hidden;
-    /* position: absolute; */
-}
-
 .hero-ring-img img {
     position: absolute;
     top: -16%;

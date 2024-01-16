@@ -15,8 +15,7 @@
   transform: scale(1.2);
 }
 
-.now{
-  display: flex;
-  flex-direction: row;
-  background-color: red;
+
+.img-height{
+  height: 100px;
 }

@@ -1,8 +1,6 @@
-import "./experience.css";
-
 function Experience() {
   return (
-    <div className="experience-section">
+    <div className="flex text-[#787878] flex-col items-center justify-evenly gap-8 sm:flex sm:flex-row  md:flex-row">
       <div>
         <img src="images/5K.svg" />
         <h4>Happy Clients</h4>

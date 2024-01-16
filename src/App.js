@@ -6,15 +6,17 @@ import Experience from "./pages/experience";
 import ChooseUs from "./pages/choose_us/choose";
 import Compare from "./pages/moving_componies.jsx/compare";
 import Service from "./pages/service/service";
+import CarouselSlider from "./pages/Carousel/Carousel";
 import Footer from "./pages/footer/footer";
 
 function App() {
   return (
     <div className="main-container">
       {/* <Header />
-      <HeroSection />
-      <Experience /> */}
+      <HeroSection /> */}
+      <Experience />
       <Compare />
+      <CarouselSlider />
       <Service />
       <ChooseUs />
       <Footer />

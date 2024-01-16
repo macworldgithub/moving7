@@ -1,0 +1,16 @@
+:where(.css-dev-only-do-not-override-zl9ks2).ant-carousel .slick-dots li.slick-active button {
+    opacity: 1;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+}
+
+:where(.css-dev-only-do-not-override-zl9ks2).ant-carousel .slick-dots li button::after {
+    /* position: absolute; */
+    inset: -4px;
+    content: "";
+    height: 9px;
+    width: 9px;
+    border-radius: 50%;
+    background: #13C265;
+}
