@@ -1,4 +1,8 @@
+import React from "react";
 import "../../App.css";
+import Group38 from "../../assets/images/Group 38.svg";
+import Group34 from "../../assets/images/Group 34.svg";
+import MovingTruck from "../../assets/images/Moving_Truck.svg";
 
 function Service() {
   return (
@@ -8,8 +12,8 @@ function Service() {
       </div>
       <div className="flex justify-evenly gap-8 flex-col items-center flex-wrap sm:flex sm:flex-row w-full sm:py-0 lg:gap-2">
         <div>
-          <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-6  box-shadow">
-            <img src="images/Group 38.svg" alt="" />
+          <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-6 box-shadow">
+            <img src={Group38} alt="Local Service" />
           </div>
           <div>
             <h4 className="text-3xl pt-6 text-gray-400 h">Local</h4>
@@ -18,7 +22,7 @@ function Service() {
 
         <div>
           <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-8 box-shadow">
-            <img src="images/Moving_Truck.svg" alt="" />
+            <img src={MovingTruck} alt="Commercial Service" />
           </div>
           <div>
             <h4 className="text-3xl pt-6 text-gray-400">Commercial</h4>
@@ -27,7 +31,7 @@ function Service() {
 
         <div>
           <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-8 box-shadow">
-            <img src="images/Group 34.svg" alt="" />
+            <img src={Group34} alt="International Service" />
           </div>
           <div>
             <h4 className="text-3xl pt-6 text-gray-400">International</h4>

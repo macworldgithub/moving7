@@ -1,21 +1,27 @@
-import "./experience.css"
+import React from "react";
+import "./experience.css";
+import k5 from "../assets/images/5K.svg";
+import img230 from "../assets/images/230 +.svg";
+import img15 from "../assets/images/15.svg";
+import mouse from "../assets/images/Group 6 (1).svg";
+
 function Experience() {
   return (
-    <div className="main-conatiner flex text-[#787878] flex-col items-center justify-evenly pt-6 pb-24 gap-8 sm:flex sm:flex-row  md:flex-row">
+    <div className="main-container flex text-[#787878] flex-col items-center justify-evenly pt-6 pb-24 gap-8 sm:flex sm:flex-row  md:flex-row">
       <div className="absolute mt-[432px] sm:mt-44 md:mt-48">
-        <img src="images/Group 6 (1).svg" alt="" />
+        <img src={mouse} alt="Mouse" />
       </div>
       <div>
-        <img src="images/5K.svg" />
+        <img src={k5} alt="Happy Clients" />
         <h2>Happy Clients</h2>
       </div>
       <div>
-        <img src="images/230 +.svg" />
+        <img src={img230} alt="Moving Companies" />
         <h2>Moving Companies</h2>
       </div>
       <div>
-        <img src="images/15.svg" />
-        <h2>Years of experience</h2>
+        <img src={img15} alt="Years of Experience" />
+        <h2>Years of Experience</h2>
       </div>
     </div>
   );

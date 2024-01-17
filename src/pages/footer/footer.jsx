@@ -1,15 +1,18 @@
-import "./footer.css"
+import React from "react";
+import "./footer.css";
+import img from "../../assets/images/Truck.svg";
+
 function Footer() {
   return (
-    <div className="bg-[#333] text-white w-full md:w-full py-10 md:mt-20 pl-8 pt-7 footer lg:p-10 lg:w-[1280pxX] ">
-      <div className="flex flex-wrap flex-col sm:flex  gap-y-4 md:flex justify-around leading-loose lg:flex-row lg:mt-6 md:p-0 size-full">
+    <div className="bg-[#333] text-white w-full md:w-full py-10 md:mt-20 pl-8 pt-7 footer lg:p-10 lg:w-[1280pxX]">
+      <div className="flex flex-wrap flex-col sm:flex gap-y-4 md:flex justify-around leading-loose lg:flex-row lg:mt-6 md:p-0 size-full">
 
         <div className="footer-truck">
-          <img src="images/Truck.svg" alt="" />
+          <img src={img} alt="Truck Icon" />
         </div>
 
         <div>
-          <img src="images/icon-32-logo 2.svg" alt="" />
+          <img src="images/icon-32-logo 2.svg" alt="Logo" />
           <p className="text-gray-4 text-lg">
             We connect people and removal
             <br /> companies
@@ -18,7 +21,7 @@ function Footer() {
         <div className="flex flex-wrap justify-between gap-8 p-3">
           <div>
             <h1 className="text-base md:text-xl tracking-wider">
-              For consumer
+              For consumers
             </h1>
             <ul>
               <div className="text-gray-400">
@@ -36,14 +39,14 @@ function Footer() {
             <ul>
               <div className="text-gray-400">
                 <li>Become a partner</li>
-                <li>Start your free trail</li>
+                <li>Start your free trial</li>
                 <li>Partner sign in</li>
               </div>
             </ul>
           </div>
           <div>
             <ul>
-              <h2 className="text-base Md:text-xl tracking-wider">Need help?</h2>
+              <h2 className="text-base md:text-xl tracking-wider">Need help?</h2>
               <div className="text-gray-400">
                 <li>Contact us</li>
                 <li>UAE@gmail.com</li>

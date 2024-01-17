@@ -1,20 +1,27 @@
+import React from "react";
 import "./maping.css";
+import invertedcomma from "../assets/images/invertedcomma.png";
+import { Image } from "antd";
 
 function TCard({ description, name, companyname }) {
-    return (
-        <div className="pt-6 mb-12 relative">
-            <div className="hidden md:block">
-                <img className="pix absolute" src="images/“.svg" alt="" />
-            </div>
-            <div>
-                <p>{description}</p>
-                <div className="pt-4">
-                    <h5>{name}</h5>
-                    <p className="text-gray-400">{companyname}</p>
-                </div>
-            </div>
+  return (
+    <div className="pt-6 mb-12 relative w-fit">
+      <div>
+        <div className="flex relative">
+          <div>
+            <Image src={invertedcomma} alt="" width={15} />
+          </div>
+          <div>
+            <p className="ml-4">{description}</p>
+          </div>
         </div>
-    );
+        <div className="pt-4 ml-7">
+          <h5>{name}</h5>
+          <p className="text-gray-400">{companyname}</p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default TCard;
