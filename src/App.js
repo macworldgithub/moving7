@@ -11,7 +11,7 @@ import Footer from "./pages/footer/footer";
 
 function App() {
   return (
-    <div className="main-container">
+    <div className=" max-w-[1440px] mx-auto">
       {/* <Header />
       <HeroSection /> */}
       <Experience />

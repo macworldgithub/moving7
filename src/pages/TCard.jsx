@@ -1,5 +1,4 @@
 import React from "react";
-import "./maping.css";
 import invertedcomma from "../assets/images/invertedcomma.png";
 import { Image } from "antd";
 
