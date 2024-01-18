@@ -10,13 +10,13 @@ function Service() {
       <div className="text-center pb-8 pt-8">
         <h2 className="text-black text-3xl font-semibold">Our services</h2>
       </div>
-      <div className="flex justify-evenly gap-8 flex-col items-center flex-wrap sm:flex sm:flex-row w-full sm:py-0 lg:gap-2">
+      <div className="flex justify-evenly flex-col items-center flex-wrap sm:flex sm:flex-row w-full sm:py-0 lg:gap-2">
         <div>
           <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-6 box-shadow">
             <img src={Group38} alt="Local Service" />
           </div>
           <div>
-            <h4 className="text-3xl pt-6 text-gray-400 h">Local</h4>
+            <h4 className="text-3xl py-6 px-6 text-gray-400 h">Local</h4>
           </div>
         </div>
 
@@ -25,7 +25,7 @@ function Service() {
             <img src={MovingTruck} alt="Commercial Service" />
           </div>
           <div>
-            <h4 className="text-3xl pt-6 text-gray-400">Commercial</h4>
+            <h4 className="text-3xl py-6 px-6 text-gray-400">Commercial</h4>
           </div>
         </div>
 
@@ -34,7 +34,7 @@ function Service() {
             <img src={Group34} alt="International Service" />
           </div>
           <div>
-            <h4 className="text-3xl pt-6 text-gray-400">International</h4>
+            <h4 className="text-3xl py-6 px-6 text-gray-400">International</h4>
           </div>
         </div>
       </div>
