@@ -4,9 +4,11 @@ import Group38 from "../../assets/images/Group 38.svg";
 import Group34 from "../../assets/images/Group 34.svg";
 import MovingTruck from "../../assets/images/Moving_Truck.svg";
 
+import SliderService from "./service_slider";
+
 function Service() {
   return (
-    <div className="main pt-8 text-center w-full">
+    <div className="main text-center w-full">
       <div className="text-center pb-8 pt-8">
         <h2 className="text-black text-3xl font-semibold">Our services</h2>
       </div>
@@ -38,6 +40,10 @@ function Service() {
           </div>
         </div>
       </div>
+
+      {/* <div>
+        <SliderService />
+      </div> */}
     </div>
   );
 }

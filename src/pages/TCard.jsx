@@ -4,7 +4,7 @@ import { Image } from "antd";
 
 function TCard({ description, name, companyname }) {
   return (
-    <div className="pt-6 mb-12 relative w-fit">
+    <div className="pt-6 mb-12 relative w-fit lg:text-xl ">
       <div>
         <div className="flex relative">
           <div>

@@ -6,11 +6,11 @@ import Frame2 from "../../assets/images/Frame (2).svg"
 
 function ChooseUs() {
   return (
-    <div className="items-center flex flex-col flex-wrap justify-between py-6 px-7 size-full md:flex md:flex-col lg:items-center lg:flex-wrap lg:justify-center">
+    <div className="items-center flex flex-col flex-wrap justify-between py-6 px-8 size-full md:flex md:flex-col lg:items-center lg:flex-wrap lg:justify-center">
       <div className="lg:flex lg:flex-row lg:items-center">
-        <div className="md:px-24 lg:px-20">
-          <h2 className="text-2xl font-bold lg:text-4xl">Why choose us for moving?</h2>
-          <p className="pt-6 text-justify lg:flex lg:flex-row">
+        <div className="md:px-24 lg:px-8">
+          <h2 className="text-2xl font-bold lg:text-2xl">Why choose us for moving?</h2>
+          <p className="pt-6 sm:text-lg text-justify lg:flex lg:flex-row">
             Choose us for your moving needs because we prioritize your peace of mind. Our experienced team is dedicated to ensuring a seamless and stress-free relocation process.
           </p>
         </div>

@@ -7,21 +7,21 @@ import mouse from "../assets/images/Group 6 (1).svg";
 
 function Experience() {
   return (
-    <div className="main-container flex text-[#787878] flex-col items-center justify-evenly pt-6 pb-24 gap-8 sm:flex sm:flex-row  md:flex-row sm: mb-6">
-      <div className="absolute mt-[432px] sm:mt-44 md:mt-48">
+    <div className="main-container flex text-[#787878] flex-col items-center justify-evenly pt-6 pb-20 gap-8 sm:flex sm:flex-row  md:flex-row">
+      <div className="absolute mt-[450px] sm:mt-44 md:mt-48">
         <img src={mouse} alt="Mouse" />
       </div>
       <div>
         <img src={k5} alt="Happy Clients" />
-        <h2>Happy Clients</h2>
+        <h2 className="p-4">Happy Clients</h2>
       </div>
       <div>
         <img src={img230} alt="Moving Companies" />
-        <h2>Moving Companies</h2>
+        <h2 className="p-4">Moving Companies</h2>
       </div>
       <div>
         <img src={img15} alt="Years of Experience" />
-        <h2>Years of Experience</h2>
+        <h2 className="p-4">Years of Experience</h2>
       </div>
     </div>
   );
