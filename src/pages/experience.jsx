@@ -7,7 +7,7 @@ import mouse from "../assets/images/Group 6 (1).svg";
 
 function Experience() {
   return (
-    <div className="main-container flex text-[#787878] flex-col items-center justify-evenly pt-6 pb-24 gap-8 sm:flex sm:flex-row  md:flex-row lg:mb-12">
+    <div className="main-container flex text-[#787878] flex-col items-center justify-evenly pt-6 pb-24 gap-8 sm:flex sm:flex-row  md:flex-row sm: mb-6">
       <div className="absolute mt-[432px] sm:mt-44 md:mt-48">
         <img src={mouse} alt="Mouse" />
       </div>
