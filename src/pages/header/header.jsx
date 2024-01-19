@@ -1,5 +1,4 @@
 import "./header.css";
-import "./../../media-query.css"
 
 import logo from '../../assets/images/logo.svg'
 function Header() {

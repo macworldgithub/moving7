@@ -26,52 +26,23 @@ const data = [
         description: "Experienced Project Manager with a focus on efficiency",
         name: "Robert Johnson",
         companyName: "Global Solutions Ltd."
-    },
-    {
-        description: "Marketing Specialist skilled in digital marketing strategies",
-        name: "Emily Davis",
-        companyName: "MarketPro Strategies"
-    },
-    {
-        description: "Data Scientist with a passion for analytics and machine learning",
-        name: "Alex Turner",
-        companyName: "Data Insights Corporation"
-    },
-    {
-        description: "Marketing Specialist skilled in digital marketing strategies",
-        name: "Emily Davis",
-        companyName: "MarketPro Strategies"
-    },
-    {
-        description: "Marketing Specialist skilled in digital marketing strategies",
-        name: "Emily Davis",
-        companyName: "MarketPro Strategies"
-    },
-    {
-        description: "Marketing Specialist skilled in digital marketing strategies",
-        name: "Emily Davis",
-        companyName: "MarketPro Strategies"
-    },
-    {
-        description: "Marketing Specialist skilled in digital marketing strategies",
-        name: "Emily Davis",
-        companyName: "MarketPro Strategies"
-    },
-
+    }
 ];
 
 const CarouselSlider = () => (
-    <div className='mx-auto p-2 mb w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 '>
-        <div className='text-center text-2xl pb-4 font-bold pt-6'>
-            <h2>What Our Customer Says</h2>
+    <>
+        <div className='mx-auto p-2 mb w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 '>
+            <div className='text-center text-2xl pb-4 font-bold pt-6'>
+                <h2>What Our Customer Says</h2>
+            </div>
+            <Carousel>
+                {data.map((card) => {
+                    return (
+                        <TCard description={card.description} name={card.name} companyname={card.companyName} />
+                    )
+                })}
+            </Carousel>
         </div>
-        <Carousel>
-            {data.map((card) => {
-                return (
-                    <TCard description={card.description} name={card.name} companyname={card.companyName} />
-                )
-            })}
-        </Carousel>
-    </div>
+    </>
 );
 export default CarouselSlider;

@@ -1,0 +1,12 @@
+.dots :where(.css-dev-only-do-not-override-zl9ks2).ant-carousel .slick-dots li button::after {
+    display: none !important;
+}
+
+
+.dots :where(.css-dev-only-do-not-override-zl9ks2).ant-carousel .slick-dots li.slick-active button {
+    display: none !important;
+}
+
+.dots :where(.css-dev-only-do-not-override-zl9ks2).ant-carousel .slick-dots li button {
+    display: none !important;
+}
