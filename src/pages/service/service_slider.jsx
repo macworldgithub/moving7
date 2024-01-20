@@ -4,13 +4,15 @@ import Group38 from "../../assets/images/Group 38.svg";
 import Group34 from "../../assets/images/Group 34.svg";
 import MovingTruck from "../../assets/images/Moving_Truck.svg";
 
-function Service() {
+
+function SliderService() {
   return (
-    <div className="main pt-8 text-center w-full">
+    <div className="main text-center w-full">
       <div className="text-center pb-8 pt-8">
         <h2 className="text-black text-3xl font-semibold">Our services</h2>
       </div>
-      <div className="flex justify-evenly flex-col items-center flex-wrap sm:flex sm:flex-row w-full sm:py-0 lg:gap-2">
+
+      <div className="hidden sm:flex md:items-center justify-evenly flex-wrap sm:flex-row w-full sm:py-0 lg:gap-2">
         <div>
           <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-6 box-shadow">
             <img src={Group38} alt="Local Service" />
@@ -42,4 +44,4 @@ function Service() {
   );
 }
 
-export default Service;
+export default SliderService;

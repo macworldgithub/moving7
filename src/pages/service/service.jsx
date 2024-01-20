@@ -12,7 +12,8 @@ function Service() {
       <div className="text-center pb-8 pt-8">
         <h2 className="text-black text-3xl font-semibold">Our services</h2>
       </div>
-      <div className="flex justify-evenly flex-col items-center flex-wrap sm:flex sm:flex-row w-full sm:py-0 lg:gap-2">
+
+      <div className="hidden sm:flex md:items-center justify-evenly flex-wrap sm:flex-row w-full sm:py-0 lg:gap-2">
         <div>
           <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-6 box-shadow">
             <img src={Group38} alt="Local Service" />
@@ -40,10 +41,9 @@ function Service() {
           </div>
         </div>
       </div>
-
-      {/* <div>
+      <div>
         <SliderService />
-      </div> */}
+      </div>
     </div>
   );
 }

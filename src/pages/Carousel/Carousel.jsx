@@ -16,15 +16,16 @@ const data = [
         companyName: "Tech Innovations Inc."
     },
     {
-        description: "Graphic Designer specializing in brand identity",
-        name: "Jane Smith",
-        companyName: "Creative Designs Co."
+        description: "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment",
+        name: "John Doe",
+        companyName: "Tech Innovations Inc."
     },
     {
-        description: "Experienced Project Manager with a focus on efficiency",
-        name: "Robert Johnson",
-        companyName: "Global Solutions Ltd."
+        description: "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment",
+        name: "John Doe",
+        companyName: "Tech Innovations Inc."
     }
+    
 ];
 
 const CarouselSlider = () => (
@@ -33,7 +34,7 @@ const CarouselSlider = () => (
             <div className='text-center text-2xl pb-4 font-bold pt-6'>
                 <h2>What Our Customer Says</h2>
             </div>
-            <Carousel>
+            <Carousel autoplay>
                 {data.map((card) => {
                     return (
                         <TCard description={card.description} name={card.name} companyname={card.companyName} />
