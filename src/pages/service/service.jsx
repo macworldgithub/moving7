@@ -19,7 +19,8 @@ function Service() {
             <img src={Group38} alt="Local Service" />
           </div>
           <div>
-            <h4 className="text-3xl py-6 px-6 text-gray-400 h">Local</h4>
+            {/* <h4 >Local</h4> */}
+            <button className="text-3xl py-6 px-6 text-gray-400 h">Local</button>
           </div>
         </div>
 

@@ -24,6 +24,10 @@ function App() {
       <Footer />
     </div>
   );
+
+  let onLocalClick=()=>{
+    
+  }
 }
 
 export default App;
