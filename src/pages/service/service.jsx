@@ -9,8 +9,8 @@ import SliderService from "./service_slider";
 function Service() {
   return (
     <div className="main text-center w-full">
-      <div className="text-center pb-8 pt-8">
-        <h2 className="text-black text-3xl font-semibold">Our services</h2>
+      <div className="text-center pb-8">
+        <h2 className="hidden sm:block text-black text-3xl font-semibold">Our services</h2>
       </div>
 
       <div className="hidden sm:flex md:items-center justify-evenly flex-wrap sm:flex-row w-full sm:py-0 lg:gap-2">

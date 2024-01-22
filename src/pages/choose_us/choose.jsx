@@ -10,7 +10,7 @@ function ChooseUs() {
       <div className="lg:flex lg:flex-row lg:items-center">
         <div className="md:px-24 lg:px-8">
           <h2 className="text-2xl font-bold lg:text-2xl">Why choose us for moving?</h2>
-          <p className="pt-6 sm:text-lg text-justify lg:flex lg:flex-row">
+          <p className="pt-6 pb-6 sm:text-lg text-justify lg:flex lg:flex-row">
             Choose us for your moving needs because we prioritize your peace of mind. Our experienced team is dedicated to ensuring a seamless and stress-free relocation process.
           </p>
         </div>

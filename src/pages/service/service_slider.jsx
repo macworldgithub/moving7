@@ -1,45 +1,59 @@
 import React from "react";
+import { Carousel } from 'antd';
 import "../../App.css";
 import Group38 from "../../assets/images/Group 38.svg";
-import Group34 from "../../assets/images/Group 34.svg";
-import MovingTruck from "../../assets/images/Moving_Truck.svg";
 
+const contentStyle = {
+  height: '160px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+};
 
 function SliderService() {
   return (
-    <div className="main text-center w-full">
-      <div className="text-center pb-8 pt-8">
+    <div className="text-center dots sm:hidden">
+      <div className="text-center pb-8">
         <h2 className="text-black text-3xl font-semibold">Our services</h2>
       </div>
-
-      <div className="hidden sm:flex md:items-center justify-evenly flex-wrap sm:flex-row w-full sm:py-0 lg:gap-2">
+      <Carousel autoplay>
         <div>
-          <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-6 box-shadow">
-            <img src={Group38} alt="Local Service" />
-          </div>
-          <div>
-            <h4 className="text-3xl py-6 px-6 text-gray-400 h">Local</h4>
-          </div>
+          <h3 style={contentStyle}>
+            <div className="inline-block">
+              <div className="inline-block rounded-2xl w-48 bg-[#f5f5f5] h-38 p-6 box-shadow">
+                <img src={Group38} alt="Local Service" />
+              </div>
+              <div>
+                <h4 className="text-3xl py-6 px-6 text-gray-400 h">Local</h4>
+              </div>
+            </div>
+          </h3>
         </div>
-
         <div>
-          <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-8 box-shadow">
-            <img src={MovingTruck} alt="Commercial Service" />
-          </div>
-          <div>
-            <h4 className="text-3xl py-6 px-6 text-gray-400">Commercial</h4>
-          </div>
+          <h3 style={contentStyle}>
+            <div className="inline-block">
+              <div className="inline-block rounded-2xl w-48 bg-[#f5f5f5] h-38 p-6 box-shadow">
+                <img src={Group38} alt="Local Service" />
+              </div>
+              <div>
+                <h4 className="text-3xl py-6 px-6 text-gray-400 h">Local</h4>
+              </div>
+            </div>
+          </h3>
         </div>
-
         <div>
-          <div className="flex flex-col items-center justify-center rounded-2xl w-48 bg-[#f5f5f5] h-38 p-8 box-shadow">
-            <img src={Group34} alt="International Service" />
-          </div>
-          <div>
-            <h4 className="text-3xl py-6 px-6 text-gray-400">International</h4>
-          </div>
+          <h3 style={contentStyle}>
+            <div className="inline-block">
+              <div className="inline-block rounded-2xl w-48 bg-[#f5f5f5] h-38 p-6 box-shadow">
+                <img src={Group38} alt="Local Service" />
+              </div>
+              <div>
+                <h4 className="text-3xl py-6 px-6 text-gray-400 h">Local</h4>
+              </div>
+            </div>
+          </h3>
         </div>
-      </div>
+      </Carousel >
     </div>
   );
 }
