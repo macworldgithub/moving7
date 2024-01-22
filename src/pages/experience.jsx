@@ -13,15 +13,15 @@ function Experience() {
       </div>
       <div>
         <img src={k5} alt="Happy Clients" />
-        <h2 className="p-4">Happy Clients</h2>
+        <h2 className="p-4 lg:text-2xl">Happy Clients</h2>
       </div>
       <div>
         <img src={img230} alt="Moving Companies" />
-        <h2 className="p-4">Moving Companies</h2>
+        <h2 className="p-4 lg:text-2xl">Moving Companies</h2>
       </div>
       <div>
         <img src={img15} alt="Years of Experience" />
-        <h2 className="p-4">Years of Experience</h2>
+        <h2 className="p-4 lg:text-2xl">Years of Experience</h2>
       </div>
     </div>
   );

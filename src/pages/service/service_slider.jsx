@@ -13,7 +13,7 @@ const contentStyle = {
 function SliderService() {
   return (
     <div className="text-center dots sm:hidden">
-      <div className="text-center pb-8">
+      <div className="text-center m-7 lg:bg-slate-600">
         <h2 className="text-black text-3xl font-semibold">Our services</h2>
       </div>
       <Carousel autoplay>

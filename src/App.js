@@ -8,16 +8,18 @@ import Compare from "./pages/moving_componies.jsx/compare";
 import Service from "./pages/service/service";
 import CarouselSlider from "./pages/Carousel/Carousel";
 import Footer from "./pages/footer/footer";
+import MovingType from "./pages/moving_type/moving-type";
 
 function App() {
   return (
     <div className=" max-w-[1440px] mx-auto">
-      <Header />
-      {/* <HeroSection /> */}
+      {/* <Header />
+      <HeroSection /> */}
+      <MovingType />
       <Experience />
       <Compare />
-      <CarouselSlider />
       <Service />
+      <CarouselSlider />
       <ChooseUs />
       <Footer />
     </div>

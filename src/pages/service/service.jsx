@@ -9,7 +9,7 @@ import SliderService from "./service_slider";
 function Service() {
   return (
     <div className="main text-center w-full">
-      <div className="text-center pb-8">
+      <div className="text-center m-12">
         <h2 className="hidden sm:block text-black text-3xl font-semibold">Our services</h2>
       </div>
 
