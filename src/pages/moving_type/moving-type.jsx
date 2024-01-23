@@ -19,7 +19,7 @@ function MovingType() {
 
     return (
         <>
-            <div className=" flex justify-center items-center header-btn mt-10">
+            <div className=" flex justify-center items-center header-btn mt-2 lg:mt-10">
                 <button className="text-sm py-2 bg-[#13C265] w-40 font-bold lg:text-lg">Get Quotes</button>
             </div>
             <div className=" bg-[#8AFFC133] mx-auto w-11/12 h-auto items-center justify-center text-center p-4 lg:w-4/5 rounded-lg border-neutral-600 m-8 border">
