@@ -22,15 +22,17 @@ function MovingType() {
                 <h2 className=" text-[#13C265] text-2xl font-semibold mb-4">Moving Type</h2>
             </div>
             <div className="felx items-center justify-between">
-                <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue" onClick={() => setUnlock_1(true)} onChange={(e) => firstHandler(e.target.value)}>Local</button>
+                <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue" onClick={() => setUnlock_1(!(lock_1))} onChange={(e) => firstHandler(e.target.value)}>Local</button>
                 <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg">Commerical</button>
                 <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg">International</button>
             </div>
-            {lock_1 && <div>
+            
+            {lock_1 &&<div>
                 <div className="text-start flex flex-col items-center">
                     <p className="lg:w-1/2">Move from</p>
                     <Input className="lg:w-2/4" placeholder="Address" onClick={() => setUnlock1(true)} onChange={(e) => firstHandler(e.target.value)} />
                 </div>
+                
 
                 {lock1 && (
                     <div className="text-start flex flex-col items-center">
