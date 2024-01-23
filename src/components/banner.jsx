@@ -4,7 +4,7 @@ import YoutubeIcon from "../assets/images/youtubeicon.svg";
 
 function MainBanner() {
     return (
-        <div className="w-11/12 mx-auto text-center items-center gap-y-2 p-2 lg:flex md:flex md:justify-between">
+        <div className="w-11/12 mx-auto text-center items-center gap-y-2 pt-8 lg:flex md:flex md:justify-between">
             <div>
                 <img src={Banner} alt="banner" />
             </div>
