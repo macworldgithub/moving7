@@ -18,7 +18,7 @@ function Header() {
           <button className="text-sm py-2 bg-[#13C265] lg:text-lg lg:w-40 font-bold">Become a partner</button>
         </div>
       </div>
-      <div>
+      <div className="hidden md:block">
         <img src={Ellipse1} className=" absolute top-[0%]" alt="" />
         <img src={Ellipse2} className=" absolute top-[-7%]" alt="" />
       </div>

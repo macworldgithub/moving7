@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./moving.css"
 import "../header/header.css"
 import { Input } from "antd";
 function MovingType() {
     const [lock_1, setUnlock_1] = useState(false)
-    
     const [lock1, setUnlock1] = useState(false)
     const [lock2, setUnlock2] = useState(false)
     const [lock3, setUnlock3] = useState(false)
@@ -12,11 +11,40 @@ function MovingType() {
     const [lock5, setUnlock5] = useState(false)
     const [lock6, setUnlock6] = useState(false)
     const [lock7, setUnlock7] = useState(false)
-
+    const [active, setActive] = useState(null)
+    
+    const [selectBg, setSelectBg] = useState("bg-[#00DD68]")
 
     const firstHandler = (e) => {
         console.log("e===>", e)
     }
+    const localClickHandler = () => {
+        setUnlock_1((prevLock_1) => {
+            const newLock_1 = !prevLock_1;
+            setActive(newLock_1 ? 1 : null);
+            return newLock_1;
+        });
+    };
+
+    const HeadButton = () => {
+
+        return (
+            <div className="felx items-center justify-between">
+                <button className={` w-40 ${active === 1 ? selectBg : " bg-[#D1D1D1]"} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`} onClick={localClickHandler} onChange={(e) => firstHandler(e.target.value)}>Local</button>
+                <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg">Commerical</button>
+                <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg">International</button>
+            </div>
+        )
+
+    }
+
+    useEffect(() => {
+
+        HeadButton()
+
+    }, [active])
+
+
 
     return (
         <>
@@ -27,11 +55,9 @@ function MovingType() {
                 <div>
                     <h2 className=" text-[#13C265] text-2xl font-semibold mb-4">Moving Type</h2>
                 </div>
-                <div className="felx items-center justify-between">
-                    <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue" onClick={() => setUnlock_1(!(lock_1))} onChange={(e) => firstHandler(e.target.value)}>Local</button>
-                    <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg">Commerical</button>
-                    <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg">International</button>
-                </div>
+
+                <HeadButton />
+
 
                 {lock_1 && <div>
                     <div className="text-start flex flex-col items-center">
