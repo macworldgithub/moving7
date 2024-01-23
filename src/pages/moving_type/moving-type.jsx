@@ -4,6 +4,7 @@ import "../header/header.css"
 import { Input } from "antd";
 function MovingType() {
     const [lock_1, setUnlock_1] = useState(false)
+    
     const [lock1, setUnlock1] = useState(false)
     const [lock2, setUnlock2] = useState(false)
     const [lock3, setUnlock3] = useState(false)
@@ -11,7 +12,6 @@ function MovingType() {
     const [lock5, setUnlock5] = useState(false)
     const [lock6, setUnlock6] = useState(false)
     const [lock7, setUnlock7] = useState(false)
-    const [lock8, setUnlock8] = useState(false)
 
 
     const firstHandler = (e) => {
@@ -75,7 +75,7 @@ function MovingType() {
                     </div>}
                     {lock7 && <div className="text-start flex flex-col items-center pt-4">
                         <p className="lg:w-1/2 ">Contact details</p>
-                        <Input className=" lg:w-2/4" placeholder="Phone number" onClick={() => setUnlock8(true)} onChange={(e) => firstHandler(e.target.value)} />
+                        <Input className=" lg:w-2/4" placeholder="Phone number" onClick={() => setUnlock7(true)} onChange={(e) => firstHandler(e.target.value)} />
                     </div>}
 
                     <button className=" w-2/3 lg:w-80 bg-[#00DD68] p-2 rounded-lg text-white mt-4">Request quoets</button>
