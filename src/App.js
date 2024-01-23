@@ -17,7 +17,6 @@ function App() {
     <div className=" max-w-[1440px] mx-auto">
       <Header />
       <MainBanner />
-      {/* <HeroSection /> */}
       <MovingType />
       <Experience />
       <Compare />

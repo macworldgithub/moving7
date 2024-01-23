@@ -42,39 +42,39 @@ function MovingType() {
                     {lock1 && (
                         <div className="text-start flex flex-col items-center">
                             <div className="lg:w-1/2 ">Move to</div>
-                            <Input className="lg:w-2/4" placeholder="Address" onClick={() => setUnlock2(true)} />
+                            <Input className="lg:w-2/4" placeholder="Address" onClick={() => setUnlock2(true)} onChange={(e) => firstHandler(e.target.value)} />
                         </div>
                     )}
 
                     {lock2 && <div className="text-start flex flex-col items-center">
                         <p className="lg:w-1/2">Bedrooms</p>
                         <p className="lg:w-1/2 text-gray-400">Current Property</p>
-                        <Input className=" lg:w-2/4" placeholder="Address" onClick={() => setUnlock3(true)} />
+                        <Input className=" lg:w-2/4" placeholder="Address" onClick={() => setUnlock3(true)} onChange={(e) => firstHandler(e.target.value)} />
                     </div>}
 
                     {lock3 && <div className="text-start flex flex-col items-center pt-4">
                         <p></p>
-                        <Input className=" text-black lg:w-2/4" placeholder="Specific date" onClick={() => setUnlock4(true)} />
+                        <Input className=" text-black lg:w-2/4" placeholder="Specific date" onClick={() => setUnlock4(true)} onChange={(e) => firstHandler(e.target.value)} />
 
                     </div>}
 
                     {lock4 && <div className="text-start flex flex-col items-center pt-4">
                         <p className="lg:w-1/2 ">Date Range</p>
-                        <Input className=" lg:w-2/4" placeholder="Address" onClick={() => setUnlock5(true)} />
+                        <Input className=" lg:w-2/4" placeholder="Address" onClick={() => setUnlock5(true)} onChange={(e) => firstHandler(e.target.value)} />
                     </div>}
 
                     {lock5 && <div className="text-start flex flex-col items-center pt-4">
                         <p className="lg:w-1/2 ">Personal details</p>
-                        <Input className=" lg:w-2/4" placeholder="Name" onClick={() => setUnlock6(true)} />
+                        <Input className=" lg:w-2/4" placeholder="Name" onClick={() => setUnlock6(true)} onChange={(e) => firstHandler(e.target.value)} />
                     </div>}
 
                     {lock6 && <div className="text-start flex flex-col items-center pt-4">
                         <p className="lg:w-1/2 ">Contact details</p>
-                        <Input className=" lg:w-2/4" placeholder="Email" onClick={() => setUnlock7(true)} />
+                        <Input className=" lg:w-2/4" placeholder="Email" onClick={() => setUnlock7(true)} onChange={(e) => firstHandler(e.target.value)} />
                     </div>}
                     {lock7 && <div className="text-start flex flex-col items-center pt-4">
                         <p className="lg:w-1/2 ">Contact details</p>
-                        <Input className=" lg:w-2/4" placeholder="Phone number" onClick={() => setUnlock7(true)} />
+                        <Input className=" lg:w-2/4" placeholder="Phone number" onClick={() => setUnlock7(true)} onChange={(e) => firstHandler(e.target.value)} />
                     </div>}
 
                     <button className=" w-2/3 lg:w-80 bg-[#00DD68] p-2 rounded-lg text-white mt-4">Request quoets</button>
