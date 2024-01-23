@@ -7,7 +7,7 @@ function Header() {
       <div className="logo">
         <img src={logo} alt="logo"/>
       </div>
-      <div className="header-btn hidden gap-3 lg:text-xl">
+      <div className="header-btn hidden lg:flex gap-3 lg:text-xl">
         <button className="text-sm py-2 bg-[#13C265] lg:w-40 font-bold">Review</button>
         <button className="text-sm py-2 bg-[#13C265] lg:w-40 font-bold">About Us</button>
         <button className="text-sm py-2 bg-[#13C265] lg:w-40 font-bold">Become a partner</button>
