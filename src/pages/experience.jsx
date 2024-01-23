@@ -1,7 +1,7 @@
 import React from "react";
 import "./experience.css";
 import k5 from "../assets/images/5K.svg";
-import img230 from "../assets/images/230 +.svg";
+import img230 from "../assets/images/230.svg";
 import img15 from "../assets/images/15.svg";
 import mouse from "../assets/images/Group 6 (1).svg";
 
