@@ -3,12 +3,14 @@ import "./header.css";
 import logo from '../../assets/images/logo.svg'
 function Header() {
   return (
-    <div className="header px-8 bg-transparent h-20 flex items-center justify-between gap-8 lg:gap-[60%]">
+    <div className="header px-8 bg-transparent h-20 flex items-center justify-around gap-8 lg:gap-[20%]">
       <div className="logo">
-        <img src={logo} alt="logo" />
+        <img src={logo} alt="logo"/>
       </div>
-      <div className="header-btn">
-        <button className="text-sm px-6 py-3 bg-[#13C265] font-bold">Get Quotes</button>
+      <div className="header-btn flex gap-3 lg:text-xl">
+        <button className="text-sm py-2 bg-[#13C265] w-40 font-bold">Review</button>
+        <button className="text-sm py-2 bg-[#13C265] w-40 font-bold">About Us</button>
+        <button className="text-sm py-2 bg-[#13C265] w-40 font-bold">Become a partner</button>
       </div>
     </div>
   );

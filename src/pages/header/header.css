@@ -9,5 +9,6 @@
     border: none;
     border-radius: 10px 10px 0px 10px;
     color: #fff;
-    cursor: pointer;;
+    cursor: pointer;
+    object-fit: contain;
 }

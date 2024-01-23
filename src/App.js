@@ -10,11 +10,14 @@ import CarouselSlider from "./pages/Carousel/Carousel";
 import Footer from "./pages/footer/footer";
 import MovingType from "./pages/moving_type/moving-type";
 
+import MainBanner from "./components/banner";
+
 function App() {
   return (
     <div className=" max-w-[1440px] mx-auto">
-      {/* <Header />
-      <HeroSection /> */}
+      <Header />
+      <MainBanner />
+      {/* <HeroSection /> */}
       <MovingType />
       <Experience />
       <Compare />
@@ -25,9 +28,7 @@ function App() {
     </div>
   );
 
-  let onLocalClick=()=>{
-    
-  }
+  let onLocalClick = () => {};
 }
 
 export default App;
