@@ -44,8 +44,6 @@ function MovingType() {
 
     }, [active])
 
-
-
     return (
         <>
             <div className=" flex justify-center items-center header-btn mt-2 lg:mt-10">
@@ -55,10 +53,7 @@ function MovingType() {
                 <div>
                     <h2 className=" text-[#13C265] text-2xl font-semibold mb-4">Moving Type</h2>
                 </div>
-
                 <HeadButton />
-
-
                 {lock_1 && <div>
                     <div className="text-start flex flex-col items-center">
                         <p className="lg:w-1/2">Move from</p>
