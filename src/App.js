@@ -27,7 +27,6 @@ function App() {
     </div>
   );
 
-  let onLocalClick = () => {};
 }
 
 export default App;
