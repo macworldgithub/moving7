@@ -14,9 +14,9 @@ function Header() {
         </div>
 
         <div className="header-btn hidden sm:flex lg:flex gap-6 lg:text-xl">
-          <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-32 lg:w-40 md:py-2 md:px-2 font-bold">Review</button>
-          <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-32 lg:w-40 md:py-2 md:px-2 font-bold">About Us</button>
-          <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-32 lg:w-40 md:py-2 md:px-2  font-bold">Become a partner</button>
+          <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-32 lg:w-44 md:py-2 md:px-2 font-bold">Review</button>
+          <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-32 lg:w-44 md:py-2 md:px-2 font-bold">About Us</button>
+          <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-32 lg:w-44 md:py-2 md:px-2  font-bold">Become a partner</button>
         </div>
         <div className="block sm:hidden">
           <AiOutlineMenu />

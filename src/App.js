@@ -17,13 +17,13 @@ function App() {
     <div className=" max-w-[1440px] mx-auto">
       <Header />
       <MainBanner />
-      {/* <MovingType />
+      <MovingType />
       <Experience />
       <Compare />
       <Service />
       <CarouselSlider />
       <ChooseUs />
-      <Footer /> */}
+      <Footer />
     </div>
   );
 
