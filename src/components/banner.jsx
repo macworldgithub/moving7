@@ -13,11 +13,11 @@ function MainBanner() {
                 <img src={Banner} alt="banner" />
             </div>
             <div className="relative inline-block mt-4 sm:right-[24px]">
-                <div className="absolute hidden md:block circleImg top-[-85px] sm:top-[-55px]  md:top-[-94px] md:right-[-55px]">
+                <div className="absolute hidden md:block circleImg top-[-85px] sm:top-[-55px] md:top-[-94px] md:right-[-55px]">
                     <img src={CircleImg} alt="" />
                 </div>
                 <div>
-                    <img src={CarBg} className="absolute md:right-[-80px] lg:top-20 lg:h-[28rem]  hidden md:block" alt="" />
+                    <img src={CarBg} className="absolute md:w-[170px] md:h-[24rem] sm:right-[-47px] md:right-[-56px] lg:right-[-65] lg:top-20 lg:h-[25rem] lg:w-[55%]  hidden md:block" alt="" />
                 </div>
                 <div className="relative">
                     <img src={Youtube} alt="banner" />
