@@ -12,7 +12,7 @@ function MainBanner() {
                 <img src={Banner} alt="banner" />
             </div>
             <div className="relative inline-block mt-4 sm:right-[24px]">
-                <div className="absolute circleImg top-[-85px] sm:top-[-55px]  md:top-[-94px] md:right-[-55px]">
+                <div className="absolute hidden md:block circleImg top-[-85px] sm:top-[-55px]  md:top-[-94px] md:right-[-55px]">
                     <img src={CircleImg} alt="" />
                 </div>
                 <div className="relative">

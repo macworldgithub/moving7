@@ -23,8 +23,8 @@ function Header() {
         </div>
       </div>
       <div>
-        <img src={Ellipse1} className=" absolute z-10 top-[0%] w-[10rem] sm:w-64 md:w-[248px] lg:w-[337px] " alt="" />
-        <img src={Ellipse2} className=" absolute z-10 top-[-7%] w-[170px] sm:w-72 md:w-[258px] lg:w-[353px]" alt="" />
+        <img src={Ellipse1} className="absolute z-10 top-[0%] w-[10rem] sm:w-64 md:w-[248px] lg:w-[337px] " alt="" />
+        <img src={Ellipse2} className="absolute z-10 top-[-7%] w-[170px] sm:w-72 md:w-[258px] lg:w-[353px]" alt="" />
       </div>
     </>
   );
