@@ -1,14 +1,14 @@
 body {
   margin: 0;
-  font-family: sans-serif !important;
+  font-family: 'Fredoka', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 
 }
 
-*{
-  font-family: sans-serif;
+* {
+  font-family: 'Fredoka', sans-serif;
 }
 
 code {
