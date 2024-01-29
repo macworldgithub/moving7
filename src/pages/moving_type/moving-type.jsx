@@ -87,7 +87,7 @@ function MovingType() {
                             onChange={(e) => firstHandler(e.target.value)}
                         /> */}
 
-                        <SpecificDate />
+                        <SpecificDate setUnlock4={setUnlock4} />
                     </div>}
 
                     {lock4 && (
@@ -100,7 +100,7 @@ function MovingType() {
                     {lock5 && <div className="text-start flex flex-col items-center justify-center pt-4">
                         <p className="lg:w-1/2 ">Date Range</p>
                         {/* <Input className=" " placeholder="Address" onClick={() => setUnlock6(true)} onChange={(e) => firstHandler(e.target.value)} /> */}
-                        <DatePicker className="" />
+                        <DatePicker setUnlock6={setUnlock6} />
                     </div>}
 
                     {lock6 && <div className="text-start flex flex-col items-center pt-4">

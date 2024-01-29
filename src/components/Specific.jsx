@@ -1,6 +1,6 @@
 import React from 'react';
 import { DatePicker, theme } from 'antd';
-const SpecificDate = () => {
+const SpecificDate = ({setUnlock4}) => {
     const { token } = theme.useToken();
     const style = {
         border: `1px solid ${token.colorPrimary}`,
@@ -24,6 +24,7 @@ const SpecificDate = () => {
             cellRender={cellRender}
             style={{width:"50%", borderColor:"#13C26580"}}
             placeholder='Specific date'
+            onClick={()=>setUnlock4(true)}
         />
     );
 };
