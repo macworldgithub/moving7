@@ -2,6 +2,7 @@ import Banner from "../assets/images/banner.svg";
 import Youtube from "../assets/images/youtube.svg";
 import YoutubeIcon from "../assets/images/youtubeicon.svg";
 import CircleImg from "../assets/images/Ellipse 4.svg"
+import CarBg from "../assets/images/Group.svg"
 
 import './banner.css';
 
@@ -14,6 +15,9 @@ function MainBanner() {
             <div className="relative inline-block mt-4 sm:right-[24px]">
                 <div className="absolute hidden md:block circleImg top-[-85px] sm:top-[-55px]  md:top-[-94px] md:right-[-55px]">
                     <img src={CircleImg} alt="" />
+                </div>
+                <div>
+                    <img src={CarBg} className="absolute lg:right-[-80px] lg:top-24 lg:h-[28rem]  hidden md:block" alt="" />
                 </div>
                 <div className="relative">
                     <img src={Youtube} alt="banner" />
