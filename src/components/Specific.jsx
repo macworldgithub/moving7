@@ -22,9 +22,10 @@ const SpecificDate = ({setUnlock4}) => {
     return (
         <DatePicker
             cellRender={cellRender}
-            style={{width:"50%", borderColor:"#13C26580"}}
+            style={{borderColor:"#13C26580"}}
             placeholder='Specific date'
             onClick={()=>setUnlock4(true)}
+            className="w-full lg:w-1/2"
         />
     );
 };
