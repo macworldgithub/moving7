@@ -3,12 +3,13 @@ import Youtube from "../assets/images/youtube.svg";
 import YoutubeIcon from "../assets/images/youtubeicon.svg";
 import CircleImg from "../assets/images/Ellipse 4.svg"
 import CarBg from "../assets/images/Group.svg"
+import BgRing from "../assets/images/Ellipse 5.svg"
 
 import './banner.css';
 
 function MainBanner() {
     return (
-        <div className="w-11/12 mx-auto text-center items-center gap-[4%] gap-y-2 pt-8 lg:flex md:flex md:justify-between">
+        <div className="w-11/12 mx-auto text-center items-center gap-[3%] gap-y-2 pt-[1rem] lg:flex md:flex md:justify-between">
             <div>
                 <img src={Banner} alt="banner" />
             </div>
@@ -17,13 +18,16 @@ function MainBanner() {
                     <img src={CircleImg} alt="" />
                 </div>
                 <div>
-                    <img src={CarBg} className="absolute md:w-[170px] md:h-[24rem] sm:right-[-47px] md:right-[-56px] lg:right-[-65] lg:top-20 lg:h-[25rem] lg:w-[55%]  hidden md:block" alt="" />
+                    <img src={CarBg} className="absolute md:w-[170px] md:h-[18rem] sm:right-[-47px] md:right-[-56px] lg:right-[-65] lg:top-[5rem] lg:h-[21rem] lg:w-[55%]  hidden md:block" alt="" />
                 </div>
                 <div className="relative">
                     <img src={Youtube} alt="banner" />
                 </div>
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                     <img src={YoutubeIcon} height={50} width={50} alt="banner" />
+                </div>
+                <div className="  ">
+                    <img className="absolute top-[-15px] ml-4 z-[-1]" src={BgRing} alt="" />
                 </div>
             </div>
         </div>

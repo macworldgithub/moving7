@@ -12,6 +12,7 @@ import MovingType from "./pages/moving_type/moving-type";
 
 import MainBanner from "./components/banner";
 
+
 function App() {
   return (
     <div className=" max-w-[1440px] mx-auto">
