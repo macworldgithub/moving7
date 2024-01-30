@@ -18,7 +18,7 @@ function MainBanner() {
                     <img src={CircleImg} alt="" />
                 </div>
                 <div>
-                    <img src={CarBg} className="absolute md:w-[170px] md:h-[18rem] sm:right-[-47px] md:right-[-56px] lg:right-[-65] lg:h-[31rem] lg:w-[55%]  hidden md:block" alt="" />
+                    <img src={CarBg} className="absolute md:w-[170px] md:h-[16rem] md:mt-[15px] sm:right-[-47px] md:right-[-56px] lg:right-[-65] lg:h-[380px] lg:mt-12 lg:w-[55%] xl:mt-24  hidden md:block" alt="" />
                     
                 </div>
                 <div className="relative">
