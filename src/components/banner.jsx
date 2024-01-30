@@ -18,7 +18,8 @@ function MainBanner() {
                     <img src={CircleImg} alt="" />
                 </div>
                 <div>
-                    <img src={CarBg} className="absolute md:w-[170px] md:h-[18rem] sm:right-[-47px] md:right-[-56px] lg:right-[-65] lg:top-[5rem] lg:h-[21rem] lg:w-[55%]  hidden md:block" alt="" />
+                    <img src={CarBg} className="absolute md:w-[170px] md:h-[18rem] sm:right-[-47px] md:right-[-56px] lg:right-[-65] lg:h-[31rem] lg:w-[55%]  hidden md:block" alt="" />
+                    
                 </div>
                 <div className="relative">
                     <img src={Youtube} alt="banner" />
