@@ -10,7 +10,7 @@ function Header() {
     <>
       <div className="header px-8 bg-transparent h-20 flex items-center justify-between md:justify-around lg:gap-[20%]">
         <div className="logo">
-          <img src={logo} alt="logo" />
+          <img className="w-28 md:w-full" src={logo} alt="logo" />
         </div>
 
         <div className="header-btn hidden sm:flex lg:flex gap-6 lg:text-xl">
