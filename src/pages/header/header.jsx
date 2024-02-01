@@ -4,6 +4,8 @@ import logo from '../../assets/images/logo.svg'
 import Ellipse1 from '../../assets/images/Ellipse 1.svg'
 import Ellipse2 from '../../assets/images/Ellipse 2.svg'
 import { AiOutlineMenu } from "react-icons/ai";
+import { useState } from "react";
+
 
 function Header() {
   return (
@@ -13,14 +15,16 @@ function Header() {
           <img className="w-28 md:w-full" src={logo} alt="logo" />
         </div>
 
-        <div className="header-btn hidden sm:flex lg:flex gap-6 lg:text-xl">
+        <div className="header-btn hidden sm:flex sm:flex-row lg:flex gap-6 lg:text-xl">
           <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2 font-bold">Review</button>
           <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2 font-bold">About Us</button>
           <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2  font-bold">Become a partner</button>
         </div>
+
         <div className="block sm:hidden">
           <AiOutlineMenu />
         </div>
+
       </div>
       <div>
         <img src={Ellipse1} className="absolute z-10 top-[0%] h-[150px] sm:h-[190px] md:h-[175px] lg:h-[245px] " alt="" />
