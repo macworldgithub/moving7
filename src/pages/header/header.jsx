@@ -33,7 +33,6 @@ function Header() {
         <img src={Ellipse1} className="absolute z-10 top-[0%] h-[150px] sm:h-[190px] md:h-[175px] lg:h-[245px] " alt="" />
         <img src={Ellipse2} className="absolute z-10 top-[-45px] sm:top-[-65px] h-[14rem] w-[256px] sm:h-[240px] sm:w-[170px] md:h-[270px] md:w-[285px] lg:h-[351px] lg:w-[425px] " alt="" />
         <div className='bg-transparent h-10 w-36 absolute mt-[-54px] ml-24 z-10 cursor-pointer' onClick={() => window.location = '/'}>
-
         </div>
       </div>
     </>
