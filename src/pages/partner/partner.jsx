@@ -4,7 +4,7 @@ import Header from '../header/header';
 import banner from '../../assets/images/Logiin 1.png'
 import PartnerForm from './form/form';
 import ChooseUs from './form/parthnerChooseUs/chooseUs';
-import Compare from '../moving_componies.jsx/compare';
+import Compare from '../moving_componies/compare';
 import Steps from './steps/Partnerbenefits';
 import Benefits from './benefits/benefits';
 import CarouselSlider from '../Carousel/Carousel'
@@ -20,7 +20,6 @@ import Footer from '../footer/footer'
 export default function Partner() {
   return (
     <div className='relative'>
-      <Header />
       <div className=' flex items-center justify-center text-white mt-1 sm:mt-6 lg:mt-12'>
         <div className='absolute p-8 z-10 mt-6 md:ml-12 lg:ml-40 lg:mt-[-70px]'>
           <h3 className='text-md  font-light md:text-xl md:pb-1 lg:mb-4'>Become a partner</h3>

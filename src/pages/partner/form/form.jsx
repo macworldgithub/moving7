@@ -27,6 +27,9 @@ const PartnerForm = () => {
                     <button className='flex justify-center mx-auto items-center underline text-blue-400'>sign in</button>
                 </Form>
             </div>
+            <div className='custom-shadow w-40'>
+
+            </div>
         </div>
 
     );
