@@ -5,9 +5,6 @@ import Ellipse2 from '../../assets/images/Ellipse 2.svg'
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 import "./header.css";
-
-
-
 function Header() {
   return (
     <>

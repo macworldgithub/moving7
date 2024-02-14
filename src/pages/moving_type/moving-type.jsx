@@ -15,6 +15,8 @@ function MovingType() {
     const [lock7, setUnlock7] = useState(false)
     const [lock8, setUnlock8] = useState(false)
     const [lock9, setUnlock9] = useState(false)
+    const [lock10, setUnlock10] = useState(false)
+    const [lock11, setUnlock11] = useState(false)
     const [active, setActive] = useState(null)
 
     const [selectBg, setSelectBg] = useState("bg-[#00DD68]")
@@ -73,7 +75,7 @@ function MovingType() {
                     )}
 
                     {lock2 && <div className="text-start flex flex-col items-center mt-4">
-                        <p className="lg:w-1/2">Bedrooms</p>
+                        <p className="lg:w-1/2">Bedrooms/Office cabins</p>
                         <p className="lg:w-1/2 text-gray-400">Current Property</p>
                         <Input className=" lg:w-2/4" placeholder="Address" onClick={() => setUnlock3(true)} onChange={(e) => firstHandler(e.target.value)} />
                     </div>}
@@ -113,8 +115,16 @@ function MovingType() {
                         <Input className=" lg:w-2/4" placeholder="Email" onClick={() => setUnlock8(true)} onChange={(e) => firstHandler(e.target.value)} />
                     </div>}
                     {lock8 && <div className="text-start flex flex-col items-center pt-4">
-                        <p className="lg:w-1/2 ">Contact details</p>
+                        <p className="lg:w-1/2 ">Contact details<br /><span className=" text-gray-400">Whatsapp number</span></p>
                         <Input type="number" className=" lg:w-2/4" placeholder="Phone number" onClick={() => setUnlock9(true)} onChange={(e) => firstHandler(e.target.value)} />
+                    </div>}
+                    {lock9 && <div className="text-start flex flex-col items-center pt-4">
+                        <p className="lg:w-1/2 ">Budget range</p>
+                        <Input type="number" className=" lg:w-2/4" onClick={() => setUnlock10(true)} onChange={(e) => firstHandler(e.target.value)} />
+                    </div>}
+                    {lock10 && <div className="text-start flex flex-col items-center mt-4">
+                        <p className="lg:w-1/2">Flat build name/ District apartment/ office / villa </p>
+                        <Input className=" lg:w-2/4" onClick={() => setUnlock11(true)} onChange={(e) => firstHandler(e.target.value)} />
                     </div>}
 
                     <button className=" w-2/3 lg:w-80 bg-[#00DD68] p-2 rounded-lg text-white mt-4">Request quoets</button>
