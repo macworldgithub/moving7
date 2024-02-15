@@ -11,10 +11,8 @@ import CarouselSlider from '../Carousel/Carousel'
 import Rating from './rating/rating';
 import PartnerFaq from './faq';
 import FreeTrialForm from './form/parthnerChooseUs/PartnerForm';
-
+import OnlineAccForm from './form/OnlineAccForm';
 import RingImg from '../../assets/images/Ellipse 5.png'
-
-
 import Footer from '../footer/footer'
 
 
@@ -31,8 +29,9 @@ export default function Partner() {
         <img className=' hidden lg:block absolute lg:top-[90px] lg:ml-28' src={RingImg} alt="" />
       </div>
       <PartnerForm />
-      <ChooseUs />
       <FreeTrialForm />
+      {/* <OnlineAccForm /> */}
+      <ChooseUs />
       <Compare title={"5000+ Partner businesses and counting"} />
       <Steps />
       <Benefits />

@@ -5,7 +5,7 @@ export default function FreeTrialForm() {
         <div className='flex items-center justify-center mx-auto'>
             <div>
                 <h2 className='lg:font-semibold text-3xl text-center p-6 mb-4'>Welcome to free trial</h2>
-                <div className=' bg-[#E8FFF3] flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w-11/12 lg:w-[1140px] mx-auto'>
+                <div className=' bg-[#E8FFF3] flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w-11/12 lg:w-[1010px] mx-auto'>
                     <h2 className='text-[#13C265] text-2xl'>Select removal types</h2>
                     <div className='flex flex-col flex-wrap md:flex-row'>
                         <button className=' bg-[#f0f0f0] w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue'>
@@ -110,6 +110,8 @@ export default function FreeTrialForm() {
                                 <h2 className=' text-[#13C265] mt-3'>Last name</h2>
                                 <input type="text" placeholder='Last name' className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4' />
                             </div>
+                            
+                            <button className='w-[255px] md:w-[516px] text-white p-2 bg-[#00DD68] mt-4 rounded-md'>Create an new account</button>
                         </div>
                     </div>
                 </div>
