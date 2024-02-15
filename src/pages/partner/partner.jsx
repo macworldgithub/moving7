@@ -10,6 +10,7 @@ import Benefits from './benefits/benefits';
 import CarouselSlider from '../Carousel/Carousel'
 import Rating from './rating/rating';
 import PartnerFaq from './faq';
+import FreeTrialForm from './form/parthnerChooseUs/PartnerForm';
 
 import RingImg from '../../assets/images/Ellipse 5.png'
 
@@ -31,6 +32,7 @@ export default function Partner() {
       </div>
       <PartnerForm />
       <ChooseUs />
+      <FreeTrialForm />
       <Compare title={"5000+ Partner businesses and counting"} />
       <Steps />
       <Benefits />
