@@ -11,78 +11,46 @@ const RegionAccordion = () => {
             <p className='text-gray-500'>You can select 5 areas during free trial</p>
             <Collapse style={{ backgroundColor: "white" }} defaultActiveKey={['1']} onChange={onChange}>
                 <Panel style={{ fontWeight: "500" }} header="Pakistan" key="1">
-                    <div className='flex  flex-wrap gap-x-10 lg:gap-x-40 '>
+                    <div className='flex  flex-wrap gap-x-10 lg:gap-x-60 '>
                         <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Lahore</p>
+                            <input type="checkbox" style={{ width: "14px" }} />
+                            <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
+                            <input type="checkbox" style={{ width: "14px" }} />
+                            <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
+                            <input type="checkbox" style={{ width: "14px" }} />
+                            <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
+                            <input type="checkbox" style={{ width: "14px" }} />
+                            <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
+                            <input type="checkbox" style={{ width: "14px" }} />
+                            <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
+                            <input type="checkbox" style={{ width: "14px" }} />
+                            <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
+                            <input type="checkbox" style={{ width: "14px" }} />
+                            <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
+                            <input type="checkbox" style={{ width: "14px" }} />
+                            <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
+                            <input type="checkbox" style={{ width: "14px" }} />
+                            <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
-                        </div>
-                        <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
-                        </div>
-                        <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
-                        </div>
-                        <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
-                        </div>
-                        <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
-                        </div>
-                        <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
-                        </div>
-                        <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
-                        </div>
-                        <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
-                        </div>
-                        <div className='flex gap-2'>
-                            <input type="checkbox" />
-                            <p>Karachi</p>
+                            <input type="checkbox" style={{ width: "14px" }} />
+                            <p className='text-md'>Lahore</p>
                         </div>
                     </div>
                 </Panel>
