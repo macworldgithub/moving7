@@ -6,10 +6,10 @@ const RegionAccordion = () => {
         console.log(key);
     };
     return (
-        <div className='md:w-2/4 mx-auto'>
-            <h2 className='text-lg font-medium'>Select your areas</h2>
+        <div className='md:w-[53%] mx-auto'>
+            <h2 className='text-lg font-medium mt-4'>Select your areas</h2>
             <p className='text-gray-500'>You can select 5 areas during free trial</p>
-            <Collapse style={{ backgroundColor: "white" }} defaultActiveKey={['1']} onChange={onChange}>
+            <Collapse style={{ backgroundColor: "white", borderColor:"#13C26580" }} defaultActiveKey={['1']} onChange={onChange}>
                 <Panel style={{ fontWeight: "500" }} header="Pakistan" key="1">
                     <div className='flex  flex-wrap gap-x-10 lg:gap-x-60 '>
                         <div className='flex gap-2'>
