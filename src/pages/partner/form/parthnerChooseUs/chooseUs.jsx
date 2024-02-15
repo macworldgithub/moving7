@@ -9,7 +9,7 @@ import './choose.css'
 
 export default function ChooseUs() {
     return (
-        <div className='flex justify-evenly items-center flex-col md:flex-row md:gap-0 gap-6 mt-[200px] sm:mt-[-35px] lg:mt-[-30px] md:p-1 custom-responsive'>
+        <div className='flex justify-evenly items-center flex-col md:flex-row md:gap-0 gap-6 mt-[200px] sm:mt-[-35px] lg:mt-[50px] md:p-1 custom-responsive'>
             <div className=' w-3/4 lg:w-1/3 p-4'>
                 <h3 className=' text-2xl font-medium mt-8'>Why choose us?</h3>
                 <p className='text-lg'>With over 15 years of experience and operations in over 150 markets worldwide, we are the most trusted name in international and domestic moving services.</p>
