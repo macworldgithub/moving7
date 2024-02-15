@@ -7,7 +7,6 @@ function Footer() {
   return (
     <div className="bg-[#333] text-white w-full md:w-full py-10 md:mt-20 pl-8 pt-7 footer lg:p-10 lg:w-[1280pxX]">
       <div className="flex flex-wrap flex-col sm:flex gap-y-4 md:flex justify-around leading-loose lg:flex-row lg:mt-6 md:p-0 size-full">
-
         <div className="footer-truck">
           <img src={img} alt="Truck Icon" />
         </div>
@@ -47,7 +46,9 @@ function Footer() {
           </div>
           <div>
             <ul>
-              <h2 className="text-base md:text-xl tracking-wider">Need help?</h2>
+              <h2 className="text-base md:text-xl tracking-wider">
+                Need help?
+              </h2>
               <div className="text-gray-400">
                 <li>Contact us</li>
                 <li>UAE@gmail.com</li>
@@ -55,7 +56,6 @@ function Footer() {
             </ul>
           </div>
         </div>
-
       </div>
 
       <div className="flex items-start pt-8 md:justify-evenly">

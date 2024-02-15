@@ -14,3 +14,7 @@
 .img-height{
   height: 100px;
 }
+
+.PhoneInputInput:focus-visible{
+    outline:none !important
+}
