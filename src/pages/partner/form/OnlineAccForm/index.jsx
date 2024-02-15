@@ -7,7 +7,6 @@ export default function OnlineAccForm() {
                 <div className=' bg-[#E8FFF3] flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w-11/12 sm:w-full lg:w-[1010px] mx-auto'>
                     <h2 className='text-[#13C265] text-2xl'>Create Your Online Account</h2>
                     <div>
-                        
                         <div>
                             <h2 className=' text-[#13C265]'>Username</h2>
                             <input type="text" placeholder='Name@gmail.com' className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]' />

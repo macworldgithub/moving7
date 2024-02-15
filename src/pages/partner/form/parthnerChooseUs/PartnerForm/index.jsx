@@ -1,5 +1,6 @@
 import React from 'react'
 import MapImg from '../../../../../assets/images/Map 1.png'
+import RegionAccordion from '../../Accordion'
 export default function FreeTrialForm() {
     return (
         <div className='flex items-center justify-center mx-auto'>
@@ -26,13 +27,16 @@ export default function FreeTrialForm() {
                                 <p className='ml-2'>Set a radius</p>
                             </div>
                         </div>
-                        <div className=' bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]'>
-                            <div className='flex w-[255px] md:w-[516px] px-2 py-1'>
-                                <input type="radio" />
-                                <p className='ml-2'>Set a radius</p>
+                        <div>
+                            <div className=' bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]'>
+                                <div className='flex w-[255px] md:w-[516px] px-2 py-1'>
+                                    <input type="radio" />
+                                    <p className='ml-2'>Set a region</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    < RegionAccordion />
                     <div className='p-3'>
                         <div>
                             <h2 className='text-[#13C265] text-2xl text-center'>Provide your location and select a radius</h2>
@@ -40,11 +44,11 @@ export default function FreeTrialForm() {
                         </div>
                         <div className='flex flex-wrap gap-2 md:gap-4 mt-4'>
                             <div>
-                                <h3 className='text-[#13C265]'>Your Location</h3>
+                                <h3>Your Location</h3>
                                 <input type="text" placeholder='Address' className='w-[14rem] md:w-[18rem] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]' />
                             </div>
                             <div>
-                                <h3 className='text-[#13C265]'>Radius</h3>
+                                <h3>Radius</h3>
                                 <input type="number" placeholder='5 miles' className=' w-[6rem] md:w-[12rem] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]' />
                             </div>
                         </div>
@@ -110,7 +114,7 @@ export default function FreeTrialForm() {
                                 <h2 className=' text-[#13C265] mt-3'>Last name</h2>
                                 <input type="text" placeholder='Last name' className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4' />
                             </div>
-                            
+
                             <button className='w-[255px] md:w-[516px] text-white p-2 bg-[#00DD68] mt-4 rounded-md'>Create an new account</button>
                         </div>
                     </div>

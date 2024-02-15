@@ -14,6 +14,7 @@ import FreeTrialForm from './form/parthnerChooseUs/PartnerForm';
 import OnlineAccForm from './form/OnlineAccForm';
 import RingImg from '../../assets/images/Ellipse 5.png'
 import Footer from '../footer/footer'
+import RegionAccordion from './form/Accordion';
 
 
 export default function Partner() {
