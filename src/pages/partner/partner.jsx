@@ -1,16 +1,16 @@
 import React from "react";
 import Header from "../header/header";
 
-import banner from '../../assets/images/Logiin 1.png'
-import PartnerForm from './form/form';
-import ChooseUs from './form/parthnerChooseUs/chooseUs';
-import Compare from '../moving_componies/compare';
-import Steps from './steps/Partnerbenefits';
-import Benefits from './benefits/benefits';
-import CarouselSlider from '../Carousel/Carousel'
-import Rating from './rating/rating';
-import PartnerFaq from './faq';
-import FreeTrialForm from './form/parthnerChooseUs/PartnerForm';
+import banner from "../../assets/images/Logiin 1.png";
+import PartnerForm from "./form/form";
+import ChooseUs from "./form/parthnerChooseUs/chooseUs";
+import Compare from "../moving_componies/compare";
+import Steps from "./steps/Partnerbenefits";
+import Benefits from "./benefits/benefits";
+import CarouselSlider from "../Carousel/Carousel";
+import Rating from "./rating/rating";
+import PartnerFaq from "./faq";
+import FreeTrialForm from "./form/parthnerChooseUs/PartnerForm";
 
 import RingImg from "../../assets/images/Ellipse 5.png";
 
