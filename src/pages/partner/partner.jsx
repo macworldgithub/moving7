@@ -31,7 +31,7 @@ export default function Partner() {
       </div>
       <PartnerForm />
       <FreeTrialForm />
-      {/* <OnlineAccForm /> */}
+      <OnlineAccForm />
       <ChooseUs />
       <Compare title={"5000+ Partner businesses and counting"} />
       <Steps />

@@ -3,9 +3,9 @@ export default function OnlineAccForm() {
     return (
         <div className='flex items-center justify-center mx-auto'>
             <div>
-                <h2 className='lg:font-semibold text-3xl text-center p-6 mb-4'>Welcome to free trial</h2>
-                <div className=' bg-[#E8FFF3] flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w-11/12 sm:w-full lg:w-[1010px] mx-auto'>
-                    <h2 className='text-[#13C265] text-2xl'>Create Your Online Account</h2>
+                <h2 className='lg:font-semibold text-lg md:text-3xl text-center p-6 mb-4'>Welcome to free trial</h2>
+                <div className=' bg-[#E8FFF3] flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w-[97%] sm:w-full lg:w-[1010px] mx-auto'>
+                    <h2 className='text-[#13C265] text-center md:text-left text-xl md:text-2xl'>Create Your Online Account</h2>
                     <div>
                         <div>
                             <h2 className=' text-[#13C265]'>Username</h2>

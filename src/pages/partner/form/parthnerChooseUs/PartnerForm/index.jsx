@@ -20,7 +20,7 @@ export default function FreeTrialForm() {
                         </button>
                     </div>
                     <div>
-                        <h2 className='text-[#13C265] text-2xl text-center p-3'>Set a radius or select areas</h2>
+                        <h2 className='text-[#13C265] text-xl md:text-2xl text-center p-3'>Set a radius or select areas</h2>
                         <div className=' bg-white rounded-md border-[#13C26580] border-[1.5px]'>
                             <div className='flex w-[255px] md:w-[516px] px-2 py-1'>
                                 <input type="radio" />
@@ -39,8 +39,8 @@ export default function FreeTrialForm() {
                     < RegionAccordion />
                     <div className='p-3'>
                         <div>
-                            <h2 className='text-[#13C265] text-2xl text-center'>Provide your location and select a radius</h2>
-                            <h3 className='text-gray-400 font-extralight text-xl'>Maximum of 20 miles during free trial</h3>
+                            <h2 className='text-[#13C265] text-xl md:text-2xl text-center'>Provide your location and select a radius</h2>
+                            <h3 className='text-gray-400 font-extralight text-md md:text-xl'>Maximum of 20 miles during free trial</h3>
                         </div>
                         <div className='flex flex-wrap gap-2 md:gap-4 mt-4'>
                             <div>
@@ -57,7 +57,7 @@ export default function FreeTrialForm() {
                         <img src={MapImg} alt="" className=' w-3/4 flex items-center justify-center mx-auto' />
                     </div>
                     <div>
-                        <h2 className='text-[#13C265] text-2xl text-center p-4'>Company details</h2>
+                        <h2 className='text-[#13C265] text-xl md:text-2xl text-center p-4'>Company details</h2>
                         <div>
                             <input type="text" placeholder='Company name' className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]' />
                         </div>
@@ -101,7 +101,7 @@ export default function FreeTrialForm() {
                             <input type="text" placeholder='Select a State' className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]' />
                         </div>
                         <div>
-                            <h2 className='text-[#13C265] text-2xl text-center pt-6'>Contact person</h2>
+                            <h2 className='text-[#13C265] text-xl md:text-2xl text-center pt-6'>Contact person</h2>
                             <div>
                                 <h2 className=' text-[#13C265]'>Salutation</h2>
                                 <input type="text" placeholder='Salutation' className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]' />
