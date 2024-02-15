@@ -3,7 +3,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import {
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
@@ -23,27 +22,14 @@ import Partner from "../src/pages/partner/partner";
 
 function App() {
 
-	const queryClient = new QueryClient({
-		defaultOptions: {
-			queries: {
-				staleTime: Infinity,
-				cacheTime: Infinity,
-			},
-		},
-	});
-
-
-
 
   return (
-      <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/partner" element={<Partner />} />
       </Routes>
     </BrowserRouter>
-      	</QueryClientProvider>
   );
 }
 
