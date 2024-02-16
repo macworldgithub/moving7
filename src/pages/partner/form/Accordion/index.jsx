@@ -13,43 +13,43 @@ const RegionAccordion = () => {
                 <Panel style={{ fontWeight: "500" }} header="Pakistan" key="1">
                     <div className='flex  flex-wrap gap-x-10 lg:gap-x-60 '>
                         <div className='flex gap-2'>
-                            <input type="checkbox" style={{ width: "14px" }} />
+                            <input type="checkbox" className='accent-[#13C265]' style={{ width: "14px" }} />
                             <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" style={{ width: "14px" }} />
+                            <input type="checkbox"className='accent-[#13C265]'  style={{ width: "14px" }} />
                             <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" style={{ width: "14px" }} />
+                            <input type="checkbox"className='accent-[#13C265]' style={{ width: "14px" }} />
                             <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" style={{ width: "14px" }} />
+                            <input type="checkbox" className='accent-[#13C265]' style={{ width: "14px" }} />
                             <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" style={{ width: "14px" }} />
+                            <input type="checkbox" className='accent-[#13C265]' style={{ width: "14px" }} />
                             <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" style={{ width: "14px" }} />
+                            <input type="checkbox" className='accent-[#13C265]' style={{ width: "14px" }} />
                             <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" style={{ width: "14px" }} />
+                            <input type="checkbox" className='accent-[#13C265]' style={{ width: "14px" }} />
                             <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" style={{ width: "14px" }} />
+                            <input type="checkbox" className='accent-[#13C265]' style={{ width: "14px" }} />
                             <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" style={{ width: "14px" }} />
+                            <input type="checkbox" className='accent-[#13C265]' style={{ width: "14px" }} />
                             <p className='text-md'>Lahore</p>
                         </div>
                         <div className='flex gap-2'>
-                            <input type="checkbox" style={{ width: "14px" }} />
+                            <input type="checkbox" className='accent-[#13C265]' style={{ width: "14px" }} />
                             <p className='text-md'>Lahore</p>
                         </div>
                     </div>
