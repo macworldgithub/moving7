@@ -27,7 +27,7 @@ export default function Partner() {
           <p className='text-md font-light md:text-xl md:w-1/2 lg:pt-8'>Our flexible platforms support movers is realizing their business potentials</p>
         </div>
         <img src={banner} className='h-64 w-11/12 lg:h-[470px]' alt="" />
-        <img className=' hidden lg:block absolute lg:top-[90px] lg:ml-28' src={RingImg} alt="" />
+        <img className=' hidden lg:block absolute lg:top-[-40px] lg:ml-28' src={RingImg} alt="" />
       </div>
       <PartnerForm />
       <FreeTrialForm />
