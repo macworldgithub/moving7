@@ -116,7 +116,7 @@ function MovingType() {
             <div className="text-start flex flex-col items-center mt-6">
               <p className="lg:w-1/2">Move from</p>
               <Input
-                className="lg:w-2/4"
+                className="lg:w-2/4 outline-[#13C265]"
                 placeholder="Address"
                 value={data.moveFrom}
                 onChange={(e) => handleDataChange("moveFrom", e.target.value)}
@@ -128,7 +128,7 @@ function MovingType() {
               <div className="text-start flex flex-col mt-4 items-center">
                 <div className="lg:w-1/2 ">Move to</div>
                 <Input
-                  className="lg:w-2/4"
+                  className="lg:w-2/4 outline-[#13C265]"
                   placeholder="Address"
                   onClick={() => handleInputStateChange("isVisible_2", true)}
                   value={data.moveTo}
@@ -142,7 +142,7 @@ function MovingType() {
                 <p className="lg:w-1/2">Bedrooms/Office cabins</p>
                 <p className="lg:w-1/2 text-gray-400">Current Property</p>
                 <Input
-                  className=" lg:w-2/4"
+                  className=" lg:w-2/4 outline-[#13C265]"
                   placeholder="Address"
                   onClick={() => handleInputStateChange("isVisible_3", true)}
                   value={data.address}
@@ -172,7 +172,7 @@ function MovingType() {
               <div className="text-start flex flex-col mt-4 items-center">
                 <div className="lg:w-1/2 ">Moving date</div>
                 <Input
-                  className="lg:w-2/4"
+                  className="lg:w-2/4 outline-[#13C265]"
                   placeholder="Your moving date"
                   onClick={() => handleInputStateChange("isVisible_5", true)}
                   value={data.movingDate}
@@ -252,10 +252,10 @@ function MovingType() {
             {inputStates.isVisible_10 && (
               <div className="text-start flex flex-col items-center mt-4">
                 <p className="lg:w-1/2">
-                  Flat build name/ District apartment/ office / villa{" "}
+                  Flat build name/ District apartment/ Office / Villa{" "}
                 </p>
                 <Input
-                  className=" lg:w-2/4"
+                  className=" lg:w-2/4 outline-[#13C265]"
                   onClick={() => handleInputStateChange("isVisible_11", true)}
                   value={data.building}
                   onChange={(e) => handleDataChange("building", e.target.value)}

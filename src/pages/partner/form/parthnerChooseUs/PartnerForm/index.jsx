@@ -232,7 +232,7 @@ export default function FreeTrialForm() {
               <input
                 type="text"
                 placeholder="Company name"
-                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]"
+                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                 value={data.companyName}
                 onChange={(e) =>
                   handleDataChange("companyName", e.target.value)
@@ -241,7 +241,7 @@ export default function FreeTrialForm() {
             </div>
             <div className="mt-2">
               <h3 className="text-[#13C265]">Business type</h3>
-              <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
+              <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]">
                 <div className="flex w-[255px] md:w-[516px] px-2 py-1">
                   <input
                     onClick={() => handleDataChange("businessType", "solo")}
@@ -252,7 +252,7 @@ export default function FreeTrialForm() {
                   <p className="ml-2">Sole trader</p>
                 </div>
               </div>
-              <div className=" bg-white mt-2 rounded-md  border-[#13C26580] border-[1.5px]">
+              <div className=" bg-white mt-2 rounded-md  border-[#13C26580] border-[1.5px] outline-[#13C265]">
                 <div className="flex w-[255px] md:w-[516px] px-2 py-1 ">
                   <input
                     onClick={() => handleDataChange("businessType", "company")}
@@ -273,7 +273,7 @@ export default function FreeTrialForm() {
                   handleDataChange("noOfEmployees", e.target.value)
                 }
                 value={data.noOfEmployees}
-                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]"
+                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
               />
             </div>
             <div>
@@ -283,7 +283,7 @@ export default function FreeTrialForm() {
                 onChange={(e) => handleDataChange("email", e.target.value)}
                 value={data.email}
                 placeholder="example@gmail.com"
-                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]"
+                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
               />
             </div>
             <div>
@@ -292,7 +292,7 @@ export default function FreeTrialForm() {
                   placeholder="Enter phone number"
                   value={data.telephone}
                   onChange={(e) => handleDataChange("telephone", e)}
-                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]"
+                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                 />
             </div>
             <div>
@@ -304,7 +304,7 @@ export default function FreeTrialForm() {
                 value={data.addressLine1}
                 type="text"
                 placeholder="Address line 1"
-                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]"
+                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
               />
             </div>
             <div>
@@ -314,7 +314,7 @@ export default function FreeTrialForm() {
                 value={data.city}
                 type="text"
                 placeholder="Town/City"
-                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]"
+                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
               />
             </div>
             <div>
@@ -324,7 +324,7 @@ export default function FreeTrialForm() {
                 value={data.state}
                 type="text"
                 placeholder="Select a State"
-                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]"
+                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
               />
             </div>
             <div>
@@ -340,7 +340,7 @@ export default function FreeTrialForm() {
                   value={data.salutation}
                   type="text"
                   placeholder="Salutation"
-                  className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]"
+                  className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                 />
               </div>
               <div>
@@ -352,7 +352,7 @@ export default function FreeTrialForm() {
                   value={data.firstName}
                   type="text"
                   placeholder="First name"
-                  className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]"
+                  className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                 />
               </div>
               <div>
@@ -362,10 +362,12 @@ export default function FreeTrialForm() {
                   value={data.lastName}
                   type="text"
                   placeholder="Last name"
-                  className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4"
+                  className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#13C265]"
                 />
               </div>
             </div>
+            <button className='w-[255px] md:w-[516px] text-white p-2 bg-[#00DD68] mt-4 rounded-md'>Create an new account</button>
+
           </div>
         </div>
       </div>
