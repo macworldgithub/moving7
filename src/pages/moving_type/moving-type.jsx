@@ -251,7 +251,7 @@ function MovingType() {
             )}
             {inputStates.isVisible_10 && (
               <div className="text-start flex flex-col items-center mt-4">
-                <p className="lg:w-1/2">
+                <p className="lg:w-1/2 outline-[#13C265]">
                   Flat build name/ District apartment/ Office / Villa{" "}
                 </p>
                 <Input
