@@ -59,7 +59,13 @@ function MovingType() {
         moveTo: "",
         address: "",
         currPropertyType: "",
+        currPropertyBedrooms: "",
+        currPropertyFloorNo: "",
+        hasCurrPropertyLift: "",
         newPropertyType: "",
+        newPropertyAdditionalInfo: "",
+        newPropertyFloorNo: "",
+        hasNewPropertyLift: "",
         movingDatePref: "",
         specificDate: null,
         movingDate: null,
@@ -213,9 +219,9 @@ function MovingType() {
                                     placeholder="Floor number"
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     onClick={() => handleInputStateChange("isVisible_2b", true)}
-                                    value={data.budgetRange}
+                                    value={data.currPropertyFloorNo}
                                     onChange={(e) =>
-                                        handleDataChange("budgetRange", e.target.value)
+                                        handleDataChange("currPropertyFloorNo", e.target.value)
                                     }
                                 />
                             {
@@ -224,7 +230,7 @@ function MovingType() {
                                         placeholder="Elevator available?"
                                     onClick={() => handleInputStateChange("isVisible_2c", true)}
                                         className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                        onChange={(val) => console.log(val)}
+                                        onChange={(val) => handleDataChange("hasCurrPropertyLift", val)}
                                         options={[
                                             {
                                                 value: 'yes',
@@ -243,7 +249,7 @@ function MovingType() {
                                     <Select
                                         placeholder="Bedrooms?"
                                         className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                        onChange={(val) => console.log(val)}
+                                        onChange={(val) => handleDataChange("currPropertyBedrooms", val)}
                                     onClick={() => handleInputStateChange("isVisible_3", true)}
                                         options={[
                                             {
@@ -279,7 +285,7 @@ function MovingType() {
                                 <Select
                                     placeholder="Bedrooms?"
                                     className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                    onChange={(val) => console.log(val)}
+                                    onChange={(val) => handleDataChange("currPropertyBedrooms", val)}
                             onClick={() => handleInputStateChange("isVisible_3", true)}
                                     options={[
                                         {
@@ -351,9 +357,9 @@ function MovingType() {
                                     placeholder="Floor number"
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     onClick={() => handleInputStateChange("isVisible_3b", true)}
-                                    value={data.budgetRange}
+                                    value={data.newPropertyFloorNo}
                                     onChange={(e) =>
-                                        handleDataChange("budgetRange", e.target.value)
+                                        handleDataChange("newPropertyFloorNo", e.target.value)
                                     }
                                 />
                             {
@@ -361,7 +367,7 @@ function MovingType() {
                                     <Select
                                         placeholder="Elevator available?"
                                         className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                        onChange={(val) => console.log(val)}
+                                        onChange={(val) => handleDataChange("hasNewPropertyLift", val)}
                                     onClick={() => handleInputStateChange("isVisible_3c", true)}
                                         options={[
                                             {
@@ -382,7 +388,7 @@ function MovingType() {
                                     <Select
                                         placeholder="Additional Information"
                                         className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                        onChange={(val) => console.log(val)}
+                                        onChange={(val) => handleDataChange("newPropertyAdditionalInfo", val)}
                                     onClick={() => handleInputStateChange("isVisible_4", true)}
                                         options={[
                                             { "label": "Packing services", "value": "Packingservices" },
@@ -405,7 +411,7 @@ function MovingType() {
                                     placeholder="Bedrooms?"
                                     className="lg:w-2/4 mt-2 outline-[#13C265]"
                                     onClick={() => handleInputStateChange("isVisible_4", true)}
-                                    onChange={(val) => console.log(val)}
+                                    onChange={(val) => handleDataChange("newPropertyAdditionalInfo", val)}
                                     options={[
                                         { "label": "Packing services", "value": "Packingservices" },
                                         { "label": "Packing materials", "value": "Packingmaterials" },
