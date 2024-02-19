@@ -4,7 +4,7 @@ import companiesLogo from "../../assets/images/companiesLogo.svg";
 // import logo from '../../assets/images/Logo 1.svg'
 import SliderLogo from "./company";
 
-function Compare({title}) {
+function Compare({ title }) {
   return (
     <div>
       <div className="flex flex-col justify-center items-center pt-2">
@@ -18,7 +18,7 @@ function Compare({title}) {
         </div>
       </div>
       <div className="md:hidden">
-        < SliderLogo />
+        <SliderLogo />
       </div>
     </div>
   );

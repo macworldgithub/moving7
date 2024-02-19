@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navigation from "./components/navigation";
 import Home from "./pages/Home";
 import Partner from "./pages/partner/partner";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const router = createBrowserRouter([
   {
@@ -19,17 +20,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/partner",
-        element: <Partner  />,
+        element: <Partner />,
       },
     ],
   },
 ]);
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <QueryClientProvider contextSharing={true} client={queryClient}>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+    ,
+  </QueryClientProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function

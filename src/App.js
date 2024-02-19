@@ -1,5 +1,8 @@
 import React from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./App.css";
+import { QueryClient, QueryClientProvider } from "react-query";
 // import Header from "./pages/header/header";
 // import HeroSection from "./pages/hero-section";
 // import Experience from "./pages/experience";
@@ -11,14 +14,17 @@ import "./App.css";
 // import MovingType from "./pages/moving_type/moving-type";
 
 // import MainBanner from "./components/banner";
-
-import Partner from '../src/pages/partner/partner';
+import Home from "../src/pages/Home/index";
+import Partner from "../src/pages/partner/partner";
 
 function App() {
   return (
-    <div className=" max-w-[1440px] mx-auto">
-      <Partner />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/partner" element={<Partner />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

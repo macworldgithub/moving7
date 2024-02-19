@@ -1,11 +1,10 @@
-import React from 'react'
+import React from "react";
 
-import trust1 from '../../../../assets/images/partnerChooseimg/trust 1.svg'
-import together from '../../../../assets/images/partnerChooseimg/together 1.svg'
-import play from '../../../../assets/images/partnerChooseimg/Vector (1).svg'
+import trust1 from "../../../../assets/images/partnerChooseimg/trust 1.svg";
+import together from "../../../../assets/images/partnerChooseimg/together 1.svg";
+import play from "../../../../assets/images/partnerChooseimg/Vector (1).svg";
 
-import './choose.css'
-
+import "./choose.css";
 
 export default function ChooseUs() {
     return (
@@ -43,6 +42,7 @@ export default function ChooseUs() {
                     </div>
                 </div>
             </div>
-        </div>
-    )
+          </div>
+       
+  );
 }

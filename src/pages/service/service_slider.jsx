@@ -1,13 +1,13 @@
 import React from "react";
-import { Carousel } from 'antd';
+import { Carousel } from "antd";
 import "../../App.css";
 import Group38 from "../../assets/images/Group 38.svg";
 
 const contentStyle = {
-  height: '160px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
+  height: "160px",
+  color: "#fff",
+  lineHeight: "160px",
+  textAlign: "center",
 };
 
 function SliderService() {
@@ -53,7 +53,7 @@ function SliderService() {
             </div>
           </h3>
         </div>
-      </Carousel >
+      </Carousel>
     </div>
   );
 }
