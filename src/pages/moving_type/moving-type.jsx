@@ -185,7 +185,7 @@ function MovingType() {
 
             {inputStates.isVisible_5 && (
               <div className="text-start flex flex-col items-center justify-center pt-4">
-                <p className="lg:w-1/2 ">Date Range</p>
+                <p className="lg:w-1/2 outline-[#13C265]">Date Range</p>
                 {/* <Input className=" " placeholder="Address" onClick={() => setUnlock6(true)} onChange={(e) => firstHandler(e.target.value)} /> */}
                 <DatePicker
                   handleMultipleDataChanges={handleMultipleChanges}
@@ -198,7 +198,7 @@ function MovingType() {
               <div className="text-start flex flex-col items-center pt-4">
                 <p className="lg:w-1/2 ">Personal details</p>
                 <Input
-                  className=" lg:w-2/4"
+                  className=" lg:w-2/4 outline-[#13C265]"
                   placeholder="Name"
                   onClick={() => handleInputStateChange("isVisible_7", true)}
                   value={data.name}
@@ -211,7 +211,7 @@ function MovingType() {
               <div className="text-start flex flex-col items-center pt-4">
                 <p className="lg:w-1/2 ">Contact details</p>
                 <Input
-                  className=" lg:w-2/4"
+                  className=" lg:w-2/4 outline-[#13C265]"
                   placeholder="Email"
                   onClick={() => handleInputStateChange("isVisible_8", true)}
                   value={data.email}
@@ -240,7 +240,7 @@ function MovingType() {
                 <p className="lg:w-1/2 ">Budget range</p>
                 <Input
                   type="number"
-                  className=" lg:w-2/4"
+                  className=" lg:w-2/4 outline-[#13C265]"
                   onClick={() => handleInputStateChange("isVisible_10", true)}
                   value={data.budgetRange}
                   onChange={(e) =>
