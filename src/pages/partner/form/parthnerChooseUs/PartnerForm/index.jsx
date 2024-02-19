@@ -364,6 +364,8 @@ export default function FreeTrialForm() {
                 />
               </div>
             </div>
+            <button className='w-[255px] md:w-[516px] text-white p-2 bg-[#00DD68] mt-4 rounded-md'>Create account</button>
+
           </div>
         </div>
       </div>
