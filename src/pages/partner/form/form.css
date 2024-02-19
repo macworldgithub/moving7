@@ -3,3 +3,8 @@
     -webkit-box-shadow: 21px 26px 0px -11px rgba(19, 194, 101, 0.34);
     -moz-box-shadow: 21px 26px 0px -11px rgba(19, 194, 101, 0.34);
 }
+
+:where(.css-dev-only-do-not-override-zl9ks2).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+    color: #ffffff !important;
+    border-color: #13C265 !important;
+}

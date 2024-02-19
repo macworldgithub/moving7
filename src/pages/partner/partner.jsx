@@ -1,20 +1,21 @@
 import React from "react";
 import Header from "../header/header";
 
-import banner from "../../assets/images/Logiin 1.png";
-import PartnerForm from "./form/form";
-import ChooseUs from "./form/parthnerChooseUs/chooseUs";
-import Compare from "../moving_componies/compare";
-import Steps from "./steps/Partnerbenefits";
-import Benefits from "./benefits/benefits";
-import CarouselSlider from "../Carousel/Carousel";
-import Rating from "./rating/rating";
-import PartnerFaq from "./faq";
-import FreeTrialForm from "./form/parthnerChooseUs/PartnerForm";
+import banner from '../../assets/images/Logiin 1.png'
+import PartnerForm from './form/form';
+import ChooseUs from './form/parthnerChooseUs/chooseUs';
+import Compare from '../moving_componies/compare';
+import Steps from './steps/Partnerbenefits';
+import Benefits from './benefits/benefits';
+import CarouselSlider from '../Carousel/Carousel'
+import Rating from './rating/rating';
+import PartnerFaq from './faq';
+import FreeTrialForm from './form/parthnerChooseUs/PartnerForm';
+import OnlineAccForm from './form/OnlineAccForm';
+import RingImg from '../../assets/images/Ellipse 5.png'
+import Footer from '../footer/footer'
+import RegionAccordion from './form/Accordion';
 
-import RingImg from "../../assets/images/Ellipse 5.png";
-
-import Footer from "../footer/footer";
 
 export default function Partner() {
   return (
@@ -32,16 +33,13 @@ export default function Partner() {
             potentials
           </p>
         </div>
-        <img src={banner} className="h-64 w-11/12 lg:h-[470px]" alt="" />
-        <img
-          className=" hidden lg:block absolute lg:top-[90px] lg:ml-28"
-          src={RingImg}
-          alt=""
-        />
+        <img src={banner} className='h-64 w-11/12 lg:h-[470px]' alt="" />
+        <img className=' hidden lg:block absolute lg:top-[-40px] lg:ml-28' src={RingImg} alt="" />
       </div>
       <PartnerForm />
-      <ChooseUs />
       <FreeTrialForm />
+      <OnlineAccForm />
+      <ChooseUs />
       <Compare title={"5000+ Partner businesses and counting"} />
       <Steps />
       <Benefits />
