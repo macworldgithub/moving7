@@ -2,10 +2,7 @@ import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./App.css";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from 'react-query'
+import { QueryClient, QueryClientProvider } from "react-query";
 // import Header from "./pages/header/header";
 // import HeroSection from "./pages/hero-section";
 // import Experience from "./pages/experience";
@@ -21,8 +18,6 @@ import Home from "../src/pages/Home/index";
 import Partner from "../src/pages/partner/partner";
 
 function App() {
-
-
   return (
     <BrowserRouter>
       <Routes>

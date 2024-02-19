@@ -25,22 +25,23 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-	const queryClient = new QueryClient({
-		defaultOptions: {
-			queries: {
-				staleTime: Infinity,
-				cacheTime: Infinity,
-			},
-		},
-	});
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-      <QueryClientProvider contextSharing={true} client={queryClient}>
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
-    </QueryClientProvider>
+  <QueryClientProvider contextSharing={true} client={queryClient}>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+    ,
+  </QueryClientProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function
