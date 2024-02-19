@@ -8,6 +8,7 @@ import Navigation from "./components/navigation";
 import Home from "./pages/Home";
 import Partner from "./pages/partner/partner";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Login from "./pages/login";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         path: "/partner",
         element: <Partner />,
       },
+      {
+        path: "/login",
+        element: <Login />,
+      }
     ],
   },
 ]);
