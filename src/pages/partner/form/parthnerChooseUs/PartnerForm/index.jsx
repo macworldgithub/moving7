@@ -35,6 +35,7 @@ export default function FreeTrialForm() {
     onSettled: (d, e) => console.log(d, e),
   });
   const [data, setData] = useState({
+      removalType:"",
     areaPreference: "",
     location: null,
     radius: null,
@@ -116,6 +117,7 @@ export default function FreeTrialForm() {
     }
     }
 
+    console.log(data)
 
 
   return (
@@ -130,13 +132,13 @@ export default function FreeTrialForm() {
         <div className=" bg-[#E8FFF3] flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w-11/12 lg:w-[1140px] mx-auto">
           <h2 className="text-[#13C265] text-2xl">Select removal types</h2>
           <div className="flex flex-col flex-wrap md:flex-row">
-            <button className=" bg-[#f0f0f0] w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue">
+            <button onClick={() => handleDataChange("removalType","local")} className={`${data.removalType === "local" ? "bg-[#13C265] text-white"  : "bg-[#f0f0f0] text-black"} w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
               Local
             </button>
-            <button className=" bg-[#f0f0f0] w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue">
+            <button onClick={() => handleDataChange("removalType","international")} className={`${data.removalType === "international" ? "bg-[#13C265] text-white"  : "bg-[#f0f0f0]"}  w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
               International
             </button>
-            <button className=" bg-[#f0f0f0] w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue">
+            <button onClick={() => handleDataChange("removalType", "storage")} className={`${data.removalType === "storage" ? "bg-[#13C265] text-white"  : "bg-[#f0f0f0]"}  w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
               Storage
             </button>
           </div>
