@@ -54,6 +54,8 @@ function MovingType() {
         moveFrom: "",
         moveTo: "",
         address: "",
+        currPropertyType: "",
+        movingDatePref: "",
         specificDate: null,
         movingDate: null,
         startDate: null,
@@ -149,6 +151,7 @@ function MovingType() {
                                 options={locationOptions}
                                 placeholder="Address"
                                 className="lg:w-2/4 outline-[#13C265]"
+                                onClick={() => handleInputStateChange("isVisible_1", true)}
                             />
                         </div>
 
@@ -161,6 +164,7 @@ function MovingType() {
                                 options={locationOptions}
                                 placeholder="Address"
                                 className="lg:w-2/4 outline-[#13C265]"
+                            onClick={() => handleInputStateChange("isVisible_2", true)}
                             />
                             </div>
                         )}
@@ -169,17 +173,73 @@ function MovingType() {
                             <div className="text-start flex flex-col items-center mt-4">
                                 <p className="lg:w-1/2">Bedrooms/Office cabins</p>
                                 <p className="lg:w-1/2 text-gray-400">Current Property</p>
+                        <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
+                            <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                <input
+                                    onClick={() => handleDataChange("currPropertyType", "house")}
+                                    checked={data.currPropertyType === "house"}
+                                    type="radio"
+                                    name="currPropertyType"
+                                />
+                                <p className="ml-2">House</p>
+                            </div>
+                        </div>
+                        <div className=" bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]">
+                            <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                <input
+                                    onClick={() => handleDataChange("currPropertyType", "appartment")}
+                                    checked={data.currPropertyType === "appartment"}
+                                    type="radio"
+                                    name="currPropertyType"
+                                />
+                                <p className="ml-2">Appartment / Condo</p>
+                            </div>
+                        </div>
+
+
+
+                                <p className="lg:w-1/2 ">Floor number</p>
                                 <Input
+                                    type="number"
                                     className=" lg:w-2/4 outline-[#13C265]"
-                                    placeholder="Address"
                                     onClick={() => handleInputStateChange("isVisible_3", true)}
-                                    value={data.address}
-                                    onChange={(e) => handleDataChange("address", e.target.value)}
+                                    value={data.budgetRange}
+                                    onChange={(e) =>
+                                        handleDataChange("budgetRange", e.target.value)
+                                    }
                                 />
                             </div>
                         )}
-
-                        {inputStates.isVisible_3 && (
+                        {
+                            inputStates.isVisible_3 && (
+                            <div className="text-start flex flex-col items-center mt-4">
+                                <p className="lg:w-1/2">When are you moving?</p>
+                        <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
+                            <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                <input
+                                    onClick={() => handleDataChange("movingDatePref", "specific")}
+                                    checked={data.movingDatePref === "specific"}
+                                    type="radio"
+                                    name="movingDatePref"
+                                />
+                                <p className="ml-2">I want Specific Date</p>
+                            </div>
+                        </div>
+                        <div className=" bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]">
+                            <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                <input
+                                    onClick={() => handleDataChange("movingDatePref", "flexible")}
+                                    checked={data.movingDatePref === "flexible"}
+                                    type="radio"
+                                    name="movingDatePref"
+                                />
+                                <p className="ml-2">I am flexible</p>
+                            </div>
+                        </div>
+                            </div>
+                        )}
+                        
+                        {data.movingDatePref === "specific" && (
                             <div className="text-start flex flex-col items-center pt-4">
                                 <p></p>
                                 {/* <Input
@@ -196,22 +256,24 @@ function MovingType() {
                             </div>
                         )}
 
-                        {inputStates.isVisible_4 && (
-                            <div className="text-start flex flex-col mt-4 items-center">
-                                <div className="lg:w-1/2 ">Moving date</div>
-                                <Input
-                                    className="lg:w-2/4 outline-[#13C265]"
-                                    placeholder="Your moving date"
-                                    onClick={() => handleInputStateChange("isVisible_5", true)}
-                                    value={data.movingDate}
-                                    onChange={(e) =>
-                                        handleDataChange("movingDate", e.target.value)
-                                    }
-                                />
-                            </div>
-                        )}
+                        {
+//                            data.movingDatePref === "flexible" && (
+//                            <div className="text-start flex flex-col mt-4 items-center">
+//                                <div className="lg:w-1/2 ">Moving date</div>
+//                                <Input
+//                                    className="lg:w-2/4 outline-[#13C265]"
+//                                    placeholder="Your moving date"
+//                                    onClick={() => handleInputStateChange("isVisible_5", true)}
+//                                    value={data.movingDate}
+//                                    onChange={(e) =>
+//                                        handleDataChange("movingDate", e.target.value)
+//                                    }
+//                                />
+//                            </div>
+//                        )
+                        }
 
-                        {inputStates.isVisible_5 && (
+                        {data.movingDatePref === "flexible" && (
                             <div className="text-start flex flex-col items-center justify-center pt-4">
                                 <p className="lg:w-1/2 outline-[#13C265]">Date Range</p>
                                 {/* <Input className=" " placeholder="Address" onClick={() => setUnlock6(true)} onChange={(e) => firstHandler(e.target.value)} /> */}
@@ -250,8 +312,6 @@ function MovingType() {
                         {inputStates.isVisible_8 && (
                             <div className="text-start flex flex-col items-center pt-4">
                                 <p className="lg:w-1/2 ">
-                                    Contact details
-                                    <br />
                                     <span className=" text-gray-400">Whatsapp number</span>
                                 </p>
                                 <PhoneInput
