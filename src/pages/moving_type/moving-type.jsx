@@ -152,7 +152,7 @@ function MovingType() {
                     setActive={setActive}
                 />
 
-                {inputStates.isVisible_0 && active === 1 && (
+                {inputStates.isVisible_0 && (
                     <div>
                         <div className="text-start flex flex-col items-center mt-6">
                             <p className="lg:w-1/2">Move from</p>
@@ -163,6 +163,7 @@ function MovingType() {
                                 placeholder="Address"
                                 className="lg:w-2/4 outline-[#13C265]"
                                 onClick={() => handleInputStateChange("isVisible_1", true)}
+                                onFocus={() => handleInputStateChange("isVisible_1", true)}
                             />
                         </div>
 
@@ -175,6 +176,7 @@ function MovingType() {
                                     options={locationOptions}
                                     placeholder="Address"
                                     className="lg:w-2/4 outline-[#13C265]"
+                                    onFocus={() => handleInputStateChange("isVisible_2", true)}
                                     onClick={() => handleInputStateChange("isVisible_2", true)}
                                 />
                             </div>
@@ -192,7 +194,7 @@ function MovingType() {
                                             type="radio"
                                             name="currPropertyType"
                                         />
-                                        <p className="ml-2">House</p>
+                                        <p className="ml-2">House / Villa</p>
                                     </div>
                                 </div>
                                 <div className=" bg-white mt-2 md:w-1/2 rounded-md border-[#13C26580] border-[1.5px]">
@@ -218,6 +220,7 @@ function MovingType() {
                                     placeholder="Floor number"
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     onClick={() => handleInputStateChange("isVisible_2b", true)}
+                                    onFocus={() => handleInputStateChange("isVisible_2b", true)}
                                     value={data.currPropertyFloorNo}
                                     onChange={(e) =>
                                         handleDataChange("currPropertyFloorNo", e.target.value)
@@ -228,6 +231,7 @@ function MovingType() {
                                         <Select
                                             placeholder="Elevator available?"
                                             onClick={() => handleInputStateChange("isVisible_2c", true)}
+                                            onFocus={() => handleInputStateChange("isVisible_2c", true)}
                                             className="lg:w-2/4 mt-2 outline-[#13C265]"
                                             onChange={(val) => handleDataChange("hasCurrPropertyLift", val)}
                                             options={[
@@ -249,6 +253,7 @@ function MovingType() {
                                             placeholder="Bedrooms?"
                                             className="lg:w-2/4 mt-2 outline-[#13C265]"
                                             onChange={(val) => handleDataChange("currPropertyBedrooms", val)}
+                                            onFocus={() => handleInputStateChange("isVisible_3", true)}
                                             onClick={() => handleInputStateChange("isVisible_3", true)}
                                             options={[
                                                 {
@@ -283,6 +288,7 @@ function MovingType() {
                             <div className="text-start flex flex-col mt-4 items-center">
                                 <Select
                                     placeholder="Bedrooms?"
+                                    onFocus={() => handleInputStateChange("isVisible_3", true)}
                                     className="lg:w-2/4 mt-2 outline-[#13C265]"
                                     onChange={(val) => handleDataChange("currPropertyBedrooms", val)}
                                     onClick={() => handleInputStateChange("isVisible_3", true)}
@@ -329,7 +335,7 @@ function MovingType() {
                                             type="radio"
                                             name="newPropertyType"
                                         />
-                                        <p className="ml-2">House</p>
+                                        <p className="ml-2">House / Villa</p>
                                     </div>
                                 </div>
                                 <div className=" bg-white mt-2 md:w-1/2 rounded-md border-[#13C26580] border-[1.5px]">
@@ -354,6 +360,7 @@ function MovingType() {
                                 <Input
                                     type="number"
                                     placeholder="Floor number"
+                                    onFocus={() => handleInputStateChange("isVisible_3b", true)}
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     onClick={() => handleInputStateChange("isVisible_3b", true)}
                                     value={data.newPropertyFloorNo}
@@ -367,6 +374,7 @@ function MovingType() {
                                             placeholder="Elevator available?"
                                             className="lg:w-2/4 mt-2 outline-[#13C265]"
                                             onChange={(val) => handleDataChange("hasNewPropertyLift", val)}
+                                            onFocus={() => handleInputStateChange("isVisible_3c", true)}
                                             onClick={() => handleInputStateChange("isVisible_3c", true)}
                                             options={[
                                                 {
@@ -387,6 +395,7 @@ function MovingType() {
                                         <Select
                                             mode="multiple"
                                             allowClear
+                                            onFocus={() => handleInputStateChange("isVisible_4", true)}
                                             placeholder="Scope of work"
                                             className="lg:w-2/4 mt-2 outline-[#13C265]"
                                             onChange={(e) => console.log(e)}
@@ -411,6 +420,7 @@ function MovingType() {
                                 <Select
                                     mode="multiple"
                                     allowClear
+                                    onFocus={() => handleInputStateChange("isVisible_4", true)}
                                     placeholder="Scope of work"
                                     className="lg:w-2/4 mt-2 outline-[#13C265]"
                                     onChange={(e) => console.log(e)}
@@ -519,6 +529,7 @@ function MovingType() {
                                 <Input
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     placeholder="Name"
+                                    onFocus={() => handleInputStateChange("isVisible_7", true)}
                                     onClick={() => handleInputStateChange("isVisible_7", true)}
                                     value={data.name}
                                     onChange={(e) => handleDataChange("name", e.target.value)}
@@ -532,6 +543,7 @@ function MovingType() {
                                 <Input
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     placeholder="Email"
+                                    onFocus={() => handleInputStateChange("isVisible_8", true)}
                                     onClick={() => handleInputStateChange("isVisible_8", true)}
                                     value={data.email}
                                     onChange={(e) => handleDataChange("email", e.target.value)}
@@ -545,6 +557,7 @@ function MovingType() {
                                 </p>
                                 <PhoneInput
                                     placeholder="Enter phone number"
+                                    onFocus={() => handleInputStateChange("isVisible_9", true)}
                                     onClick={() => handleInputStateChange("isVisible_9", true)}
                                     value={data.wappNum}
                                     onChange={(e) => handleDataChange("wappNum", e)}
@@ -558,6 +571,7 @@ function MovingType() {
                                 <Input
                                     type="number"
                                     className=" lg:w-2/4 outline-[#13C265]"
+                                    onFocus={() => handleInputStateChange("isVisible_10", true)}
                                     onClick={() => handleInputStateChange("isVisible_10", true)}
                                     value={data.budgetRange}
                                     onChange={(e) =>
@@ -574,6 +588,7 @@ function MovingType() {
                                 <Input
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     onClick={() => handleInputStateChange("isVisible_11", true)}
+                                    onFocus={() => handleInputStateChange("isVisible_11", true)}
                                     value={data.building}
                                     onChange={(e) => handleDataChange("building", e.target.value)}
                                 />
@@ -599,7 +614,7 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
     return (
         <div className="felx items-center justify-between">
             <button
-                className={` w-40 ${active === 1 ? selectBg : " bg-[#D1D1D1]"} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}
+                className={` w-40 ${active === 1 ? selectBg + " text-white" : " bg-[#D1D1D1]"} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}
                 onClick={() => {
                     active === 1 ? setActive(null) : setActive(1);
                     handleInputStateChange("isVisible_0", true);
@@ -607,10 +622,20 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
             >
                 Local
             </button>
-            <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg">
+            <button 
+                onClick={() => {
+                    active === 2 ? setActive(null) : setActive(2);
+                    handleInputStateChange("isVisible_0", true);
+                }}
+                className={` w-40 ${active === 2 ? selectBg + " text-white" : " bg-[#D1D1D1] "} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`} >
                 Commerical
             </button>
-            <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg">
+            <button
+                onClick={() => {
+                    active === 3 ? setActive(null) : setActive(3);
+                    handleInputStateChange("isVisible_0", true);
+                }}
+                className={` w-40 ${active === 3 ? selectBg  + " text-white": " bg-[#D1D1D1] "} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
                 International
             </button>
         </div>
