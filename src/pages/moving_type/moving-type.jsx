@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { AutoComplete, Select } from "antd";
+import dayjs from "dayjs";
+import { AutoComplete, Select, TimePicker } from "antd";
 import { useQuery, useMutation } from "react-query";
 import { getLocationSuggestions } from "../../apiFunctions/partner";
 import { ToastContainer, toast } from "react-toastify";
@@ -57,7 +58,6 @@ function MovingType() {
     const [data, setData] = useState({
         moveFrom: "",
         moveTo: "",
-        address: "",
         currPropertyType: "",
         currPropertyBedrooms: "",
         currPropertyFloorNo: "",
@@ -68,7 +68,7 @@ function MovingType() {
         hasNewPropertyLift: "",
         movingDatePref: "",
         specificDate: null,
-        movingDate: null,
+        specificTime: null,
         startDate: null,
         endDate: null,
         name: "",
@@ -108,18 +108,40 @@ function MovingType() {
     const handleSubmit = () => {
         const notIsValid =
             !data.moveFrom ||
+            !data.currPropertyType ||
+            !data.newPropertyType ||
+            !data.movingDatePref ||
             !data.moveTo ||
-            !data.address ||
-            !data.specificDate ||
-            !data.movingDate ||
-            !data.startDate ||
-            !data.endDate ||
             !data.name ||
             !data.email ||
             !data.wappNum ||
             !data.budgetRange ||
             !data.building;
         if (notIsValid) {
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.currPropertyType === "house") && (!data.currPropertyBedrooms)) {
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.currPropertyType === "appartment") && (!data.currPropertyBedrooms || !data.currPropertyFloorNo || !data.hasCurrPropertyLift)) {
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.newPropertyType === "house") && (!data.newPropertyAdditionalInfo)) {
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.newPropertyType === "appartment") && (!data.newPropertyAdditionalInfo || !data.newPropertyFloorNo || !data.hasNewPropertyLift)) {
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.movingDatePref === "specific") && (!data.specificDate || !data.specificTime)){
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.movingDatePref === "flexible") && (!data.startDate || !data.endDate)){
             toast.error("Fields can't be empty!");
             return;
         }
@@ -131,6 +153,7 @@ function MovingType() {
             toast.error("Invalid PhoneNumber!");
             return;
         }
+            toast.success("Success!");
     };
 
     return (
@@ -398,7 +421,11 @@ function MovingType() {
                                             onFocus={() => handleInputStateChange("isVisible_4", true)}
                                             placeholder="Scope of work"
                                             className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                            onChange={(e) => console.log(e)}
+                                            onChange={(e) => {
+                                                let temp = data
+                                                temp.newPropertyAdditionalInfo = e
+                                                setData(temp)
+                                            }}
                                             onClick={() => handleInputStateChange("isVisible_4", true)}
                                             options={[
                                                 { "label": "Packing services", "value": "Packingservices" },
@@ -423,7 +450,11 @@ function MovingType() {
                                     onFocus={() => handleInputStateChange("isVisible_4", true)}
                                     placeholder="Scope of work"
                                     className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                    onChange={(e) => console.log(e)}
+                                    onChange={(e) => {
+                                        let temp = data
+                                        temp.newPropertyAdditionalInfo = e
+                                        setData(temp)
+                                    }}
                                     onClick={() => handleInputStateChange("isVisible_4", true)}
                                     options={[
                                         { "label": "Packing services", "value": "Packingservices" },
@@ -622,7 +653,7 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
             >
                 Local
             </button>
-            <button 
+            <button
                 onClick={() => {
                     active === 2 ? setActive(null) : setActive(2);
                     handleInputStateChange("isVisible_0", true);
@@ -635,7 +666,7 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
                     active === 3 ? setActive(null) : setActive(3);
                     handleInputStateChange("isVisible_0", true);
                 }}
-                className={` w-40 ${active === 3 ? selectBg  + " text-white": " bg-[#D1D1D1] "} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
+                className={` w-40 ${active === 3 ? selectBg + " text-white" : " bg-[#D1D1D1] "} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
                 International
             </button>
         </div>
