@@ -379,11 +379,8 @@ export default function FreeTrialForm() {
                                 <h2 className=' text-[#13C265] mt-3'>Confirm your password</h2>
                                 <input type="text" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#00DD68]' />
                             </div>
-
-
                         </div>
-                        <button className='w-[200px] md:w-[480px] text-white p-2 bg-[#00DD68] mt-4 rounded-md'>Create account</button>
-
+                        <button className='w-[200px] md:w-[480px] text-white p-2 bg-[#00DD68] mt-4 lg:mb-4 rounded-md'>Create account</button>
                     </div>
                 </div>
             </div>
