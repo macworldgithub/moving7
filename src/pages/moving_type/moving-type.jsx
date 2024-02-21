@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { AutoComplete } from "antd";
+import { AutoComplete, Select } from "antd";
 import { useQuery, useMutation } from "react-query";
 import { getLocationSuggestions } from "../../apiFunctions/partner";
 import { ToastContainer, toast } from "react-toastify";
@@ -38,7 +38,11 @@ function MovingType() {
         isVisible_0: false,
         isVisible_1: false,
         isVisible_2: false,
+        isVisible_2b: false,
+        isVisible_2c: false,
         isVisible_3: false,
+        isVisible_3b: false,
+        isVisible_3c: false,
         isVisible_4: false,
         isVisible_5: false,
         isVisible_6: false,
@@ -54,6 +58,15 @@ function MovingType() {
         moveFrom: "",
         moveTo: "",
         address: "",
+        currPropertyType: "",
+        currPropertyBedrooms: "",
+        currPropertyFloorNo: "",
+        hasCurrPropertyLift: "",
+        newPropertyType: "",
+        newPropertyAdditionalInfo: "",
+        newPropertyFloorNo: "",
+        hasNewPropertyLift: "",
+        movingDatePref: "",
         specificDate: null,
         movingDate: null,
         startDate: null,
@@ -149,19 +162,21 @@ function MovingType() {
                                 options={locationOptions}
                                 placeholder="Address"
                                 className="lg:w-2/4 outline-[#13C265]"
+                                onClick={() => handleInputStateChange("isVisible_1", true)}
                             />
                         </div>
 
                         {inputStates.isVisible_1 && (
                             <div className="text-start flex flex-col mt-4 items-center">
                                 <div className="lg:w-1/2 ">Move to</div>
-                            <AutoComplete
-                                onSelect={(val) => handleDataChange("moveTo", val)}
-                                onSearch={onLocationChange}
-                                options={locationOptions}
-                                placeholder="Address"
-                                className="lg:w-2/4 outline-[#13C265]"
-                            />
+                                <AutoComplete
+                                    onSelect={(val) => handleDataChange("moveTo", val)}
+                                    onSearch={onLocationChange}
+                                    options={locationOptions}
+                                    placeholder="Address"
+                                    className="lg:w-2/4 outline-[#13C265]"
+                                    onClick={() => handleInputStateChange("isVisible_2", true)}
+                                />
                             </div>
                         )}
 
@@ -169,17 +184,288 @@ function MovingType() {
                             <div className="text-start flex flex-col items-center mt-4">
                                 <p className="lg:w-1/2">Bedrooms/Office cabins</p>
                                 <p className="lg:w-1/2 text-gray-400">Current Property</p>
-                                <Input
-                                    className=" lg:w-2/4 outline-[#13C265]"
-                                    placeholder="Address"
-                                    onClick={() => handleInputStateChange("isVisible_3", true)}
-                                    value={data.address}
-                                    onChange={(e) => handleDataChange("address", e.target.value)}
-                                />
+                                <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
+                                    <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                        <input
+                                            onClick={() => handleDataChange("currPropertyType", "house")}
+                                            checked={data.currPropertyType === "house"}
+                                            type="radio"
+                                            name="currPropertyType"
+                                        />
+                                        <p className="ml-2">House</p>
+                                    </div>
+                                </div>
+                                <div className=" bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]">
+                                    <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                        <input
+                                            onClick={() => handleDataChange("currPropertyType", "appartment")}
+                                            checked={data.currPropertyType === "appartment"}
+                                            type="radio"
+                                            name="currPropertyType"
+                                        />
+                                        <p className="ml-2">Appartment / Condo</p>
+                                    </div>
+                                </div>
+
+
+
                             </div>
                         )}
 
+                        {data.currPropertyType === "appartment" && (
+                            <div className="text-start flex flex-col mt-4 items-center">
+                                <Input
+                                    type="number"
+                                    placeholder="Floor number"
+                                    className=" lg:w-2/4 outline-[#13C265]"
+                                    onClick={() => handleInputStateChange("isVisible_2b", true)}
+                                    value={data.currPropertyFloorNo}
+                                    onChange={(e) =>
+                                        handleDataChange("currPropertyFloorNo", e.target.value)
+                                    }
+                                />
+                            {
+                                inputStates.isVisible_2b && (
+                                    <Select
+                                        placeholder="Elevator available?"
+                                    onClick={() => handleInputStateChange("isVisible_2c", true)}
+                                        className="lg:w-2/4 mt-2 outline-[#13C265]"
+                                        onChange={(val) => handleDataChange("hasCurrPropertyLift", val)}
+                                        options={[
+                                            {
+                                                value: 'yes',
+                                                label: 'Yes',
+                                            },
+                                            {
+                                                value: 'no',
+                                                label: 'No',
+                                            },
+                                        ]}
+                                    />
+                                )
+                            }
+                            {
+                                inputStates.isVisible_2c && (
+                                    <Select
+                                        placeholder="Bedrooms?"
+                                        className="lg:w-2/4 mt-2 outline-[#13C265]"
+                                        onChange={(val) => handleDataChange("currPropertyBedrooms", val)}
+                                    onClick={() => handleInputStateChange("isVisible_3", true)}
+                                        options={[
+                                            {
+                                                value: '1',
+                                                label: '1',
+                                            },
+                                            {
+                                                value: '2',
+                                                label: '2',
+                                            },
+                                            {
+                                                value: '3',
+                                                label: '3',
+                                            },
+                                            {
+                                                value: '4',
+                                                label: '4',
+                                            },
+                                            {
+                                                value: '5',
+                                                label: '5',
+                                            },
+                                        ]}
+                                    />
+                                )
+                            }
+                            </div>
+                        )}
+
+
+                        {data.currPropertyType === "house" && (
+                            <div className="text-start flex flex-col mt-4 items-center">
+                                <Select
+                                    placeholder="Bedrooms?"
+                                    className="lg:w-2/4 mt-2 outline-[#13C265]"
+                                    onChange={(val) => handleDataChange("currPropertyBedrooms", val)}
+                            onClick={() => handleInputStateChange("isVisible_3", true)}
+                                    options={[
+                                        {
+                                            value: '1',
+                                            label: '1',
+                                        },
+                                        {
+                                            value: '2',
+                                            label: '2',
+                                        },
+                                        {
+                                            value: '3',
+                                            label: '3',
+                                        },
+                                        {
+                                            value: '4',
+                                            label: '4',
+                                        },
+                                        {
+                                            value: '5+',
+                                            label: '5+',
+                                        },
+                                    ]}
+                                />
+                            </div>
+
+                        )}
+
+
+
+
+
                         {inputStates.isVisible_3 && (
+                            <div className="text-start flex flex-col items-center mt-4">
+                                <p className="lg:w-1/2">Bedrooms/Office cabins</p>
+                                <p className="lg:w-1/2 text-gray-400">New Property</p>
+                                <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
+                                    <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                        <input
+                                            onClick={() => handleDataChange("newPropertyType", "house")}
+                                            checked={data.newPropertyType === "house"}
+                                            type="radio"
+                                            name="newPropertyType"
+                                        />
+                                        <p className="ml-2">House</p>
+                                    </div>
+                                </div>
+                                <div className=" bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]">
+                                    <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                        <input
+                                            onClick={() => handleDataChange("newPropertyType", "appartment")}
+                                            checked={data.newPropertyType === "appartment"}
+                                            type="radio"
+                                            name="newPropertyType"
+                                        />
+                                        <p className="ml-2">Appartment / Condo</p>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        )}
+
+                        {data.newPropertyType === "appartment" && (
+                            <div className="text-start flex flex-col mt-4 items-center">
+                                <Input
+                                    type="number"
+                                    placeholder="Floor number"
+                                    className=" lg:w-2/4 outline-[#13C265]"
+                                    onClick={() => handleInputStateChange("isVisible_3b", true)}
+                                    value={data.newPropertyFloorNo}
+                                    onChange={(e) =>
+                                        handleDataChange("newPropertyFloorNo", e.target.value)
+                                    }
+                                />
+                            {
+                                inputStates.isVisible_3b && (
+                                    <Select
+                                        placeholder="Elevator available?"
+                                        className="lg:w-2/4 mt-2 outline-[#13C265]"
+                                        onChange={(val) => handleDataChange("hasNewPropertyLift", val)}
+                                    onClick={() => handleInputStateChange("isVisible_3c", true)}
+                                        options={[
+                                            {
+                                                value: 'yes',
+                                                label: 'Yes',
+                                            },
+                                            {
+                                                value: 'no',
+                                                label: 'No',
+                                            },
+                                        ]}
+                                    />
+                                )
+
+                            }
+                            {
+                                inputStates.isVisible_3c && (
+                                    <Select
+                                        placeholder="Additional Information"
+                                        className="lg:w-2/4 mt-2 outline-[#13C265]"
+                                        onChange={(val) => handleDataChange("newPropertyAdditionalInfo", val)}
+                                    onClick={() => handleInputStateChange("isVisible_4", true)}
+                                        options={[
+                                            { "label": "Packing services", "value": "Packingservices" },
+                                            { "label": "Packing materials", "value": "Packingmaterials" },
+                                            { "label": "Disassemble furniture", "value": "Disassemblefurniture" },
+                                            { "label": "Assemble furniture", "value": "Assemblefurniture" },
+                                            { "label": "Storage", "value": "Storage" },
+
+                                        ]}
+                                    />
+                                )
+                            }
+                            </div>
+                        )}
+
+
+                        {data.newPropertyType === "house" && (
+                            <div className="text-start flex flex-col mt-4 items-center">
+                                <Select
+                                    placeholder="Bedrooms?"
+                                    className="lg:w-2/4 mt-2 outline-[#13C265]"
+                                    onClick={() => handleInputStateChange("isVisible_4", true)}
+                                    onChange={(val) => handleDataChange("newPropertyAdditionalInfo", val)}
+                                    options={[
+                                        { "label": "Packing services", "value": "Packingservices" },
+                                        { "label": "Packing materials", "value": "Packingmaterials" },
+                                        { "label": "Disassemble furniture", "value": "Disassemblefurniture" },
+                                        { "label": "Assemble furniture", "value": "Assemblefurniture" },
+                                        { "label": "Storage", "value": "Storage" },
+
+                                    ]}
+                                />
+                            </div>
+
+                        )}
+
+
+
+
+
+
+
+
+
+
+
+
+                        {
+                            inputStates.isVisible_4 && (
+                                <div className="text-start flex flex-col items-center mt-4">
+                                    <p className="lg:w-1/2">When are you moving?</p>
+                                    <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
+                                        <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                            <input
+                                                onClick={() => handleDataChange("movingDatePref", "specific")}
+                                                checked={data.movingDatePref === "specific"}
+                                                type="radio"
+                                                name="movingDatePref"
+                                            />
+                                            <p className="ml-2">I want Specific Date</p>
+                                        </div>
+                                    </div>
+                                    <div className=" bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]">
+                                        <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                            <input
+                                                onClick={() => handleDataChange("movingDatePref", "flexible")}
+                                                checked={data.movingDatePref === "flexible"}
+                                                type="radio"
+                                                name="movingDatePref"
+                                            />
+                                            <p className="ml-2">I am flexible</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                        {data.movingDatePref === "specific" && (
                             <div className="text-start flex flex-col items-center pt-4">
                                 <p></p>
                                 {/* <Input
@@ -196,22 +482,24 @@ function MovingType() {
                             </div>
                         )}
 
-                        {inputStates.isVisible_4 && (
-                            <div className="text-start flex flex-col mt-4 items-center">
-                                <div className="lg:w-1/2 ">Moving date</div>
-                                <Input
-                                    className="lg:w-2/4 outline-[#13C265]"
-                                    placeholder="Your moving date"
-                                    onClick={() => handleInputStateChange("isVisible_5", true)}
-                                    value={data.movingDate}
-                                    onChange={(e) =>
-                                        handleDataChange("movingDate", e.target.value)
-                                    }
-                                />
-                            </div>
-                        )}
+                        {
+                            //                            data.movingDatePref === "flexible" && (
+                            //                            <div className="text-start flex flex-col mt-4 items-center">
+                            //                                <div className="lg:w-1/2 ">Moving date</div>
+                            //                                <Input
+                            //                                    className="lg:w-2/4 outline-[#13C265]"
+                            //                                    placeholder="Your moving date"
+                            //                                    onClick={() => handleInputStateChange("isVisible_5", true)}
+                            //                                    value={data.movingDate}
+                            //                                    onChange={(e) =>
+                            //                                        handleDataChange("movingDate", e.target.value)
+                            //                                    }
+                            //                                />
+                            //                            </div>
+                            //                        )
+                        }
 
-                        {inputStates.isVisible_5 && (
+                        {data.movingDatePref === "flexible" && (
                             <div className="text-start flex flex-col items-center justify-center pt-4">
                                 <p className="lg:w-1/2 outline-[#13C265]">Date Range</p>
                                 {/* <Input className=" " placeholder="Address" onClick={() => setUnlock6(true)} onChange={(e) => firstHandler(e.target.value)} /> */}
@@ -250,8 +538,6 @@ function MovingType() {
                         {inputStates.isVisible_8 && (
                             <div className="text-start flex flex-col items-center pt-4">
                                 <p className="lg:w-1/2 ">
-                                    Contact details
-                                    <br />
                                     <span className=" text-gray-400">Whatsapp number</span>
                                 </p>
                                 <PhoneInput

@@ -27,7 +27,7 @@ const SpecificDate = ({ handleInputStateChange, handleDataChange }) => {
       cellRender={cellRender}
       style={{ borderColor: "#13C26580" }}
       placeholder="Specific date"
-      onClick={() => handleInputStateChange("isVisible_4", true)}
+      onClick={() => handleInputStateChange("isVisible_6", true)}
       className="w-full lg:w-1/2"
       onChange={(_, dateStr) => {
         handleDataChange("specificDate", dateStr);
