@@ -208,7 +208,7 @@ export default function FreeTrialForm() {
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div className="-ml-8">
                                 {isLoaded ? (
                                     <GoogleMap
                                         mapContainerStyle={containerStyle}
