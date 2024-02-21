@@ -11,7 +11,6 @@ import "../header/header.css";
 import { Input } from "antd";
 import DatePicker from "../../components/DatePicker";
 import SpecificDate from "../../components/Specific";
-import { setInputSelection } from "rc-mentions/lib/util";
 
 const selectBg = "bg-[#00DD68]";
 
@@ -137,11 +136,11 @@ function MovingType() {
             toast.error("Fields can't be empty!");
             return;
         }
-        if ((data.movingDatePref === "specific") && (!data.specificDate || !data.specificTime)){
+        if ((data.movingDatePref === "specific") && (!data.specificDate || !data.specificTime)) {
             toast.error("Fields can't be empty!");
             return;
         }
-        if ((data.movingDatePref === "flexible") && (!data.startDate || !data.endDate)){
+        if ((data.movingDatePref === "flexible") && (!data.startDate || !data.endDate)) {
             toast.error("Fields can't be empty!");
             return;
         }
@@ -153,7 +152,7 @@ function MovingType() {
             toast.error("Invalid PhoneNumber!");
             return;
         }
-            toast.success("Success!");
+        toast.success("Success!");
     };
 
     return (

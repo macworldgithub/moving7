@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { setKey, setDefaults, fromAddress } from "react-geocode";
 import { AutoComplete } from "antd";
 import { getLocationSuggestions } from "../../../../../apiFunctions/partner";
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, Marker, useJsApiLoader, Circle } from "@react-google-maps/api";
 import { useQuery, useMutation } from "react-query";
 import { toast } from "react-toastify";
 import PhoneInput from "react-phone-number-input";
@@ -213,9 +213,24 @@ export default function FreeTrialForm() {
                                     <GoogleMap
                                         mapContainerStyle={containerStyle}
                                         center={latlong}
-                                        zoom={3}
+                                        zoom={13}
                                     >
                                         {/* Child components, such as markers, info windows, etc. */}
+                                        <Circle
+                                            center={latlong}
+                                            radius={1609.34 * data.radius}
+                                            options={{
+                                                fillColor: "coral",
+                                                fillOpacity: 0.3,
+                                                strokeWeight: 2,
+                                                strokeColor: "coral",
+                                                clickable: false,
+                                                editable: true,
+                                                zIndex: 1
+                                            }}
+                                            onCenterChanged={() => console.log("onCenterChanged")}
+                                            onRadiusChanged={() => console.log("onRadiusChanged")}
+                                        />
                                         <Marker position={latlong} />
                                     </GoogleMap>
                                 ) : (
