@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { setKey, setDefaults, fromAddress } from "react-geocode";
+import RegionAccordion from "../../Accordion";
 import { AutoComplete } from "antd";
 import { getLocationSuggestions } from "../../../../../apiFunctions/partner";
 import { GoogleMap, Marker, useJsApiLoader, Circle } from "@react-google-maps/api";
@@ -45,6 +46,7 @@ export default function FreeTrialForm() {
         email: "",
         telephone: "",
         addressLine1: "",
+        regions: [],
         city: "",
         state: "",
         salutation: "",
@@ -117,8 +119,7 @@ export default function FreeTrialForm() {
         }
     }
 
-    console.log(data)
-
+    console.log(data.regions, "loooooooooooooooo")
 
     return (
         <div className="flex items-center justify-center mx-auto">
@@ -209,7 +210,7 @@ export default function FreeTrialForm() {
                                 </div>
                             </div>
                             <div className="-ml-8">
-                                {isLoaded ? (
+                                {isLoaded && data.areaPreference === "radius" ? (
                                     <GoogleMap
                                         mapContainerStyle={containerStyle}
                                         center={latlong}
@@ -234,11 +235,44 @@ export default function FreeTrialForm() {
                                         <Marker position={latlong} />
                                     </GoogleMap>
                                 ) : (
-                                    <></>
+                                    <>
+                                    </>
                                 )}
                             </div>
                         </>
                     )}
+                    {
+                        data.areaPreference === "region" && (
+                            <>
+                                <RegionAccordion setData={setData} data={data} />
+                                <div className='md:w-[47%] mx-auto'>
+                                    <p className='text-gray-500'>Selected Areas:</p>
+                                    <div className="flex flex-wrap">
+                                        {
+                                            data.regions.map((selectedCity) => {
+                                                return (
+                                                    <div className="my-1 flex px-2 py-0 h-max items-center justify-between rounded-lg text-white me-2 bg-[#13C265]">
+                                                        <p className="m-0 p-0">
+                                                            {selectedCity}
+                                                        </p>
+                                                        <span onClick={() => {
+
+                                                            let temp = data
+                                                            temp.regions.splice(temp.regions.indexOf(selectedCity), 1)
+                                                            setData({
+                                                                ...data,
+                                                                regions: temp.regions
+                                                            })
+                                                        }} className="ms-1 px-1 text-lg cursor-pointer">x</span>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                            </>
+                        )
+                    }
                     <div>
                         <h2 className="text-[#13C265] text-2xl text-center p-4">
                             Company details
