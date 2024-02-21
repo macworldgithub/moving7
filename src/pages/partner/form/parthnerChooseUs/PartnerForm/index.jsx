@@ -224,7 +224,7 @@ export default function FreeTrialForm() {
                             </div>
                         </>
                     )}
-                    <div>
+                    <div className=" flex items-center justify-center flex-col">
                         <h2 className="text-[#13C265] text-2xl text-center p-4">
                             Company details
                         </h2>
@@ -366,7 +366,23 @@ export default function FreeTrialForm() {
                                 />
                             </div>
                         </div>
-                        <button className='w-[255px] md:w-[516px] text-white p-2 bg-[#00DD68] mt-4 rounded-md'>Create an new account</button>
+                        <div>
+                            <div>
+                                <h2 className=' text-[#13C265]'>Username</h2>
+                                <input type="text" placeholder='Name@gmail.com' className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
+                            </div>
+                            <div>
+                                <h2 className=' text-[#13C265] mt-3'>Choose your password</h2>
+                                <input type="text" className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
+                            </div>
+                            <div>
+                                <h2 className=' text-[#13C265] mt-3'>Confirm your password</h2>
+                                <input type="text" className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#00DD68]' />
+                            </div>
+
+
+                        </div>
+                        <button className='w-[200px] md:w-[516px] text-white p-2 bg-[#00DD68] mt-4 rounded-md'>Create account</button>
 
                     </div>
                 </div>

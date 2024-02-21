@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../header/header";
 
 import banner from '../../assets/images/Logiin 1.png'
-import PartnerForm from './form/form';
 import ChooseUs from './form/parthnerChooseUs/chooseUs';
 import Compare from '../moving_componies/compare';
 import Steps from './steps/Partnerbenefits';
@@ -36,7 +35,6 @@ export default function Partner() {
         <img src={banner} className='h-64 w-11/12 lg:h-[470px]' alt="" />
         <img className=' hidden lg:block absolute lg:top-[-40px] lg:ml-28' src={RingImg} alt="" />
       </div>
-      <PartnerForm />
       <FreeTrialForm />
       <OnlineAccForm />
       <ChooseUs />
