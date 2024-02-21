@@ -7,7 +7,7 @@ import Footer from '../footer/footer'
 export default function Login() {
     return (
         <>
-            <div className=' w-4/5 xl:w-1/3 sm:mt-36 lg:mt-60 bg-[#EDEDED] mx-auto relative rounded-3xl'>
+            <div className=' w-4/5 xl:w-1/3 sm:mt-36 lg:mt-32 bg-[#EDEDED] mx-auto relative rounded-3xl'>
                 <div className='flex items-center justify-center flex-col mt-40 md:mt-0'>
                     <div className='bg-[#13C265] rounded-full h-[5rem] w-[5rem] md:h-[10rem] md:w-[10rem] lg:h-32 lg:w-32 flex items-center justify-center p-[1.25rem] md:p-9 -mt-[3rem] md:-mt-20 mb-12'>
                         <img src={UserImg} />
