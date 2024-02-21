@@ -129,9 +129,9 @@ export default function FreeTrialForm() {
                 <h2 className="lg:font-semibold text-3xl text-center p-6 mb-4">
                     Welcome to free trial
                 </h2>
-                <div className=" bg-[#E8FFF3] flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w-11/12 lg:w-[1140px] mx-auto">
+                <div className=" bg-[#E8FFF3] flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w-11/12 lg:w-[940px] mx-auto">
                     <h2 className="text-[#13C265] text-2xl">Select removal types</h2>
-                    <div className="flex flex-col flex-wrap md:flex-row">
+                    <div className="flex flex-col flex-wrap md:flex-row md:justify-center">
                         <button onClick={() => handleDataChange("removalType", "local")} className={`${data.removalType === "local" ? "bg-[#13C265] text-white" : "bg-[#f0f0f0] text-black"} w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
                             Local
                         </button>
@@ -147,7 +147,7 @@ export default function FreeTrialForm() {
                             Set a radius or select areas
                         </h2>
                         <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
-                            <div className="flex w-[255px] md:w-[516px] px-2 py-1">
+                            <div className="flex w-[255px] md:w-[480px] px-2 py-1">
                                 <input
                                     onClick={() => handleDataChange("areaPreference", "radius")}
                                     checked={data.areaPreference === "radius"}
@@ -158,7 +158,7 @@ export default function FreeTrialForm() {
                             </div>
                         </div>
                         <div className=" bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]">
-                            <div className="flex w-[255px] md:w-[516px] px-2 py-1">
+                            <div className="flex w-[255px] md:w-[480px] px-2 py-1">
                                 <input
                                     onClick={() => handleDataChange("areaPreference", "region")}
                                     checked={data.areaPreference === "region"}
@@ -232,7 +232,7 @@ export default function FreeTrialForm() {
                             <input
                                 type="text"
                                 placeholder="Company name"
-                                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
+                                className="w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                                 value={data.companyName}
                                 onChange={(e) =>
                                     handleDataChange("companyName", e.target.value)
@@ -242,7 +242,7 @@ export default function FreeTrialForm() {
                         <div className="mt-2">
                             <h3 className="text-[#13C265]">Business type</h3>
                             <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]">
-                                <div className="flex w-[255px] md:w-[516px] px-2 py-1">
+                                <div className="flex w-[255px] md:w-[480px] px-2 py-1">
                                     <input
                                         onClick={() => handleDataChange("businessType", "solo")}
                                         checked={data.businessType === "solo"}
@@ -253,7 +253,7 @@ export default function FreeTrialForm() {
                                 </div>
                             </div>
                             <div className=" bg-white mt-2 rounded-md  border-[#13C26580] border-[1.5px] outline-[#13C265]">
-                                <div className="flex w-[255px] md:w-[516px] px-2 py-1 ">
+                                <div className="flex w-[255px] md:w-[480px] px-2 py-1 ">
                                     <input
                                         onClick={() => handleDataChange("businessType", "company")}
                                         checked={data.businessType === "company"}
@@ -273,7 +273,7 @@ export default function FreeTrialForm() {
                                     handleDataChange("noOfEmployees", e.target.value)
                                 }
                                 value={data.noOfEmployees}
-                                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
+                                className="w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                             />
                         </div>
                         <div>
@@ -283,7 +283,7 @@ export default function FreeTrialForm() {
                                 onChange={(e) => handleDataChange("email", e.target.value)}
                                 value={data.email}
                                 placeholder="example@gmail.com"
-                                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
+                                className="w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                             />
                         </div>
                         <div>
@@ -292,7 +292,7 @@ export default function FreeTrialForm() {
                                 placeholder="Enter phone number"
                                 value={data.telephone}
                                 onChange={(e) => handleDataChange("telephone", e)}
-                                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
+                                className="w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                             />
                         </div>
                         <div>
@@ -304,7 +304,7 @@ export default function FreeTrialForm() {
                                 value={data.addressLine1}
                                 type="text"
                                 placeholder="Address line 1"
-                                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
+                                className="w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                             />
                         </div>
                         <div>
@@ -314,7 +314,7 @@ export default function FreeTrialForm() {
                                 value={data.city}
                                 type="text"
                                 placeholder="Town/City"
-                                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
+                                className="w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                             />
                         </div>
                         <div>
@@ -324,7 +324,7 @@ export default function FreeTrialForm() {
                                 value={data.state}
                                 type="text"
                                 placeholder="Select a State"
-                                className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
+                                className="w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                             />
                         </div>
                         <div>
@@ -340,7 +340,7 @@ export default function FreeTrialForm() {
                                     value={data.salutation}
                                     type="text"
                                     placeholder="Salutation"
-                                    className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
+                                    className="w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                                 />
                             </div>
                             <div>
@@ -352,7 +352,7 @@ export default function FreeTrialForm() {
                                     value={data.firstName}
                                     type="text"
                                     placeholder="First name"
-                                    className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
+                                    className="w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]"
                                 />
                             </div>
                             <div>
@@ -362,27 +362,27 @@ export default function FreeTrialForm() {
                                     value={data.lastName}
                                     type="text"
                                     placeholder="Last name"
-                                    className="w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#13C265]"
+                                    className="w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#13C265]"
                                 />
                             </div>
                         </div>
                         <div>
                             <div>
                                 <h2 className=' text-[#13C265]'>Username</h2>
-                                <input type="text" placeholder='Name@gmail.com' className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
+                                <input type="text" placeholder='Name@gmail.com' className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
                             </div>
                             <div>
                                 <h2 className=' text-[#13C265] mt-3'>Choose your password</h2>
-                                <input type="text" className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
+                                <input type="text" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
                             </div>
                             <div>
                                 <h2 className=' text-[#13C265] mt-3'>Confirm your password</h2>
-                                <input type="text" className='w-[255px] md:w-[516px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#00DD68]' />
+                                <input type="text" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#00DD68]' />
                             </div>
 
 
                         </div>
-                        <button className='w-[200px] md:w-[516px] text-white p-2 bg-[#00DD68] mt-4 rounded-md'>Create account</button>
+                        <button className='w-[200px] md:w-[480px] text-white p-2 bg-[#00DD68] mt-4 rounded-md'>Create account</button>
 
                     </div>
                 </div>
