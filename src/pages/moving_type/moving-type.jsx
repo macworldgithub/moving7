@@ -224,58 +224,58 @@ function MovingType() {
                                         handleDataChange("currPropertyFloorNo", e.target.value)
                                     }
                                 />
-                            {
-                                inputStates.isVisible_2b && (
-                                    <Select
-                                        placeholder="Elevator available?"
-                                    onClick={() => handleInputStateChange("isVisible_2c", true)}
-                                        className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                        onChange={(val) => handleDataChange("hasCurrPropertyLift", val)}
-                                        options={[
-                                            {
-                                                value: 'yes',
-                                                label: 'Yes',
-                                            },
-                                            {
-                                                value: 'no',
-                                                label: 'No',
-                                            },
-                                        ]}
-                                    />
-                                )
-                            }
-                            {
-                                inputStates.isVisible_2c && (
-                                    <Select
-                                        placeholder="Bedrooms?"
-                                        className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                        onChange={(val) => handleDataChange("currPropertyBedrooms", val)}
-                                    onClick={() => handleInputStateChange("isVisible_3", true)}
-                                        options={[
-                                            {
-                                                value: '1',
-                                                label: '1',
-                                            },
-                                            {
-                                                value: '2',
-                                                label: '2',
-                                            },
-                                            {
-                                                value: '3',
-                                                label: '3',
-                                            },
-                                            {
-                                                value: '4',
-                                                label: '4',
-                                            },
-                                            {
-                                                value: '5',
-                                                label: '5',
-                                            },
-                                        ]}
-                                    />
-                                )
-                            }
+                                {
+                                    inputStates.isVisible_2b && (
+                                        <Select
+                                            placeholder="Elevator available?"
+                                            onClick={() => handleInputStateChange("isVisible_2c", true)}
+                                            className="lg:w-2/4 mt-2 outline-[#13C265]"
+                                            onChange={(val) => handleDataChange("hasCurrPropertyLift", val)}
+                                            options={[
+                                                {
+                                                    value: 'yes',
+                                                    label: 'Yes',
+                                                },
+                                                {
+                                                    value: 'no',
+                                                    label: 'No',
+                                                },
+                                            ]}
+                                        />
+                                    )
+                                }
+                                {
+                                    inputStates.isVisible_2c && (
+                                        <Select
+                                            placeholder="Bedrooms?"
+                                            className="lg:w-2/4 mt-2 outline-[#13C265]"
+                                            onChange={(val) => handleDataChange("currPropertyBedrooms", val)}
+                                            onClick={() => handleInputStateChange("isVisible_3", true)}
+                                            options={[
+                                                {
+                                                    value: '1',
+                                                    label: '1',
+                                                },
+                                                {
+                                                    value: '2',
+                                                    label: '2',
+                                                },
+                                                {
+                                                    value: '3',
+                                                    label: '3',
+                                                },
+                                                {
+                                                    value: '4',
+                                                    label: '4',
+                                                },
+                                                {
+                                                    value: '5',
+                                                    label: '5',
+                                                },
+                                            ]}
+                                        />
+                                    )
+                                }
                             </div>
                         )}
 
@@ -286,7 +286,7 @@ function MovingType() {
                                     placeholder="Bedrooms?"
                                     className="lg:w-2/4 mt-2 outline-[#13C265]"
                                     onChange={(val) => handleDataChange("currPropertyBedrooms", val)}
-                            onClick={() => handleInputStateChange("isVisible_3", true)}
+                                    onClick={() => handleInputStateChange("isVisible_3", true)}
                                     options={[
                                         {
                                             value: '1',
@@ -362,45 +362,45 @@ function MovingType() {
                                         handleDataChange("newPropertyFloorNo", e.target.value)
                                     }
                                 />
-                            {
-                                inputStates.isVisible_3b && (
-                                    <Select
-                                        placeholder="Elevator available?"
-                                        className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                        onChange={(val) => handleDataChange("hasNewPropertyLift", val)}
-                                    onClick={() => handleInputStateChange("isVisible_3c", true)}
-                                        options={[
-                                            {
-                                                value: 'yes',
-                                                label: 'Yes',
-                                            },
-                                            {
-                                                value: 'no',
-                                                label: 'No',
-                                            },
-                                        ]}
-                                    />
-                                )
+                                {
+                                    inputStates.isVisible_3b && (
+                                        <Select
+                                            placeholder="Elevator available?"
+                                            className="lg:w-2/4 mt-2 outline-[#13C265]"
+                                            onChange={(val) => handleDataChange("hasNewPropertyLift", val)}
+                                            onClick={() => handleInputStateChange("isVisible_3c", true)}
+                                            options={[
+                                                {
+                                                    value: 'yes',
+                                                    label: 'Yes',
+                                                },
+                                                {
+                                                    value: 'no',
+                                                    label: 'No',
+                                                },
+                                            ]}
+                                        />
+                                    )
 
-                            }
-                            {
-                                inputStates.isVisible_3c && (
-                                    <Select
-                                        placeholder="Additional Information"
-                                        className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                        onChange={(val) => handleDataChange("newPropertyAdditionalInfo", val)}
-                                    onClick={() => handleInputStateChange("isVisible_4", true)}
-                                        options={[
-                                            { "label": "Packing services", "value": "Packingservices" },
-                                            { "label": "Packing materials", "value": "Packingmaterials" },
-                                            { "label": "Disassemble furniture", "value": "Disassemblefurniture" },
-                                            { "label": "Assemble furniture", "value": "Assemblefurniture" },
-                                            { "label": "Storage", "value": "Storage" },
+                                }
+                                {
+                                    inputStates.isVisible_3c && (
+                                        <Select
+                                            placeholder="Additional Information"
+                                            className="lg:w-2/4 mt-2 outline-[#13C265]"
+                                            onChange={(val) => handleDataChange("newPropertyAdditionalInfo", val)}
+                                            onClick={() => handleInputStateChange("isVisible_4", true)}
+                                            options={[
+                                                { "label": "Packing services", "value": "Packingservices" },
+                                                { "label": "Packing materials", "value": "Packingmaterials" },
+                                                { "label": "Disassemble furniture", "value": "Disassemblefurniture" },
+                                                { "label": "Assemble furniture", "value": "Assemblefurniture" },
+                                                { "label": "Storage", "value": "Storage" },
 
-                                        ]}
-                                    />
-                                )
-                            }
+                                            ]}
+                                        />
+                                    )
+                                }
                             </div>
                         )}
 
@@ -550,17 +550,35 @@ function MovingType() {
                             </div>
                         )}
                         {inputStates.isVisible_9 && (
-                            <div className="text-start flex flex-col items-center pt-4">
+                            <div className="text-start flex flex-col items-center p-4">
                                 <p className="lg:w-1/2 ">Budget range</p>
-                                <Input
-                                    type="number"
-                                    className=" lg:w-2/4 outline-[#13C265]"
-                                    onClick={() => handleInputStateChange("isVisible_10", true)}
-                                    value={data.budgetRange}
-                                    onChange={(e) =>
-                                        handleDataChange("budgetRange", e.target.value)
-                                    }
-                                />
+                                <div className="flex flex-wrap gap-2 justify-center items-center">
+                                    <div>
+                                        <h4>Min range</h4>
+                                        <Input
+                                            type="number"
+                                            className=" lg:w-11/12 outline-[#13C265]"
+                                            onClick={() => handleInputStateChange("isVisible_10", true)}
+                                            value={data.budgetRange}
+                                            onChange={(e) =>
+                                                handleDataChange("budgetRange", e.target.value)
+                                            }
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4>Max range</h4>
+                                        <Input
+                                            type="number"
+                                            className=" lg:w-11/12 outline-[#13C265]"
+                                            onClick={() => handleInputStateChange("isVisible_10", true)}
+                                            value={data.budgetRange}
+                                            onChange={(e) =>
+                                                handleDataChange("budgetRange", e.target.value)
+                                            }
+                                        />
+                                    </div>
+                                    
+                                </div>
                             </div>
                         )}
                         {inputStates.isVisible_10 && (
