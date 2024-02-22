@@ -552,11 +552,10 @@ function MovingType() {
                         {inputStates.isVisible_9 && (
                             <div className="text-start flex flex-col items-center p-4">
                                 <p className="lg:w-1/2 ">Budget range</p>
-                                <div className="flex flex-wrap gap-2 justify-center items-center">
+                                <div className="flex flex-wrap gap-2 justify-center items-center mt-4 xl:mr-40">
                                     <div>
-                                        <h4>Min range</h4>
                                         <Input
-                                            type="number"
+                                            type="number" placeholder="Min range"
                                             className=" lg:w-11/12 outline-[#13C265]"
                                             onClick={() => handleInputStateChange("isVisible_10", true)}
                                             value={data.budgetRange}
@@ -566,9 +565,8 @@ function MovingType() {
                                         />
                                     </div>
                                     <div>
-                                        <h4>Max range</h4>
                                         <Input
-                                            type="number"
+                                            type="number" placeholder="Max range"
                                             className=" lg:w-11/12 outline-[#13C265]"
                                             onClick={() => handleInputStateChange("isVisible_10", true)}
                                             value={data.budgetRange}
