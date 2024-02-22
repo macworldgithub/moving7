@@ -74,7 +74,10 @@ function MovingType() {
         name: "",
         email: "",
         wappNum: "",
-        budgetRange: "",
+        budgetRange: {
+            minimum: 0,
+            maximum: 0
+        },
         building: "",
     });
     const [active, setActive] = useState(null);
@@ -90,6 +93,18 @@ function MovingType() {
             [key]: value,
         });
     };
+
+    //new handler for min and max range 
+    const handleRangeChange = (key, value) => {
+        setData({
+            ...data,
+            budgetRange: {
+                ...data.budgetRange,
+                [key]: value
+            }
+
+        })
+    }
 
     const handleMultipleChanges = (obj) => {
         setData({
@@ -558,7 +573,7 @@ function MovingType() {
                                             type="number" placeholder="Min range"
                                             className=" lg:w-11/12 outline-[#13C265]"
                                             onClick={() => handleInputStateChange("isVisible_10", true)}
-                                            value={data.budgetRange}
+                                            value={data.budgetRange.minimum}
                                             onChange={(e) =>
                                                 handleDataChange("budgetRange", e.target.value)
                                             }
@@ -569,13 +584,13 @@ function MovingType() {
                                             type="number" placeholder="Max range"
                                             className=" lg:w-11/12 outline-[#13C265]"
                                             onClick={() => handleInputStateChange("isVisible_10", true)}
-                                            value={data.budgetRange}
+                                            value={data.budgetRange.maximum}
                                             onChange={(e) =>
                                                 handleDataChange("budgetRange", e.target.value)
                                             }
                                         />
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         )}
