@@ -44,7 +44,7 @@ function Header() {
         />
         <img
           src={Ellipse2}
-          className="absolute z-10 top-[-45px] sm:top-[-65px] h-[14rem] w-[256px] sm:h-[240px] sm:w-[170px] md:h-[270px] md:w-[285px] lg:h-[351px] lg:w-[425px] "
+          className="absolute z-10 top-[-45px] sm:top-[-65px] h-[14rem] w-[247px] sm:h-[240px] sm:w-[170px] md:h-[270px] md:w-[285px] lg:h-[356px] lg:w-[425px] "
           alt=""
         />
         <div

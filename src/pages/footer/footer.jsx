@@ -5,7 +5,7 @@ import footerLogo from "../../assets/images/icon-32-logo 2.svg";
 
 function Footer() {
   return (
-    <div className="bg-[#333] text-white w-full md:w-full py-10 md:mt-20 pl-8 pt-7 footer lg:p-10 lg:w-[1280pxX]">
+    <div className="bg-[#333] text-white w-full md:w-full py-10 md:mt-20 pl-8 pt-7 footer lg:p-10">
       <div className="flex flex-wrap flex-col sm:flex gap-y-4 md:flex justify-around leading-loose lg:flex-row lg:mt-6 md:p-0 size-full">
         <div className="footer-truck">
           <img src={img} alt="Truck Icon" />
