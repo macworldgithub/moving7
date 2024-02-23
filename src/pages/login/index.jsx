@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import UserImg from '../../assets/images/login/Group.svg'
 import UserIcon from '../../assets/images/login/Vector (1).svg'
 import Lock from '../../assets/images/login/Vector (2).svg'
@@ -34,7 +35,9 @@ export default function Login() {
                         </div>
                     </div>
                     <div>
-                        <h2 className='italic text-[#13C265] font-medium cursor-pointer mt-3 mb-3'>Create account</h2>
+                        <Link to={"/partner"}>
+                            <h2 className='italic text-[#13C265] font-medium cursor-pointer mt-3 mb-3'>Create account</h2>
+                        </Link>
                     </div>
                 </div>
             </div>

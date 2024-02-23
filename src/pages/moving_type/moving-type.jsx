@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { AutoComplete, Select } from "antd";
+import dayjs from "dayjs";
+import { AutoComplete, Select, TimePicker } from "antd";
 import { useQuery, useMutation } from "react-query";
 import { getLocationSuggestions } from "../../apiFunctions/partner";
 import { ToastContainer, toast } from "react-toastify";
@@ -10,7 +11,6 @@ import "../header/header.css";
 import { Input } from "antd";
 import DatePicker from "../../components/DatePicker";
 import SpecificDate from "../../components/Specific";
-import { setInputSelection } from "rc-mentions/lib/util";
 
 const selectBg = "bg-[#00DD68]";
 
@@ -57,7 +57,6 @@ function MovingType() {
     const [data, setData] = useState({
         moveFrom: "",
         moveTo: "",
-        address: "",
         currPropertyType: "",
         currPropertyBedrooms: "",
         currPropertyFloorNo: "",
@@ -68,7 +67,7 @@ function MovingType() {
         hasNewPropertyLift: "",
         movingDatePref: "",
         specificDate: null,
-        movingDate: null,
+        specificTime: null,
         startDate: null,
         endDate: null,
         name: "",
@@ -122,18 +121,40 @@ function MovingType() {
     const handleSubmit = () => {
         const notIsValid =
             !data.moveFrom ||
+            !data.currPropertyType ||
+            !data.newPropertyType ||
+            !data.movingDatePref ||
             !data.moveTo ||
-            !data.address ||
-            !data.specificDate ||
-            !data.movingDate ||
-            !data.startDate ||
-            !data.endDate ||
             !data.name ||
             !data.email ||
             !data.wappNum ||
             !data.budgetRange ||
             !data.building;
         if (notIsValid) {
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.currPropertyType === "house") && (!data.currPropertyBedrooms)) {
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.currPropertyType === "appartment") && (!data.currPropertyBedrooms || !data.currPropertyFloorNo || !data.hasCurrPropertyLift)) {
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.newPropertyType === "house") && (!data.newPropertyAdditionalInfo)) {
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.newPropertyType === "appartment") && (!data.newPropertyAdditionalInfo || !data.newPropertyFloorNo || !data.hasNewPropertyLift)) {
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.movingDatePref === "specific") && (!data.specificDate || !data.specificTime)) {
+            toast.error("Fields can't be empty!");
+            return;
+        }
+        if ((data.movingDatePref === "flexible") && (!data.startDate || !data.endDate)) {
             toast.error("Fields can't be empty!");
             return;
         }
@@ -145,6 +166,7 @@ function MovingType() {
             toast.error("Invalid PhoneNumber!");
             return;
         }
+        toast.success("Success!");
     };
 
     return (
@@ -166,7 +188,7 @@ function MovingType() {
                     setActive={setActive}
                 />
 
-                {inputStates.isVisible_0 && active === 1 && (
+                {inputStates.isVisible_0 && (
                     <div>
                         <div className="text-start flex flex-col items-center mt-6">
                             <p className="lg:w-1/2">Move from</p>
@@ -177,6 +199,7 @@ function MovingType() {
                                 placeholder="Address"
                                 className="lg:w-2/4 outline-[#13C265]"
                                 onClick={() => handleInputStateChange("isVisible_1", true)}
+                                onFocus={() => handleInputStateChange("isVisible_1", true)}
                             />
                         </div>
 
@@ -189,6 +212,7 @@ function MovingType() {
                                     options={locationOptions}
                                     placeholder="Address"
                                     className="lg:w-2/4 outline-[#13C265]"
+                                    onFocus={() => handleInputStateChange("isVisible_2", true)}
                                     onClick={() => handleInputStateChange("isVisible_2", true)}
                                 />
                             </div>
@@ -198,19 +222,19 @@ function MovingType() {
                             <div className="text-start flex flex-col items-center mt-4">
                                 <p className="lg:w-1/2">Bedrooms/Office cabins</p>
                                 <p className="lg:w-1/2 text-gray-400">Current Property</p>
-                                <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
-                                    <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                <div className=" bg-white rounded-md md:w-1/2 border-[#13C26580] border-[1.5px]">
+                                    <div className="flex w-[255px]  px-2 py-1">
                                         <input
                                             onClick={() => handleDataChange("currPropertyType", "house")}
                                             checked={data.currPropertyType === "house"}
                                             type="radio"
                                             name="currPropertyType"
                                         />
-                                        <p className="ml-2">House</p>
+                                        <p className="ml-2">House / Villa</p>
                                     </div>
                                 </div>
-                                <div className=" bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]">
-                                    <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                <div className=" bg-white mt-2 md:w-1/2 rounded-md border-[#13C26580] border-[1.5px]">
+                                    <div className="flex w-[255px] px-2 py-1">
                                         <input
                                             onClick={() => handleDataChange("currPropertyType", "appartment")}
                                             checked={data.currPropertyType === "appartment"}
@@ -225,7 +249,6 @@ function MovingType() {
 
                             </div>
                         )}
-
                         {data.currPropertyType === "appartment" && (
                             <div className="text-start flex flex-col mt-4 items-center">
                                 <Input
@@ -233,6 +256,7 @@ function MovingType() {
                                     placeholder="Floor number"
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     onClick={() => handleInputStateChange("isVisible_2b", true)}
+                                    onFocus={() => handleInputStateChange("isVisible_2b", true)}
                                     value={data.currPropertyFloorNo}
                                     onChange={(e) =>
                                         handleDataChange("currPropertyFloorNo", e.target.value)
@@ -243,6 +267,7 @@ function MovingType() {
                                         <Select
                                             placeholder="Elevator available?"
                                             onClick={() => handleInputStateChange("isVisible_2c", true)}
+                                            onFocus={() => handleInputStateChange("isVisible_2c", true)}
                                             className="lg:w-2/4 mt-2 outline-[#13C265]"
                                             onChange={(val) => handleDataChange("hasCurrPropertyLift", val)}
                                             options={[
@@ -264,6 +289,7 @@ function MovingType() {
                                             placeholder="Bedrooms?"
                                             className="lg:w-2/4 mt-2 outline-[#13C265]"
                                             onChange={(val) => handleDataChange("currPropertyBedrooms", val)}
+                                            onFocus={() => handleInputStateChange("isVisible_3", true)}
                                             onClick={() => handleInputStateChange("isVisible_3", true)}
                                             options={[
                                                 {
@@ -298,6 +324,7 @@ function MovingType() {
                             <div className="text-start flex flex-col mt-4 items-center">
                                 <Select
                                     placeholder="Bedrooms?"
+                                    onFocus={() => handleInputStateChange("isVisible_3", true)}
                                     className="lg:w-2/4 mt-2 outline-[#13C265]"
                                     onChange={(val) => handleDataChange("currPropertyBedrooms", val)}
                                     onClick={() => handleInputStateChange("isVisible_3", true)}
@@ -336,19 +363,19 @@ function MovingType() {
                             <div className="text-start flex flex-col items-center mt-4">
                                 <p className="lg:w-1/2">Bedrooms/Office cabins</p>
                                 <p className="lg:w-1/2 text-gray-400">New Property</p>
-                                <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
-                                    <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                <div className=" bg-white rounded-md md:w-1/2 border-[#13C26580] border-[1.5px]">
+                                    <div className="flex w-[255px] px-2 py-1">
                                         <input
                                             onClick={() => handleDataChange("newPropertyType", "house")}
                                             checked={data.newPropertyType === "house"}
                                             type="radio"
                                             name="newPropertyType"
                                         />
-                                        <p className="ml-2">House</p>
+                                        <p className="ml-2">House / Villa</p>
                                     </div>
                                 </div>
-                                <div className=" bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]">
-                                    <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                <div className=" bg-white mt-2 md:w-1/2 rounded-md border-[#13C26580] border-[1.5px]">
+                                    <div className="flex w-[255px]  px-2 py-1">
                                         <input
                                             onClick={() => handleDataChange("newPropertyType", "appartment")}
                                             checked={data.newPropertyType === "appartment"}
@@ -369,6 +396,7 @@ function MovingType() {
                                 <Input
                                     type="number"
                                     placeholder="Floor number"
+                                    onFocus={() => handleInputStateChange("isVisible_3b", true)}
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     onClick={() => handleInputStateChange("isVisible_3b", true)}
                                     value={data.newPropertyFloorNo}
@@ -382,6 +410,7 @@ function MovingType() {
                                             placeholder="Elevator available?"
                                             className="lg:w-2/4 mt-2 outline-[#13C265]"
                                             onChange={(val) => handleDataChange("hasNewPropertyLift", val)}
+                                            onFocus={() => handleInputStateChange("isVisible_3c", true)}
                                             onClick={() => handleInputStateChange("isVisible_3c", true)}
                                             options={[
                                                 {
@@ -400,9 +429,16 @@ function MovingType() {
                                 {
                                     inputStates.isVisible_3c && (
                                         <Select
-                                            placeholder="Additional Information"
+                                            mode="multiple"
+                                            allowClear
+                                            onFocus={() => handleInputStateChange("isVisible_4", true)}
+                                            placeholder="Scope of work"
                                             className="lg:w-2/4 mt-2 outline-[#13C265]"
-                                            onChange={(val) => handleDataChange("newPropertyAdditionalInfo", val)}
+                                            onChange={(e) => {
+                                                let temp = data
+                                                temp.newPropertyAdditionalInfo = e
+                                                setData(temp)
+                                            }}
                                             onClick={() => handleInputStateChange("isVisible_4", true)}
                                             options={[
                                                 { "label": "Packing services", "value": "Packingservices" },
@@ -422,10 +458,17 @@ function MovingType() {
                         {data.newPropertyType === "house" && (
                             <div className="text-start flex flex-col mt-4 items-center">
                                 <Select
-                                    placeholder="Bedrooms?"
+                                    mode="multiple"
+                                    allowClear
+                                    onFocus={() => handleInputStateChange("isVisible_4", true)}
+                                    placeholder="Scope of work"
                                     className="lg:w-2/4 mt-2 outline-[#13C265]"
+                                    onChange={(e) => {
+                                        let temp = data
+                                        temp.newPropertyAdditionalInfo = e
+                                        setData(temp)
+                                    }}
                                     onClick={() => handleInputStateChange("isVisible_4", true)}
-                                    onChange={(val) => handleDataChange("newPropertyAdditionalInfo", val)}
                                     options={[
                                         { "label": "Packing services", "value": "Packingservices" },
                                         { "label": "Packing materials", "value": "Packingmaterials" },
@@ -454,8 +497,8 @@ function MovingType() {
                             inputStates.isVisible_4 && (
                                 <div className="text-start flex flex-col items-center mt-4">
                                     <p className="lg:w-1/2">When are you moving?</p>
-                                    <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
-                                        <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                    <div className=" bg-white rounded-md md:w-1/2 border-[#13C26580] border-[1.5px]">
+                                        <div className="flex w-[255px] px-2 py-1">
                                             <input
                                                 onClick={() => handleDataChange("movingDatePref", "specific")}
                                                 checked={data.movingDatePref === "specific"}
@@ -465,8 +508,8 @@ function MovingType() {
                                             <p className="ml-2">I want Specific Date</p>
                                         </div>
                                     </div>
-                                    <div className=" bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]">
-                                        <div className="flex w-[255px] md:w-[470px] px-2 py-1">
+                                    <div className=" bg-white mt-2 rounded-md md:w-1/2 border-[#13C26580] border-[1.5px]">
+                                        <div className="flex w-[255px] px-2 py-1">
                                             <input
                                                 onClick={() => handleDataChange("movingDatePref", "flexible")}
                                                 checked={data.movingDatePref === "flexible"}
@@ -530,6 +573,7 @@ function MovingType() {
                                 <Input
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     placeholder="Name"
+                                    onFocus={() => handleInputStateChange("isVisible_7", true)}
                                     onClick={() => handleInputStateChange("isVisible_7", true)}
                                     value={data.name}
                                     onChange={(e) => handleDataChange("name", e.target.value)}
@@ -543,6 +587,7 @@ function MovingType() {
                                 <Input
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     placeholder="Email"
+                                    onFocus={() => handleInputStateChange("isVisible_8", true)}
                                     onClick={() => handleInputStateChange("isVisible_8", true)}
                                     value={data.email}
                                     onChange={(e) => handleDataChange("email", e.target.value)}
@@ -556,6 +601,7 @@ function MovingType() {
                                 </p>
                                 <PhoneInput
                                     placeholder="Enter phone number"
+                                    onFocus={() => handleInputStateChange("isVisible_9", true)}
                                     onClick={() => handleInputStateChange("isVisible_9", true)}
                                     value={data.wappNum}
                                     onChange={(e) => handleDataChange("wappNum", e)}
@@ -605,6 +651,7 @@ function MovingType() {
                                 <Input
                                     className=" lg:w-2/4 outline-[#13C265]"
                                     onClick={() => handleInputStateChange("isVisible_11", true)}
+                                    onFocus={() => handleInputStateChange("isVisible_11", true)}
                                     value={data.building}
                                     onChange={(e) => handleDataChange("building", e.target.value)}
                                 />
@@ -630,7 +677,7 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
     return (
         <div className="felx items-center justify-between">
             <button
-                className={` w-40 ${active === 1 ? selectBg : " bg-[#D1D1D1]"} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}
+                className={` w-40 ${active === 1 ? selectBg + " text-white" : " bg-[#D1D1D1]"} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}
                 onClick={() => {
                     active === 1 ? setActive(null) : setActive(1);
                     handleInputStateChange("isVisible_0", true);
@@ -638,10 +685,20 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
             >
                 Local
             </button>
-            <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg">
+            <button
+                onClick={() => {
+                    active === 2 ? setActive(null) : setActive(2);
+                    handleInputStateChange("isVisible_0", true);
+                }}
+                className={` w-40 ${active === 2 ? selectBg + " text-white" : " bg-[#D1D1D1] "} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`} >
                 Commerical
             </button>
-            <button className=" w-40 bg-[#D1D1D1] flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg">
+            <button
+                onClick={() => {
+                    active === 3 ? setActive(null) : setActive(3);
+                    handleInputStateChange("isVisible_0", true);
+                }}
+                className={` w-40 ${active === 3 ? selectBg + " text-white" : " bg-[#D1D1D1] "} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
                 International
             </button>
         </div>

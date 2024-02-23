@@ -11,7 +11,7 @@ function Header() {
       <ToastContainer />
       <div className="header px-8 bg-transparent h-20 flex items-center justify-between md:justify-around lg:gap-[20%]">
         <div className="logo cursor-pointer">
-          <Link to="/home">
+          <Link to="/">
             <img
               className="w-28 md:w-full cursor-pointer"
               src={logo}
