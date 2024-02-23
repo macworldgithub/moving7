@@ -102,7 +102,6 @@ function MovingType() {
                 ...data.budgetRange,
                 [key]: value
             }
-
         })
     }
 
@@ -571,22 +570,26 @@ function MovingType() {
                                     <div>
                                         <Input
                                             type="number" placeholder="Min range"
-                                            className=" lg:w-11/12 outline-[#13C265]"
+                                            className="lg:w-11/12 outline-[#13C265]"
                                             onClick={() => handleInputStateChange("isVisible_10", true)}
                                             value={data.budgetRange.minimum}
-                                            onChange={(e) =>
-                                                handleDataChange("budgetRange", e.target.value)
+                                            onChange={(e) => {
+                                                // handleDataChange("budgetRange", e.target.value)
+                                                handleRangeChange("minimum", e.target.value)
+                                            }
                                             }
                                         />
                                     </div>
                                     <div>
                                         <Input
                                             type="number" placeholder="Max range"
-                                            className=" lg:w-11/12 outline-[#13C265]"
+                                            className="lg:w-11/12 outline-[#13C265]"
                                             onClick={() => handleInputStateChange("isVisible_10", true)}
                                             value={data.budgetRange.maximum}
-                                            onChange={(e) =>
-                                                handleDataChange("budgetRange", e.target.value)
+                                            onChange={(e) => {
+                                                // handleDataChange("budgetRange", e.target.value)
+                                                handleRangeChange("maximum", e.target.value)
+                                            }
                                             }
                                         />
                                     </div>

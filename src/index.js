@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
-      }
+      },
     ],
   },
 ]);
@@ -45,8 +45,7 @@ root.render(
     <React.StrictMode>
       <RouterProvider router={router} />
     </React.StrictMode>
-    ,
-  </QueryClientProvider>,
+  </QueryClientProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
