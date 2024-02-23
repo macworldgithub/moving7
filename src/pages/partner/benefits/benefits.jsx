@@ -16,7 +16,7 @@ export default function Benefits() {
           We’ve got your needs in minds
         </h2>
       </div>
-      <div className="flex justify-around flex-wrap p-4 mt-4">
+      <div className="flex justify-around flex-wrap p-4 lg:px-40 mt-4">
         <div className="flex justify-center items-center flex-col cursor-pointer flex-start">
           <div className="w-32 h-28 bg-[#F5F5F5] flex items-center mb-2 justify-center shadow-md rounded-2xl">
             <img src={Manager} alt="" />

@@ -123,9 +123,9 @@ export default function FreeTrialForm() {
 
     return (
         <div className="flex items-center justify-center mx-auto">
-            <button onClick={submit}>
+            {/* <button >
                 submit
-            </button>
+            </button> */}
             <div>
                 <h2 className="lg:font-semibold text-3xl text-center p-6 mb-4">
                     Welcome to free trial
@@ -429,7 +429,7 @@ export default function FreeTrialForm() {
                                 <input type="text" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#00DD68]' />
                             </div>
                         </div>
-                        <button className='w-[200px] md:w-[480px] text-white p-2 bg-[#00DD68] mt-4 lg:mb-4 rounded-md'>Create account</button>
+                        <button className='w-[200px] md:w-[480px] text-white p-2 bg-[#00DD68] mt-4 lg:mb-4 rounded-md' onClick={submit}>Create account</button>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Steps } from "antd";
 import "./Partnerbenefits";
 import "./steps.css";
+import { hover } from "@testing-library/user-event/dist/hover";
 const BenefitsSteps = () => {
   const [current, setCurrent] = useState(0);
   const onChange = (value) => {
@@ -15,7 +16,7 @@ const BenefitsSteps = () => {
         current={current}
         onChange={onChange}
         direction="vertical"
-        style={{ width: "260px" }}
+        style={{ width: "260px"}}
         items={[
           {
             title: "Get registered",

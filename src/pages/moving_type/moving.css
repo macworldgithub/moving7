@@ -1,3 +1,16 @@
 .border{
     border: 1px solid #ACACAC;
 }
+
+.ant-picker-cell-inner{
+    border: #7FEEB3 !important;
+}
+
+:where(.css-dev-only-do-not-override-zl9ks2).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner, :where(.css-dev-only-do-not-override-zl9ks2).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner{
+    background: #7FEEB3 !important;
+}
+
+:where(.css-dev-only-do-not-override-zl9ks2).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
+    color: #fff;
+    background: #7FEEB3 !important;
+}

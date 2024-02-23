@@ -73,7 +73,10 @@ function MovingType() {
         name: "",
         email: "",
         wappNum: "",
-        budgetRange: "",
+        budgetRange: {
+            minimum: 0,
+            maximum: 0
+        },
         building: "",
     });
     const [active, setActive] = useState(null);
@@ -89,6 +92,17 @@ function MovingType() {
             [key]: value,
         });
     };
+
+    //new handler for min and max range 
+    const handleRangeChange = (key, value) => {
+        setData({
+            ...data,
+            budgetRange: {
+                ...data.budgetRange,
+                [key]: value
+            }
+        })
+    }
 
     const handleMultipleChanges = (obj) => {
         setData({
@@ -596,18 +610,37 @@ function MovingType() {
                             </div>
                         )}
                         {inputStates.isVisible_9 && (
-                            <div className="text-start flex flex-col items-center pt-4">
+                            <div className="text-start flex flex-col items-center p-4">
                                 <p className="lg:w-1/2 ">Budget range</p>
-                                <Input
-                                    type="number"
-                                    className=" lg:w-2/4 outline-[#13C265]"
-                                    onFocus={() => handleInputStateChange("isVisible_10", true)}
-                                    onClick={() => handleInputStateChange("isVisible_10", true)}
-                                    value={data.budgetRange}
-                                    onChange={(e) =>
-                                        handleDataChange("budgetRange", e.target.value)
-                                    }
-                                />
+                                <div className="flex flex-wrap gap-2 justify-center items-center mt-4 xl:mr-40">
+                                    <div>
+                                        <Input
+                                            type="number" placeholder="Min range"
+                                            className="lg:w-11/12 outline-[#13C265]"
+                                            onClick={() => handleInputStateChange("isVisible_10", true)}
+                                            value={data.budgetRange.minimum}
+                                            onChange={(e) => {
+                                                // handleDataChange("budgetRange", e.target.value)
+                                                handleRangeChange("minimum", e.target.value)
+                                            }
+                                            }
+                                        />
+                                    </div>
+                                    <div>
+                                        <Input
+                                            type="number" placeholder="Max range"
+                                            className="lg:w-11/12 outline-[#13C265]"
+                                            onClick={() => handleInputStateChange("isVisible_10", true)}
+                                            value={data.budgetRange.maximum}
+                                            onChange={(e) => {
+                                                // handleDataChange("budgetRange", e.target.value)
+                                                handleRangeChange("maximum", e.target.value)
+                                            }
+                                            }
+                                        />
+                                    </div>
+
+                                </div>
                             </div>
                         )}
                         {inputStates.isVisible_10 && (
