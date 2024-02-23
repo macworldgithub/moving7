@@ -220,8 +220,8 @@ function MovingType() {
 
                         {inputStates.isVisible_2 && (
                             <div className="text-start flex flex-col items-center mt-4">
-                                <p className="lg:w-1/2">Bedrooms/Office cabins</p>
-                                <p className="lg:w-1/2 text-gray-400">Current Property</p>
+                                <p className="lg:w-1/2">Current Property</p>
+                                <p className="lg:w-1/2 text-gray-400">Bedrooms/Office cabins</p>
                                 <div className=" bg-white rounded-md md:w-1/2 border-[#13C26580] border-[1.5px]">
                                     <div className="flex w-[255px]  px-2 py-1">
                                         <input
@@ -361,8 +361,8 @@ function MovingType() {
 
                         {inputStates.isVisible_3 && (
                             <div className="text-start flex flex-col items-center mt-4">
-                                <p className="lg:w-1/2">Bedrooms/Office cabins</p>
-                                <p className="lg:w-1/2 text-gray-400">New Property</p>
+                                <p className="lg:w-1/2">New Property</p>
+                                <p className="lg:w-1/2 text-gray-400">Bedrooms/Office cabins</p>
                                 <div className=" bg-white rounded-md md:w-1/2 border-[#13C26580] border-[1.5px]">
                                     <div className="flex w-[255px] px-2 py-1">
                                         <input
