@@ -8,6 +8,8 @@ import { useQuery, useMutation } from "react-query";
 import { toast } from "react-toastify";
 import PhoneInput from "react-phone-number-input";
 import { isValidPhoneNumber } from "react-phone-number-input";
+import { partnerSignUp } from "../../../../../apiFunctions/partner";
+import { useNavigate } from "react-router-dom";
 
 const containerStyle = {
     width: "400px",
@@ -16,11 +18,22 @@ const containerStyle = {
 
 setKey("AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ");
 export default function FreeTrialForm() {
+    const navigate = useNavigate()
     const [latlong, setLatlong] = useState({
         lat: -3.745,
         lng: -38.523,
     });
     const [locationOptions, setLocationOptions] = useState([]);
+    const partnerSignUpMutation = useMutation({
+        mutationKey: "PostPartner",
+        mutationFn: partnerSignUp,
+        onSuccess: (data) => {
+            window.localStorage.setItem("token",data?.data)
+            navigate("/documentsVerification")
+            toast.success("Successfully Created!")
+        },
+        onSettled: (d, e) => console.log(d, e),
+    });
     const fetchLocationsMutation = useMutation({
         mutationKey: "fetchLocation",
         mutationFn: getLocationSuggestions,
@@ -52,6 +65,8 @@ export default function FreeTrialForm() {
         salutation: "",
         firstName: "",
         lastName: "",
+        password: "",
+        confirmPassword: "",
     });
 
     const { isLoaded } = useJsApiLoader({
@@ -103,10 +118,21 @@ export default function FreeTrialForm() {
 
 
     const submit = () => {
-        const isEmpty = !data.areaPreference || !data.location || !data.radius || !data.companyName || !data.businessType || !data.noOfEmployees || !data.email || !data.telephone || !data.addressLine1 || !data.city || !data.state || !data.salutation || !data.firstName || !data.lastName;
-
+        const isEmpty = !data.areaPreference ||  !data.companyName || !data.businessType || !data.noOfEmployees || !data.email || !data.telephone || !data.addressLine1 || !data.city || !data.state || !data.salutation || !data.firstName || !data.lastName || !data.password || !data.confirmPassword ;
+        if (data?.areaPreference === "radius" && (!data.location || !data.radius)){
+            toast.error("You must specify location and radius!")
+            return
+        }
+        else if (data?.areaPreference === "region" && (!data.regions.length)){
+            toast.error("You must add at least 1 region!")
+            return
+        }
         if (isEmpty) {
             toast.error("Fields can not be empty.")
+            return
+        }
+        if (data.password !== data.confirmPassword){
+            toast.error("Password Doesn't match!")
             return
         }
         if (!/^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$/.test(data.email)) {
@@ -117,6 +143,8 @@ export default function FreeTrialForm() {
             toast.error("Invalid PhoneNumber!");
             return;
         }
+        partnerSignUpMutation.mutate(data)
+
     }
 
     console.log(data.regions, "loooooooooooooooo")
@@ -417,16 +445,12 @@ export default function FreeTrialForm() {
                         </div>
                         <div>
                             <div>
-                                <h2 className=' text-[#13C265]'>Username</h2>
-                                <input type="text" placeholder='Name@gmail.com' className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
-                            </div>
-                            <div>
                                 <h2 className=' text-[#13C265] mt-3'>Choose your password</h2>
-                                <input type="text" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
+                                <input onChange={(e) => handleDataChange("password", e.target.value)} type="text" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
                             </div>
                             <div>
                                 <h2 className=' text-[#13C265] mt-3'>Confirm your password</h2>
-                                <input type="text" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#00DD68]' />
+                                <input onChange={(e) => handleDataChange("confirmPassword", e.target.value)} type="text" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#00DD68]' />
                             </div>
                         </div>
                         <button className='w-[200px] md:w-[480px] text-white p-2 bg-[#00DD68] mt-4 lg:mb-4 rounded-md' onClick={submit}>Create account</button>

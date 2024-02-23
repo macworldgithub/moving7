@@ -3,10 +3,25 @@ import { Avatar, Progress, Button, Result } from 'antd';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { uploadImageAndGetURL } from '../../firebase/utils';
+import { useMutation } from 'react-query';
+import { postProofs } from '../../apiFunctions/partner';
+import { useNavigate } from 'react-router-dom';
 
 
 const DocumentVerification = () => {
-
+    const navigate = useNavigate()
+    const postProofsMutation = useMutation({
+        mutationKey: "postProofs",
+        mutationFn: postProofs,
+        onSuccess: (d) => {
+            console.log(d)
+            toast.success("Proofs Uploaded Successfully!")
+        },
+        onError:(e) => {
+            console.log(e)
+            toast.error("Ops! Error couldn't be uploaded!")
+        }
+    })
     const [files, setFiles] = useState([{
         name: "Trade license of company",
         status: false,
@@ -57,8 +72,17 @@ const DocumentVerification = () => {
             uploadImageAndGetURL(num + 4, temp[3])
         ])
 
-        console.log(res)
-
+        let names = [
+            "license",
+            "VATcert",
+            "emiratesId",
+            "insuranceCert",
+        ]
+        let result = {}
+        res.forEach((url, idx) => {
+            result[names[idx]] = url
+        })
+        postProofsMutation.mutate(result)
     }
 
 
