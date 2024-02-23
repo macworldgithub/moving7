@@ -3,6 +3,7 @@ import { setKey, setDefaults, fromAddress } from "react-geocode";
 import RegionAccordion from "../../Accordion";
 import { AutoComplete } from "antd";
 import { getLocationSuggestions } from "../../../../../apiFunctions/partner";
+import Modal from "../../../../../components/Modal/Modal";
 import { GoogleMap, Marker, useJsApiLoader, Circle } from "@react-google-maps/api";
 import { useQuery, useMutation } from "react-query";
 import { toast } from "react-toastify";
@@ -28,7 +29,7 @@ export default function FreeTrialForm() {
         mutationKey: "PostPartner",
         mutationFn: partnerSignUp,
         onSuccess: (data) => {
-            window.localStorage.setItem("token",data?.data)
+            window.localStorage.setItem("token", data?.data)
             navigate("/documentsVerification")
             toast.success("Successfully Created!")
         },
@@ -118,12 +119,12 @@ export default function FreeTrialForm() {
 
 
     const submit = () => {
-        const isEmpty = !data.areaPreference ||  !data.companyName || !data.businessType || !data.noOfEmployees || !data.email || !data.telephone || !data.addressLine1 || !data.city || !data.state || !data.salutation || !data.firstName || !data.lastName || !data.password || !data.confirmPassword ;
-        if (data?.areaPreference === "radius" && (!data.location || !data.radius)){
+        const isEmpty = !data.areaPreference || !data.companyName || !data.businessType || !data.noOfEmployees || !data.email || !data.telephone || !data.addressLine1 || !data.city || !data.state || !data.salutation || !data.firstName || !data.lastName || !data.password || !data.confirmPassword;
+        if (data?.areaPreference === "radius" && (!data.location || !data.radius)) {
             toast.error("You must specify location and radius!")
             return
         }
-        else if (data?.areaPreference === "region" && (!data.regions.length)){
+        else if (data?.areaPreference === "region" && (!data.regions.length)) {
             toast.error("You must add at least 1 region!")
             return
         }
@@ -131,7 +132,7 @@ export default function FreeTrialForm() {
             toast.error("Fields can not be empty.")
             return
         }
-        if (data.password !== data.confirmPassword){
+        if (data.password !== data.confirmPassword) {
             toast.error("Password Doesn't match!")
             return
         }
@@ -301,6 +302,16 @@ export default function FreeTrialForm() {
                             </>
                         )
                     }
+                    <Modal>
+                        <div className="bg-white rounded-lg h-40 w-96">
+                            <h1 className="text-primary font-bold text-2xl text-center pt-4">
+                                Verify that it's you!
+                            </h1>
+                            <p className="text-center text-gray-500">
+                                A verification email is send to your account!
+                            </p>
+                        </div>
+                    </Modal>
                     <div>
                         <h2 className="text-[#13C265] text-2xl text-center p-4">
                             Company details
