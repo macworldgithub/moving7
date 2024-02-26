@@ -9,6 +9,8 @@ import Login from "./pages/login";
 import LayoutMain from "./layout/layout";
 import DocumentVerification from "./pages/documentVerification";
 
+import Overview from "./pages/Overview";
+
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
@@ -28,6 +30,7 @@ function App() {
                         <Route path="" element={<Home />} />
                         <Route path="partner" element={<Partner />} />
                         <Route path="documentsVerification" element={<DocumentVerification />} />
+                        <Route path="overview" element={<Overview />} />
                     </ Route>
                 </Routes>
             </QueryClientProvider>
