@@ -87,13 +87,13 @@ export default function Overview() {
                     </div>
                 </div>
             </div>
-            <div className='flex items-center justify-center flex-col mt-6 md:mt-20 lg:-mt-16  lg:flex-col'>
-                <div className='w-4/5 md:w-1/2 py-8 mt-1 md:-mt-20 lg:ml-40 rounded-sm lg:mr-96'>
+            <div className='flex items-center justify-center flex-col mt-6 md:mt-20 lg:-mt-16 lg:ml-24 xl:ml-4  lg:flex-col'>
+                <div className='w-4/5 md:w-4/5 lg:w-1/2 py-8 mt-1 md:-mt-20 lg:ml-40 rounded-sm lg:mr-96'>
                     <div className='bg-white shadow-lg'>
                         <h2 className='text-lg px-4 py-4 font-medium'>5 most recent Quote Requests</h2>
                     </div>
                 </div>
-                <div className='w-4/5 md:w-1/2 -mt-8 lg:ml-40 bg-[#EFF2F3] rounded-lg lg:mr-[24rem]'>
+                <div className='w-4/5 md:w-4/5 lg:w-1/2 -mt-8 lg:ml-40 bg-[#EFF2F3] rounded-lg lg:mr-[24rem]'>
                     <div className='bg-[#E6EBEC] flex justify-between px-6 py-4 font-semibold text-[#6A6A6A]'>
                         <h2>Name</h2>
                         <h2>Date</h2>
