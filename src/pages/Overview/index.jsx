@@ -120,8 +120,7 @@ export default function Overview() {
                     </div>
                 </div>
             </div>
-                <SmalllFooter />
-
+            <SmalllFooter />
         </div >
 
     )
