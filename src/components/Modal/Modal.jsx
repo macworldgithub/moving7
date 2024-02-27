@@ -17,7 +17,7 @@ const MyModal = ({ children }) => {
     };
   }, []);
 
-  return createPortal(<div>{children}</div>, elRef.current);
+  return createPortal(<div className="">{children}</div>, elRef.current);
 };
 
 export default MyModal;
