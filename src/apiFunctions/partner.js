@@ -24,3 +24,27 @@ export function postProofs(data){
         }
     })
 }
+
+export function requestOTP(email) {
+  console.log("Send the request OTP", email);
+  return axios.post(`${LOCALHOST_URL}/auth/sendVerificationCode`, {
+            email
+  });
+}
+export function verifyOTP(data) {
+  return axios.post(`${LOCALHOST_URL}/auth/verifyCode`, {
+      email: data.email,
+      code:data.code
+  });
+}
+export function quoteRequest(data) {
+
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    console.log(json,"dataaaaaaaaa")
+  return axios.post(`${LOCALHOST_URL}/users/quoteRequest`,data, {
+        headers:{
+            Authorization:`Bearer ${json?.token}`
+        }
+    } );
+}

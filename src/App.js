@@ -8,6 +8,7 @@ import Partner from "../src/pages/partner/partner";
 import Login from "./pages/login";
 import LayoutMain from "./layout/layout";
 import DocumentVerification from "./pages/documentVerification";
+import CompanyProfile from "./pages/companyProfile";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -28,6 +29,7 @@ function App() {
                         <Route path="" element={<Home />} />
                         <Route path="partner" element={<Partner />} />
                         <Route path="documentsVerification" element={<DocumentVerification />} />
+                        <Route path="companyprofile" element={<CompanyProfile />} />
                     </ Route>
                 </Routes>
             </QueryClientProvider>

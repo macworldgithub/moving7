@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import OtpInput from 'react-otp-input';
 import dayjs from "dayjs";
 import { AutoComplete, Select, TimePicker } from "antd";
 import { useQuery, useMutation } from "react-query";
-import { getLocationSuggestions } from "../../apiFunctions/partner";
+import MyModal from '../../components/Modal/Modal'
+import { getLocationSuggestions, quoteRequest, requestOTP, verifyOTP } from "../../apiFunctions/partner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-phone-number-input/style.css";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
@@ -16,8 +18,73 @@ const selectBg = "bg-[#00DD68]";
 
 function MovingType() {
 
-
+    const [otp, setOtp] = useState('');
+    const [showVerificationModal, setShowVerificationModal] = useState(false);
     const [locationOptions, setLocationOptions] = useState([]);
+    const [data, setData] = useState({
+        moveFrom: "",
+        moveTo: "",
+        currPropertyType: "",
+        currPropertyBedrooms: "",
+        currPropertyFloorNo: "",
+        hasCurrPropertyLift: "",
+        newPropertyType: "",
+        newPropertyAdditionalInfo: "",
+        newPropertyFloorNo: "",
+        hasNewPropertyLift: "",
+        movingDatePref: "",
+        specificDate: null,
+        specificTime: null,
+        startDate: null,
+        endDate: null,
+        name: "",
+        email: "",
+        wappNum: "",
+        budgetRange: {
+            minimum: 0,
+            maximum: 0
+        },
+        building: "",
+    });
+    const postRequest = useMutation({
+        mutationKey: "postRequest",
+        mutationFn: quoteRequest,
+        onSuccess: () => {
+            toast.success("Request submitted successfully!")
+            setShowVerificationModal(false)
+        },
+        onSettled: (d, e) => console.log(d, e),
+    });
+    const verifyOtpMutation = useMutation({
+        mutationKey: "verifyOTP",
+        mutationFn: verifyOTP,
+        onSuccess: (d) => {
+            console.log(d, "OTPPPPPPPPPPP RESSSSSSSSSSSS")
+            if (d?.data?.verified){
+                toast.success("OTP verified successfully!")
+                toast.info("Processing your request...")
+                window.localStorage.setItem("userData",JSON.stringify(d?.data?.user))
+                postRequest.mutate(data)
+            }
+        },
+        onError:(err) => {
+            if (err?.response?.data?.message === "wrong code"){
+                toast.error("Wrong Code!")
+            }else{
+                toast.error(err.message)
+            }
+        },
+        onSettled: (d, e) => console.log(d, e),
+    });
+    const getOtpMutation = useMutation({
+        mutationKey: "fetchOtp",
+        mutationFn: requestOTP,
+        onSuccess: () => {
+            setShowVerificationModal(true)
+            toast.success("Verification code sent successfully!")
+        },
+        onSettled: (d, e) => console.log(d, e),
+    });
     const fetchLocationsMutation = useMutation({
         mutationKey: "fetchLocation",
         mutationFn: getLocationSuggestions,
@@ -54,31 +121,6 @@ function MovingType() {
         isVisible_12: false,
     });
 
-    const [data, setData] = useState({
-        moveFrom: "",
-        moveTo: "",
-        currPropertyType: "",
-        currPropertyBedrooms: "",
-        currPropertyFloorNo: "",
-        hasCurrPropertyLift: "",
-        newPropertyType: "",
-        newPropertyAdditionalInfo: "",
-        newPropertyFloorNo: "",
-        hasNewPropertyLift: "",
-        movingDatePref: "",
-        specificDate: null,
-        specificTime: null,
-        startDate: null,
-        endDate: null,
-        name: "",
-        email: "",
-        wappNum: "",
-        budgetRange: {
-            minimum: 0,
-            maximum: 0
-        },
-        building: "",
-    });
     const [active, setActive] = useState(null);
     const onLocationChange = (e) => {
         fetchLocationsMutation.mutate(e);
@@ -128,7 +170,8 @@ function MovingType() {
             !data.name ||
             !data.email ||
             !data.wappNum ||
-            !data.budgetRange ||
+            !data.budgetRange.maximum ||
+            !data.budgetRange.minimum ||
             !data.building;
         if (notIsValid) {
             toast.error("Fields can't be empty!");
@@ -166,11 +209,49 @@ function MovingType() {
             toast.error("Invalid PhoneNumber!");
             return;
         }
-        toast.success("Success!");
+        getOtpMutation.mutate(data.email)
     };
+
+    
 
     return (
         <>
+        {
+            showVerificationModal ? (
+            <MyModal>
+                <div className="bg-white rounded-lg h-40 w-96">
+                    <h1 className="text-primary font-bold text-2xl text-center pt-4">
+                        Verify that it's you!
+                    </h1>
+                    <p className="text-center text-gray-500">
+                        A verification email is send to your account!
+                    </p>
+                    <div className="flex justify-center mt-4">
+                        <OtpInput
+                            value={otp}
+                            onChange={(val) => {
+                                if (val.length === 4){
+                                    verifyOtpMutation.mutate({
+                                        email:data?.email,
+                                        code:val
+                                    })
+                                }
+                                console.log(val, "imvalll")
+                                setOtp(val)
+                            }}
+                            numInputs={4}
+                            renderSeparator={<span className="mx-3"></span>}
+                            renderInput={(props) => {
+                                props.className = "text-xl border-b-4 w-10 customOTPclass"
+                                return <input className="text-xl border-b-4" {...props} />
+                            }}
+    
+                        />
+                    </div>
+                </div>
+            </MyModal>
+            ) : null
+        }
             <div className=" flex justify-center items-center header-btn mt-2 lg:mt-10">
                 <button className="text-sm py-2 bg-[#13C265] w-40 font-bold lg:text-lg">
                     Get Quotes
