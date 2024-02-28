@@ -34,7 +34,7 @@ export default function QuotesRequest() {
                             <h2 className=' md:w-28'>Date</h2>
                         </div>
                         {Projects.length > 0 ? (
-                            <div className='flex justify-between py-4 px-4 h-52 bg-[#EFF2F3]  overflow-x-scroll'>
+                            <div className='flex justify-between py-4 px-4 h-52 bg-[#EFF2F3] overflow-x-scroll'>
                                 {Projects.map((project, index) => (
                                     <div key={index}>
                                         <h2 className=' md:w-28'>{project.Name}</h2>
