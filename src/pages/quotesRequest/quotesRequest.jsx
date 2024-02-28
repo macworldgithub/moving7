@@ -27,14 +27,14 @@ export default function QuotesRequest() {
                             <button className=' bg-[#13C265] text-white py-2 px-6 text-md rounded-sm rounded-l-none'>Search</button>
                         </div>
                     </div>
-                    <div className='lg:mt-[18px] w-[91%] sm:w-[44%] sm:mt-4 mt-4 -ml-8 lg:-ml-8 lg:w-[59.4%] xl:w-[61.4%] rounded-b-md overflow-x-scroll absolute'>
+                    <div className='lg:mt-[18px] w-[91%] sm:w-[44%] sm:mt-4 mt-4 -ml-8 lg:-ml-8 lg:w-[59.4%] xl:w-[61.4%] rounded-b-md absolute'>
                         <div className='flex justify-between px-4 py-2 bg-[#E6EBEC]'>
                             <h2 className=' md:w-28'>Name</h2>
                             <h2 className=' md:w-28'>Status</h2>
                             <h2 className=' md:w-28'>Date</h2>
                         </div>
                         {Projects.length > 0 ? (
-                            <div className='flex justify-between py-4 px-4 h-52 bg-[#EFF2F3]'>
+                            <div className='flex justify-between py-4 px-4 h-52 bg-[#EFF2F3]  overflow-x-scroll'>
                                 {Projects.map((project, index) => (
                                     <div key={index}>
                                         <h2 className=' md:w-28'>{project.Name}</h2>
