@@ -73,7 +73,7 @@ export default function QuotesRequest() {
                         <h2 className=' font-medium mb-4'>Help Desk</h2>
                         <IoIosArrowForward />
                     </div>
-                    <div className='flex gap-6 mt-3'>
+                    <div className='flex gap-6 mt-3 py-4'>
                         <img src={UserImg} alt="" className=' cursor-pointer' />
                         <div>
                             <h2 className='text-md md:text-lg'>Asad Khan</h2>
