@@ -18,7 +18,7 @@ export default function QuotesRequest() {
     return (
         <>
             <div className='flex flex-col md:flex-row mt-8 lg:mt-10 gap-4 px-4 relative'>
-                <div className='shadow-sm rounded-b-none shadow-gray-400 sm:w-[80%] lg:w-[63%] flex lg:ml-32 py-4 px-8 sm:h-48 md:h-48 lg:h-28'>
+                <div className='shadow-sm rounded-b-none shadow-gray-400 sm:w-[80%] lg:w-[63%] flex lg:ml-28 py-4 px-8 sm:h-48 md:h-48 lg:h-28'>
                     <div className='w-full'>
                         <h2 className='text-lg font-medium mb-2'>Quote Request</h2>
                         <div className='flex flex-col lg:flex-row justify-between items-center gap-2 xl:gap-10 '>
