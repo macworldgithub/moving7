@@ -9,33 +9,39 @@ import Login from "./pages/login";
 import LayoutMain from "./layout/layout";
 import DocumentVerification from "./pages/documentVerification";
 
+import QuotesRequest from "./pages/quotesRequest/quotesRequest";
+
 import Overview from "./pages/Overview";
 
 const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            staleTime: Infinity,
-            cacheTime: Infinity,
-        },
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      cacheTime: Infinity,
     },
+  },
 });
 
 function App() {
-    return (
-        <BrowserRouter>
-            <QueryClientProvider client={queryClient}>
-                <Routes>
-                    <Route path="/" element={<LayoutMain />}>
-                        <Route path="login" element={<Login />} />
-                        <Route path="" element={<Home />} />
-                        <Route path="partner" element={<Partner />} />
-                        <Route path="documentsVerification" element={<DocumentVerification />} />
-                        <Route path="overview" element={<Overview />} />
-                    </ Route>
-                </Routes>
-            </QueryClientProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <Routes>
+          <Route path="/" element={<LayoutMain />}>
+            <Route path="login" element={<Login />} />
+            <Route path="" element={<Home />} />
+            <Route path="partner" element={<Partner />} />
+            <Route
+              path="documentsVerification"
+              element={<DocumentVerification />}
+            />
+            <Route path="overview" element={<Overview />} />
+            <Route path="quoteRequest" element={<QuotesRequest />} />
+          </Route>
+        </Routes>
+      </QueryClientProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
