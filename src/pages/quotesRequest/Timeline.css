@@ -1,4 +1,17 @@
 :where(.css-dev-only-do-not-override-zl9ks2).ant-timeline .ant-timeline-item-head-blue {
     color: #13C265 !important;
-    border-color: #13C265 !important;
+    border-color: #d2d7d4 !important;
+    height: 30px;
+    width: 30px;
+    margin-left: -7px !important;
+}
+
+
+:where(.css-dev-only-do-not-override-zl9ks2).ant-timeline .ant-timeline-item-tail {
+    position: absolute;
+    inset-block-start: 10px;
+    inset-inline-start: 4px;
+    height: calc(100% - 10px);
+    border-inline-start: 2px solid rgba(5, 5, 5, 0.06);
+    margin-left: 3px;
 }

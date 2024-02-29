@@ -6,6 +6,7 @@ const onChange = (date, dateString) => {
 const QuotePicker = () => (
     <Space direction="horizontal">
         <DatePicker
+            style={{ height: 40 }}
             placeholder='Date from'
             format={{
                 format: 'YYYY-MM-DD',
@@ -14,6 +15,7 @@ const QuotePicker = () => (
             onChange={onChange}
         />
         <DatePicker
+            style={{ height: 40 }}
             placeholder='Date to'
             format={{
                 format: 'YYYY-MM-DD HH:mm:ss',

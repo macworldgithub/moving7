@@ -41,13 +41,14 @@ const menuProps = {
 const QuoteDropdown = () => (
     <Space wrap>
         <Dropdown menu={menuProps}>
-            <Button size='middle'>
-                <Space styles={{ item: { width:55} }}>
+            <Button size='large'>
+                <Space styles={{ item: { width: 55, } }}>
                     Show All
                     <DownOutlined />
                 </Space>
             </Button>
         </Dropdown>
-    </Space >
+    </Space>
+
 );
 export default QuoteDropdown;

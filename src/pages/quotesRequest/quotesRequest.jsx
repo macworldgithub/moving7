@@ -57,18 +57,18 @@ export default function QuotesRequest() {
 
                 <div className='w-full lg:w-[25%] mt-60 sm:mt-0'>
                     <div className='px-4 shadow-lg shadow-gray-300 rounded-lg'>
-                        <h2 className='text-lg font-medium border-b-2 mb-4'>How to get customers reviews</h2>
+                        <h2 className='text-lg font-medium border-b-2 mb-4 py-3'>How to get customers reviews</h2>
                         <TimeLine />
                     </div>
                     <div className='px-4 shadow-lg shadow-gray-300 rounded-lg mt-4'>
-                        <h2 className='text-lg font-medium border-b-2 mb-4'>Need help?</h2>
-                        <h2 className='text-gray-300 '>Tips $ Best Practices</h2>
-                        <p className='p-1'>Contact a new lead within 8hrs to
+                        <h2 className='text-lg font-medium border-b-2 mb-4 py-3'>Need help?</h2>
+                        <h2 className='text-gray-500 '>Tips $ Best Practices</h2>
+                        <p className='p-1 text-gray-400'>Contact a new lead within 8hrs to
                             win more jobs</p>
-                        <p className='p-1'>If you cannot get hold of the potential
+                        <p className='p-1 text-gray-400'>If you cannot get hold of the potential
                             client, send an email to start the
                             converstation</p>
-                        <p className='p-1'>Use our fair reclaims services for
+                        <p className='p-1 text-gray-400'>Use our fair reclaims services for
                             incorrect telephone numbers. <span className='text-[#13C265]'>Terms & Conditions</span></p>
 
                         <div className='flex items-center justify-between border-b-2 mt-4'>
