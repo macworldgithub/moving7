@@ -29,7 +29,7 @@ function App() {
                         <Route path="" element={<Home />} />
                         <Route path="partner" element={<Partner />} />
                         <Route path="documentsVerification" element={<DocumentVerification />} />
-                        <Route path="companyprofile" element={<CompanyProfile />} />
+                        <Route path="companyprofile/:id" element={<CompanyProfile />} />
                     </ Route>
                 </Routes>
             </QueryClientProvider>
