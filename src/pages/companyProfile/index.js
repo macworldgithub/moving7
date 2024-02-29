@@ -1,16 +1,16 @@
 import MyModal from "../../components/Modal/Modal"
+import { uploadImageDataStringAndGetURL } from "../../firebase/utils";
 import { copyToClipboard } from "../../utils/CopyFun";
 import { useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GoogleMap, Marker, useJsApiLoader, Circle } from "@react-google-maps/api";
-import { AiOutlineRight, AiOutlineLeft, AiOutlinePlus, AiOutlineEdit, AiOutlineCheck } from "react-icons/ai";
+import { AiOutlineRight, AiOutlineLeft, AiOutlineDelete, AiOutlinePlus, AiOutlineEdit, AiOutlineCheck } from "react-icons/ai";
 import { Carousel } from 'antd';
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation, useQuery } from "react-query";
 import { fetchOnePartner, updateContactInfo, updateNameAdd, updatePartnerDetails } from "../../apiFunctions/partner";
 import { Select, Input } from 'antd';
-
 
 
 
@@ -59,12 +59,28 @@ const CompanyProfile = () => {
     });
     useEffect(() => {
         setPartnerData(partnerDataRes?.data?.data ?? {});
+        let arr = new Array(5).fill(null)
+        console.log(arr, "arrrrrrr")
+        partnerDataRes?.data?.data?.images?.forEach((image, idx) => {
+            arr[idx] = image
+        })
+        console.log(arr, "arrrrrrr")
+        setImages(arr ?? []);
         console.log("invle")
     }, [partnerDataRes.data]);
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
         googleMapsApiKey: "AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ",
     });
+    const nullCount = (arr) => {
+        let count = 0
+        arr.forEach((elem) => {
+            if (!elem) {
+                count++
+            }
+        })
+        return count
+    }
     const handleMultipleDataChange = (obj) => {
         console.log(obj, "ob", partnerData)
 
@@ -87,6 +103,7 @@ const CompanyProfile = () => {
         })
     }
     console.log(partnerData, "partnerrrr")
+    console.log(images, "imagesssss")
     return (
         <div className="relative z-10">
             <div className="mb-40 mx-10 mt-4">
@@ -239,18 +256,32 @@ const CompanyProfile = () => {
                                 <h1 className="text-2xl font-semibold ">
                                     Project images
                                 </h1>
-                                <button className="my-2 bg-primary text-white px-4 py-1 rounded">
+                                <button onClick={async () => {
+                                    let imgesToUpload = images.filter((image) => image?.startsWith("data"))
+                                    let a = new Date();
+                                    console.log(imgesToUpload, "uploaddddddd")
+                                    const num = Math.round(Math.random() * 10000 + a.getMilliseconds());
+                                    const urls = imgesToUpload.map((image, idx) => {
+                                        return uploadImageDataStringAndGetURL(`${id}/${num + idx.toString()}`, image)
+                                    })
+                                    const uploadedImages = await Promise.all(urls)
+                                    let temp = images.filter((image) => image !== null && !image?.startsWith("data"))
+                                    console.log([...temp, ...uploadedImages], "lalalala")
+                                    updatePartnerDetailsMutation.mutate({
+                                        images: [...temp, ...uploadedImages]
+                                    })
+                                }} className="my-2 bg-primary text-white px-4 py-1 rounded">
                                     Save
                                 </button>
                             </div>
 
                             <div onClick={() => {
-                                if (images.length) {
+                                if (images.length && nullCount(images) < 3) {
                                     setShowImageModal(true)
                                 }
                             }} className="images cursor-pointer overflow-hidden flex sm:w-full w-full bg-gray-200 h-72 my-3">
                                 {
-                                    images.length > 0 ? (
+                                    images.length > 0 && nullCount(images) < 3 ? (
                                         <>
                                             <img className="w-[44rem]" src={`${images[0]}`} />
                                             <div>
@@ -264,7 +295,7 @@ const CompanyProfile = () => {
                                             <input multiple={true} type={"file"} onChange={(e) => {
                                                 console.log(e.target.files)
                                                 let files = e.target.files
-                                                if (files.length + images.length > 5) {
+                                                if (nullCount(images) - files.length < 0) {
                                                     toast.error("Cannot upload more than 5 images!")
                                                     return
                                                 }
@@ -273,7 +304,16 @@ const CompanyProfile = () => {
                                                     reader.readAsDataURL(files[i])
                                                     reader.addEventListener("load", function() {
                                                         setImages((prev) => {
-                                                            return [...prev, this.result]
+                                                            console.log("ran")
+                                                            let tempPrev= prev.filter((p) => p !== null)
+                                                            tempPrev = [...tempPrev, this.result]
+                                                            if (tempPrev.length < 5){
+                                                                for (let i = tempPrev.length ; i < 5 ; i++){
+                                                                        tempPrev[i] = null
+                                                                }
+                                                            }
+                                                            console.log(tempPrev,"ran")
+                                                            return [...tempPrev]
                                                         })
                                                     });
                                                 }
@@ -460,8 +500,8 @@ const CompanyProfile = () => {
                                     isDataEditable?.isCompanyDataEditable ? (
                                         <Select
                                             defaultValue={partnerData?.businessType ?? "None"}
-                                        className="w-10/12 my-1 mx-5"
-                                            onChange={(val) => handleDataChange("businessType",val)}
+                                            className="w-10/12 my-1 mx-5"
+                                            onChange={(val) => handleDataChange("businessType", val)}
                                             options={[
                                                 {
                                                     value: 'solo',
@@ -534,17 +574,47 @@ const CompanyProfile = () => {
             {
                 showImageModal && (
                     <MyModal>
-                        <div className="bg-white relative w-4/5 rounded-lg px-5 py-5" style={{ width: "60rem", height: "35rem" }}>
+                        <div className="bg-white relative w-4/5 rounded-lg h-max  px-5 pb-10 py-5 w-[60rem]" style={{ height: "42rem" }}>
                             <div
                                 onClick={() => setShowImageModal(false)}
                                 style={{
-                                    fontSize: "40px"
-                                }} className="absolute cursor-pointer text-white right-7">
+                                    fontSize: "20px",
+                                    zIndex: 100
+                                }} className="absolute  bg-[rgba(0,0,0,0.5)] rounded-full w-10 h-10 flex items-center justify-center cursor-pointer text-white right-7">
                                 X
                             </div>
-
-                            <img className="h-full w-full" src={images[currImage]} />
-                            <div className="" >
+                            {
+                                images[currImage] ? (
+                                    <>
+                                        <img className="h-full w-full" src={images[currImage]} />
+                                    </>
+                                ) : (
+                                    <div className="flex flex-col w-full h-full items-center relative justify-center w-full">
+                                        <input multiple={true} type={"file"} onChange={(e) => {
+                                            let files = e.target.files
+                                            for (let i = 0; i < files.length; i++) {
+                                                let reader = new FileReader()
+                                                reader.readAsDataURL(files[i])
+                                                reader.addEventListener("load", function() {
+                                                    setImages((prev) => {
+                                                        let arr = [...prev]
+                                                        arr[currImage] = this.result
+                                                        console.log(arr, "lolllll")
+                                                        return [...arr]
+                                                    })
+                                                });
+                                            }
+                                        }} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" />
+                                        <AiOutlinePlus className="text-primary bg-white rounded-full p-3" style={{
+                                            fontSize: "60px"
+                                        }} />
+                                        <p className="text-2xl mt-2">
+                                            Add Image
+                                        </p>
+                                    </div>
+                                )
+                            }
+                            <div>
                                 <AiOutlineLeft
                                     onClick={() => {
                                         let temp = currImage - 1
@@ -554,16 +624,32 @@ const CompanyProfile = () => {
                                         setCurrImage(temp)
                                     }}
                                     style={{
-                                        fontSize: "50px"
+                                        fontSize: "40px"
                                     }}
-                                    className="absolute cursor-pointer inset-y-1/2 text-white" />
+                                    className="absolute p-2 bg-[rgba(0,0,0,0.5)] cursor-pointer inset-y-1/2 text-white rounded-full" />
                             </div>
                             <div className="">
                                 <AiOutlineRight
                                     onClick={() => setCurrImage((currImage + 1) % images.length)}
                                     style={{
-                                        fontSize: "50px"
-                                    }} className="cursor-pointer absolute right-5 text-white inset-y-1/2" />
+                                        fontSize: "40px"
+                                    }}
+                                    className="absolute p-2 bg-[rgba(0,0,0,0.5)] right-5 cursor-pointer inset-y-1/2 text-white rounded-full" />
+                            </div>
+                            <div className="flex justify-between py3  w-full">
+                                <p className="text-2xl">
+                                    {currImage + 1} / 5
+                                </p>
+                                {
+                                    images[currImage] &&
+                                    <AiOutlineDelete size={30} onClick={() => {
+                                        let arr = images
+                                        arr.splice(currImage, 1)
+                                        updatePartnerDetailsMutation.mutate({
+                                            images: arr
+                                        })
+                                    }} className={"text-red cursor-pointer"} />
+                                }
                             </div>
                         </div>
                     </MyModal>
