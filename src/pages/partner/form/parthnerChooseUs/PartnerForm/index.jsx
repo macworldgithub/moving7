@@ -303,7 +303,7 @@ export default function FreeTrialForm() {
                             </>
                         )
                     }
-                    <Modal>
+                    {/* <Modal>
                         <div className="bg-white rounded-lg h-40 w-96">
                             <h1 className="text-primary font-bold text-2xl text-center pt-4">
                                 Verify that it's you!
@@ -312,7 +312,7 @@ export default function FreeTrialForm() {
                                 A verification email is send to your account!
                             </p>
                         </div>
-                    </Modal>
+                    </Modal> */}
                     <div>
                         <h2 className="text-[#13C265] text-2xl text-center p-4">
                             Company details
