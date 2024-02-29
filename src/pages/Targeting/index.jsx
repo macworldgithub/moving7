@@ -10,8 +10,8 @@ export default function Targeting() {
                     <h2 className='text-lg font-medium'>Edit targeting</h2>
                 </div>
                 <div className='flex flex-col text-lg'>
-                    <div className='flex flex-col lg:flex-row flex-wrap items-center px-8 py-2 gap-2 sm:gap-4 lg:gap-12'>
-                        <h2 className='bg-[#E4E4E4] font-semibold px-6 py-3 border border-[#ff1717] rounded-t-md rounded-b-none'>Name</h2>
+                    <div className='flex flex-col lg:flex-row flex-wrap items-start lg:items-center px-8 py-2 gap-2 sm:gap-4 xl:gap-12'>
+                        <h2 className='bg-[#E4E4E4] font-semibold px-6 py-3 border  rounded-t-md rounded-b-none'>Name</h2>
                         <h2 className='text-gray-400'>Destination (To)</h2>
                         <h2 className='text-gray-400'>Destination (international)</h2>
                     </div>
