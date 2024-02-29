@@ -9,10 +9,9 @@ import Login from "./pages/login";
 import LayoutMain from "./layout/layout";
 import DocumentVerification from "./pages/documentVerification";
 import Targeting from "./pages/Targeting";
-
 import QuotesRequest from "./pages/quotesRequest/quotesRequest";
-
 import Overview from "./pages/Overview";
+import Account from "./pages/Account";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,6 +38,7 @@ function App() {
             <Route path="overview" element={<Overview />} />
             <Route path="quoteRequest" element={<QuotesRequest />} />
             <Route path="targeting" element={<Targeting />} />
+            <Route path="account" element={<Account />} />
           </Route>
         </Routes>
       </QueryClientProvider>
