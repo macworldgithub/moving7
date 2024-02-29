@@ -8,6 +8,7 @@ import Partner from "../src/pages/partner/partner";
 import Login from "./pages/login";
 import LayoutMain from "./layout/layout";
 import DocumentVerification from "./pages/documentVerification";
+import Targeting from "./pages/Targeting";
 
 import QuotesRequest from "./pages/quotesRequest/quotesRequest";
 
@@ -37,6 +38,7 @@ function App() {
             />
             <Route path="overview" element={<Overview />} />
             <Route path="quoteRequest" element={<QuotesRequest />} />
+            <Route path="targeting" element={<Targeting />} />
           </Route>
         </Routes>
       </QueryClientProvider>

@@ -1,9 +1,7 @@
 import React from 'react'
 import { IoIosArrowForward } from "react-icons/io";
 import UserImg from '../../../src/assets/images/overview/Group 17.png'
-
 import SmalllFooter from '../footer/smalllFooter';
-
 
 let Projects = [
     { Name: "Bilal", Date: "20-04-2000" },
