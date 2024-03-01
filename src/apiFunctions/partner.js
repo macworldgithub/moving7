@@ -10,19 +10,27 @@ export function getLocationSuggestions(data) {
 }
 
 export function partnerSignUp(data) {
-    console.log("api", data, "api")
-    const urlStr = `${LOCALHOST_URL}/auth/partnerSignUp`
-    return axios.post(urlStr, data)
+  console.log("api", data, "api")
+  const urlStr = `${LOCALHOST_URL}/auth/partnerSignUp`
+  return axios.post(urlStr, data)
 }
 export function postProofs(data) {
-    const token = window.localStorage.getItem("token")
-    console.log("api", data, "api")
-    const urlStr = `${LOCALHOST_URL}/partner/insertProof`
-    return axios.post(urlStr, data, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    })
+  const token = window.localStorage.getItem("token")
+  console.log("api", data, "api")
+  const urlStr = `${LOCALHOST_URL}/partner/insertProof`
+  return axios.post(urlStr, data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+}
+
+export function getUAERegions() {
+  const data = {
+    country: "United Arab Emirates"
+  }
+
+  return axios.post('https://countriesnow.space/api/v0.1/countries/states', data, {timeout:5000});
 }
 
 export function requestOTP(email) {
