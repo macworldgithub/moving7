@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { setKey, setDefaults, fromAddress } from "react-geocode";
 import RegionAccordion from "../../Accordion";
 import { AutoComplete } from "antd";
-import { getLocationSuggestions } from "../../../../../apiFunctions/partner";
+import { getLocationSuggestions, getUAERegions } from "../../../../../apiFunctions/partner";
 import Modal from "../../../../../components/Modal/Modal";
 import { GoogleMap, Marker, useJsApiLoader, Circle } from "@react-google-maps/api";
 import { useQuery, useMutation } from "react-query";
@@ -36,6 +36,13 @@ export default function FreeTrialForm() {
         },
         onSettled: (d, e) => console.log(d, e),
     });
+    const getRegionsQuery = useQuery({
+        queryFn: getUAERegions,
+        onSuccess: (successResponse) => {
+            const { data } = successResponse.data;
+            console.log("Got regions", data);
+        }
+    })
     const fetchLocationsMutation = useMutation({
         mutationKey: "fetchLocation",
         mutationFn: getLocationSuggestions,
@@ -90,6 +97,11 @@ export default function FreeTrialForm() {
         setMap(map);
     }, []);
 
+    useEffect(() => {
+        getRegionsQuery.refetch();
+    }, [])
+    
+
     const handleDataChange = (key, value) => {
         setData({
             ...data,
@@ -100,7 +112,7 @@ export default function FreeTrialForm() {
         fetchLocationsMutation.mutate(e);
     };
 
-    console.log(data);
+    console.log("All data for partners", data);
 
     const onLocationSelect = (val) => {
         setData({
@@ -149,7 +161,9 @@ export default function FreeTrialForm() {
 
     }
 
-    console.log(data.regions, "loooooooooooooooo")
+    useEffect(() => {
+        console.log("loooooooooooooooo", data);
+    }, [data]);
 
     return (
         <div className="flex items-center justify-center mx-auto">
