@@ -28,7 +28,10 @@ function Header() {
             <Link to={`/`}>About Us</Link>
           </button>
           <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2  font-bold">
-            <Link to={`/partner`}>Become a partner</Link>
+            <Link to={`/partnerSignUp`}>Become a partner</Link>
+          </button>
+          <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2  font-bold">
+            <Link to={`/login`}>Login</Link>
           </button>
         </div>
 

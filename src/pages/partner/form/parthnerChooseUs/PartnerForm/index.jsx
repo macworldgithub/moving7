@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { setKey, setDefaults, fromAddress } from "react-geocode";
 import RegionAccordion from "../../Accordion";
 import { AutoComplete } from "antd";
-import { getLocationSuggestions, getUAERegions } from "../../../../../apiFunctions/partner";
-import Modal from "../../../../../components/Modal/Modal";
+import { getLocationSuggestions } from "../../../../../apiFunctions/partner";
 import { GoogleMap, Marker, useJsApiLoader, Circle } from "@react-google-maps/api";
 import { useQuery, useMutation } from "react-query";
 import { toast } from "react-toastify";
@@ -18,7 +17,6 @@ const containerStyle = {
 };
 
 setKey("AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ");
-
 export default function FreeTrialForm() {
     const navigate = useNavigate()
     const [latlong, setLatlong] = useState({
@@ -30,19 +28,13 @@ export default function FreeTrialForm() {
         mutationKey: "PostPartner",
         mutationFn: partnerSignUp,
         onSuccess: (data) => {
-            window.localStorage.setItem("token", data?.data)
-            navigate("/documentsVerification")
+            console.log(data?.data?.toString(),"signupdata")
+            window.localStorage.setItem("userData", JSON.stringify(data?.data))
+            navigate("/partner/documentsVerification")
             toast.success("Successfully Created!")
         },
         onSettled: (d, e) => console.log(d, e),
     });
-    const getRegionsQuery = useQuery({
-        queryFn: getUAERegions,
-        onSuccess: (successResponse) => {
-            const { data } = successResponse.data;
-            console.log("Got regions", data);
-        }
-    })
     const fetchLocationsMutation = useMutation({
         mutationKey: "fetchLocation",
         mutationFn: getLocationSuggestions,
@@ -97,11 +89,6 @@ export default function FreeTrialForm() {
         setMap(map);
     }, []);
 
-    useEffect(() => {
-        getRegionsQuery.refetch();
-    }, [])
-    
-
     const handleDataChange = (key, value) => {
         setData({
             ...data,
@@ -112,7 +99,7 @@ export default function FreeTrialForm() {
         fetchLocationsMutation.mutate(e);
     };
 
-    console.log("All data for partners", data);
+    console.log(data);
 
     const onLocationSelect = (val) => {
         setData({
@@ -161,9 +148,7 @@ export default function FreeTrialForm() {
 
     }
 
-    useEffect(() => {
-        console.log("loooooooooooooooo", data);
-    }, [data]);
+    console.log(data.regions, "loooooooooooooooo")
 
     return (
         <div className="flex items-center justify-center mx-auto">
@@ -462,11 +447,11 @@ export default function FreeTrialForm() {
                         <div>
                             <div>
                                 <h2 className=' text-[#13C265] mt-3'>Choose your password</h2>
-                                <input onChange={(e) => handleDataChange("password", e.target.value)} type="text" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
+                                <input onChange={(e) => handleDataChange("password", e.target.value)} type="password" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
                             </div>
                             <div>
                                 <h2 className=' text-[#13C265] mt-3'>Confirm your password</h2>
-                                <input onChange={(e) => handleDataChange("confirmPassword", e.target.value)} type="text" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#00DD68]' />
+                                <input onChange={(e) => handleDataChange("confirmPassword", e.target.value)} type="password" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#00DD68]' />
                             </div>
                         </div>
                         <button className='w-[200px] md:w-[480px] text-white p-2 bg-[#00DD68] mt-4 lg:mb-4 rounded-md' onClick={submit}>Create account</button>
@@ -476,3 +461,5 @@ export default function FreeTrialForm() {
         </div>
     );
 }
+
+

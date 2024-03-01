@@ -15,7 +15,7 @@ export function partnerSignUp(data) {
   return axios.post(urlStr, data)
 }
 export function postProofs(data) {
-  const token = window.localStorage.getItem("token")
+const token = JSON.parse(window.localStorage.getItem("userData"))?.token
   console.log("api", data, "api")
   const urlStr = `${LOCALHOST_URL}/partner/insertProof`
   return axios.post(urlStr, data, {

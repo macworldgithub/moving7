@@ -13,43 +13,44 @@ import Targeting from "./pages/Targeting";
 import QuotesRequest from "./pages/quotesRequest/quotesRequest";
 import Overview from "./pages/Overview";
 import Account from "./pages/Account";
-import PartnerHeader from "./pages/header/becomePartner-Header";
 import MobileMenu from "./pages/header/becomePartner-Header/forMobile";
+import PartnerLayout from "./layout/partnerLayout";
 
 const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: Infinity,
-      cacheTime: Infinity,
+    defaultOptions: {
+        queries: {
+            staleTime: Infinity,
+            cacheTime: Infinity,
+        },
     },
-  },
 });
 
 function App() {
-  return (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/" element={<LayoutMain />}>
-            <Route path="login" element={<Login />} />
-            <Route path="" element={<Home />} />
-            <Route path="partner" element={<Partner />} />
-            <Route
-              path="documentsVerification"
-              element={<DocumentVerification />}
-            />
-            <Route path="overview" element={<Overview />} />
-            <Route path="quoteRequest" element={<QuotesRequest />} />
-            <Route path="targeting" element={<Targeting />} />
-            <Route path="account" element={<Account />} />
-            <Route path="header" element={<PartnerHeader />} />
+    return (
+        <BrowserRouter>
+            <QueryClientProvider client={queryClient}>
+                <Routes>
+                    <Route path="/" element={<LayoutMain />}>
+                        <Route path="" element={<Home />} />
+                        <Route path="login" element={<Login />} />
+                        <Route path="partnerSignUp" element={<Partner />} />
+                        <Route path="mobile" element={<MobileMenu />} />
+                    </Route>
+                    <Route path="partner" element={<PartnerLayout />} >
+                        <Route
+                            path="documentsVerification"
+                            element={<DocumentVerification />}
+                        />
+                        <Route path="overview/:id" element={<Overview />} />
+                        <Route path="quoteRequest/:id" element={<QuotesRequest />} />
+                        <Route path="targeting/:id" element={<Targeting />} />
+                        <Route path="account/:id" element={<Account />} />
                         <Route path="companyprofile/:id" element={<CompanyProfile />} />
-            <Route path="mobile" element={<MobileMenu />} />
-          </Route>
-        </Routes>
-      </QueryClientProvider>
-    </BrowserRouter>
-  );
+                    </ Route>
+                </Routes>
+            </QueryClientProvider>
+        </BrowserRouter>
+    );
 }
 
 export default App;
