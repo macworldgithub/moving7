@@ -1,4 +1,4 @@
-import { ref, uploadBytes, getDownloadURL,uploadString } from "firebase/storage";
+import { ref,deleteObject, uploadBytes, getDownloadURL,uploadString } from "firebase/storage";
 import { storage } from "./firebaseConfig.js";
 
 export const uploadImageAndGetURL = async (path, file) => {
@@ -7,6 +7,11 @@ export const uploadImageAndGetURL = async (path, file) => {
     console.log("Uploaded an image");
     const url = await getDownloadURL(imagesRef);
     return url;
+};
+
+export const deleteImage =  (path) => {
+    const imagesRef = ref(storage, `files/partnerImges/${path}`);
+    return deleteObject(imagesRef);
 };
 
 export const uploadImageDataStringAndGetURL = async (path, str) => {

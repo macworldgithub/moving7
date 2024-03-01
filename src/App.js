@@ -9,32 +9,47 @@ import Login from "./pages/login";
 import LayoutMain from "./layout/layout";
 import DocumentVerification from "./pages/documentVerification";
 import CompanyProfile from "./pages/companyProfile";
+import Targeting from "./pages/Targeting";
+import QuotesRequest from "./pages/quotesRequest/quotesRequest";
+import Overview from "./pages/Overview";
+import Account from "./pages/Account";
+import PartnerHeader from "./pages/header/becomePartner-Header";
+import MobileMenu from "./pages/header/becomePartner-Header/forMobile";
 
 const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            staleTime: Infinity,
-            cacheTime: Infinity,
-        },
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      cacheTime: Infinity,
     },
+  },
 });
 
 function App() {
-    return (
-        <BrowserRouter>
-            <QueryClientProvider client={queryClient}>
-                <Routes>
-                    <Route path="/" element={<LayoutMain />}>
-                        <Route path="login" element={<Login />} />
-                        <Route path="" element={<Home />} />
-                        <Route path="partner" element={<Partner />} />
-                        <Route path="documentsVerification" element={<DocumentVerification />} />
+  return (
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <Routes>
+          <Route path="/" element={<LayoutMain />}>
+            <Route path="login" element={<Login />} />
+            <Route path="" element={<Home />} />
+            <Route path="partner" element={<Partner />} />
+            <Route
+              path="documentsVerification"
+              element={<DocumentVerification />}
+            />
+            <Route path="overview" element={<Overview />} />
+            <Route path="quoteRequest" element={<QuotesRequest />} />
+            <Route path="targeting" element={<Targeting />} />
+            <Route path="account" element={<Account />} />
+            <Route path="header" element={<PartnerHeader />} />
                         <Route path="companyprofile/:id" element={<CompanyProfile />} />
-                    </ Route>
-                </Routes>
-            </QueryClientProvider>
-        </BrowserRouter>
-    );
+            <Route path="mobile" element={<MobileMenu />} />
+          </Route>
+        </Routes>
+      </QueryClientProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
