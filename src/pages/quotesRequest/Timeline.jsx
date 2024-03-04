@@ -1,7 +1,7 @@
 import React from 'react';
 import { Timeline } from 'antd';
-import './Timeline.css'
-import { type } from '@testing-library/user-event/dist/type';
+import './Timeline.css';
+
 const TimeLine = () => (
     <Timeline
         style={{ width: 200 }}

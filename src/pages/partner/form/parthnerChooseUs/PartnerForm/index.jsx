@@ -97,7 +97,7 @@ export default function FreeTrialForm() {
 
     useEffect(() => {
         getRegionsQuery.refetch();
-    });
+    }, []);
 
     const handleDataChange = (key, value) => {
         setData({
