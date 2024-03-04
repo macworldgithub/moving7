@@ -65,7 +65,7 @@ export default function FreeTrialForm() {
         radius: 0,
         companyName: "",
         businessType: "",
-        noOfEmployees: 0,
+        noOfEmployees: "0",
         email: "",
         telephone: "",
         addressLine1: "",
