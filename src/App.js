@@ -47,7 +47,6 @@ function App() {
                         <Route path="account/:id" element={<Account />} />
                         <Route path="companyprofile/:id" element={<CompanyProfile />} />
                     </Route>
-                    <Route path="header" element={<PartnerHeader />} />
                 </Routes>
             </QueryClientProvider>
         </BrowserRouter>
