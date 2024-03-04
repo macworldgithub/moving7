@@ -37,7 +37,7 @@ export default function Account() {
 
                 </div>
 
-                <div className=' w-11/12 md:w-7/12 lg:w-[18%] mt-8 rounded-md shadow-xl'>
+                <div className=' w-11/12 md:w-7/12 lg:w-[22%] mt-8 rounded-md shadow-xl'>
                     <div className='px-4 shadow-lg shadow-gray-300 rounded-lg mt-4 py-4 border-2'>
                         <h2 className='text-lg font-medium border-b-2 mb-4'>Need help?</h2>
                         <h2 className='text-gray-500 '>Tips $ Best Practices</h2>
