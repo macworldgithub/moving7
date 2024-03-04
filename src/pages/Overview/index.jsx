@@ -41,7 +41,7 @@ export default function Overview() {
                         <div className='flex items-center justify-between'>
                             <div>
                                 <h2 className='w-full font-semibold pt-2 text-md md:text-lg'>Account status</h2>
-                                <p className='text-md md:text-lg font-light text-red-600'>Waiting for verification</p>
+                                <p className='text-md md:text-lg font-light'>Waiting for verification</p>
                             </div>
                             <div>
                                 <IoIosArrowForward size={35} />
