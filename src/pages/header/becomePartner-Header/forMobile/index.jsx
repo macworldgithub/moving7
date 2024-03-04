@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function MobileMenu() {
     return (
-        <div className='w-44 sm:w-56 lg:w-72 flex flex-col flex-wrap items-center justify-center text-sm sm:text-md md:text-lg mt-[2.5rem] font-medium border-b-2 gap-1 px-6 py-8 right-8 z-50 text-white bg-[#1ae073] rounded-md lg:hidden'>
+        <div className='w-44 sm:w-56 lg:w-72 flex flex-col flex-wrap items-center justify-center text-sm sm:text-md md:text-lg mt-[2.5rem] font-medium border-b-2 gap-1 px-6 py-8 right-8 text-white bg-[#1ae073] rounded-md lg:hidden'>
             <Link to="/overview">
                 <h2>Overview</h2>
             </Link>

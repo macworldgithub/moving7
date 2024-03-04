@@ -47,7 +47,7 @@ export default function PartnerHeader() {
             </div>
             <div className='block lg:hidden'>
                 <div className=' relative h-4 w-4'>
-                    <div className=' absolute right-0'>
+                    <div className=' absolute right-0 z-50'>
                         {showMenu && <MobileMenu />}
                     </div>
                     <MdMenu onClick={toggleMenu} className='absolute z-10' />

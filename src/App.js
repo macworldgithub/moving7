@@ -41,8 +41,8 @@ function App() {
             <Route path="quoteRequest" element={<QuotesRequest />} />
             <Route path="targeting" element={<Targeting />} />
             <Route path="account" element={<Account />} />
-            <Route path="header" element={<PartnerHeader />} />
-            <Route path="mobile" element={<MobileMenu />} />
+            {/* <Route path="header" element={<PartnerHeader />} />
+            <Route path="mobile" element={<MobileMenu />} /> */}
           </Route>
         </Routes>
       </QueryClientProvider>
