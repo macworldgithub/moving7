@@ -11,8 +11,8 @@ const LayoutMain = () => {
     const isSpecialPage =
         pathname === "/overview" ||
         pathname === "/quoteRequest" ||
-        pathname === "/targeting";
-
+        pathname === "/targeting" ||
+        pathname === "/account"
     return (
         <div className="max-w-[1440px] mx-auto">
             {isSpecialPage ? (
