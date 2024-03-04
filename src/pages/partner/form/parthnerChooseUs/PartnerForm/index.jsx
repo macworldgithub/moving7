@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { setKey, setDefaults, fromAddress } from "react-geocode";
+import { setKey, fromAddress } from "react-geocode";
 import RegionAccordion from "../../Accordion";
 import { AutoComplete } from "antd";
 import { getLocationSuggestions, getUAERegions } from "../../../../../apiFunctions/partner";
@@ -25,14 +25,15 @@ export default function FreeTrialForm() {
         lat: -3.745,
         lng: -38.523,
     });
+    const [uaeRegions, setUaeRegions] = useState([]);
     const [locationOptions, setLocationOptions] = useState([]);
     const partnerSignUpMutation = useMutation({
         mutationKey: "PostPartner",
         mutationFn: partnerSignUp,
         onSuccess: (data) => {
-            window.localStorage.setItem("token", data?.data)
-            navigate("/documentsVerification")
-            toast.success("Successfully Created!")
+            window.localStorage.setItem("token", data?.data);
+            navigate("/documentsVerification");
+            toast.success("Successfully Created!");
         },
         onSettled: (d, e) => console.log(d, e),
     });
@@ -41,8 +42,9 @@ export default function FreeTrialForm() {
         onSuccess: (successResponse) => {
             const { data } = successResponse.data;
             console.log("Got regions", data);
+            setUaeRegions(data.states);
         }
-    })
+    });
     const fetchLocationsMutation = useMutation({
         mutationKey: "fetchLocation",
         mutationFn: getLocationSuggestions,
@@ -60,11 +62,11 @@ export default function FreeTrialForm() {
     const [data, setData] = useState({
         removalType: "",
         areaPreference: "",
-        location: null,
-        radius: null,
-        companyName: null,
+        location: "",
+        radius: 0,
+        companyName: "",
         businessType: "",
-        noOfEmployees: null,
+        noOfEmployees: 0,
         email: "",
         telephone: "",
         addressLine1: "",
@@ -77,30 +79,25 @@ export default function FreeTrialForm() {
         password: "",
         confirmPassword: "",
     });
-
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
         googleMapsApiKey: "AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ",
     });
+    // const onUnmount = useCallback(function callback(map) {
+    //     setMap(null);
+    // }, []);
+    // const [map, setMap] = useState(null);
+    // const onLoad = useCallback(function callback(map) {
+    //     // This is just an example of getting and using the map instance!!! don't just blindly copy!
+    //     const bounds = new window.google.maps.LatLngBounds(latlong);
+    //     map.fitBounds(bounds);
 
-    const onUnmount = React.useCallback(function callback(map) {
-        setMap(null);
-    }, []);
-
-    const [map, setMap] = React.useState(null);
-
-    const onLoad = React.useCallback(function callback(map) {
-        // This is just an example of getting and using the map instance!!! don't just blindly copy!
-        const bounds = new window.google.maps.LatLngBounds(latlong);
-        map.fitBounds(bounds);
-
-        setMap(map);
-    }, []);
+    //     setMap(map);
+    // }, []);
 
     useEffect(() => {
         getRegionsQuery.refetch();
-    }, [])
-    
+    });
 
     const handleDataChange = (key, value) => {
         setData({
@@ -129,7 +126,6 @@ export default function FreeTrialForm() {
             })
             .catch(console.error);
     };
-
 
     const submit = () => {
         const isEmpty = !data.areaPreference || !data.companyName || !data.businessType || !data.noOfEmployees || !data.email || !data.telephone || !data.addressLine1 || !data.city || !data.state || !data.salutation || !data.firstName || !data.lastName || !data.password || !data.confirmPassword;
@@ -288,7 +284,7 @@ export default function FreeTrialForm() {
                     {
                         data.areaPreference === "region" && (
                             <>
-                                <RegionAccordion setData={setData} data={data} />
+                                <RegionAccordion areas={uaeRegions} setData={setData} data={data} />
                                 <div className='md:w-[47%] mx-auto'>
                                     <p className='text-gray-500'>Selected Areas:</p>
                                     <div className="flex flex-wrap">
@@ -297,12 +293,11 @@ export default function FreeTrialForm() {
                                                 return (
                                                     <div className="my-1 flex px-2 py-0 h-max items-center justify-between rounded-lg text-white me-2 bg-[#13C265]">
                                                         <p className="m-0 p-0">
-                                                            {selectedCity}
+                                                            {selectedCity.name}
                                                         </p>
                                                         <span onClick={() => {
-
                                                             let temp = data
-                                                            temp.regions.splice(temp.regions.indexOf(selectedCity), 1)
+                                                            temp.regions.splice(temp.regions.findIndex(region => region.name === selectedCity.name), 1)
                                                             setData({
                                                                 ...data,
                                                                 regions: temp.regions
@@ -317,7 +312,7 @@ export default function FreeTrialForm() {
                             </>
                         )
                     }
-                    {/* <Modal>
+                    <Modal>
                         <div className="bg-white rounded-lg h-40 w-96">
                             <h1 className="text-primary font-bold text-2xl text-center pt-4">
                                 Verify that it's you!
@@ -326,7 +321,7 @@ export default function FreeTrialForm() {
                                 A verification email is send to your account!
                             </p>
                         </div>
-                    </Modal> */}
+                    </Modal>
                     <div>
                         <h2 className="text-[#13C265] text-2xl text-center p-4">
                             Company details
