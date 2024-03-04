@@ -8,7 +8,6 @@ let Projects = [
     { Name: "Anas", Date: "20-04-2000" },
     { Name: "Asad", Date: "20-04-2000" },
     { Name: "salman", Date: "20-04-2000" }
-
 ]
 
 export default function Overview() {
@@ -87,13 +86,14 @@ export default function Overview() {
                     </div>
                 </div>
             </div>
-            <div className='flex items-center justify-center flex-col mt-6 md:mt-20 lg:-mt-20 lg:ml-28 xl:ml-14  lg:flex-col'>
-                <div className='w-11/12 md:w-4/5 lg:w-[65%] xl:w-[65%] py-8 mt-1 md:-mt-20 lg:-ml-[4rem] xl:-ml-20 rounded-sm lg:mr-96'>
+            <div className='flex items-center justify-center w-11/12 md:w-4/5 lg:w-[74%] xl:w-[72%]
+                 lg:-ml-4 flex-col mt-6 md:mt-20 lg:-mt-20 mx-auto lg:flex-col'>
+                <div className='w-[90%] py-8 mt-1 md:-mt-20 rounded-sm'>
                     <div className='bg-white shadow-lg'>
                         <h2 className='text-md md:text-lg px-4 py-4 font-medium'>5 most recent Quote Requests</h2>
                     </div>
                 </div>
-                <div className='w-11/12 md:w-4/5 lg:w-[65%] xl:w-[65%] -mt-8 lg:-ml-[4rem] xl:-ml-20 bg-[#EFF2F3] rounded-lg lg:mr-[24rem]'>
+                <div className='w-[90%] -mt-8 bg-[#EFF2F3] rounded-lg'>
                     <div className='bg-[#E6EBEC] flex justify-between px-6 py-4 font-semibold text-[#6A6A6A]'>
                         <h2>Name</h2>
                         <h2>Date</h2>
