@@ -12,7 +12,7 @@ export default function PartnerHeader() {
     }
 
     return (
-        <div className='flex items-center justify-between px-5 md:px-12 md:justify-between lg:justify-evenly py-4 shadow-md font-medium text-lg lg:flex'>
+        <div className='flex items-center justify-between px-5 md:px-12 lg:px-0 md:justify-between lg:justify-evenly py-4 shadow-md font-medium text-lg lg:flex'>
             <div className='w-2/5 ml-8 lg:ml-0 md:w-auto'>
                 <img src={Logo} alt="" />
             </div>

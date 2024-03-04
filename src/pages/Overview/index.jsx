@@ -13,15 +13,15 @@ let Projects = [
 export default function Overview() {
     return (
         <div>
-            <div className='flex flex-col lg:flex-row items-center justify-center p-8'>
-                <div className='flex items-center justify-center flex-col'>
-                    <div className='w-11/12 md:w-4/6 lg:w-11/12 bg-[#D0E9F4] px-6 py-8 mt-20 lg:-mt-20 lg:-ml-[4rem]'>
+            <div className='flex flex-col lg:flex-row items-center justify-around p-4 lg:mr-10'>
+                <div className='flex items-center justify-center flex-col w-full lg:ml-24'>
+                    <div className='w-11/12 md:w-4/6 lg:w-[90%] bg-[#D0E9F4] px-6 py-8 mt-20 lg:-mt-20 lg:-ml-[4rem]'>
                         <h2 className='text-md md:text-2xl font-semibold'>Welcome to Moving24!</h2>
                         <p className='text-md md:text-lg pt-2'>We are currently verifying your business so your Free Trail can begin. This usually takes
                             1-2 working days. You may start to receive job requests - if so, you will find them below,
                             and we will send them your email.</p>
                     </div>
-                    <div className='w-11/12 md:w-4/6 lg:lg:w-11/12 bg-[#D1F2DF] px-6 py-8 mt-8 lg:-ml-[4rem]'>
+                    <div className='w-11/12 md:w-4/6 lg:w-[90%] bg-[#D1F2DF] px-6 py-8 mt-8 lg:-ml-[4rem]'>
                         <h2 className=' text-lg md:text-2xl font-semibold'>More accepted quotes?</h2>
                         <p className='text-md md:text-lg pt-2'>Did you know that 84% of customers first check your company profile? Complete your
                             company profile and request (external) reviews.</p>
@@ -29,7 +29,7 @@ export default function Overview() {
                     </div>
 
                 </div>
-                <div className='w-11/12 lg:w-2/4 flex flex-col sm:flex-row gap-3 lg:gap-0 lg:flex-col items-start justify-center mt-10'>
+                <div className='w-11/12 lg:w-[36%] flex flex-col sm:flex-row gap-3 lg:gap-0 lg:flex-col items-start justify-center mt-10'>
                     <div className='w-full shadow-xl rounded-md px-4 py-6'>
                         <div className='border-b-2 w-full'>
                             <h2 className='font-semibold text-md md:text-lg pb-2'>Account details</h2>
@@ -41,10 +41,10 @@ export default function Overview() {
                         <div className='flex items-center justify-between'>
                             <div>
                                 <h2 className='w-full font-semibold pt-2 text-md md:text-lg'>Account status</h2>
-                                <p className='text-md md:text-lg font-light'>Waiting for verification</p>
+                                <p className='text-md md:text-lg text-red-600 font-light'>Waiting for verification</p>
                             </div>
                             <div>
-                                <IoIosArrowForward size={35} />
+                                <IoIosArrowForward style={{color:"GrayText"}} size={25} />
                             </div>
                         </div>
                         <div className='flex items-center justify-between'>
@@ -54,7 +54,7 @@ export default function Overview() {
                                     USA</p>
                             </div>
                             <div>
-                                <IoIosArrowForward size={35} />
+                            <IoIosArrowForward style={{color:"GrayText"}} size={25} />
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@ export default function Overview() {
                                 <h2 className='w-full font-medium py-4 text-md md:text-lg'>Help Desk</h2>
                             </div>
                             <div>
-                                <IoIosArrowForward size={25} />
+                            <IoIosArrowForward style={{color:"GrayText"}} size={25} />
                             </div>
                         </div>
                         <div className='flex flex-col justify-between'>
@@ -86,14 +86,14 @@ export default function Overview() {
                     </div>
                 </div>
             </div>
-            <div className='flex items-center justify-center w-11/12 md:w-4/5 lg:w-[74%] xl:w-[72%]
-                 lg:-ml-4 flex-col mt-6 md:mt-20 lg:-mt-20 mx-auto lg:flex-col'>
-                <div className='w-[90%] py-8 mt-1 md:-mt-20 rounded-sm'>
+            <div className='flex items-center justify-center w-11/12 md:w-4/5 lg:w-[74%] xl:w-[74%]
+                 lg:ml-4 flex-col mt-6 md:mt-20 lg:-mt-20 mx-auto lg:flex-col'>
+                <div className='w-[90%] lg:w-[77%] py-8 mt-1 md:-mt-20 rounded-sm'>
                     <div className='bg-white shadow-lg'>
                         <h2 className='text-md md:text-lg px-4 py-4 font-medium'>5 most recent Quote Requests</h2>
                     </div>
                 </div>
-                <div className='w-[90%] -mt-8 bg-[#EFF2F3] rounded-lg'>
+                <div className='w-[90%] lg:w-[77%] -mt-8 bg-[#EFF2F3] rounded-lg'>
                     <div className='bg-[#E6EBEC] flex justify-between px-6 py-4 font-semibold text-[#6A6A6A]'>
                         <h2>Name</h2>
                         <h2>Date</h2>
