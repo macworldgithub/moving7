@@ -17,9 +17,9 @@ export default function Login() {
             window.localStorage.setItem("userData",JSON.stringify(data?.data))
             toast.success("Logged in Suuccessfully!")
             if (data?.data?.proof){
-                navigate(`/companyprofile/${data?.data?._id}`)
+                navigate(`/partner/overview/${data?.data?._id}`)
             }else {
-                navigate("/documentsverification")
+                navigate("/partner/documentsverification")
             }
         },
         onError:(err) => {

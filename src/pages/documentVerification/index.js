@@ -1,21 +1,27 @@
 import { EditOutlined } from '@ant-design/icons';
 import { Avatar, Progress, Button, Result } from 'antd';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import { toast } from 'react-toastify';
 import { uploadImageAndGetURL } from '../../firebase/utils';
 import { useMutation } from 'react-query';
 import { postProofs } from '../../apiFunctions/partner';
 import { useNavigate } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 
 
 const DocumentVerification = () => {
     const navigate = useNavigate()
+    const [user] = useOutletContext()
     const postProofsMutation = useMutation({
         mutationKey: "postProofs",
         mutationFn: postProofs,
         onSuccess: (d) => {
             console.log(d)
+            let temp = user
+            temp.proof = true
+            window.localStorage.setItem("userData", JSON.stringify(temp))
             toast.success("Proofs Uploaded Successfully!")
+            navigate(`/partner/overview/${user._id}`)
         },
         onError:(e) => {
             console.log(e)
@@ -41,6 +47,13 @@ const DocumentVerification = () => {
     }])
     const [currStep, setCurrStep] = useState(0)
     const [selectedItem, setSelectedItem] = useState(null)
+    
+    useEffect(() => {
+        if (user.proof) {
+            navigate(`/partner/overview/${user._id}`)
+        }
+    }
+    , [])
 
     const handleFileChange = (idx, value) => {
         let temp = files

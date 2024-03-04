@@ -1,4 +1,7 @@
 import MyModal from "../../components/Modal/Modal"
+import { setKey, setDefaults, fromAddress } from "react-geocode";
+import { deleteImage } from "../../firebase/utils";
+import AddImage from "../../assets/images/partnerChooseimg/addimage.png"
 import { uploadImageDataStringAndGetURL } from "../../firebase/utils";
 import { copyToClipboard } from "../../utils/CopyFun";
 import { useCallback, useEffect } from "react";
@@ -14,6 +17,7 @@ import { Select, Input } from 'antd';
 
 
 
+setKey("AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ");
 const { TextArea } = Input;
 
 
@@ -59,14 +63,23 @@ const CompanyProfile = () => {
     });
     useEffect(() => {
         setPartnerData(partnerDataRes?.data?.data ?? {});
+        console.log(partnerDataRes?.data?.data, "data")
+        if (partnerDataRes?.data?.data?.areaPreference === "radius") {
+            fromAddress(partnerDataRes?.data?.data?.location ?? "")
+                .then(({ results }) => {
+                    const { lat, lng } = results[0].geometry.location;
+                    setLatlong({
+                        lat,
+                        lng,
+                    });
+                })
+                .catch(console.error);
+        }
         let arr = new Array(5).fill(null)
-        console.log(arr, "arrrrrrr")
         partnerDataRes?.data?.data?.images?.forEach((image, idx) => {
             arr[idx] = image
         })
-        console.log(arr, "arrrrrrr")
         setImages(arr ?? []);
-        console.log("invle")
     }, [partnerDataRes.data]);
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
@@ -81,16 +94,7 @@ const CompanyProfile = () => {
         })
         return count
     }
-    const handleMultipleDataChange = (obj) => {
-        console.log(obj, "ob", partnerData)
-
-        setPartnerData({
-            ...partnerData,
-            ...obj
-        })
-    }
     const handleDataChange = (key, val) => {
-        console.log(key, val, "inf")
         setPartnerData({
             ...partnerData,
             [key]: val
@@ -257,18 +261,21 @@ const CompanyProfile = () => {
                                     Project images
                                 </h1>
                                 <button onClick={async () => {
-                                    let imgesToUpload = images.filter((image) => image?.startsWith("data"))
+                                    let imgesToUpload = images.filter((image) => image?.url?.startsWith("data"))
+                                    let uploadedUrls = images.filter((image) => image !== null && !image?.url?.startsWith("data"))
                                     let a = new Date();
-                                    console.log(imgesToUpload, "uploaddddddd")
                                     const num = Math.round(Math.random() * 10000 + a.getMilliseconds());
+                                    const paths = []
                                     const urls = imgesToUpload.map((image, idx) => {
-                                        return uploadImageDataStringAndGetURL(`${id}/${num + idx.toString()}`, image)
+                                        paths.push(`${id}/${num + idx.toString()}`)
+                                        return uploadImageDataStringAndGetURL(`${id}/${num + idx.toString()}`, image?.url)
                                     })
-                                    const uploadedImages = await Promise.all(urls)
-                                    let temp = images.filter((image) => image !== null && !image?.startsWith("data"))
-                                    console.log([...temp, ...uploadedImages], "lalalala")
+                                    let uploadedImages = await Promise.all(urls)
+                                    uploadedImages = uploadedImages.map((url, idx) => {
+                                        return { url, path: paths[idx] }
+                                    })
                                     updatePartnerDetailsMutation.mutate({
-                                        images: [...temp, ...uploadedImages]
+                                        images: [...uploadedUrls, ...uploadedImages]
                                     })
                                 }} className="my-2 bg-primary text-white px-4 py-1 rounded">
                                     Save
@@ -276,24 +283,33 @@ const CompanyProfile = () => {
                             </div>
 
                             <div onClick={() => {
-                                if (images.length && nullCount(images) < 3) {
+                                if (images.length && nullCount(images) !== 5) {
                                     setShowImageModal(true)
                                 }
                             }} className="images cursor-pointer overflow-hidden flex sm:w-full w-full bg-gray-200 h-72 my-3">
                                 {
-                                    images.length > 0 && nullCount(images) < 3 ? (
+                                    images.length > 0 && images[0] !== null ? (
                                         <>
-                                            <img className="w-[44rem]" src={`${images[0]}`} />
+                                            <img className="w-[44rem]" src={`${images[0]?.url ?? AddImage}`} />
                                             <div>
-                                                <img className="h-1/2" src={`${images.length >= 2 ? images[1] : null}`} />
-                                                <img className="h-1/2" src={`${images.length >= 3 ? images[1] : null}`} />
+                                                <img className="h-1/2" onClick={() => {
+                                                    if (images[1] === null) {
+                                                        setShowImageModal(true)
+                                                        setCurrImage(1)
+                                                    }
+                                                }} src={`${images[1]?.url ?? AddImage}`} />
+                                                <img className="h-1/2" onClick={() => {
+                                                    if (images[2] === null) {
+                                                        setShowImageModal(true)
+                                                        setCurrImage(2)
+                                                    }
+                                                }} src={`${images[2]?.url ?? AddImage}`} />
 
                                             </div>
                                         </>
                                     ) : (
                                         <div className="flex flex-col items-center relative justify-center w-full">
                                             <input multiple={true} type={"file"} onChange={(e) => {
-                                                console.log(e.target.files)
                                                 let files = e.target.files
                                                 if (nullCount(images) - files.length < 0) {
                                                     toast.error("Cannot upload more than 5 images!")
@@ -304,15 +320,13 @@ const CompanyProfile = () => {
                                                     reader.readAsDataURL(files[i])
                                                     reader.addEventListener("load", function() {
                                                         setImages((prev) => {
-                                                            console.log("ran")
-                                                            let tempPrev= prev.filter((p) => p !== null)
-                                                            tempPrev = [...tempPrev, this.result]
-                                                            if (tempPrev.length < 5){
-                                                                for (let i = tempPrev.length ; i < 5 ; i++){
-                                                                        tempPrev[i] = null
+                                                            let tempPrev = prev.filter((p) => p !== null)
+                                                            tempPrev = [...tempPrev, { url: this.result }]
+                                                            if (tempPrev.length < 5) {
+                                                                for (let i = tempPrev.length; i < 5; i++) {
+                                                                    tempPrev[i] = null
                                                                 }
                                                             }
-                                                            console.log(tempPrev,"ran")
                                                             return [...tempPrev]
                                                         })
                                                     });
@@ -449,10 +463,11 @@ const CompanyProfile = () => {
                                     center={latlong}
                                     zoom={13}
                                 >
-                                    {/* Child components, such as markers, info windows, etc. */}
+                                {
+                                    partnerData?.areaPreference === "radius" && (
                                     <Circle
                                         center={latlong}
-                                        radius={1609.34 * 2}
+                                        radius={partnerData?.radius * 1609.34}
                                         options={{
                                             fillColor: "coral",
                                             fillOpacity: 0.3,
@@ -465,6 +480,8 @@ const CompanyProfile = () => {
                                         onCenterChanged={() => console.log("onCenterChanged")}
                                         onRadiusChanged={() => console.log("onRadiusChanged")}
                                     />
+                                    )
+                                }
                                     <Marker position={latlong} />
                                 </GoogleMap>
                             ) : (
@@ -574,7 +591,7 @@ const CompanyProfile = () => {
             {
                 showImageModal && (
                     <MyModal>
-                        <div className="bg-white relative w-4/5 rounded-lg h-max  px-5 pb-10 py-5 w-[60rem]" style={{ height: "42rem" }}>
+                        <div className="bg-white relative w-4/5 rounded-lg px-5 pb-10 py-5  h-4/5">
                             <div
                                 onClick={() => setShowImageModal(false)}
                                 style={{
@@ -584,9 +601,9 @@ const CompanyProfile = () => {
                                 X
                             </div>
                             {
-                                images[currImage] ? (
+                                images[currImage]?.url ? (
                                     <>
-                                        <img className="h-full w-full" src={images[currImage]} />
+                                        <img className="h-full w-full" src={images[currImage]?.url ?? AddImage} />
                                     </>
                                 ) : (
                                     <div className="flex flex-col w-full h-full items-center relative justify-center w-full">
@@ -598,8 +615,7 @@ const CompanyProfile = () => {
                                                 reader.addEventListener("load", function() {
                                                     setImages((prev) => {
                                                         let arr = [...prev]
-                                                        arr[currImage] = this.result
-                                                        console.log(arr, "lolllll")
+                                                        arr[currImage] = { url: this.result }
                                                         return [...arr]
                                                     })
                                                 });
@@ -642,12 +658,14 @@ const CompanyProfile = () => {
                                 </p>
                                 {
                                     images[currImage] &&
-                                    <AiOutlineDelete size={30} onClick={() => {
+                                    <AiOutlineDelete size={30} onClick={async () => {
+                                        let path = images[currImage]?.path
                                         let arr = images
                                         arr.splice(currImage, 1)
                                         updatePartnerDetailsMutation.mutate({
                                             images: arr
                                         })
+                                        await deleteImage(path)
                                     }} className={"text-red cursor-pointer"} />
                                 }
                             </div>

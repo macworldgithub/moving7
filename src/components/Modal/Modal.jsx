@@ -6,6 +6,7 @@ const MyModal = ({ children }) => {
   const elRef = useRef(null);
   if (!elRef.current) {
     elRef.current = document.createElement("DIV");
+    elRef.current.classList.add("modal-container");
   }
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const MyModal = ({ children }) => {
     };
   }, []);
 
-  return createPortal(<div className="">{children}</div>, elRef.current);
+  return createPortal(<div className="w-full h-full flex justify-center items-center">{children}</div>, elRef.current);
 };
 
 export default MyModal;
