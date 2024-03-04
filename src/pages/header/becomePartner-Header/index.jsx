@@ -1,12 +1,19 @@
-import React from 'react'
-import Logo from "../../../assets/images/partner-logo/icon-32-logo 1.svg"
+import React, { useState } from 'react';
+import Logo from "../../../assets/images/partner-logo/icon-32-logo 1.svg";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdMenu } from "react-icons/md";
+import MobileMenu from './forMobile';
 
 export default function PartnerHeader() {
+    const [showMenu, setShowMenu] = useState(false);
+
+    const toggleMenu = () => {
+        setShowMenu(!showMenu);
+    }
+
     return (
-        <div className='flex items-center justify-around md:px-12 md:justify-between lg:justify-evenly py-4 shadow-md text-lg'>
-            <div className='w-2/5 md:w-auto'>
+        <div className='flex items-center justify-between px-5 md:px-12 md:justify-between lg:justify-evenly py-4 shadow-md font-medium text-lg lg:flex'>
+            <div className='w-2/5 ml-8 lg:ml-0 md:w-auto'>
                 <img src={Logo} alt="" />
             </div>
             <div className='hidden lg:gap-10 lg:flex'>
@@ -22,9 +29,14 @@ export default function PartnerHeader() {
                     <IoIosArrowDown />
                 </div>
             </div>
-            <div className='blocl lg:hidden'>
-                <MdMenu />
+            <div className='block lg:hidden'>
+                <div className=' relative h-4 w-4'>
+                    <div className=' absolute right-0'>
+                        {showMenu && <MobileMenu />}
+                    </div>
+                    <MdMenu onClick={toggleMenu} className='absolute z-10' />
+                </div>
             </div>
         </div>
-    )
+    );
 }
