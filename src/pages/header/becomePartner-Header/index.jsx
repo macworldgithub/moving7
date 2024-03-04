@@ -17,7 +17,7 @@ export default function PartnerHeader() {
                 <img src={Logo} alt="" />
             </div>
             <div className='hidden lg:gap-10 lg:flex'>
-                <div className='flex gap-4 border-r-2 px-2'>
+                <div className='flex gap-8 border-r-2 px-2'>
                     <h2>Overview</h2>
                     <h2>Quote Requests</h2>
                     <h2>Company Profile</h2>
