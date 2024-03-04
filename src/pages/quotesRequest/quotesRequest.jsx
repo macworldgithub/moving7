@@ -18,7 +18,7 @@ export default function QuotesRequest() {
     return (
         <>
             <div className='flex flex-col md:flex-row mt-8 lg:mt-10 gap-4 px-4 lg:mb-96'>
-                <div className='shadow-sm rounded-b-none shadow-gray-400 sm:w-[80%] lg:w-[60%] flex lg:ml-28 py-4 px-8 sm:h-48 md:h-52 lg:h-28 relative'>
+                <div className='rounded-b-none sm:w-[80%] lg:w-[60%] flex lg:ml-28 py-4 px-8 sm:h-48 md:h-52 lg:h-28 rounded-lg border-[1.5px] border-b-0 relative '>
                     <div className='w-full'>
                         <h2 className='text-lg font-medium mb-2'>Quote Request</h2>
                         <div className='flex flex-col lg:flex-row justify-between items-center gap-2 xl:gap-10 '>
@@ -29,7 +29,7 @@ export default function QuotesRequest() {
                                 <button className=' bg-[#13C265] text-white py-2 px-6 text-md rounded-sm rounded-l-none'>Search</button>
                             </div>
                         </div>
-                        <div className='lg:mt-[19px] w-full mt-4 sm:mt-4  -ml-8 lg:-ml-8 rounded-b-md absolute'>
+                        <div className='lg:mt-[19px] w-full mt-4 sm:mt-4 -ml-8 lg:-ml-8 rounded-b-md absolute'>
                             <div className='flex justify-between px-4 py-2 bg-[#E6EBEC]'>
                                 <h2 className='md:w-28'>Name</h2>
                                 <h2 className='md:w-28'>Status</h2>
