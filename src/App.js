@@ -8,11 +8,7 @@ import Partner from "../src/pages/partner/partner";
 import Login from "./pages/login";
 import LayoutMain from "./layout/layout";
 import DocumentVerification from "./pages/documentVerification";
-import Targeting from "./pages/Targeting";
-import QuotesRequest from "./pages/quotesRequest/quotesRequest";
-import Overview from "./pages/Overview";
-import Account from "./pages/Account";
-import PartnerHeader from "./pages/header/becomePartner-Header";
+import CompanyProfile from "./pages/companyProfile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,28 +20,21 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  return (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/" element={<LayoutMain />}>
-            <Route path="login" element={<Login />} />
-            <Route path="" element={<Home />} />
-            <Route path="partner" element={<Partner />} />
-            <Route
-              path="documentsVerification"
-              element={<DocumentVerification />}
-            />
-            <Route path="overview" element={<Overview />} />
-            <Route path="quoteRequest" element={<QuotesRequest />} />
-            <Route path="targeting" element={<Targeting />} />
-            <Route path="account" element={<Account />} />
-            <Route path="header" element={<PartnerHeader />} />
-          </Route>
-        </Routes>
-      </QueryClientProvider>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <QueryClientProvider client={queryClient}>
+                <Routes>
+                    <Route path="/" element={<LayoutMain />}>
+                        <Route path="login" element={<Login />} />
+                        <Route path="" element={<Home />} />
+                        <Route path="partner" element={<Partner />} />
+                        <Route path="documentsVerification" element={<DocumentVerification />} />
+                        <Route path="companyprofile/:id" element={<CompanyProfile />} />
+                    </ Route>
+                </Routes>
+            </QueryClientProvider>
+        </BrowserRouter>
+    );
 }
 
 export default App;

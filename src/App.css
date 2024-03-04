@@ -18,3 +18,10 @@
 .PhoneInputInput:focus-visible{
     outline:none !important
 }
+
+ .customOTPclass{
+     width:2rem !important
+ }
+.customeOTPclass:focus-visible{
+    outline:none !important
+}
