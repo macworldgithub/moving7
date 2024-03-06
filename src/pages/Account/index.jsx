@@ -18,7 +18,7 @@ export default function Account() {
                                 <h2 className='font-medium text-gray-400'>Username</h2>
                                 <input type="email" placeholder='siddiqui@gmail.com' className=' font-medium text-gray-400 outline-none' />
                             </div>
-                            <div className='flex gap-10 p-4'>
+                            <div className='flex gap-3 md:gap-10 p-4'>
                                 <h2 className=' font-medium text-gray-400'>Password</h2>
                                 <input type="password" placeholder='********' className=' font-medium text-gray-400 outline-none' />
                             </div>
