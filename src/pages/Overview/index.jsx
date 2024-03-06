@@ -14,7 +14,7 @@ export default function Overview() {
     return (
         <>
             <div>
-                <div className='flex flex-col lg:flex-row items-center justify-around p-4 lg:mr-10'>
+                <div className='flex flex-col lg:flex-row items-center justify-around p-4 lg:mr-24'>
                     <div className='flex items-center justify-center flex-col w-full lg:ml-24'>
                         <div className='w-11/12 md:w-4/6 lg:w-[90%] bg-[#D0E9F4] px-6 py-8 mt-20 lg:-mt-20 lg:-ml-[4rem]'>
                             <h2 className='text-md md:text-2xl font-semibold'>Welcome to Moving24!</h2>
@@ -59,7 +59,7 @@ export default function Overview() {
                                 </div>
                             </div>
                         </div>
-                        <div className='w-full shadow-xl rounded-md px-4 py-6 lg:mt-8 border-[1.5px]'>
+                        <div className='w-full shadow-xl md:h-[310px] lg:h-auto rounded-md px-4 py-6 lg:mt-8 border-[1.5px]'>
                             <div className='border-b-2 w-full'>
                                 <h2 className='font-semibold text-md md:text-lg pb-2'>Need help?</h2>
                             </div>
@@ -87,14 +87,14 @@ export default function Overview() {
                         </div>
                     </div>
                 </div>
-                <div className='flex items-center justify-center w-11/12 md:w-4/5 lg:w-[74%] xl:w-[74%]
-                 lg:ml-4 flex-col mt-6 md:mt-20 lg:-mt-20 mx-auto lg:flex-col'>
-                    <div className='w-[90%] lg:w-[77%] py-8 mt-1 md:-mt-20 rounded-sm '>
+                <div className='flex items-center justify-center w-11/12 md:w-4/5 lg:w-[74%] xl:w-[80%]
+                 lg:ml-0 flex-col mt-6 md:mt-20 lg:-mt-20 mx-auto lg:flex-col xl:-ml-12'>
+                    <div className='w-[90%] lg:w-[69%] py-8 mt-1 md:-mt-20 rounded-sm '>
                         <div className='bg-white shadow-lg rounded-md rounded-b-none border-[1.5px]'>
                             <h2 className='text-md md:text-lg px-4 py-4 font-medium'>5 most recent Quote Requests</h2>
                         </div>
                     </div>
-                    <div className='w-[90%] lg:w-[77%] -mt-8 bg-[#EFF2F3] rounded-lg'>
+                    <div className='w-[90%] lg:w-[69%] -mt-8 bg-[#EFF2F3] rounded-lg'>
                         <div className='bg-[#E6EBEC] flex justify-between px-6 py-4 font-semibold text-[#6A6A6A]'>
                             <h2>Name</h2>
                             <h2>Date</h2>
