@@ -4,7 +4,7 @@ const { Panel } = Collapse;
 
 let arr = [{ name: "Lahore" }, { name: "Karachi" }, { name: "Sialkot" }]
 
-const RegionAccordion = ({ areas, setData, data }) => {
+const RegionAccordion = ({ areas,fetchPolygon, setData, data }) => {
     // const onChange = (key) => {
     //     console.log(renderData);
     // };
@@ -40,6 +40,8 @@ const RegionAccordion = ({ areas, setData, data }) => {
                                                         regions: temp.regions
                                                     })
                                                 }
+                                                fetchPolygon()
+
                                             }} className='accent-[#13C265]' style={{ width: "14px" }} />
                                         <p className='text-md'>{city.name}</p>
                                     </div>

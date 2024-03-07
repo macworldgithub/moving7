@@ -62,26 +62,33 @@ export function fetchOnePartner({ queryKey }) {
             id
         }
     })
-} 
+}
 
 
 export function updatePartnerDetails(data) {
     const userData = window.localStorage.getItem("userData")
     const json = JSON.parse(userData)
-    console.log(data,"going")
-    return axios.put(`${LOCALHOST_URL}/partner/updatePartnerDetails`, data,{
+    console.log(data, "going")
+    return axios.put(`${LOCALHOST_URL}/partner/updatePartnerDetails`, data, {
         headers: {
             Authorization: `Bearer ${json?.token}`
         }
     })
-} 
-
-export function getUAERegions() {
-  const data = {
-    country: "United Arab Emirates"
-  }
-
-  return axios.post('https://countriesnow.space/api/v0.1/countries/states', data, {timeout:5000});
 }
 
+export function getUAERegions() {
+    return axios.get(`${LOCALHOST_URL}/regions/allRegions`);
+}
+
+export function getPolygon({ queryKey }) {
+
+    let names = queryKey[1]
+    names = names.map((elem) => {
+        return elem.name
+    })
+    console.log(names, "NAMESSSSSSSSSS")
+    return axios.post(`${LOCALHOST_URL}/regions/fetchPolygon`, {
+        names
+    });
+}
 

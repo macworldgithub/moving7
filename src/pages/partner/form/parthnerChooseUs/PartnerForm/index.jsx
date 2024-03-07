@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { setKey, fromAddress } from "react-geocode";
 import RegionAccordion from "../../Accordion";
 import { AutoComplete } from "antd";
-import { getLocationSuggestions, getUAERegions } from "../../../../../apiFunctions/partner";
-import { GoogleMap, Marker, useJsApiLoader, Circle } from "@react-google-maps/api";
+import { getLocationSuggestions, getPolygon, getUAERegions } from "../../../../../apiFunctions/partner";
+import { GoogleMap, Marker, useJsApiLoader, Circle, Polygon } from "@react-google-maps/api";
 import { useQuery, useMutation } from "react-query";
 import { toast } from "react-toastify";
 import PhoneInput from "react-phone-number-input";
@@ -23,13 +23,12 @@ export default function FreeTrialForm() {
         lat: -3.745,
         lng: -38.523,
     });
-    const [uaeRegions, setUaeRegions] = useState([]);
     const [locationOptions, setLocationOptions] = useState([]);
     const partnerSignUpMutation = useMutation({
         mutationKey: "PostPartner",
         mutationFn: partnerSignUp,
         onSuccess: (data) => {
-            console.log(data?.data?.toString(),"signupdata");
+            console.log(data?.data?.toString(), "signupdata");
             window.localStorage.setItem("userData", JSON.stringify(data?.data));
             navigate("/partner/documentsVerification");
             toast.success("Successfully Created!");
@@ -37,26 +36,8 @@ export default function FreeTrialForm() {
         onSettled: (d, e) => console.log(d, e),
     });
     const getRegionsQuery = useQuery({
+        queryKey: ["fetchRegions"],
         queryFn: getUAERegions,
-        onSuccess: (successResponse) => {
-            const { data } = successResponse.data;
-            console.log("Got regions", data);
-            setUaeRegions(data.states);
-        }
-    });
-    const fetchLocationsMutation = useMutation({
-        mutationKey: "fetchLocation",
-        mutationFn: getLocationSuggestions,
-        onSuccess: (data) => {
-            let arr = data?.data?.map((elem) => {
-                return {
-                    value: elem?.address,
-                    label: elem?.address,
-                };
-            });
-            setLocationOptions(arr);
-        },
-        onSettled: (d, e) => console.log(d, e),
     });
     const [data, setData] = useState({
         removalType: "",
@@ -77,6 +58,28 @@ export default function FreeTrialForm() {
         lastName: "",
         password: "",
         confirmPassword: "",
+    });
+    const getRegionsPolygon = useQuery({
+        queryKey: ["fetchRegionsPolygon", data.regions],
+        queryFn: getPolygon,
+    });
+    const RegionData = getRegionsQuery?.data?.data
+    const RegionPolygonData = getRegionsPolygon?.data?.data
+    console.log(getRegionsPolygon, "polygonnnnn")
+    console.log(RegionPolygonData, "polygonnnnnDataa")
+    const fetchLocationsMutation = useMutation({
+        mutationKey: "fetchLocation",
+        mutationFn: getLocationSuggestions,
+        onSuccess: (data) => {
+            let arr = data?.data?.map((elem) => {
+                return {
+                    value: elem?.address,
+                    label: elem?.address,
+                };
+            });
+            setLocationOptions(arr);
+        },
+        onSettled: (d, e) => console.log(d, e),
     });
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
@@ -281,7 +284,38 @@ export default function FreeTrialForm() {
                     {
                         data.areaPreference === "region" && (
                             <>
-                                <RegionAccordion areas={uaeRegions} setData={setData} data={data} />
+                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData} setData={setData} data={data} />
+                                <div className="-ml-8 mb-3 mt-5">
+                                    {isLoaded && data.areaPreference === "region" ? (
+                                        <GoogleMap
+                                            mapContainerStyle={containerStyle}
+                                            center={{
+                                                lat: 25.276987,
+                                                lng: 55.296249
+                                            }}
+                                            zoom={9}
+                                        >
+                                            { RegionPolygonData && (
+                                                RegionPolygonData?.map((reg) => {
+                                                    console.log(reg,"helloooooo")
+                                                    return reg?.multiPolygon?.map((elem) => {
+                                                    console.log(reg,"belloooooo")
+                                                        return (<Polygon
+
+                                                            path={elem}
+
+                                                            />)
+                                                    })
+                                                })
+                                            )
+                                            }
+                                            <Marker position={latlong} />
+                                        </GoogleMap>
+                                    ) : (
+                                        <>
+                                        </>
+                                    )}
+                                </div>
                                 <div className='md:w-[47%] mx-auto'>
                                     <p className='text-gray-500'>Selected Areas:</p>
                                     <div className="flex flex-wrap">
