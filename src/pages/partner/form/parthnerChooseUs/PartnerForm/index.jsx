@@ -295,16 +295,20 @@ export default function FreeTrialForm() {
                                             }}
                                             zoom={9}
                                         >
-                                            { RegionPolygonData && (
+                                            {RegionPolygonData && (
                                                 RegionPolygonData?.map((reg) => {
-                                                    console.log(reg,"helloooooo")
                                                     return reg?.multiPolygon?.map((elem) => {
-                                                    console.log(reg,"belloooooo")
                                                         return (<Polygon
-
                                                             path={elem}
+                                                            options={{
+                                                                fillColor: '#1ABD5E',
+                                                                fillOpacity: 0.1,
+                                                                strokeColor: '#1ABD5E',
+                                                                strokeOpacity: 0.5,
+                                                                strokeWeight: 1,
+                                                            }}
 
-                                                            />)
+                                                        />)
                                                     })
                                                 })
                                             )

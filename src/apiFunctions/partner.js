@@ -15,12 +15,14 @@ export function partnerSignUp(data) {
     return axios.post(urlStr, data)
 }
 export function postProofs(data) {
-    const token = window.localStorage.getItem("token")
+    const userData = JSON.parse(window.localStorage.getItem("userData"))
+
+    console.log("token", userData.token)
     console.log("api", data, "api")
     const urlStr = `${LOCALHOST_URL}/partner/insertProof`
     return axios.post(urlStr, data, {
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${userData.token}`
         }
     })
 }
@@ -64,7 +66,6 @@ export function fetchOnePartner({ queryKey }) {
     })
 }
 
-
 export function updatePartnerDetails(data) {
     const userData = window.localStorage.getItem("userData")
     const json = JSON.parse(userData)
@@ -90,5 +91,32 @@ export function getPolygon({ queryKey }) {
     return axios.post(`${LOCALHOST_URL}/regions/fetchPolygon`, {
         names
     });
+}
+
+
+export function sendEmailToPartners(data) {
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    console.log(data, "going")
+    return axios.post(`${LOCALHOST_URL}/quotes/sendToPartners`, data, {
+        headers: {
+            Authorization: `Bearer ${json?.token}`
+        }
+    })
+}
+
+export function getPartnerSentQuotes(data) {
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    console.log(data, "going")
+    return axios.get(`${LOCALHOST_URL}/partner/getrecentpartnerreqs`, {
+        params: {
+            email: json?.email
+        }
+    }, {
+        headers: {
+            Authorization: `Bearer ${json?.token}`
+        }
+    })
 }
 

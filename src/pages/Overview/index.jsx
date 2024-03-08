@@ -1,6 +1,8 @@
 import React from 'react'
 import { IoIosArrowForward } from "react-icons/io";
+import { useQuery } from 'react-query';
 import UserImg from '../../../src/assets/images/overview/Group 17.png'
+import { getPartnerSentQuotes } from '../../apiFunctions/partner';
 import SmalllFooter from '../footer/smalllFooter';
 
 let Projects = [
@@ -11,13 +13,19 @@ let Projects = [
 ]
 
 export default function Overview() {
+    const quotes = useQuery({
+        queryKey: ["fetchRequestOfPartner"],
+        queryFn: getPartnerSentQuotes,
+    });
+    const quotesData = quotes?.data?.data
+    console.log(quotesData, "dataaaa")
     return (
         <div>
             <div className='flex flex-col lg:flex-row items-center justify-center p-8'>
                 <div className='flex items-center justify-center flex-col'>
                     <div className='w-11/12 md:w-4/6 lg:w-11/12 bg-[#D0E9F4] px-6 py-8 mt-20 lg:-mt-20 lg:-ml-[4rem]'>
                         <h2 className='text-md md:text-2xl font-semibold'>Welcome to Moving24!</h2>
-                        <p className='text-md md:text-lg pt-2'>We are currently verifying your business so your Free Trail can begin. This usually takes
+                        <p className='text-md md:text-lg pt-2'>We are currently verifying your business. This usually takes
                             1-2 working days. You may start to receive job requests - if so, you will find them below,
                             and we will send them your email.</p>
                     </div>
@@ -96,17 +104,23 @@ export default function Overview() {
                 <div className='w-[90%] -mt-8 bg-[#EFF2F3] rounded-lg'>
                     <div className='bg-[#E6EBEC] flex justify-between px-6 py-4 font-semibold text-[#6A6A6A]'>
                         <h2>Name</h2>
+                        <h2>Email</h2>
+                        <h2>Move From</h2>
+                        <h2>Move To</h2>
                         <h2>Date</h2>
                     </div>
 
                     <div className='h-64 flex mt-2 justify-start'>
-                        {Projects.length > 0 ? (
+                        {quotesData.length > 0 ? (
 
                             < div className='w-full'>
-                                {Projects.map(project => (
-                                    <div className='flex justify-between' key={project.Name}>
-                                        <h2 className='px-6'>{project.Name}</h2>
-                                        <h2 className='px-6' >{project.Date}</h2>
+                                {quotesData.map((elem, idx) => (
+                                    <div className='flex justify-between' key={idx}>
+                                        <h2 className='px-6'>{elem?.name}</h2>
+                                        <h2 className='px-6'>{elem?.email}</h2>
+                                        <h2 className='px-6'>{elem?.moveFrom}</h2>
+                                        <h2 className='px-6'>{elem?.moveTo}</h2>
+                                        <h2 className='px-6' >{new Date(elem?.requestTime).getDate() + "-" +  new Date(elem?.requestTime).getMonth() + "-" +  new Date(elem?.requestTime).getFullYear()}</h2>
                                     </div>
                                 ))}
 

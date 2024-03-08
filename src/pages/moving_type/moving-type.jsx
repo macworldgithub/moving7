@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { AutoComplete, Select, TimePicker } from "antd";
 import { useQuery, useMutation } from "react-query";
 import MyModal from '../../components/Modal/Modal'
-import { getLocationSuggestions, quoteRequest, requestOTP, verifyOTP } from "../../apiFunctions/partner";
+import { getLocationSuggestions, quoteRequest, requestOTP, sendEmailToPartners, verifyOTP } from "../../apiFunctions/partner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-phone-number-input/style.css";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
@@ -46,12 +46,29 @@ function MovingType() {
         },
         building: "",
     });
+    const sendEmailToPartnersMutation = useMutation({
+        mutationKey: "sendToPartners",
+        mutationFn: sendEmailToPartners,
+        onSuccess: (data) => {
+            console.log(data)
+            toast.success("Request Sent Successfully to Partners! ")
+            window.localStorage.removeItem("userData")
+        },
+        onSettled: (d, e) => console.log(d, e),
+    });
     const postRequest = useMutation({
         mutationKey: "postRequest",
         mutationFn: quoteRequest,
-        onSuccess: () => {
+        onSuccess: (d) => {
+            console.log(d,"insertedd")
             toast.success("Request submitted successfully!")
             setShowVerificationModal(false)
+            console.log(data.moveFrom,data,"JUSTTTTTTTTTTTTTTTTT")
+            sendEmailToPartnersMutation.mutate({
+                moveFrom : data.moveFrom,
+                moveTo : data.moveTo,
+                id: d.data.insertedId
+            })
         },
         onSettled: (d, e) => console.log(d, e),
     });
