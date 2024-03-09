@@ -120,3 +120,34 @@ export function getPartnerSentQuotes(data) {
     })
 }
 
+export function getPartnerOverview({queryKey}) {
+    const data = queryKey[1]
+    console.log(data, "going")
+    return axios.get(`${LOCALHOST_URL}/partner/getPartnerOverview`, {
+        params: {
+            id : data
+        }
+    })
+}
+
+
+
+export function getPartnerQuotes({queryKey}) {
+    const data = queryKey[1]
+    console.log(data, "going")
+    return axios.get(`${LOCALHOST_URL}/partner/getpartnerquotes`, {
+        params: data
+    })
+}
+
+
+export function updatePassword(data) {
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    console.log(data, "going")
+    return axios.put(`${LOCALHOST_URL}/partner/updatepartnerpassword`, data, {
+        headers: {
+            Authorization: `Bearer ${json?.token}`
+        }
+    })
+}

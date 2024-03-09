@@ -1,20 +1,20 @@
 import MyModal from "../../components/Modal/Modal"
+import RegionAccordion from "../partner/form/Accordion";
 import { setKey, setDefaults, fromAddress } from "react-geocode";
 import { deleteImage } from "../../firebase/utils";
 import AddImage from "../../assets/images/partnerChooseimg/addimage.png"
 import { uploadImageDataStringAndGetURL } from "../../firebase/utils";
 import { copyToClipboard } from "../../utils/CopyFun";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GoogleMap, Marker, useJsApiLoader, Circle, Polygon } from "@react-google-maps/api";
 import { AiOutlineRight, AiOutlineLeft, AiOutlineDelete, AiOutlinePlus, AiOutlineEdit, AiOutlineCheck } from "react-icons/ai";
-import { Carousel } from 'antd';
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation, useQuery } from "react-query";
-import { fetchOnePartner, getPolygon, updateContactInfo, updateNameAdd, updatePartnerDetails } from "../../apiFunctions/partner";
-import { Select, Input } from 'antd';
-import { latLng, polygon } from "leaflet";
+import { fetchOnePartner, getPolygon, getUAERegions, partnerSignIn, updateContactInfo, updateNameAdd, updatePartnerDetails } from "../../apiFunctions/partner";
+import { Select, Input , AutoComplete} from 'antd';
+import { getLocationSuggestions } from "../../apiFunctions/partner";
 
 
 setKey("AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ");
@@ -30,17 +30,12 @@ const containerStyle = {
 
 const CompanyProfile = () => {
     const { id } = useParams()
+    const [locationOptions, setLocationOptions] = useState([]);
     const partnerDataRes = useQuery({
         queryKey: ["fetchOnepartner", id],
         queryFn: fetchOnePartner,
     })
     const regions = partnerDataRes?.data?.data?.regions ?? []
-    const polygonRes = useQuery({
-        queryKey: ["fetchpolygon", regions],
-        queryFn: getPolygon,
-        enabled: false
-    })
-    const fetchPolygon = polygonRes.refetch
     const refetch = partnerDataRes?.refetch
     const updatePartnerDetailsMutation = useMutation({
         mutationKey: "updatePartnerDetails",
@@ -53,6 +48,25 @@ const CompanyProfile = () => {
             toast.success("Ops could not be updated!")
         }
     })
+    const getRegionsQuery = useQuery({
+        queryKey: ["fetchRegions"],
+        queryFn: getUAERegions,
+    });
+    const RegionData = getRegionsQuery?.data?.data
+    const fetchLocationsMutation = useMutation({
+        mutationKey: "fetchLocation",
+        mutationFn: getLocationSuggestions,
+        onSuccess: (data) => {
+            let arr = data?.data?.map((elem) => {
+                return {
+                    value: elem?.address,
+                    label: elem?.address,
+                };
+            });
+            setLocationOptions(arr);
+        },
+        onSettled: (d, e) => console.log(d, e),
+    });
     const [isDataEditable, setIsDataEditable] = useState({
         isNameLocationEditable: false,
         isContactInfoEditable: false,
@@ -61,12 +75,20 @@ const CompanyProfile = () => {
         isCompanyDataEditable: false
     })
     const [partnerData, setPartnerData] = useState({})
+    const polygonRes = useQuery({
+        queryKey: ["fetchPolygonsEdit", partnerData?.regions ?? []],
+        queryFn: getPolygon,
+        enabled: false
+    })
+    const fetchPolygon = polygonRes.refetch
     const [images, setImages] = useState([])
     const [showImageModal, setShowImageModal] = useState(false)
+    const [showTargetingModal, setShowTargetingModal] = useState(false)
+    const [showProfileModal, setShowProfileModal] = useState(false)
     const [currImage, setCurrImage] = useState(0)
     const [latlong, setLatlong] = useState({
-        lat: -3.745,
-        lng: -38.523,
+        lat: 25.276987,
+        lng: 55.296249,
     });
     useEffect(() => {
         console.log(partnerDataRes?.data?.data, "hereeeeeee")
@@ -96,8 +118,34 @@ const CompanyProfile = () => {
     });
 
 
+
+
+    const onLocationChange = (e) => {
+        fetchLocationsMutation.mutate(e);
+    };
+
+
+    const onLocationSelect = (val) => {
+        setPartnerData({
+            ...partnerData,
+            location: val,
+        });
+        fromAddress(val)
+            .then(({ results }) => {
+                const { lat, lng } = results[0].geometry.location;
+                setLatlong({
+                    lat,
+                    lng,
+                });
+            })
+            .catch(console.error);
+    };
+
+
+
     const polygons = polygonRes?.data?.data
-    console.log(polygons, "Polyyyyyyyyyy")
+
+    console.log(polygonRes, "polygons")
 
     const nullCount = (arr) => {
         let count = 0
@@ -127,7 +175,7 @@ const CompanyProfile = () => {
                 <div className="flex flex-wrap">
                     <div className=" flex lg:w-3/4 flex-wrap sm:w-96">
                         <div>
-                            <img src="https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?size=626&ext=jpg&ga=GA1.1.98259409.1708992000&semt=sph" className="rounded-full lg:w-[240px] sm:w-full z-10 relative" />
+                            <img onClick={() => setShowProfileModal(true)} src={`${partnerData?.profileImage ?? "https://t4.ftcdn.net/jpg/05/42/36/11/360_F_542361185_VFRJWpR2FH5OiAEVveWO7oZnfSccZfD3.jpg"}`} className="cursor-pointer rounded-full lg:w-[240px] sm:w-full z-10 relative" />
                         </div>
                         <div className="mx-8 flex justify-between flex-col mt-2">
                             <div>{
@@ -467,8 +515,9 @@ const CompanyProfile = () => {
                             </div>
 
 
-                            <h1 className="mt-8 font-semibold text-2xl my-5">
+                            <h1 className="flex items-center mt-8 font-semibold text-2xl my-5">
                                 Company Location
+                                        <AiOutlineEdit onClick={() => setShowTargetingModal(true)} className="cursor-pointer ms-2" />
                             </h1>
                             {isLoaded ? (
                                 <GoogleMap
@@ -619,6 +668,318 @@ const CompanyProfile = () => {
 
                 </div>
             </div>
+
+
+
+
+
+
+            {
+                showProfileModal && (
+                    <MyModal>
+                        <div className="bg-white relative w-4/5 rounded-lg px-5 pb-10 py-5  h-4/5">
+                            <div
+                                onClick={() => setShowProfileModal(false)}
+                                style={{
+                                    fontSize: "20px",
+                                    zIndex: 100
+                                }} className="absolute  bg-[rgba(0,0,0,0.5)] rounded-full w-10 h-10 flex items-center justify-center cursor-pointer text-white right-7">
+                                X
+                            </div>
+                            {
+                                partnerData?.profileImage ? (
+                                    <div className="h-full w-full flex justify-center items-center">
+                                        <img className="h-48 w-52" src={partnerData?.profileImage ?? AddImage} />
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col w-full h-full items-center relative justify-center w-full">
+                                        <input multiple={false} type={"file"} onChange={(e) => {
+                                            console.log("ajaaaaaaaaaaaa", e.target.files[0])
+                                            let file = e.target.files[0]
+                                            let reader = new FileReader()
+                                            reader.readAsDataURL(file)
+                                            reader.addEventListener("load", function() {
+                                                handleDataChange("profileImage", this.result)
+                                                console.log("profileImage", this.result, "ajaaaaaaaaa")
+                                            });
+                                        }} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" />
+                                        <AiOutlinePlus className="text-primary bg-white rounded-full p-3" style={{
+                                            fontSize: "60px"
+                                        }} />
+                                        <p className="text-2xl mt-2">
+                                            Add Image
+                                        </p>
+                                    </div>
+                                )
+                            }
+                            <div className="flex justify-between py3  w-full relative">
+                                <AiOutlineEdit size={30} className={"text-red cursor-pointer"} />
+                                <input multiple={false} type={"file"} onChange={(e) => {
+                                    console.log("ajaaaaaaaa")
+                                    let file = e.target.files[0]
+                                    let reader = new FileReader()
+                                    reader.readAsDataURL(file)
+                                    reader.addEventListener("load", function() {
+                                        handleDataChange("profileImage", this.result)
+                                        console.log("profileImage", this.result, "ajaaaaaaaaa")
+                                    });
+                                }} className="absolute top-0 left-0 w-20 h-20 opacity-0 cursor-pointer" />
+                                <p onClick={async () => {
+                                    if (!partnerData?.profileImage) {
+                                        return
+                                    }
+                                    const url = await uploadImageDataStringAndGetURL(`profiles/${partnerData?._id}/profileImage`, partnerData?.profileImage)
+                                    console.log("profileurl", url)
+                                    updatePartnerDetailsMutation.mutate({
+                                        profileImage: url
+                                    })
+                                }} className="bg-primary text-white text-lg cursor-pointer rounded px-3 mx-3 text-2xl">
+                                    Save
+                                </p>
+                            </div>
+                        </div>
+                    </MyModal>
+                )
+            }
+
+
+
+
+
+
+
+            {
+                showTargetingModal && (
+                    <MyModal>
+                        <div className="bg-white overflow-y-scroll overflow-x-hidden flex  flex-col items-center relative w-4/5 rounded-lg px-5 pb-10 py-5   h-4/5">
+                            <div
+                                onClick={() => setShowTargetingModal(false)}
+                                style={{
+                                    fontSize: "20px",
+                                    zIndex: 100
+                                }} className="absolute  bg-[rgba(0,0,0,0.5)] rounded-full w-10 h-10 flex items-center justify-center cursor-pointer text-white right-7">
+                                X
+                            </div>
+
+
+
+
+
+                            <div className="w">
+                                <h2 className="text-[#13C265] text-2xl text-center p-3">
+                                    Set a radius or select areas
+                                </h2>
+                                <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
+                                    <div className="flex w-[255px] md:w-[480px] px-2 py-1">
+                                        <input
+                                            onClick={() => handleDataChange("areaPreference", "radius")}
+                                            checked={partnerData?.areaPreference === "radius"}
+                                            type="radio"
+                                            name="areaPreference"
+                                        />
+                                        <p className="ml-2">Set a radius</p>
+                                    </div>
+                                </div>
+                                <div className=" bg-white mt-2 rounded-md border-[#13C26580] border-[1.5px]">
+                                    <div className="flex w-[255px] md:w-[480px] px-2 py-1">
+                                        <input
+                                            onClick={() => handleDataChange("areaPreference", "region")}
+                                            checked={partnerData?.areaPreference === "region"}
+                                            type="radio"
+                                            name="areaPreference"
+                                        />
+                                        <p className="ml-2">Set a region</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {partnerData?.areaPreference === "radius" && (
+                                <>
+                                    {" "}
+                                    <div className="p-3">
+                                        <div>
+                                            <h2 className="text-[#13C265] text-2xl text-center">
+                                                Provide your location and select a radius
+                                            </h2>
+                                        </div>
+                                        <div className="flex flex-wrap gap-2 md:gap-4 mt-4">
+                                            <div>
+                                                <h3 className="text-[#13C265]">Your Location</h3>
+                                                <AutoComplete
+                                                    style={{
+                                                        width: 200,
+                                                    }}
+                                                    onSelect={onLocationSelect}
+                                                    onSearch={onLocationChange}
+                                                    options={locationOptions}
+                                                    placeholder={`${partnerData?.location ?? "Location"}`}
+                                                />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-[#13C265]">Radius</h3>
+                                                <input
+                                                    type="number"
+                                                    placeholder="5 miles"
+                                                    className=" w-[6rem] md:w-[12rem] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px]"
+                                                    value={partnerData?.radius}
+                                                    onChange={(e) =>
+                                                        handleDataChange("radius", e.target.value)
+                                                    }
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="-ml-8">
+                                        {isLoaded && partnerData?.areaPreference === "radius" ? (
+                                            <GoogleMap
+                                                mapContainerStyle={{
+                                                        width: "30rem",
+                                                        height: "400px",
+                                                        marginLeft: "2rem",
+                                                    }}
+                                                center={latlong}
+                                                zoom={13}
+                                            >
+                                                {/* Child components, such as markers, info windows, etc. */}
+                                                <Circle
+                                                    center={latlong}
+                                                    radius={1609.34 * partnerData?.radius}
+                                                    options={{
+                                                        fillColor: "coral",
+                                                        fillOpacity: 0.3,
+                                                        strokeWeight: 2,
+                                                        strokeColor: "coral",
+                                                        clickable: false,
+                                                        editable: true,
+                                                        zIndex: 1
+                                                    }}
+                                                    onCenterChanged={() => console.log("onCenterChanged")}
+                                                    onRadiusChanged={() => console.log("onRadiusChanged")}
+                                                />
+                                                <Marker position={latlong} />
+                                            </GoogleMap>
+                                        ) : (
+                                            <>
+                                            </>
+                                        )}
+                                    </div>
+                                </>
+                            )}
+                            {
+                                partnerData?.areaPreference === "region" && (
+                                    <>
+                                        <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData} setData={setPartnerData} data={partnerData} />
+                                        <div className="-ml-8 mb-3 mt-5">
+                                            {isLoaded && partnerData?.areaPreference === "region" ? (
+                                                <GoogleMap
+                                                    mapContainerStyle={{
+                                                        width: "30rem",
+                                                        height: "400px",
+                                                        marginLeft: "2rem",
+                                                    }}
+                                                    center={{
+                                                        lat: 25.276987,
+                                                        lng: 55.296249
+                                                    }}
+                                                    zoom={9}
+                                                >
+                                                    {polygons && (
+                                                        polygons?.map((reg) => {
+                                                            return reg?.multiPolygon?.map((elem) => {
+                                                                return (<Polygon
+                                                                    path={elem}
+                                                                    options={{
+                                                                        fillColor: '#1ABD5E',
+                                                                        fillOpacity: 0.1,
+                                                                        strokeColor: '#1ABD5E',
+                                                                        strokeOpacity: 0.5,
+                                                                        strokeWeight: 1,
+                                                                    }}
+
+                                                                />)
+                                                            })
+                                                        })
+                                                    )
+                                                    }
+                                                    <Marker position={latlong} />
+                                                </GoogleMap>
+                                            ) : (
+                                                <>
+                                                </>
+                                            )}
+                                        </div>
+                                        <div className='md:w-[47%] mx-auto'>
+                                            <p className='text-gray-500'>Selected Areas:</p>
+                                            <div className="flex flex-wrap">
+                                                {
+                                                    partnerData?.regions?.map((selectedCity) => {
+                                                        return (
+                                                            <div className="my-1 flex px-2 py-0 h-max items-center justify-between rounded-lg text-white me-2 bg-[#13C265]">
+                                                                <p className="m-0 p-0">
+                                                                    {selectedCity?.name}
+                                                                </p>
+                                                                <span onClick={() => {
+                                                                    let temp =partnerData 
+                                                                    temp?.regions?.splice(temp?.regions?.findIndex(region => region?.name === selectedCity.name), 1)
+                                                                    setPartnerData({
+                                                                        ...partnerData,
+                                                                        regions: temp?.regions
+                                                                    })
+                                                                }} className="ms-1 px-1 text-lg cursor-pointer">x</span>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <div onClick={() => {
+                                        let tempObj = {
+                                        }
+                                            tempObj.areaPreference = partnerData?.areaPreference
+                                        if (partnerData?.areaPreference === "region") {
+                                            tempObj.regions = partnerData?.regions
+                                        } else {
+                                            tempObj.location = partnerData?.location
+                                            tempObj.radius = partnerData?.radius
+                                        }
+                                        updatePartnerDetailsMutation.mutate(tempObj)
+                                    }} className="w-full mt-5 rounded-lg shadow cursor-pointer lg:w-1/2 py-2 text-center bg-primary text-white">
+                                    Save
+                                    </div>
+                        </div>
+                    </MyModal>
+                )
+            }
+
+
+
+
+
+
+
+
 
 
             {

@@ -2,7 +2,7 @@ import React from 'react'
 import { IoIosArrowForward } from "react-icons/io";
 import { useQuery } from 'react-query';
 import UserImg from '../../../src/assets/images/overview/Group 17.png'
-import { getPartnerSentQuotes } from '../../apiFunctions/partner';
+import { getPartnerOverview, getPartnerSentQuotes } from '../../apiFunctions/partner';
 import SmalllFooter from '../footer/smalllFooter';
 
 let Projects = [
@@ -13,12 +13,20 @@ let Projects = [
 ]
 
 export default function Overview() {
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    const partnerOverviewRes = useQuery({
+        queryKey: ["fetchPartnerOverview", json?._id],
+        queryFn: getPartnerOverview,
+    });
     const quotes = useQuery({
         queryKey: ["fetchRequestOfPartner"],
         queryFn: getPartnerSentQuotes,
     });
-    const quotesData = quotes?.data?.data
+    const quotesData = quotes?.data?.data ?? []
+    const partnerOverviewData = partnerOverviewRes?.data?.data ?? {}
     console.log(quotesData, "dataaaa")
+    console.log(partnerOverviewData, "overviewdataaaa")
     return (
         <div>
             <div className='flex flex-col lg:flex-row items-center justify-center p-8'>
@@ -40,29 +48,22 @@ export default function Overview() {
                 <div className='w-11/12 lg:w-2/4 flex flex-col sm:flex-row gap-3 lg:gap-0 lg:flex-col items-start justify-center mt-10'>
                     <div className='w-full shadow-xl rounded-md px-4 py-6'>
                         <div className='border-b-2 w-full'>
-                            <h2 className='font-semibold text-md md:text-lg pb-2'>Account details</h2>
+                            <h2 className='font-semibold text-md md:text-lg pb-2'>Company Info</h2>
                         </div>
                         <div>
-                            <h2 className='w-full font-semibold pt-2 text-md md:text-lg'>User Name</h2>
-                            <p className='text-md md:text-lg text-gray-400'>Account status</p>
+                            <h2 className='w-full font-semibold pt-2 text-md md:text-lg'>Company Name</h2>
+                            <p className='text-md md:text-lg text-gray-400'>{partnerOverviewData?.companyName ?? "None"}</p>
                         </div>
                         <div className='flex items-center justify-between'>
                             <div>
                                 <h2 className='w-full font-semibold pt-2 text-md md:text-lg'>Account status</h2>
-                                <p className='text-md md:text-lg font-light'>Waiting for verification</p>
-                            </div>
-                            <div>
-                                <IoIosArrowForward size={35} />
+                                <p className='text-md md:text-lg font-light'>{partnerOverviewData?.isVerified ? "Verified" : "Not yet verified"}</p>
                             </div>
                         </div>
                         <div className='flex items-center justify-between'>
                             <div>
                                 <h2 className='w-full font-semibold pt-2 text-md md:text-lg'>Targeting</h2>
-                                <p className='text-md md:text-lg text-gray-400'>Radius 20 mils from Seattle, WA,
-                                    USA</p>
-                            </div>
-                            <div>
-                                <IoIosArrowForward size={35} />
+                                <p className='text-md md:text-lg text-gray-400'>{partnerOverviewData?.areaPreference === "radius" ? `Radius ${partnerOverviewData?.radius ?? "___"} mils from ${partnerOverviewData?.location ?? "___"}` : partnerOverviewData?.regions?.map((region) => region?.name).join(" , ")}</p>
                             </div>
                         </div>
                     </div>
@@ -111,7 +112,7 @@ export default function Overview() {
                     </div>
 
                     <div className='h-64 flex mt-2 justify-start'>
-                        {quotesData.length > 0 ? (
+                        {quotesData?.length > 0 ? (
 
                             < div className='w-full'>
                                 {quotesData.map((elem, idx) => (
@@ -120,7 +121,7 @@ export default function Overview() {
                                         <h2 className='px-6'>{elem?.email}</h2>
                                         <h2 className='px-6'>{elem?.moveFrom}</h2>
                                         <h2 className='px-6'>{elem?.moveTo}</h2>
-                                        <h2 className='px-6' >{new Date(elem?.requestTime).getDate() + "-" +  new Date(elem?.requestTime).getMonth() + "-" +  new Date(elem?.requestTime).getFullYear()}</h2>
+                                        <h2 className='px-6' >{new Date(elem?.requestTime).getDate() + "-" + new Date(elem?.requestTime).getMonth() + "-" + new Date(elem?.requestTime).getFullYear()}</h2>
                                     </div>
                                 ))}
 

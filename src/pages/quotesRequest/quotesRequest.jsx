@@ -3,9 +3,12 @@ import React from 'react'
 import QuotePicker from '../quotesRequest/datePicker'
 import QuoteDropdown from '../quotesRequest/DropDown'
 import TimeLine from '../quotesRequest/Timeline'
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import UserImg from '../../assets/images/overview/Group 17.png'
 import SmalllFooter from '../footer/smalllFooter';
+import { getPartnerQuotes } from '../../apiFunctions/partner';
+import { useState } from 'react';
+import { useQuery } from 'react-query';
 
 let Projects = [
     { Name: "Bilal" },
@@ -15,6 +18,29 @@ let Projects = [
 ]
 
 export default function QuotesRequest() {
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    const [dates, setDates] = useState({
+        fromDate: "",
+        toDate: ""
+    })
+    const [searchQuery, setSearchQuery] = useState("")
+    const [pageNo, setPageNo] = useState(0)
+    const partnerQuotesRes = useQuery({
+        queryKey: ["fetchPartnerQuotes", {
+            email: json?.email,
+            pageNo,
+            fromDate: dates.fromDate,
+            toDate: dates.toDate,
+            searchQuery,
+        }],
+        queryFn: getPartnerQuotes,
+    });
+    const partnerQuotesData = partnerQuotesRes?.data?.data?.quotes ?? []
+    const totalRequests = partnerQuotesRes?.data?.data?.total ?? []
+    const refetchQuotes = partnerQuotesRes.refetch
+    console.log(pageNo, "pageno")
+    console.log(partnerQuotesData, "partnerQuotesData", partnerQuotesRes, "partnerQuotesRes")
     return (
         <>
             <div className='flex flex-col md:flex-row mt-8 lg:mt-10 gap-4 px-4'>
@@ -22,35 +48,69 @@ export default function QuotesRequest() {
                     <div className='w-full'>
                         <h2 className='text-lg font-medium mb-2'>Quote Request</h2>
                         <div className='flex flex-col lg:flex-row justify-between items-center gap-2 xl:gap-10 '>
-                            <QuotePicker />
-                            <QuoteDropdown />
+                            <QuotePicker dates={dates} setDate={setDates} />
+                            {/*<QuoteDropdown />*/}
                             <div className='flex'>
-                                <input type="search" placeholder='E.g. Peter' className='border rounded-r-none border-gray-300 px-6 w-28 outline-none rounded-md' />
+                                <input type="search" placeholder='E.g. Peter' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className='border rounded-r-none border-gray-300 px-6 w-28 outline-none rounded-md' />
                                 <button className=' bg-[#13C265] text-white py-2 px-6 text-md rounded-sm rounded-l-none'>Search</button>
                             </div>
                         </div>
-                        <div className='lg:mt-[12px] w-full mt-4 sm:mt-4  -ml-8 lg:-ml-8 rounded-b-md absolute'>
-                            <div className='flex justify-between px-4 py-2 bg-[#E6EBEC]'>
-                                <h2 className='md:w-28'>Name</h2>
-                                <h2 className='md:w-28'>Status</h2>
-                                <h2 className='md:w-28'>Date</h2>
-                            </div>
-                            {Projects.length > 0 ? (
-                                <div className='flex justify-between py-4 px-4 h-52 bg-[#EFF2F3] overflow-x-scroll'>
-                                    {Projects.map((project, index) => (
-                                        <div key={index}>
-                                            <h2 className=' md:w-28'>{project.Name}</h2>
-                                            <h2 className=' md:w-28'>{project.Status}</h2>
-                                            <h2 className=' md:w-28'>{project.Date}</h2>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className='bg-[#EFF2F3]'>
-                                    <p className='py-16 px-4 text-center text-gray-400'>No quote requests received yet. We will email you once we have suitable projects.</p>
-                                </div>
-                            )}
-                        </div>
+                        <table className='lg:mt-[12px] w-full mt-4 sm:mt-4 mt-5 -ml-8 lg:-ml-8 rounded-b-md absolute'>
+                            <thead className='px-4 py-3 bg-[#E6EBEC]'>
+                                <tr>
+                                    <th className='py-3'>Name</th>
+                                    <th className='py-3'>Email</th>
+                                    <th className='py-3'>Requested At</th>
+                                </tr>
+                            </thead>
+                            <tbody className='bg-gray-100'>
+                                {partnerQuotesData?.length > 0 ? (
+                                    partnerQuotesData?.map((quote, index) => {
+                                        return (
+                                            <tr key={index} className="cursor-pointer">
+                                                <td className='text-center py-2'>{quote?.name}</td>
+                                                <td className='text-center'>{quote?.email}</td>
+                                                <td className='text-center'>{new Date(quote?.requestTime)?.toLocaleString()}</td>
+                                            </tr>
+
+                                        )
+                                    }
+                                    )) : (
+                                    <tr className='bg-[#EFF2F3]'>
+                                        <td></td>
+                                        <td className='py-16 w-80 px-4 text-center text-gray-400'>No quote requests received yet. We will email you once we have suitable projects.</td>
+                                        <td></td>
+                                    </tr>
+                                )}
+                            </tbody>
+                            <tfoot>
+                                <tr bg-gray-100>
+                                    <td className="p-2 bg-gray-100 fs-5 text-dark font-primary text-center">
+                                        Total Records : {totalRequests}
+                                    </td>
+                                    <td className="p-2 bg-gray-100 fs-5 text-dark font-primary text-center">
+                                        Page {pageNo + 1} of {Math.ceil(totalRequests / 10)}
+                                    </td>
+                                    <td class=" text-center bg-gray-100">
+                                        <button
+                                            onClick={() => setPageNo(pageNo - 1)}
+                                            disabled={pageNo === 0}
+                                            className="border-0 mx-1 text-dgreen bg-white fs-4"
+                                        >
+                                            <IoIosArrowBack size={20} className="bg-gray-100" />
+                                        </button>
+                                        <button
+                                            onClick={() => setPageNo(pageNo + 1)}
+                                            disabled={pageNo === Math.ceil(totalRequests / 10) - 1}
+                                            className="border-0 mx-1 text-dgreen bg-white fs-4"
+                                        >
+                                            <IoIosArrowForward size={20} className="bg-gray-100" />
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+
+                        </table>
                     </div>
                 </div>
 

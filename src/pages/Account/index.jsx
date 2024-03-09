@@ -1,37 +1,70 @@
 import React from 'react'
+import { updatePassword } from '../../apiFunctions/partner';
+import { useMutation } from 'react-query';
+import { useState } from 'react';
 import { IoIosArrowForward } from "react-icons/io";
+import { toast } from 'react-toastify';
 import UserImg from '../../assets/images/overview/Group 17.png'
 import SmalllFooter from '../footer/smalllFooter';
 
 export default function Account() {
+
+    const updatePasswordMutation = useMutation({
+        mutationFn: updatePassword,
+        onSuccess: (data) => {
+            console.log(data)
+            toast.success('Password updated successfully')
+        },
+        onError: (error) => {
+            toast.error(error)
+        }
+    })
+
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+
+    const submit = () => {
+        if (!password || !confirmPassword) {
+            toast.error('Please fill all the fields')
+            return
+        }
+        if (password !== confirmPassword) {
+            toast.error('Password and Confirm Password does not match')
+            return
+        }
+        updatePasswordMutation.mutate({ password, confirmPassword })
+    }
+    
+
     return (
         <>
             <div className='w-full flex flex-col lg:flex-row items-center justify-around mt-2'>
                 <div className='flex flex-col w-11/12 md:w-7/12 mt-10 lg:mt-40'>
                     <div className='ml-0 lg:ml-12 lg:-mt-36 rounded-md shadow-xl'>
                         <div className='px-8 py-4 flex justify-between items-center border-b-2'>
-                            <h2 className='text-lg font-medium'>Username</h2>
-                            <button className='bg-primary px-6 py-1 rounded-sm text-white'>Edit</button>
+                            <h2 className='text-lg font-medium'>Change Password</h2>
+                            <button onClick={submit} className='bg-primary px-6 py-1 rounded-sm text-white'>Save</button>
                         </div>
                         <div className='flex flex-col p-4'>
                             <div className='flex gap-2 lg:gap-10 p-4 border-b-2 items-center'>
-                                <h2 className='font-medium text-gray-400'>Username</h2>
-                                <input type="email" placeholder='siddiqui@gmail.com' className=' font-medium text-gray-400 outline-none' />
+                                <h2 className='font-medium text-gray-400'>Password</h2>
+                                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='********' className=' font-medium text-gray-400 outline-none' />
                             </div>
                             <div className='flex gap-10 p-4'>
-                                <h2 className=' font-medium text-gray-400'>Password</h2>
-                                <input type="password" placeholder='********' className=' font-medium text-gray-400 outline-none' />
+                                <h2 className=' font-medium text-gray-400'>Confirm password</h2>
+                                <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='********' className=' font-medium text-gray-400 outline-none' />
                             </div>
                         </div>
                     </div>
-                    <div className='ml-0 lg:ml-12 mt-10 rounded-md shadow-xl'>
-                        <div className='px-6 lg:px-8 py-4 flex justify-between items-center border-b-2'>
-                            <h2 className='text-lg font-medium'>Email notifications</h2>
-                            <button className='bg-primary px-6 py-1 rounded-sm text-white'>Edit</button>
+
+                    <div className='ml-0 lg:ml-12 mt-10 '>
+                        <div className='px-6 lg:px-8 py-4 flex justify-between items-center borderb-2'>
+                            <h2 className='text-lg font-medium'></h2>
+                            <p className='bg-prmary px-6 py-1 rounded-sm text-white'></p>
                         </div>
                         <div className='flex gap-6 p-4'>
-                            <h2 className='text-gray-400 px-2 lg:px-4'>Receive email notifications </h2>
-                            <h2 className='text-primary font-medium'>On</h2>
+                            <h2 className='text-ray-400 px-2 lg:px-4'></h2>
+                            <h2 className='text-rimary font-medium'></h2>
                         </div>
                     </div>
 

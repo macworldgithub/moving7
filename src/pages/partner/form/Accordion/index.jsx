@@ -22,19 +22,23 @@ const RegionAccordion = ({ areas,fetchPolygon, setData, data }) => {
                                 return (
                                     <div className='flex gap-2' key={i}>
                                         <input type="checkbox"
-                                            checked={data.regions.includes(city)}
+                                            checked={data?.regions?.includes(city)}
                                             onChange={(e) => {
                                                 if (e.target.checked === true) {
 
                                                     let temp = data
-                                                    temp.regions.push(city)
+                                                    if (!temp?.regions){
+                                                        temp.regions = []
+                                                    }
+
+                                                    temp?.regions?.push(city)
                                                     setData({
                                                         ...data,
-                                                        regions: temp.regions
+                                                        regions: temp?.regions
                                                     })
                                                 } else {
                                                     let temp = data
-                                                    temp.regions.splice(temp.regions.findIndex(region => region.name === city.name), 1);
+                                                    temp?.regions?.splice(temp?.regions?.findIndex(region => region.name === city.name), 1);
                                                     setData({
                                                         ...data,
                                                         regions: temp.regions

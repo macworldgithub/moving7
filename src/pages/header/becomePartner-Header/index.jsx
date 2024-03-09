@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import QuoteDropdown from '../../quotesRequest/DropDown';
+import {Dropdown} from 'antd';
 import { toast } from 'react-toastify';
 import Logo from "../../../assets/images/partner-logo/icon-32-logo 1.svg";
 import { IoIosArrowDown } from "react-icons/io";
@@ -56,7 +58,7 @@ export default function PartnerHeader({ user }) {
                             }
                             }
                             className='cursor-pointer'>Company Profile</h2>
-                        <h2
+                        {/*<h2
                             onClick={() => {
                                 if (user?.proof) {
                                     navigate(`/partner/targeting/${user?._id}`)
@@ -65,7 +67,7 @@ export default function PartnerHeader({ user }) {
                                 }
                             }
                             }
-                            className='cursor-pointer'>Targeting</h2>
+                            className='cursor-pointer'>Targeting</h2> */}
                         <h2
                             onClick={() => {
                                 if (user?.proof) {
@@ -88,7 +90,7 @@ export default function PartnerHeader({ user }) {
                                         }
                                         }
                                     >Account</h2>
-                                    <IoIosArrowDown />
+                                <QuoteDropdown />
                                 </>
                             ) : (
                                 <h2 onClick={() => {
