@@ -15,6 +15,7 @@ import Overview from "./pages/Overview";
 import Account from "./pages/Account";
 import MobileMenu from "./pages/header/becomePartner-Header/forMobile";
 import PartnerLayout from "./layout/partnerLayout";
+import Help_Desk from "./pages/Account/Help_Desk";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -46,6 +47,7 @@ function App() {
                         <Route path="targeting/:id" element={<Targeting />} />
                         <Route path="account/:id" element={<Account />} />
                         <Route path="companyprofile/:id" element={<CompanyProfile />} />
+                        <Route path="helpdesk" element={<Help_Desk />} />
                     </ Route>
                 </Routes>
             </QueryClientProvider>

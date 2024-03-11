@@ -17,8 +17,8 @@ let Projects = [
 export default function QuotesRequest() {
     return (
         <>
-            <div className='flex flex-col md:flex-row mt-8 lg:mt-10 gap-4 px-4 relative'>
-                <div className='shadow-sm rounded-b-none shadow-gray-400 sm:w-[80%] lg:w-[63%] flex lg:ml-28 py-4 px-8 sm:h-48 md:h-48 lg:h-28'>
+            <div className='flex flex-col md:flex-row mt-8 lg:mt-10 gap-4 px-4 lg:mb-96'>
+                <div className='rounded-b-none sm:w-[80%] lg:w-[60%] flex lg:ml-28 py-4 px-8 sm:h-48 md:h-52 lg:h-28 rounded-lg border-[1.5px] border-b-0 relative '>
                     <div className='w-full'>
                         <h2 className='text-lg font-medium mb-2'>Quote Request</h2>
                         <div className='flex flex-col lg:flex-row justify-between items-center gap-2 xl:gap-10 '>
@@ -29,7 +29,7 @@ export default function QuotesRequest() {
                                 <button className=' bg-[#13C265] text-white py-2 px-6 text-md rounded-sm rounded-l-none'>Search</button>
                             </div>
                         </div>
-                        <div className='lg:mt-[18px] w-[91%] sm:w-[44%] sm:mt-4 mt-4 -ml-8 lg:-ml-8 lg:w-[59.4%] xl:w-[61.4%] rounded-b-md absolute'>
+                        <div className='lg:mt-[19px] w-full mt-4 sm:mt-4 -ml-8 lg:-ml-8 rounded-b-md absolute'>
                             <div className='flex justify-between px-4 py-2 bg-[#E6EBEC]'>
                                 <h2 className='md:w-28'>Name</h2>
                                 <h2 className='md:w-28'>Status</h2>
@@ -55,7 +55,7 @@ export default function QuotesRequest() {
                 </div>
 
 
-                <div className='w-full lg:w-[25%] mt-60 sm:mt-0'>
+                <div className='w-full md:w-[50%] lg:w-[27%] xl:w-[23%] mt-60 sm:mt-0'>
                     <div className='px-4 shadow-lg shadow-gray-300 rounded-lg'>
                         <h2 className='text-lg font-medium border-b-2 mb-4 py-3'>How to get customers reviews</h2>
                         <TimeLine />
@@ -79,7 +79,7 @@ export default function QuotesRequest() {
                             <img src={UserImg} alt="" className=' cursor-pointer' />
                             <div>
                                 <h2 className='text-md md:text-lg'>Asad Khan</h2>
-                                <button className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
+                                <button className='bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
                             </div>
                         </div>
                     </div>
