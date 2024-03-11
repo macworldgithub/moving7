@@ -2,7 +2,6 @@ import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./App.css";
-import { QueryClient, QueryClientProvider } from "react-query";
 import Home from "../src/pages/Home/index";
 import Partner from "../src/pages/partner/partner";
 import Login from "./pages/login";
@@ -15,6 +14,7 @@ import Overview from "./pages/Overview";
 import Account from "./pages/Account";
 import MobileMenu from "./pages/header/becomePartner-Header/forMobile";
 import PartnerLayout from "./layout/partnerLayout";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient({
     defaultOptions: {
