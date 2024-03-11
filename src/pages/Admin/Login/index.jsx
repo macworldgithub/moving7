@@ -1,6 +1,7 @@
 import React from 'react'
-
 import TransportVan from "../../../assets/images/admin/transport.png"
+import GoogleImg from "../../../assets/images/admin/Vector.png"
+import AppleImg from "../../../assets/images/admin/google.png"
 import { LockOutlined, MailOutlined } from '@ant-design/icons'
 
 export default function Admin_Login() {
@@ -32,6 +33,25 @@ export default function Admin_Login() {
                     </div>
                 </div>
                 <button className='bg-primary py-2 rounded-md text-white w-4/5 sm:w-2/3 md:w-2/4 lg:w-4/5 xl:w-2/4'>Login</button>
+                <div className='flex items-center flex-col'>
+                    <div className=' flex flex-col md:flex-row gap-1 m-2'>
+                        <div className=' text-gray-400'>------------</div>
+                        <div>
+                            <h2 className='text-gray-400'>Instant Login</h2>
+                        </div>
+                        <div className=' text-gray-400'>------------</div>
+                    </div>
+                    <div>
+                        <div className='flex gap-2 border-2 px-4 md:px-24 py-3 rounded-md cursor-pointer'>
+                            <img src={AppleImg} alt="" />
+                            <h2 className='font-medium'>Continue with Apple</h2>
+                        </div>
+                        <div className='flex gap-2 border-2 px-4 md:px-24 py-3 rounded-md mt-2 cursor-pointer'>
+                            <img src={GoogleImg} alt="" />
+                            <h2 className='font-medium'>Continue with Apple</h2>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div>
                 <img src={TransportVan} alt="" />
