@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Home from "../src/pages/Home/index";
 import Partner from "../src/pages/partner/partner";
 import Login from "./pages/login";
+import AdminLogin from "./pages/Admin/Login/index";
 import LayoutMain from "./layout/layout";
 import DocumentVerification from "./pages/documentVerification";
 import CompanyProfile from "./pages/companyProfile";
@@ -48,6 +49,9 @@ function App() {
                         <Route path="account/:id" element={<Account />} />
                         <Route path="companyprofile/:id" element={<CompanyProfile />} />
                         <Route path="helpdesk" element={<Help_Desk />} />
+                    </ Route>     
+                    <Route path="admin" element={<PartnerLayout />} >
+                        <Route path="login" element={<AdminLogin/>} />
                     </ Route>
                 </Routes>
             </QueryClientProvider>
