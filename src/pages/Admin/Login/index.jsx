@@ -31,7 +31,7 @@ export default function Admin_Login() {
                         Forget Password
                     </div>
                 </div>
-                <button className='bg-primary py-2 rounded-md text-white w-4/5 sm:w-2/3 md:w-2/4 lg:w-4/5 xl:w-3/5'>Login</button>
+                <button className='bg-primary py-2 rounded-md text-white w-4/5 sm:w-2/3 md:w-2/4 lg:w-4/5 xl:w-2/4'>Login</button>
             </div>
             <div>
                 <img src={TransportVan} alt="" />
