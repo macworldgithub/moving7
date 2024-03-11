@@ -34,7 +34,7 @@ export default function PartnerHeader() {
                     <Link to="/targeting">
                         <h2>Targeting</h2>
                     </Link>
-                    <Link to="/">
+                    <Link to="/helpDesk">
                         <h2>Help Desk</h2>
                     </Link>
                 </div>

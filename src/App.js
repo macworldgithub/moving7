@@ -14,6 +14,7 @@ import Overview from "./pages/Overview";
 import Account from "./pages/Account";
 import PartnerHeader from "./pages/header/becomePartner-Header";
 import MobileMenu from "./pages/header/becomePartner-Header/forMobile";
+import Help_Desk from "./pages/Account/Help_Desk";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,6 +42,7 @@ function App() {
             <Route path="quoteRequest" element={<QuotesRequest />} />
             <Route path="targeting" element={<Targeting />} />
             <Route path="account" element={<Account />} />
+            <Route path="helpDesk" element={<Help_Desk />} />
             {/* <Route path="header" element={<PartnerHeader />} />
             <Route path="mobile" element={<MobileMenu />} /> */}
           </Route>
