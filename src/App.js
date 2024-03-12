@@ -15,6 +15,8 @@ import Overview from "./pages/Overview";
 import Account from "./pages/Account";
 import MobileMenu from "./pages/header/becomePartner-Header/forMobile";
 import PartnerLayout from "./layout/partnerLayout";
+import Dashboard from "./pages/AdminPanel/Dashboard/dashboard";
+
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -47,6 +49,7 @@ function App() {
                         <Route path="account/:id" element={<Account />} />
                         <Route path="companyprofile/:id" element={<CompanyProfile />} />
                     </ Route>
+                    <Route path="/dashboard" element={<Dashboard/>} />
                 </Routes>
             </QueryClientProvider>
         </BrowserRouter>
