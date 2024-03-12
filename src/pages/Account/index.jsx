@@ -38,9 +38,9 @@ export default function Account() {
 
     return (
         <>
-            <div className='w-full flex flex-col lg:flex-row items-center justify-around mt-2'>
-                <div className='flex flex-col w-11/12 md:w-7/12 mt-10 lg:mt-40'>
-                    <div className='ml-0 lg:ml-12 lg:-mt-36 rounded-md shadow-xl'>
+            <div className='w-full flex flex-col lg:flex-row items-center justify-center gap-6 mt-2 lg:mb-96'>
+                <div className='flex flex-col w-11/12 md:w-[60%] mt-10 lg:mt-40'>
+                    <div className='ml-0 lg:ml-12 lg:-mt-36 rounded-md shadow-xl border-2'>
                         <div className='px-8 py-4 flex justify-between items-center border-b-2'>
                             <h2 className='text-lg font-medium'>Change Password</h2>
                             <button onClick={submit} className='bg-primary px-6 py-1 rounded-sm text-white'>Save</button>
@@ -70,8 +70,8 @@ export default function Account() {
 
                 </div>
 
-                <div className=' w-11/12 md:w-7/12 lg:w-1/4 mt-8 rounded-md shadow-xl'>
-                    <div className='px-4 shadow-lg shadow-gray-300 rounded-lg mt-4'>
+                <div className=' w-11/12 md:w-7/12 lg:w-[22%] mt-8 rounded-md shadow-xl'>
+                    <div className='px-4 shadow-lg shadow-gray-300 rounded-lg mt-4 py-4 border-2'>
                         <h2 className='text-lg font-medium border-b-2 mb-4'>Need help?</h2>
                         <h2 className='text-gray-500 '>Tips $ Best Practices</h2>
                         <p className='p-1 text-gray-400'>Contact a new lead within 8hrs to

@@ -43,8 +43,8 @@ export default function QuotesRequest() {
     console.log(partnerQuotesData, "partnerQuotesData", partnerQuotesRes, "partnerQuotesRes")
     return (
         <>
-            <div className='flex flex-col md:flex-row mt-8 lg:mt-10 gap-4 px-4'>
-                <div className='shadow-sm rounded-b-none shadow-gray-400 sm:w-[80%] lg:w-[63%] flex lg:ml-28 py-4 px-8 sm:h-48 md:h-52 lg:h-28 relative'>
+            <div className='flex flex-col md:flex-row mt-8 lg:mt-10 gap-4 px-4 lg:mb-96'>
+                <div className='rounded-b-none sm:w-[80%] lg:w-[60%] flex lg:ml-28 py-4 px-8 sm:h-48 md:h-52 lg:h-28 rounded-lg border-[1.5px] border-b-0 relative '>
                     <div className='w-full'>
                         <h2 className='text-lg font-medium mb-2'>Quote Request</h2>
                         <div className='flex flex-col lg:flex-row justify-between items-center gap-2 xl:gap-10 '>
@@ -115,7 +115,7 @@ export default function QuotesRequest() {
                 </div>
 
 
-                <div className='w-full lg:w-[25%] mt-60 sm:mt-0'>
+                <div className='w-full md:w-[50%] lg:w-[27%] xl:w-[23%] mt-60 sm:mt-0'>
                     <div className='px-4 shadow-lg shadow-gray-300 rounded-lg'>
                         <h2 className='text-lg font-medium border-b-2 mb-4 py-3'>How to get customers reviews</h2>
                         <TimeLine />
@@ -139,7 +139,7 @@ export default function QuotesRequest() {
                             <img src={UserImg} alt="" className=' cursor-pointer' />
                             <div>
                                 <h2 className='text-md md:text-lg'>Asad Khan</h2>
-                                <button className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
+                                <button className='bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
                             </div>
                         </div>
                     </div>

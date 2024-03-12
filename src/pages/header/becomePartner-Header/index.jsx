@@ -8,6 +8,7 @@ import { MdMenu } from "react-icons/md";
 import MobileMenu from './forMobile';
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function PartnerHeader({ user }) {
     const navigate = useNavigate()
