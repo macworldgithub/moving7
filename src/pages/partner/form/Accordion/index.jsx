@@ -4,7 +4,6 @@ const { Panel } = Collapse;
 
 let arr = ["Lahore", "Karachi", "Sialkot"]
 
-
 const RegionAccordion = ({ areas, setData, data }) => {
     const onChange = (key) => {
         console.log(renderData);
