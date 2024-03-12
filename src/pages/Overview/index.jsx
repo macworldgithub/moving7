@@ -72,94 +72,34 @@ export default function Overview() {
                             <h2 className='font-semibold text-md md:text-lg pb-2'>Need help?</h2>
                         </div>
 
-                    </div>
-                    <div className='w-11/12 lg:w-[36%] flex flex-col sm:flex-row gap-3 lg:gap-0 lg:flex-col items-start justify-center mt-10'>
-                        <div className='w-full shadow-xl rounded-md px-4 py-6 border-[1.5px]'>
-                            <div className='border-b-2 w-full'>
-                                <h2 className='font-semibold text-md md:text-lg pb-2'>Account details</h2>
+                        <div className='flex items-center justify-between border-b-2'>
+                            <div>
+                                <h2 className='w-full font-medium py-4 text-md md:text-lg'>Help Desk</h2>
                             </div>
                             <div>
-                                <h2 className='w-full font-semibold pt-2 text-md md:text-lg'>User Name</h2>
-                                <p className='text-md md:text-lg text-gray-400'>Account status</p>
-                            </div>
-                            <div className='flex items-center justify-between'>
-                                <div>
-                                    <h2 className='w-full font-semibold pt-2 text-md md:text-lg'>Account status</h2>
-                                    <p className='text-md md:text-lg text-red-600 font-light'>Waiting for verification</p>
-                                </div>
-                                <div>
-                                    <IoIosArrowForward style={{ color: "GrayText" }} size={25} />
-                                </div>
-                            </div>
-                            <div className='flex items-center justify-between'>
-                                <div>
-                                    <h2 className='w-full font-semibold pt-2 text-md md:text-lg'>Targeting</h2>
-                                    <p className='text-md md:text-lg text-gray-400'>Radius 20 mils from Seattle, WA,
-                                        USA</p>
-                                </div>
-                                <div>
-                                    <IoIosArrowForward style={{ color: "GrayText" }} size={25} />
-                                </div>
+                                <IoIosArrowForward size={25} />
                             </div>
                         </div>
-                        <div className='w-full shadow-xl md:h-[310px] lg:h-auto rounded-md px-4 py-6 lg:mt-8 border-[1.5px]'>
-                            <div className='border-b-2 w-full'>
-                                <h2 className='font-semibold text-md md:text-lg pb-2'>Need help?</h2>
+                        <div className='flex flex-col justify-between'>
+                            <div>
+                                <p className='text-md md:text-lg text-gray-400 mt-4'>Or contact your Account Manager</p>
                             </div>
-
-                            <div className='flex items-center justify-between border-b-2'>
+                            <div className='flex gap-6 mt-3'>
+                                <img src={UserImg} alt="" className=' cursor-pointer' />
                                 <div>
-                                    <h2 className='w-full font-medium py-4 text-md md:text-lg'>Help Desk</h2>
-                                </div>
-                                <div>
-                                    <IoIosArrowForward style={{ color: "GrayText" }} size={25} />
-                                </div>
-                            </div>
-                            <div className='flex flex-col justify-between'>
-                                <div>
-                                    <p className='text-md md:text-lg text-gray-400 mt-4'>Or contact your Account Manager</p>
-                                </div>
-                                <div className='flex gap-6 mt-3'>
-                                    <img src={UserImg} alt="" className=' cursor-pointer' />
-                                    <div>
-                                        <h2 className='text-md md:text-lg'>Asad Khan</h2>
-                                        <button className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
-                                    </div>
+                                    <h2 className='text-md md:text-lg'>Asad Khan</h2>
+                                    <button className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className='flex items-center justify-center w-11/12 md:w-4/5 lg:w-[74%] xl:w-[80%]
-                 lg:ml-0 flex-col mt-6 md:mt-20 lg:-mt-20 mx-auto lg:flex-col xl:-ml-12'>
-                    <div className='w-[90%] lg:w-[69%] py-8 mt-1 md:-mt-20 rounded-sm '>
-                        <div className='bg-white shadow-lg rounded-md rounded-b-none border-[1.5px]'>
-                            <h2 className='text-md md:text-lg px-4 py-4 font-medium'>5 most recent Quote Requests</h2>
-                        </div>
-                    </div>
-                    <div className='w-[90%] lg:w-[69%] -mt-8 bg-[#EFF2F3] rounded-lg'>
-                        <div className='bg-[#E6EBEC] flex justify-between px-6 py-4 font-semibold text-[#6A6A6A]'>
-                            <h2>Name</h2>
-                            <h2>Date</h2>
-                        </div>
-
-                        <div className='h-64 flex mt-2 justify-start'>
-                            {Projects.length > 0 ? (
-
-                                < div className='w-full'>
-                                    {Projects.map(project => (
-                                        <div className='flex justify-between' key={project.Name}>
-                                            <h2 className='px-6'>{project.Name}</h2>
-                                            <h2 className='px-6' >{project.Date}</h2>
-                                        </div>
-                                    ))}
-
-                                </div>
-                            ) : (
-                                <p className='text-md font-light flex items-center justify-center text-center w-full'>No quote requests received yet. We will email you once we have suitable projects.</p>
-                            )}
-
-                        </div>
+            </div>
+            <div className='flex items-center justify-center w-11/12 md:w-4/5 lg:w-[74%] xl:w-[72%]
+                 lg:-ml-4 flex-col mt-6 md:mt-20 lg:-mt-20 mx-auto lg:flex-col'>
+                <div className='w-[90%] py-8 mt-1 md:-mt-20 rounded-sm'>
+                    <div className='bg-white shadow-lg'>
+                        <h2 className='text-md md:text-lg px-4 py-4 font-medium'>5 most recent Quote Requests</h2>
                     </div>
                 </div>
                 <div className='w-[90%] -mt-8 bg-[#EFF2F3] rounded-lg'>
@@ -194,7 +134,7 @@ export default function Overview() {
                 </div>
             </div>
             <SmalllFooter />
-        </div>
+        </div >
 
     )
 }

@@ -18,7 +18,6 @@ export default function Home2() {
       <MainBanner />
       <AvailablePartners/>
       <Compare title={"Compare moving companies like:"} />
-      {/* <MovingType /> */}
       <Experience />
       <Service />
       <CarouselSlider />

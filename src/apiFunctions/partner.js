@@ -151,3 +151,12 @@ export function updatePassword(data) {
         }
     })
 }
+
+
+export function getPartnerByEmails({queryKey}) {
+    const emails = queryKey[1]
+    console.log(emails, "going")
+    return axios.post(`${LOCALHOST_URL}/partner/getManyPartnersByEmail`,{
+        emails
+    } )
+}

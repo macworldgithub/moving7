@@ -13,6 +13,7 @@ import "../header/header.css";
 import { Input } from "antd";
 import DatePicker from "../../components/DatePicker";
 import SpecificDate from "../../components/Specific";
+import { useNavigate } from "react-router-dom";
 
 const selectBg = "bg-[#00DD68]";
 
@@ -46,13 +47,16 @@ function MovingType() {
         },
         building: "",
     });
+    const navigate = useNavigate()
     const sendEmailToPartnersMutation = useMutation({
         mutationKey: "sendToPartners",
         mutationFn: sendEmailToPartners,
         onSuccess: (data) => {
-            console.log(data)
+            console.log(data, "emails")
             toast.success("Request Sent Successfully to Partners! ")
+
             window.localStorage.removeItem("userData")
+            navigate('/response',{state:{emails:data?.data ?? []}});
         },
         onSettled: (d, e) => console.log(d, e),
     });

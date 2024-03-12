@@ -18,6 +18,7 @@ import PartnerLayout from "./layout/partnerLayout";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Help_Desk from "./pages/Account/Help_Desk";
 import Home2 from "./pages/Home2";
+import UserCompanyProfile from "./pages/UserCompanyProfile";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -39,6 +40,7 @@ function App() {
                         <Route path="partnerSignUp" element={<Partner />} />
                         <Route path="mobile" element={<MobileMenu />} />
                         <Route path="/response" element={<Home2/>}/>
+                        <Route path="companyprofile/:id" element={<UserCompanyProfile />} />
                     </Route>
                     <Route path="partner" element={<PartnerLayout />} >
                         <Route
