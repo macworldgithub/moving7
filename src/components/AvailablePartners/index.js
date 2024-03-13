@@ -22,9 +22,12 @@ const AvailablePartners  = ()=>{
     return(
         <div className="flex flex-col items-center justify-center w-full h-[70vh] md:h-[65vh] py-2">
             <div className="w-[60%] bg-green-100 border-green-500 h-[30%] md:h-[20%] border-green-800 rounded-lg">
-                <p className="text-center mt-6">Thank you for using our us! {emails?.length ? " you request has been sent to following partners:" : "Sorry, there no partners currently working in your area :("}</p> </div>
+                <p className="text-center mt-6">Thank you for using our service! {emails?.length ? " you request has been sent to following partners:" : "Sorry, there no partners currently working in your area :("}</p> </div>
                 <div>
-                    <p className="text-green-500 text-xl text-center my-4">Available Partners</p>
+        {
+            emails?.length && 
+            <p className="text-green-500 text-xl text-center my-4">Available Partners</p>
+        }
                     <div className="flex flex-row flex-wrap gap-6 w-full justify-center  ">
                         {partnerData.map((item , index)=>(
                     <Link to={`/companyprofile/${item?._id}`}>

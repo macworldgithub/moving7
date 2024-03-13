@@ -160,3 +160,15 @@ export function getPartnerByEmails({queryKey}) {
         emails
     } )
 }
+
+
+
+export function getContactManagerDetails() {
+    return axios.get(`${LOCALHOST_URL}/users/getContactManagerDetails`,{
+        params : {
+            id : "65eff84f343e41339d19ed0c"
+        }
+    } )
+}
+
+

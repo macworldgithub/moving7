@@ -23,6 +23,7 @@ function MovingType() {
     const [showVerificationModal, setShowVerificationModal] = useState(false);
     const [locationOptions, setLocationOptions] = useState([]);
     const [data, setData] = useState({
+        movingType:"",
         moveFrom: "",
         moveTo: "",
         currPropertyType: "",
@@ -288,6 +289,7 @@ function MovingType() {
                     handleInputStateChange={handleInputStateChange}
                     active={active}
                     setActive={setActive}
+                    handleDataChange={handleDataChange}
                 />
 
                 {inputStates.isVisible_0 && (
@@ -726,6 +728,7 @@ function MovingType() {
                                                 handleRangeChange("minimum", e.target.value)
                                             }
                                             }
+                                    onFocus={() => handleInputStateChange("isVisible_10", true)}
                                         />
                                     </div>
                                     <div>
@@ -739,6 +742,7 @@ function MovingType() {
                                                 handleRangeChange("maximum", e.target.value)
                                             }
                                             }
+                                    onFocus={() => handleInputStateChange("isVisible_10", true)}
                                         />
                                     </div>
 
@@ -775,7 +779,7 @@ function MovingType() {
 
 export default MovingType;
 
-const HeadButton = ({ active, setActive, handleInputStateChange }) => {
+const HeadButton = ({handleDataChange, active, setActive, handleInputStateChange }) => {
     return (
         <div className="felx items-center justify-between">
             <button
@@ -783,6 +787,7 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
                 onClick={() => {
                     active === 1 ? setActive(null) : setActive(1);
                     handleInputStateChange("isVisible_0", true);
+                    handleDataChange("movingType","Local")
                 }}
             >
                 Local
@@ -791,6 +796,7 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
                 onClick={() => {
                     active === 2 ? setActive(null) : setActive(2);
                     handleInputStateChange("isVisible_0", true);
+                    handleDataChange("movingType","Commercial")
                 }}
                 className={` w-40 ${active === 2 ? selectBg + " text-white" : " bg-[#D1D1D1] "} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`} >
                 Commerical
@@ -799,6 +805,7 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
                 onClick={() => {
                     active === 3 ? setActive(null) : setActive(3);
                     handleInputStateChange("isVisible_0", true);
+                    handleDataChange("movingType","International")
                 }}
                 className={` w-40 ${active === 3 ? selectBg + " text-white" : " bg-[#D1D1D1] "} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
                 International

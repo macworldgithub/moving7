@@ -30,19 +30,24 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+    const user = JSON.parse(window.localStorage.getItem("userData"))
+    console.log(user,"from header")
     return (
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
                 <Routes>
-                    <Route path="/" element={<LayoutMain />}>
-                        <Route path="" element={<Home />} />
+                    <Route path="/" element={<LayoutMain user={user}/>}>
                         <Route path="login" element={<Login />} />
+                        <Route path="" element={<Home />} />
                         <Route path="partnerSignUp" element={<Partner />} />
                         <Route path="mobile" element={<MobileMenu />} />
-                        <Route path="/response" element={<Home2/>}/>
+                        <Route path="/response" element={<Home2 />} />
                         <Route path="companyprofile/:id" element={<UserCompanyProfile />} />
                     </Route>
-                    <Route path="partner" element={<PartnerLayout />} >
+
+        {
+            user?.isPartner && (
+                    <Route path="partner" element={<PartnerLayout user={user} />} >
                         <Route
                             path="documentsVerification"
                             element={<DocumentVerification />}
@@ -53,11 +58,13 @@ function App() {
                         <Route path="account/:id" element={<Account />} />
                         <Route path="companyprofile/:id" element={<CompanyProfile />} />
                         <Route path="helpdesk" element={<Help_Desk />} />
-                    </ Route>     
-                    <Route path="admin" element={<PartnerLayout />} >
-                        <Route path="login" element={<AdminLogin/>} />
                     </ Route>
-                 
+            )
+        }
+                    <Route path="admin" element={<PartnerLayout />} >
+                        <Route path="login" element={<AdminLogin />} />
+                    </ Route>
+
                 </Routes>
             </QueryClientProvider>
         </BrowserRouter>

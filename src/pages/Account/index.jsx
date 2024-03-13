@@ -1,6 +1,6 @@
 import React from 'react'
-import { updatePassword } from '../../apiFunctions/partner';
-import { useMutation } from 'react-query';
+import { getContactManagerDetails, updatePassword } from '../../apiFunctions/partner';
+import { useMutation , useQuery} from 'react-query';
 import { useState } from 'react';
 import { IoIosArrowForward } from "react-icons/io";
 import { toast } from 'react-toastify';
@@ -22,6 +22,16 @@ export default function Account() {
 
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+    const contactManagerRes = useQuery({
+        queryKey:["getContactManagerDetails"],
+        queryFn:getContactManagerDetails
+    })
+
+    const ManagerData = contactManagerRes?.data?.data ?? {}
+
+  const openWhatsApp = () => {
+    window.open(`https://wa.me/${ManagerData?.contactManagerContactNumber}`, '_blank');
+  };
 
     const submit = () => {
         if (!password || !confirmPassword) {
@@ -89,8 +99,8 @@ export default function Account() {
                         <div className='flex gap-6 mt-3 py-4'>
                             <img src={UserImg} alt="" className=' cursor-pointer' />
                             <div>
-                                <h2 className='text-md md:text-lg'>Asad Khan</h2>
-                                <button className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
+                                <h2 className='text-md md:text-lg'>{ManagerData?.contactManagerName}</h2>
+                                <button onClick={openWhatsApp} className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
                             </div>
                         </div>
                     </div>

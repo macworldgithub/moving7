@@ -3,35 +3,14 @@ import Header from "../pages/header/header";
 import Header_Two from "../pages/header/becomePartner-Header/index";
 import { Outlet, useLocation } from "react-router-dom";
 
-const LayoutMain = () => {
-    const location = useLocation();
-    const { pathname } = location;
-
-    // Check if the pathname is one of the specified values
-    const isSpecialPage =
-        pathname === "/overview" ||
-        pathname === "/quoteRequest" ||
-        pathname === "/targeting" ||
-        pathname === "/account" ||
-        pathname === "/helpDesk" ||
-        pathname === "/login"
+const LayoutMain = ({user}) => {
+    
     return (
-        <div className="max-w-[1440px] mx-auto">
-            {isSpecialPage ? (
-                // Show Header_Two for special pages
-                <div>
-                    <Header_Two />
-                    <Outlet />
-                </div>
-            ) : (
-                // Show Header for other pages
-                <div>
-                    <Header />
-                    <Outlet />
-                </div>
-            )}
+        <div>
+        <Header  user={user}/>
+        <Outlet />
         </div>
-    );
+    )
 };
 
 export default LayoutMain;

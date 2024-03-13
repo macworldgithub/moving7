@@ -49,7 +49,7 @@ const DocumentVerification = () => {
     const [selectedItem, setSelectedItem] = useState(null)
     
     useEffect(() => {
-        if (user.proof) {
+        if (user?.proof) {
             navigate(`/partner/overview/${user._id}`)
         }
     }
