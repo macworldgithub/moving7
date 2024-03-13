@@ -19,6 +19,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Help_Desk from "./pages/Account/Help_Desk";
 import Home2 from "./pages/Home2";
 import UserCompanyProfile from "./pages/UserCompanyProfile";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -30,7 +32,12 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-    const user = JSON.parse(window.localStorage.getItem("userData"))
+    const userJson = JSON.parse(window.localStorage.getItem("userData"))
+    const [user, setUser] = useState()
+
+    useEffect(()=>{
+        setUser(userJson)
+    },[user])
     console.log(user,"from header")
     return (
         <BrowserRouter>

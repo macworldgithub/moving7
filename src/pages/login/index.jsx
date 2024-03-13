@@ -21,6 +21,7 @@ export default function Login() {
             }else {
                 navigate("/partner/documentsverification")
             }
+            window.location.reload()
         },
         onError:(err) => {
             console.log(err)
