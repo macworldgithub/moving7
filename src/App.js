@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Home from "../src/pages/Home/index";
 import Partner from "../src/pages/partner/partner";
 import Login from "./pages/login";
+import AdminLogin from "./pages/Admin/Login/index";
 import LayoutMain from "./layout/layout";
 import DocumentVerification from "./pages/documentVerification";
 import CompanyProfile from "./pages/companyProfile";
@@ -15,6 +16,7 @@ import Overview from "./pages/Overview";
 import Account from "./pages/Account";
 import MobileMenu from "./pages/header/becomePartner-Header/forMobile";
 import PartnerLayout from "./layout/partnerLayout";
+import Help_Desk from "./pages/Account/Help_Desk";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -46,7 +48,8 @@ function App() {
                         <Route path="targeting/:id" element={<Targeting />} />
                         <Route path="account/:id" element={<Account />} />
                         <Route path="companyprofile/:id" element={<CompanyProfile />} />
-                    </Route>
+                        <Route path="helpdesk" element={<Help_Desk />} />
+                    </ Route>     
                 </Routes>
             </QueryClientProvider>
         </BrowserRouter>

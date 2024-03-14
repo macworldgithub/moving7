@@ -2,15 +2,10 @@ import React from 'react'
 import { IoIosArrowForward } from "react-icons/io";
 import { useQuery } from 'react-query';
 import UserImg from '../../../src/assets/images/overview/Group 17.png'
-import { getPartnerOverview, getPartnerSentQuotes } from '../../apiFunctions/partner';
+import { getContactManagerDetails, getPartnerOverview, getPartnerSentQuotes } from '../../apiFunctions/partner';
 import SmalllFooter from '../footer/smalllFooter';
 
-let Projects = [
-    { Name: "Bilal", Date: "20-04-2000" },
-    { Name: "Anas", Date: "20-04-2000" },
-    { Name: "Asad", Date: "20-04-2000" },
-    { Name: "salman", Date: "20-04-2000" }
-]
+
 
 export default function Overview() {
     const userData = window.localStorage.getItem("userData")
@@ -23,6 +18,17 @@ export default function Overview() {
         queryKey: ["fetchRequestOfPartner"],
         queryFn: getPartnerSentQuotes,
     });
+
+    const contactManagerRes = useQuery({
+        queryKey:["getContactManagerDetails"],
+        queryFn:getContactManagerDetails
+    })
+
+    const ManagerData = contactManagerRes?.data?.data ?? {}
+
+  const openWhatsApp = () => {
+    window.open(`https://wa.me/${ManagerData?.contactManagerContactNumber}`, '_blank');
+  };
     const quotesData = quotes?.data?.data ?? []
     const partnerOverviewData = partnerOverviewRes?.data?.data ?? {}
     console.log(quotesData, "dataaaa")
@@ -87,8 +93,8 @@ export default function Overview() {
                             <div className='flex gap-6 mt-3'>
                                 <img src={UserImg} alt="" className=' cursor-pointer' />
                                 <div>
-                                    <h2 className='text-md md:text-lg'>Asad Khan</h2>
-                                    <button className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
+                                    <h2 className='text-md md:text-lg'>{ManagerData?.contactManagerName}</h2>
+                                    <button className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1' onClick={openWhatsApp}>Contact</button>
                                 </div>
                             </div>
                         </div>

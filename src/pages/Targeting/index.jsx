@@ -6,8 +6,8 @@ import SmalllFooter from '../footer/smalllFooter';
 export default function Targeting() {
     return (
         <>
-            <div className='w-full flex flex-col lg:flex-row items-center justify-around mt-10'>
-                <div className='w-11/12 md:w-7/12 ml-0 lg:ml-12 lg:-mt-36 rounded-md shadow-xl'>
+            <div className='w-full flex flex-col lg:flex-row items-center justify-center gap-6 mt-10 lg:mb-96'>
+                <div className='w-11/12 md:w-7/12 ml-0 lg:ml-12 lg:-mt-36 rounded-md shadow-xl border-[1.5px]'>
                     <div className='p-4'>
                         <h2 className='text-lg font-medium'>Edit targeting</h2>
                     </div>
@@ -29,8 +29,8 @@ export default function Targeting() {
                         </div>
                     </div>
                 </div>
-                <div className=' w-11/12 md:w-7/12 lg:w-1/4 mt-8 rounded-md shadow-xl'>
-                    <div className='px-4 shadow-lg shadow-gray-300 rounded-lg mt-4'>
+                <div className='w-11/12 md:w-7/12 lg:w-1/5 mt-8 rounded-md shadow-xl'>
+                    <div className='px-4 py-4 shadow-lg shadow-gray-300 rounded-lg mt-4 border-[1.5px]'>
                         <h2 className='text-lg font-medium border-b-2 mb-4'>Need help?</h2>
                         <h2 className='text-gray-500 '>Tips $ Best Practices</h2>
                         <p className='p-1 text-gray-400'>Contact a new lead within 8hrs to
