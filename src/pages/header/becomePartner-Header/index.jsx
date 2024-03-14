@@ -14,10 +14,13 @@ export default function PartnerHeader({ user }) {
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false);
 
+
+console.log(user,"idharrrrrrrr")
+
     const toggleMenu = () => {
         setShowMenu(!showMenu);
     }
-
+console.log(user,"USERRRR")
     return (
         <>
             <ToastContainer />
@@ -72,7 +75,7 @@ export default function PartnerHeader({ user }) {
                         <h2
                             onClick={() => {
                                 if (user?.proof) {
-                                    navigate(`/partner/overview/${user?._id}`)
+                                    navigate(`/partner/helpdesk`)
                                 } else {
                                     toast.error("Please complete your profile first")
                                 }

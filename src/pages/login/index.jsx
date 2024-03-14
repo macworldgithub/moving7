@@ -21,6 +21,7 @@ export default function Login() {
             }else {
                 navigate("/partner/documentsverification")
             }
+            window.location.reload()
         },
         onError:(err) => {
             console.log(err)
@@ -76,7 +77,7 @@ export default function Login() {
                         </div>
                     </div>
                     <div>
-                        <Link to={"/partner"}>
+                        <Link to={"/partnerSignUp"}>
                             <h2 className='italic text-[#13C265] font-medium cursor-pointer mt-3 mb-3'>Create account</h2>
                         </Link>
                     </div>

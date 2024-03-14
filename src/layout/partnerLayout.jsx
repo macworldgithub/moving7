@@ -2,10 +2,9 @@ import { Outlet } from "react-router-dom"
 import PartnerHeader from "../pages/header/becomePartner-Header"
 import { useNavigate } from "react-router-dom"
 
-const PartnerLayout = () => {
+const PartnerLayout = ({user}) => {
     const navigate = useNavigate()
-    const user = JSON.parse(localStorage.getItem("userData"))
-    console.log(user, "user")
+console.log(user,"idharrrrrrrr")
     if (!user?.isPartner) navigate("/")
     if (!user?.proof) navigate("/partner/documentsVerification")
     return (

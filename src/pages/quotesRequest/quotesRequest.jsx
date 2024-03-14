@@ -6,9 +6,11 @@ import TimeLine from '../quotesRequest/Timeline'
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import UserImg from '../../assets/images/overview/Group 17.png'
 import SmalllFooter from '../footer/smalllFooter';
-import { getPartnerQuotes } from '../../apiFunctions/partner';
+import { getContactManagerDetails, getPartnerQuotes } from '../../apiFunctions/partner';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
+import { Modal } from 'antd';
+import MyModal from '../../components/Modal/Modal';
 
 let Projects = [
     { Name: "Bilal" },
@@ -25,6 +27,8 @@ export default function QuotesRequest() {
         toDate: ""
     })
     const [searchQuery, setSearchQuery] = useState("")
+    const [quotationData, setQuotationData] = useState("")
+    const [showModal, setShowModal] = useState(false)
     const [pageNo, setPageNo] = useState(0)
     const partnerQuotesRes = useQuery({
         queryKey: ["fetchPartnerQuotes", {
@@ -36,6 +40,17 @@ export default function QuotesRequest() {
         }],
         queryFn: getPartnerQuotes,
     });
+    const contactManagerRes = useQuery({
+        queryKey:["getContactManagerDetails"],
+        queryFn:getContactManagerDetails
+    })
+    console.log(quotationData,"quooo")
+
+    const ManagerData = contactManagerRes?.data?.data ?? {}
+
+  const openWhatsApp = () => {
+    window.open(`https://wa.me/${ManagerData?.contactManagerContactNumber}`, '_blank');
+  };
     const partnerQuotesData = partnerQuotesRes?.data?.data?.quotes ?? []
     const totalRequests = partnerQuotesRes?.data?.data?.total ?? []
     const refetchQuotes = partnerQuotesRes.refetch
@@ -67,7 +82,10 @@ export default function QuotesRequest() {
                                 {partnerQuotesData?.length > 0 ? (
                                     partnerQuotesData?.map((quote, index) => {
                                         return (
-                                            <tr key={index} className="cursor-pointer">
+                                            <tr key={index} className="cursor-pointer" onClick={() => {
+                                                setShowModal(true)
+                                                setQuotationData(quote)
+                                            }}>
                                                 <td className='text-center py-2'>{quote?.name}</td>
                                                 <td className='text-center'>{quote?.email}</td>
                                                 <td className='text-center'>{new Date(quote?.requestTime)?.toLocaleString()}</td>
@@ -138,14 +156,343 @@ export default function QuotesRequest() {
                         <div className='flex gap-6 mt-3 py-4'>
                             <img src={UserImg} alt="" className=' cursor-pointer' />
                             <div>
-                                <h2 className='text-md md:text-lg'>Asad Khan</h2>
-                                <button className='bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
+                                <h2 className='text-md md:text-lg'>{ManagerData?.contactManagerName}</h2>
+                                <button className='bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1' onClick={openWhatsApp}>Contact</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div >
             <SmalllFooter />
+
+        {
+            showModal && 
+            <MyModal >
+
+
+
+                        <div className="lg:w-[40%] min-h-[70%] max-h-[70%] overflow-y-scroll pb-5 bg-white rounded-xl p-2 shadow-green-500 shadow-md flex flex-col  ">
+                <div className="flex justify-end">
+
+            <p className='cursor-pointer' onClick={() => setShowModal(false)}>
+            X
+            </p>
+                </div>
+                <div className=" gap-2 w-full h-full">
+                    <h1 className="px-10 text-3xl text-[#13C265] fontbold bold">
+                        Details
+                    </h1>
+                    <div className="flex mx-10 my-2 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+                                Move From
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.moveFrom}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+                                Move To
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.moveTo}
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <h1 className="text-2xl my-4 text-[#13C265] mx-10">
+                        Current Property
+                    </h1>
+
+
+                    <div className="flex my-2 mx-10 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+                                Type
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.currPropertyType}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+                                Bedrooms
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.currPropertyBedrooms}
+                            </p>
+                        </div>
+                    </div>
+
+
+                    {
+                        quotationData?.currPropertyType === "appartment" ? (
+                            <div className="flex my-2 mx-10 justify-between flex-wrap">
+                                <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                                    <p className="text-[#13C265]">
+                                        No of Floors
+                                    </p>
+
+                                    <p className="text-gray-500 py-1 w-ful">
+                                        {quotationData?.currPropertyFloorNo}
+                                    </p>
+                                </div>
+
+                                <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                                    <p className="text-[#13C265]">
+                                        Lift
+                                    </p>
+
+                                    <p className="text-gray-500">
+                                        {quotationData?.hasCurrPropertyLift}
+                                    </p>
+                                </div>
+                            </div>
+
+                        ) : (
+                            null
+                        )
+                    }
+
+
+
+
+
+
+
+
+                    <h1 className="text-2xl my-4 text-[#13C265] mx-10">
+                        New Property
+                    </h1>
+
+
+                    <div className="flex my-2 mx-10 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+                                Type
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.newPropertyType}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+                                Bedrooms
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.newPropertyBedrooms}
+                            </p>
+                        </div>
+                    </div>
+
+
+                    {
+                        quotationData?.newPropertyType === "appartment" ? (
+                            <div className="flex my-2 mx-10 justify-between flex-wrap">
+                                <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                                    <p className="text-[#13C265]">
+                                        No of Floors
+                                    </p>
+
+                                    <p className="text-gray-500 py-1 w-ful">
+                                        {quotationData?.newPropertyFloorNo}
+                                    </p>
+                                </div>
+
+                                <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                                    <p className="text-[#13C265]">
+                                        Lift
+                                    </p>
+
+                                    <p className="text-gray-500">
+                                        {quotationData?.hasNewPropertyLift}
+                                    </p>
+                                </div>
+                            </div>
+
+                        ) : (
+                            null
+                        )
+                    }
+
+
+
+
+
+
+                    <div className="flex mx-10 my-2 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+                                Scope of Work
+                            </p>
+
+                            <p className="text-gray-500 text-left py-1 w-ful">
+                                {quotationData?.newPropertyAdditionalInfo?.join(" , ")}
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <h1 className="text-2xl my-4 text-[#13C265] mx-10">
+        Date
+                    </h1>
+
+
+                    <div className="flex mx-10 my-2 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+        Moving Date Preference
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.movingDatePref}
+                            </p>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div className="flex mx-10 my-2 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+        {quotationData?.movingDatePref === "flexible" ? "Start Date" : "Date"}
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+        {quotationData?.movingDatePref === "flexible" ? quotationData?.startDate : quotationData?.specificDate}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+        {quotationData?.movingDatePref === "flexible" ? "End Date" : "Time"}
+                            </p>
+
+                            <p className="text-gray-500">
+        {quotationData?.movingDatePref === "flexible" ? quotationData?.endDate: quotationData?.specificTime}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <h1 className="text-2xl my-4 text-[#13C265] mx-10">
+        Customer Details
+                    </h1>
+
+
+                    <div className="flex my-2 mx-10 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+        Name
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.name}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+        Email
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.email}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <div className="flex my-2 mx-10 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+        Contact number
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.wappNum}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+        Flat name / Office / Villa
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.building}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <h1 className="text-2xl my-4 text-[#13C265] mx-10">
+        Budget Range
+                    </h1>
+
+
+                    <div className="flex my-2 mx-10 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+        From
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.minBudgetRange} AED
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+        To
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.maxBudgetRange} AED
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+        
+                    
+            </MyModal >
+        }
         </>
     )
 }

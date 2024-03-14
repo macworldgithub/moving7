@@ -11,12 +11,13 @@ import MovingType from "../moving_type/moving-type";
 import MainBanner from "../../components/banner";
 import AvailablePartners from "../../components/AvailablePartners";
 
-export default function Home() {
+export default function Home2() {
   return (
     <div>
+        
       <MainBanner />
+      <AvailablePartners/>
       <Compare title={"Compare moving companies like:"} />
-      <MovingType />
       <Experience />
       <Service />
       <CarouselSlider />
