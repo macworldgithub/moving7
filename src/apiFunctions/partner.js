@@ -1,7 +1,11 @@
 import axios from "axios";
 const LOCALHOST_URL = "http://localhost:4000"
-
 const API_URL_NEW = "https://realestatebackend-woad.vercel.app";
+const MOVING24_URL = "https://moving24-backend-beige.vercel.app";
+
+
+
+
 export function getLocationSuggestions(data) {
     console.log("Send the request", data);
     return axios.post(`${API_URL_NEW}/property/location-suggestions`, {
@@ -11,7 +15,7 @@ export function getLocationSuggestions(data) {
 
 export function partnerSignUp(data) {
     console.log("api", data, "api")
-    const urlStr = `${LOCALHOST_URL}/auth/partnerSignUp`
+    const urlStr = `${MOVING24_URL}/auth/partnerSignUp`
     return axios.post(urlStr, data)
 }
 export function postProofs(data) {
@@ -19,7 +23,7 @@ export function postProofs(data) {
 
     console.log("token", userData.token)
     console.log("api", data, "api")
-    const urlStr = `${LOCALHOST_URL}/partner/insertProof`
+    const urlStr = `${MOVING24_URL}/partner/insertProof`
     return axios.post(urlStr, data, {
         headers: {
             Authorization: `Bearer ${userData.token}`
@@ -29,12 +33,12 @@ export function postProofs(data) {
 
 export function requestOTP(email) {
     console.log("Send the request OTP", email);
-    return axios.post(`${LOCALHOST_URL}/auth/sendVerificationCode`, {
+    return axios.post(`${MOVING24_URL}/auth/sendVerificationCode`, {
         email
     });
 }
 export function verifyOTP(data) {
-    return axios.post(`${LOCALHOST_URL}/auth/verifyCode`, {
+    return axios.post(`${MOVING24_URL}/auth/verifyCode`, {
         email: data.email,
         code: data.code
     });
@@ -44,7 +48,7 @@ export function quoteRequest(data) {
     const userData = window.localStorage.getItem("userData")
     const json = JSON.parse(userData)
     console.log(json, "dataaaaaaaaa")
-    return axios.post(`${LOCALHOST_URL}/users/quoteRequest`, data, {
+    return axios.post(`${MOVING24_URL}/users/quoteRequest`, data, {
         headers: {
             Authorization: `Bearer ${json?.token}`
         }
@@ -53,13 +57,13 @@ export function quoteRequest(data) {
 
 export function partnerSignIn(data) {
     console.log("signin", data)
-    const urlStr = `${LOCALHOST_URL}/auth/partnerLogin`
+    const urlStr = `${MOVING24_URL}/auth/partnerLogin`
     return axios.post(urlStr, data)
 }
 
 export function fetchOnePartner({ queryKey }) {
     const id = queryKey[1]
-    return axios.get(`${LOCALHOST_URL}/partner/getOnePartner`, {
+    return axios.get(`${MOVING24_URL}/partner/getOnePartner`, {
         params: {
             id
         }
@@ -70,7 +74,7 @@ export function updatePartnerDetails(data) {
     const userData = window.localStorage.getItem("userData")
     const json = JSON.parse(userData)
     console.log(data, "going")
-    return axios.put(`${LOCALHOST_URL}/partner/updatePartnerDetails`, data, {
+    return axios.put(`${MOVING24_URL}/partner/updatePartnerDetails`, data, {
         headers: {
             Authorization: `Bearer ${json?.token}`
         }
@@ -78,7 +82,7 @@ export function updatePartnerDetails(data) {
 }
 
 export function getUAERegions() {
-    return axios.get(`${LOCALHOST_URL}/regions/allRegions`);
+    return axios.get(`${MOVING24_URL}/regions/allRegions`);
 }
 
 export function getPolygon({ queryKey }) {
@@ -88,7 +92,7 @@ export function getPolygon({ queryKey }) {
         return elem.name
     })
     console.log(names, "NAMESSSSSSSSSS")
-    return axios.post(`${LOCALHOST_URL}/regions/fetchPolygon`, {
+    return axios.post(`${MOVING24_URL}/regions/fetchPolygon`, {
         names
     });
 }
@@ -98,7 +102,7 @@ export function sendEmailToPartners(data) {
     const userData = window.localStorage.getItem("userData")
     const json = JSON.parse(userData)
     console.log(data, "going")
-    return axios.post(`${LOCALHOST_URL}/quotes/sendToPartners`, data, {
+    return axios.post(`${MOVING24_URL}/quotes/sendToPartners`, data, {
         headers: {
             Authorization: `Bearer ${json?.token}`
         }
@@ -109,7 +113,7 @@ export function getPartnerSentQuotes(data) {
     const userData = window.localStorage.getItem("userData")
     const json = JSON.parse(userData)
     console.log(data, "going")
-    return axios.get(`${LOCALHOST_URL}/partner/getrecentpartnerreqs`, {
+    return axios.get(`${MOVING24_URL}/partner/getrecentpartnerreqs`, {
         params: {
             email: json?.email
         }
@@ -120,22 +124,22 @@ export function getPartnerSentQuotes(data) {
     })
 }
 
-export function getPartnerOverview({queryKey}) {
+export function getPartnerOverview({ queryKey }) {
     const data = queryKey[1]
     console.log(data, "going")
-    return axios.get(`${LOCALHOST_URL}/partner/getPartnerOverview`, {
+    return axios.get(`${MOVING24_URL}/partner/getPartnerOverview`, {
         params: {
-            id : data
+            id: data
         }
     })
 }
 
 
 
-export function getPartnerQuotes({queryKey}) {
+export function getPartnerQuotes({ queryKey }) {
     const data = queryKey[1]
     console.log(data, "going")
-    return axios.get(`${LOCALHOST_URL}/partner/getpartnerquotes`, {
+    return axios.get(`${MOVING24_URL}/partner/getpartnerquotes`, {
         params: data
     })
 }
@@ -145,7 +149,7 @@ export function updatePassword(data) {
     const userData = window.localStorage.getItem("userData")
     const json = JSON.parse(userData)
     console.log(data, "going")
-    return axios.put(`${LOCALHOST_URL}/partner/updatepartnerpassword`, data, {
+    return axios.put(`${MOVING24_URL}/partner/updatepartnerpassword`, data, {
         headers: {
             Authorization: `Bearer ${json?.token}`
         }
@@ -153,22 +157,22 @@ export function updatePassword(data) {
 }
 
 
-export function getPartnerByEmails({queryKey}) {
+export function getPartnerByEmails({ queryKey }) {
     const emails = queryKey[1]
     console.log(emails, "going")
-    return axios.post(`${LOCALHOST_URL}/partner/getManyPartnersByEmail`,{
+    return axios.post(`${MOVING24_URL}/partner/getManyPartnersByEmail`, {
         emails
-    } )
+    })
 }
 
 
 
 export function getContactManagerDetails() {
-    return axios.get(`${LOCALHOST_URL}/users/getContactManagerDetails`,{
-        params : {
-            id : "65eff84f343e41339d19ed0c"
+    return axios.get(`${MOVING24_URL}/users/getContactManagerDetails`, {
+        params: {
+            id: "65eff84f343e41339d19ed0c"
         }
-    } )
+    })
 }
 
 
