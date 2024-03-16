@@ -1,5 +1,5 @@
 import axios from "axios";
-const env = "LOCAL"
+const env = "PROD"
 const LOCALHOST_URL = "http://localhost:4000"
 const API_URL_NEW = "https://realestatebackend-woad.vercel.app";
 
