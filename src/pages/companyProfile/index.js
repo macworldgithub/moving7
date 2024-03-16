@@ -17,7 +17,7 @@ import { Select, Input , AutoComplete} from 'antd';
 import { getLocationSuggestions } from "../../apiFunctions/partner";
 
 
-setKey("AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ");
+setKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? "");
 const { TextArea } = Input;
 
 
@@ -114,7 +114,7 @@ const CompanyProfile = () => {
     }, [partnerDataRes.data]);
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: "AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ",
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? "",
     });
 
 

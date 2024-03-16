@@ -1,9 +1,6 @@
 import MyModal from "../../components/Modal/Modal"
-import RegionAccordion from "../partner/form/Accordion";
 import { setKey, setDefaults, fromAddress } from "react-geocode";
-import { deleteImage } from "../../firebase/utils";
 import AddImage from "../../assets/images/partnerChooseimg/addimage.png"
-import { uploadImageDataStringAndGetURL } from "../../firebase/utils";
 import { copyToClipboard } from "../../utils/CopyFun";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -13,13 +10,10 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation, useQuery } from "react-query";
 import { fetchOnePartner, getPolygon, getUAERegions, partnerSignIn, updateContactInfo, updateNameAdd, updatePartnerDetails } from "../../apiFunctions/partner";
-import { Select, Input , AutoComplete} from 'antd';
-import { getLocationSuggestions } from "../../apiFunctions/partner";
 import Footer from "../footer/footer";
 
 
-setKey("AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ");
-const { TextArea } = Input;
+setKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? "");
 
 
 
@@ -78,7 +72,7 @@ const UserCompanyProfile = () => {
     }, [partnerDataRes.data]);
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: "AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ",
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? "",
     });
 
     const polygons = polygonRes?.data?.data
@@ -353,7 +347,7 @@ const UserCompanyProfile = () => {
             {
                 showProfileModal && (
                     <MyModal>
-                        <div className="bg-white relative w-2/5 rounded-lg px-5 pb-10 py-5  h-3/5">
+                        <div className="bg-white relative w-2/5 rounded-lg px-5  py-5 h-90  sm:h-4/5">
                             <div
                                 onClick={() => setShowProfileModal(false)}
                                 style={{
@@ -363,7 +357,7 @@ const UserCompanyProfile = () => {
                                 X
                             </div>
                                     <div className="h-full w-full flex justify-center items-center">
-                                        <img className="h-92 w-96" src={partnerData?.profileImage ?? AddImage} />
+                                        <img className="h-84 w-96" src={partnerData?.profileImage ?? AddImage} />
                                     </div>
                         </div>
                     </MyModal>

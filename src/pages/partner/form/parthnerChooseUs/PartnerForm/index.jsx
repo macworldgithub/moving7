@@ -16,7 +16,8 @@ const containerStyle = {
     height: "400px",
 };
 
-setKey("AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ");
+console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY, "KEYYYYYYYYYYYYYYYYY")
+setKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? "");
 export default function FreeTrialForm() {
     const navigate = useNavigate()
     const [latlong, setLatlong] = useState({

@@ -1,7 +1,11 @@
 import axios from "axios";
+const env = "LOCAL"
 const LOCALHOST_URL = "http://localhost:4000"
 const API_URL_NEW = "https://realestatebackend-woad.vercel.app";
-const MOVING24_URL = "https://moving24-backend-beige.vercel.app";
+
+
+
+const MOVING24_URL = env === "LOCAL" ? LOCALHOST_URL : "https://moving24-backend-beige.vercel.app";
 
 
 
