@@ -3,6 +3,8 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useQuery } from 'react-query';
 import UserImg from '../../../src/assets/images/overview/Group 17.png'
 import { getContactManagerDetails, getPartnerOverview, getPartnerSentQuotes } from '../../apiFunctions/partner';
+import LoaderLayout from '../../components/Loaders/LoaderLayout';
+import Truck from '../../components/Loaders/Truck';
 import SmalllFooter from '../footer/smalllFooter';
 
 
@@ -23,6 +25,12 @@ export default function Overview() {
         queryKey:["getContactManagerDetails"],
         queryFn:getContactManagerDetails
     })
+     
+    if (partnerOverviewRes.isLoading || quotes.isLoading || contactManagerRes.isLoading) {
+        return <LoaderLayout>
+            <Truck />
+        </LoaderLayout>
+    }
 
     const ManagerData = contactManagerRes?.data?.data ?? {}
 

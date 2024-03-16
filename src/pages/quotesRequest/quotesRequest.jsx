@@ -11,6 +11,8 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Modal } from 'antd';
 import MyModal from '../../components/Modal/Modal';
+import LoaderLayout from '../../components/Loaders/LoaderLayout';
+import Truck from '../../components/Loaders/Truck';
 
 let Projects = [
     { Name: "Bilal" },
@@ -44,6 +46,13 @@ export default function QuotesRequest() {
         queryKey:["getContactManagerDetails"],
         queryFn:getContactManagerDetails
     })
+
+    if (partnerQuotesRes.isLoading || contactManagerRes.isLoading) {
+        return (<LoaderLayout>
+            <Truck />
+        </LoaderLayout>)
+    }
+
     console.log(quotationData,"quooo")
 
     const ManagerData = contactManagerRes?.data?.data ?? {}

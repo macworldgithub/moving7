@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { setKey, fromAddress } from "react-geocode";
+import LoaderLayout from "../../../../../components/Loaders/LoaderLayout";
+import Truck from "../../../../../components/Loaders/Truck";
 import RegionAccordion from "../../Accordion";
 import { AutoComplete } from "antd";
 import { getLocationSuggestions, getPolygon, getUAERegions } from "../../../../../apiFunctions/partner";
@@ -17,7 +19,7 @@ const containerStyle = {
 };
 
 console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY, "KEYYYYYYYYYYYYYYYYY")
-setKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? "");
+setKey("AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM");
 export default function FreeTrialForm() {
     const navigate = useNavigate()
     const [latlong, setLatlong] = useState({
@@ -84,7 +86,7 @@ export default function FreeTrialForm() {
     });
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: "AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ",
+        googleMapsApiKey:  "AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM"
     });
     // const onUnmount = useCallback(function callback(map) {
     //     setMap(null);
@@ -101,6 +103,14 @@ export default function FreeTrialForm() {
     useEffect(() => {
         getRegionsQuery.refetch();
     }, []);
+
+    if (getRegionsQuery.isLoading || partnerSignUpMutation.isLoading) {
+        return (
+            <LoaderLayout>
+                <Truck />
+            </LoaderLayout>
+        )
+    }
 
     const handleDataChange = (key, value) => {
         setData({

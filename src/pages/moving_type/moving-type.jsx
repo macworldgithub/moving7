@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import OtpInput from 'react-otp-input';
 import dayjs from "dayjs";
-import { AutoComplete, Select, TimePicker } from "antd";
+import { AutoComplete, Select, Spin, TimePicker } from "antd";
 import { useQuery, useMutation } from "react-query";
 import MyModal from '../../components/Modal/Modal'
 import { fetchOnePartner, getLocationSuggestions, quoteRequest, requestOTP, sendEmailToPartners, verifyOTP } from "../../apiFunctions/partner";
@@ -236,7 +236,7 @@ function MovingType() {
         getOtpMutation.mutate(data.email)
     };
 
-    if ( postRequest.isLoading || sendEmailToPartnersMutation.isLoading || verifyOtpMutation.isLoading || getOtpMutation.isLoading) {
+    if (postRequest.isLoading || sendEmailToPartnersMutation.isLoading || verifyOtpMutation.isLoading || getOtpMutation.isLoading) {
         return (
             <LoaderLayout>
                 <Truck />
@@ -313,6 +313,7 @@ function MovingType() {
                                 options={locationOptions}
                                 placeholder="Address"
                                 className="lg:w-2/4 outline-[#13C265]"
+                                notFoundContent={fetchLocationsMutation?.isLoading ? <Spin size="ps-3 small" /> : null}
                                 onClick={() => handleInputStateChange("isVisible_1", true)}
                                 onFocus={() => handleInputStateChange("isVisible_1", true)}
                             />
@@ -327,6 +328,7 @@ function MovingType() {
                                     options={locationOptions}
                                     placeholder="Address"
                                     className="lg:w-2/4 outline-[#13C265]"
+                                    notFoundContent={fetchLocationsMutation?.isLoading ? <Spin size="small" /> : null}
                                     onFocus={() => handleInputStateChange("isVisible_2", true)}
                                     onClick={() => handleInputStateChange("isVisible_2", true)}
                                 />
@@ -725,13 +727,13 @@ function MovingType() {
                             </div>
                         )}
                         {inputStates.isVisible_9 && (
-                            <div className="text-start flex flex-col items-center p-4">
+                            <div className="text-start flex flex-col  items-center p-4">
                                 <p className="lg:w-1/2 ">Budget range</p>
-                                <div className="flex flex-wrap gap-2 justify-center items-center mt-4 xl:mr-40">
+                                <div className="flex  flex-wrap justify-center items-center mt-4 40">
                                     <div>
                                         <Input
                                             type="number" placeholder="Min range"
-                                            className="lg:w-11/12 outline-[#13C265]"
+                                            className="lg:w-44 mx-1 my-1 outline-[#13C265]"
                                             onClick={() => handleInputStateChange("isVisible_10", true)}
                                             value={data.budgetRange.minimum}
                                             onChange={(e) => {
@@ -745,7 +747,7 @@ function MovingType() {
                                     <div>
                                         <Input
                                             type="number" placeholder="Max range"
-                                            className="lg:w-11/12 outline-[#13C265]"
+                                            className="lg:w-44 mx-1 my-1 outline-[#13C265]"
                                             onClick={() => handleInputStateChange("isVisible_10", true)}
                                             value={data.budgetRange.maximum}
                                             onChange={(e) => {

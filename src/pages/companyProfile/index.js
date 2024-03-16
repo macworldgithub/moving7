@@ -13,11 +13,13 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation, useQuery } from "react-query";
 import { fetchOnePartner, getPolygon, getUAERegions, partnerSignIn, updateContactInfo, updateNameAdd, updatePartnerDetails } from "../../apiFunctions/partner";
-import { Select, Input , AutoComplete} from 'antd';
+import { Select, Input, AutoComplete } from 'antd';
 import { getLocationSuggestions } from "../../apiFunctions/partner";
+import LoaderLayout from "../../components/Loaders/LoaderLayout";
+import Truck from "../../components/Loaders/Truck";
 
 
-setKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? "");
+setKey("AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM");
 const { TextArea } = Input;
 
 
@@ -114,11 +116,15 @@ const CompanyProfile = () => {
     }, [partnerDataRes.data]);
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? "",
+        googleMapsApiKey:"AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM"
     });
 
 
-
+    if (partnerDataRes.isLoading || getRegionsQuery.isLoading || polygonRes.isLoading || updatePartnerDetailsMutation.isLoading) {
+        return (<LoaderLayout>
+            <Truck />
+        </LoaderLayout>)
+    }
 
     const onLocationChange = (e) => {
         fetchLocationsMutation.mutate(e);
@@ -517,7 +523,7 @@ const CompanyProfile = () => {
 
                             <h1 className="flex items-center mt-8 font-semibold text-2xl my-5">
                                 Company Location
-                                        <AiOutlineEdit onClick={() => setShowTargetingModal(true)} className="cursor-pointer ms-2" />
+                                <AiOutlineEdit onClick={() => setShowTargetingModal(true)} className="cursor-pointer ms-2" />
                             </h1>
                             {isLoaded ? (
                                 <GoogleMap
@@ -832,10 +838,10 @@ const CompanyProfile = () => {
                                         {isLoaded && partnerData?.areaPreference === "radius" ? (
                                             <GoogleMap
                                                 mapContainerStyle={{
-                                                        width: "30rem",
-                                                        height: "400px",
-                                                        marginLeft: "2rem",
-                                                    }}
+                                                    width: "30rem",
+                                                    height: "400px",
+                                                    marginLeft: "2rem",
+                                                }}
                                                 center={latlong}
                                                 zoom={13}
                                             >
@@ -918,7 +924,7 @@ const CompanyProfile = () => {
                                                                     {selectedCity?.name}
                                                                 </p>
                                                                 <span onClick={() => {
-                                                                    let temp =partnerData 
+                                                                    let temp = partnerData
                                                                     temp?.regions?.splice(temp?.regions?.findIndex(region => region?.name === selectedCity.name), 1)
                                                                     setPartnerData({
                                                                         ...partnerData,
@@ -954,20 +960,20 @@ const CompanyProfile = () => {
 
 
 
-                                    <div onClick={() => {
-                                        let tempObj = {
-                                        }
-                                            tempObj.areaPreference = partnerData?.areaPreference
-                                        if (partnerData?.areaPreference === "region") {
-                                            tempObj.regions = partnerData?.regions
-                                        } else {
-                                            tempObj.location = partnerData?.location
-                                            tempObj.radius = partnerData?.radius
-                                        }
-                                        updatePartnerDetailsMutation.mutate(tempObj)
-                                    }} className="w-full mt-5 rounded-lg shadow cursor-pointer lg:w-1/2 py-2 text-center bg-primary text-white">
-                                    Save
-                                    </div>
+                            <div onClick={() => {
+                                let tempObj = {
+                                }
+                                tempObj.areaPreference = partnerData?.areaPreference
+                                if (partnerData?.areaPreference === "region") {
+                                    tempObj.regions = partnerData?.regions
+                                } else {
+                                    tempObj.location = partnerData?.location
+                                    tempObj.radius = partnerData?.radius
+                                }
+                                updatePartnerDetailsMutation.mutate(tempObj)
+                            }} className="w-full mt-5 rounded-lg shadow cursor-pointer lg:w-1/2 py-2 text-center bg-primary text-white">
+                                Save
+                            </div>
                         </div>
                     </MyModal>
                 )

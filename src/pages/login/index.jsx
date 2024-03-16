@@ -7,6 +7,8 @@ import UserIcon from '../../assets/images/login/Vector (1).svg'
 import Lock from '../../assets/images/login/Vector (2).svg'
 import Footer from '../footer/footer'
 import { toast } from 'react-toastify'
+import LoaderLayout from '../../components/Loaders/LoaderLayout'
+import Truck from '../../components/Loaders/Truck'
 
 export default function Login() {
     const navigate = useNavigate()
@@ -34,6 +36,12 @@ export default function Login() {
         password: "",
         email: ""
     })
+
+    if (partnerSigInMutation.isLoading){
+            return (<LoaderLayout>
+                <Truck />
+            </LoaderLayout>)
+    }
 
     const handleChange = (key, val) => {
         setCredentials({

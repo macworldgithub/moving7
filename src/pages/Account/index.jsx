@@ -6,6 +6,8 @@ import { IoIosArrowForward } from "react-icons/io";
 import { toast } from 'react-toastify';
 import UserImg from '../../assets/images/overview/Group 17.png'
 import SmalllFooter from '../footer/smalllFooter';
+import LoaderLayout from '../../components/Loaders/LoaderLayout';
+import Truck from '../../components/Loaders/Truck';
 
 export default function Account() {
 
@@ -27,6 +29,11 @@ export default function Account() {
         queryFn:getContactManagerDetails
     })
 
+    if (updatePasswordMutation.isLoading ){
+        return <LoaderLayout>
+            <Truck />
+        </LoaderLayout>
+    }
     const ManagerData = contactManagerRes?.data?.data ?? {}
 
   const openWhatsApp = () => {

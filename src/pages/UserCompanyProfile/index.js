@@ -11,9 +11,11 @@ import { toast } from "react-toastify";
 import { useMutation, useQuery } from "react-query";
 import { fetchOnePartner, getPolygon, getUAERegions, partnerSignIn, updateContactInfo, updateNameAdd, updatePartnerDetails } from "../../apiFunctions/partner";
 import Footer from "../footer/footer";
+import LoaderLayout from "../../components/Loaders/LoaderLayout";
+import Truck from "../../components/Loaders/Truck";
 
 
-setKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? "");
+setKey("AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM");
 
 
 
@@ -29,15 +31,9 @@ const UserCompanyProfile = () => {
         queryKey: ["fetchOnepartner", id],
         queryFn: fetchOnePartner,
     })
-    const regions = partnerDataRes?.data?.data?.regions ?? []
-    const getRegionsQuery = useQuery({
-        queryKey: ["fetchRegions"],
-        queryFn: getUAERegions,
-    });
-    const RegionData = getRegionsQuery?.data?.data
 
-    const partnerData = partnerDataRes?.data?.data ?? {images:[]}
-    console.log(partnerDataRes,"Partnerrrrrrr")
+    const partnerData = partnerDataRes?.data?.data ?? { images: [] }
+    console.log(partnerDataRes, "Partnerrrrrrr")
     const polygonRes = useQuery({
         queryKey: ["fetchPolygonsEdit", partnerData?.regions ?? []],
         queryFn: getPolygon,
@@ -72,8 +68,16 @@ const UserCompanyProfile = () => {
     }, [partnerDataRes.data]);
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? "",
+        googleMapsApiKey: "AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM"
     });
+
+
+    if (partnerDataRes.isLoading || polygonRes.isLoading) {
+        return (<LoaderLayout>
+            <Truck />
+        </LoaderLayout>)
+
+    }
 
     const polygons = polygonRes?.data?.data
 
@@ -89,12 +93,12 @@ const UserCompanyProfile = () => {
                         </div>
                         <div className="mx-8 flex justify-between flex-col mt-2">
                             <div>
-                                    <h1 className=" flex items-center text-xl font-semibold">
-                                        {partnerData?.firstName + " " + partnerData?.lastName}
-                                    </h1>
-                                    <p className="text-gray-500">
-                                        {partnerData?.addressLine1}
-                                    </p>
+                                <h1 className=" flex items-center text-xl font-semibold">
+                                    {partnerData?.firstName + " " + partnerData?.lastName}
+                                </h1>
+                                <p className="text-gray-500">
+                                    {partnerData?.addressLine1}
+                                </p>
 
                             </div>
                             <div className="mb-4">
@@ -118,12 +122,12 @@ const UserCompanyProfile = () => {
                         <h1 className="font-semibold text-xl flex items-center">
                             Contact information
                         </h1>
-                                          <p className="text-gray-500 mt-1">
-                                    {partnerData?.telephone}
-                                </p>
-                                    <p className="text-gray-500 mt-1">
-                                        {partnerData?.email}
-                                    </p>
+                        <p className="text-gray-500 mt-1">
+                            {partnerData?.telephone}
+                        </p>
+                        <p className="text-gray-500 mt-1">
+                            {partnerData?.email}
+                        </p>
 
                         <div onClick={() => copyToClipboard(window.location.href)} className="bg-primary w-max px-3 py-1 rounded text-white mt-6 cursor-pointer">
                             Copy Profile URL
@@ -154,9 +158,9 @@ const UserCompanyProfile = () => {
                             <h1 className="text-3xl font-[#4B4B4B] font-semibold flex items-center">
                                 About the company
                             </h1>
-                                    <p className="text-gray-500 mt-1">
-                                        {partnerData?.about ?? "There is no information about the company yet."}
-                                    </p>
+                            <p className="text-gray-500 mt-1">
+                                {partnerData?.about ?? "There is no information about the company yet."}
+                            </p>
                             <div className="flex items-center justify-between">
                                 <h1 className="text-2xl font-semibold ">
                                     Project images
@@ -168,8 +172,8 @@ const UserCompanyProfile = () => {
                                     setShowImageModal(true)
                                 }
                             }} className="images cursor-pointer overflow-hidden flex sm:w-full w-full bg-gray-200 h-72 my-3">
-        {
-            partnerData?.images?.length ? (
+                                {
+                                    partnerData?.images?.length ? (
                                         <>
                                             <img className="w-[44rem]" src={`${partnerData?.images[0]?.url ?? AddImage}`} />
                                             <div>
@@ -188,14 +192,14 @@ const UserCompanyProfile = () => {
 
                                             </div>
                                         </>
-            ) : (
-                <div className="flex items-center justify-center w-full">
-                <p>
-                    No Images
-                </p>
-                </div>
-            )
-        }
+                                    ) : (
+                                        <div className="flex items-center justify-center w-full">
+                                            <p>
+                                                No Images
+                                            </p>
+                                        </div>
+                                    )
+                                }
 
                             </div>
                             <div className="flex flex-wrap justify-between sm:w-full w-full ">
@@ -219,31 +223,31 @@ const UserCompanyProfile = () => {
                                     How did your start your business?
                                 </p>
 
-                                        <p className="text-xl">
-                                            {
-                                                partnerData?.ans1 ?? "The company has not yet answered this question."
-                                            }
-                                        </p>
+                                <p className="text-xl">
+                                    {
+                                        partnerData?.ans1 ?? "The company has not yet answered this question."
+                                    }
+                                </p>
                             </div>
                             <div className="my-3">
                                 <p className="font-semibold text-xl">
                                     What makes your services standout?
                                 </p>
-                                        <p className="text-xl">
-                                            {
-                                                partnerData?.ans2 ?? "The company has not yet answered this question."
-                                            }
-                                        </p>
+                                <p className="text-xl">
+                                    {
+                                        partnerData?.ans2 ?? "The company has not yet answered this question."
+                                    }
+                                </p>
                             </div>
                             <div className="my-3">
                                 <p className="font-semibold text-xl">
                                     What is your top advice for your customers?
                                 </p>
-                                        <p className="text-xl">
-                                            {
-                                                partnerData?.ans3 ?? "The company has not yet answered this question."
-                                            }
-                                        </p>
+                                <p className="text-xl">
+                                    {
+                                        partnerData?.ans3 ?? "The company has not yet answered this question."
+                                    }
+                                </p>
                             </div>
 
 
@@ -309,29 +313,29 @@ const UserCompanyProfile = () => {
                         <div className="lg:w-1/4 w-full sm:w-full bg-ble-200">
                             <div className="bg-white w-full py-4 shadow-lg border-gray-100 mt-5 py-1">
                                 <h1 className="text-lg px-5 justify-between flex items-center">
-        Company Profile
+                                    Company Profile
                                 </h1>
                                 <hr className="my-2" />
                                 <h2 className="px-5 text-gray-500 font-semibold">
                                     Type of business
                                 </h2>
-                                        <p className="px-5 text-gray-500">
-                                            {partnerData?.businessType ?? "None"}
-                                        </p>
+                                <p className="px-5 text-gray-500">
+                                    {partnerData?.businessType ?? "None"}
+                                </p>
                                 <hr className="my-2" />
                                 <h2 className="px-5 text-gray-500 font-semibold">
                                     No Of Employees
                                 </h2>
-                                        <p className="px-5 text-gray-500">
-                                            {partnerData?.noOfEmployees ?? "None"}
-                                        </p>
+                                <p className="px-5 text-gray-500">
+                                    {partnerData?.noOfEmployees ?? "None"}
+                                </p>
                                 <hr className="my-2" />
                                 <h2 className="px-5 text-gray-500 font-semibold">
                                     EIN
                                 </h2>
-                                        <p className="px-5 text-gray-500">
-                                            {partnerData?.EIN ?? "None"}
-                                        </p>
+                                <p className="px-5 text-gray-500">
+                                    {partnerData?.EIN ?? "None"}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -356,9 +360,9 @@ const UserCompanyProfile = () => {
                                 }} className="absolute  bg-[rgba(0,0,0,0.5)] rounded-full w-10 h-10 flex items-center justify-center cursor-pointer text-white right-7">
                                 X
                             </div>
-                                    <div className="h-full w-full flex justify-center items-center">
-                                        <img className="h-84 w-96" src={partnerData?.profileImage ?? AddImage} />
-                                    </div>
+                            <div className="h-full w-full flex justify-center items-center">
+                                <img className="h-84 w-96" src={partnerData?.profileImage ?? AddImage} />
+                            </div>
                         </div>
                     </MyModal>
                 )
@@ -387,7 +391,7 @@ const UserCompanyProfile = () => {
                                 }} className="absolute  bg-[rgba(0,0,0,0.5)] rounded-full w-10 h-10 flex items-center justify-center cursor-pointer text-white right-7">
                                 X
                             </div>
-                                        <img className="h-full w-full" src={partnerData?.images[currImage]?.url ?? AddImage} />
+                            <img className="h-full w-full" src={partnerData?.images[currImage]?.url ?? AddImage} />
                             <div>
                                 <AiOutlineLeft
                                     onClick={() => {
@@ -420,7 +424,7 @@ const UserCompanyProfile = () => {
                 )
             }
 
-      <Footer />
+            <Footer />
         </div>
     )
 }
