@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import OtpInput from 'react-otp-input';
 import dayjs from "dayjs";
-import { AutoComplete, Select, TimePicker } from "antd";
+import { AutoComplete, Select, Spin, TimePicker } from "antd";
 import { useQuery, useMutation } from "react-query";
 import MyModal from '../../components/Modal/Modal'
-import { getLocationSuggestions, quoteRequest, requestOTP, verifyOTP } from "../../apiFunctions/partner";
+import { fetchOnePartner, getLocationSuggestions, quoteRequest, requestOTP, sendEmailToPartners, verifyOTP } from "../../apiFunctions/partner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-phone-number-input/style.css";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
@@ -13,6 +13,9 @@ import "../header/header.css";
 import { Input } from "antd";
 import DatePicker from "../../components/DatePicker";
 import SpecificDate from "../../components/Specific";
+import { useNavigate } from "react-router-dom";
+import LoaderLayout from "../../components/Loaders/LoaderLayout";
+import Truck from "../../components/Loaders/Truck";
 
 const selectBg = "bg-[#00DD68]";
 
@@ -22,6 +25,7 @@ function MovingType() {
     const [showVerificationModal, setShowVerificationModal] = useState(false);
     const [locationOptions, setLocationOptions] = useState([]);
     const [data, setData] = useState({
+        movingType: "",
         moveFrom: "",
         moveTo: "",
         currPropertyType: "",
@@ -46,12 +50,32 @@ function MovingType() {
         },
         building: "",
     });
+    const navigate = useNavigate()
+    const sendEmailToPartnersMutation = useMutation({
+        mutationKey: "sendToPartners",
+        mutationFn: sendEmailToPartners,
+        onSuccess: (data) => {
+            console.log(data, "emails")
+            toast.success("Request Sent Successfully to Partners! ")
+
+            window.localStorage.removeItem("userData")
+            navigate('/response', { state: { emails: data?.data ?? [] } });
+        },
+        onSettled: (d, e) => console.log(d, e),
+    });
     const postRequest = useMutation({
         mutationKey: "postRequest",
         mutationFn: quoteRequest,
-        onSuccess: () => {
+        onSuccess: (d) => {
+            console.log(d, "insertedd")
             toast.success("Request submitted successfully!")
             setShowVerificationModal(false)
+            console.log(data.moveFrom, data, "JUSTTTTTTTTTTTTTTTTT")
+            sendEmailToPartnersMutation.mutate({
+                moveFrom: data.moveFrom,
+                moveTo: data.moveTo,
+                id: d.data.insertedId
+            })
         },
         onSettled: (d, e) => console.log(d, e),
     });
@@ -60,17 +84,17 @@ function MovingType() {
         mutationFn: verifyOTP,
         onSuccess: (d) => {
             console.log(d, "OTPPPPPPPPPPP RESSSSSSSSSSSS")
-            if (d?.data?.verified){
+            if (d?.data?.verified) {
                 toast.success("OTP verified successfully!")
                 toast.info("Processing your request...")
-                window.localStorage.setItem("userData",JSON.stringify(d?.data?.user))
+                window.localStorage.setItem("userData", JSON.stringify(d?.data?.user))
                 postRequest.mutate(data)
             }
         },
-        onError:(err) => {
-            if (err?.response?.data?.message === "wrong code"){
+        onError: (err) => {
+            if (err?.response?.data?.message === "wrong code") {
                 toast.error("Wrong Code!")
-            }else{
+            } else {
                 toast.error(err.message)
             }
         },
@@ -212,46 +236,55 @@ function MovingType() {
         getOtpMutation.mutate(data.email)
     };
 
-    
+    if (postRequest.isLoading || sendEmailToPartnersMutation.isLoading || verifyOtpMutation.isLoading || getOtpMutation.isLoading) {
+        return (
+            <LoaderLayout>
+                <Truck />
+            </LoaderLayout>
+        )
+    }
+
 
     return (
         <>
-        {
-            showVerificationModal ? (
-            <MyModal>
-                <div className="bg-white rounded-lg h-40 w-96">
-                    <h1 className="text-primary font-bold text-2xl text-center pt-4">
-                        Verify that it's you!
-                    </h1>
-                    <p className="text-center text-gray-500">
-                        A verification email is send to your account!
-                    </p>
-                    <div className="flex justify-center mt-4">
-                        <OtpInput
-                            value={otp}
-                            onChange={(val) => {
-                                if (val.length === 4){
-                                    verifyOtpMutation.mutate({
-                                        email:data?.email,
-                                        code:val
-                                    })
-                                }
-                                console.log(val, "imvalll")
-                                setOtp(val)
-                            }}
-                            numInputs={4}
-                            renderSeparator={<span className="mx-3"></span>}
-                            renderInput={(props) => {
-                                props.className = "text-xl border-b-4 w-10 customOTPclass"
-                                return <input className="text-xl border-b-4" {...props} />
-                            }}
-    
-                        />
-                    </div>
-                </div>
-            </MyModal>
-            ) : null
-        }
+
+
+            {
+                showVerificationModal ? (
+                    <MyModal>
+                        <div className="bg-white rounded-lg h-40 w-96">
+                            <h1 className="text-primary font-bold text-2xl text-center pt-4">
+                                Verify that it's you!
+                            </h1>
+                            <p className="text-center text-gray-500">
+                                A verification email is send to your account!
+                            </p>
+                            <div className="flex justify-center mt-4">
+                                <OtpInput
+                                    value={otp}
+                                    onChange={(val) => {
+                                        if (val.length === 4) {
+                                            verifyOtpMutation.mutate({
+                                                email: data?.email,
+                                                code: val
+                                            })
+                                        }
+                                        console.log(val, "imvalll")
+                                        setOtp(val)
+                                    }}
+                                    numInputs={4}
+                                    renderSeparator={<span className="mx-3"></span>}
+                                    renderInput={(props) => {
+                                        props.className = "text-xl border-b-4 w-10 customOTPclass"
+                                        return <input className="text-xl border-b-4" {...props} />
+                                    }}
+
+                                />
+                            </div>
+                        </div>
+                    </MyModal>
+                ) : null
+            }
             <div className=" flex justify-center items-center header-btn mt-2 lg:mt-10">
                 <button className="text-sm py-2 bg-[#13C265] w-40 font-bold lg:text-lg">
                     Get Quotes
@@ -267,6 +300,7 @@ function MovingType() {
                     handleInputStateChange={handleInputStateChange}
                     active={active}
                     setActive={setActive}
+                    handleDataChange={handleDataChange}
                 />
 
                 {inputStates.isVisible_0 && (
@@ -279,6 +313,7 @@ function MovingType() {
                                 options={locationOptions}
                                 placeholder="Address"
                                 className="lg:w-2/4 outline-[#13C265]"
+                                notFoundContent={fetchLocationsMutation?.isLoading ? <Spin size="ps-3 small" /> : null}
                                 onClick={() => handleInputStateChange("isVisible_1", true)}
                                 onFocus={() => handleInputStateChange("isVisible_1", true)}
                             />
@@ -293,6 +328,7 @@ function MovingType() {
                                     options={locationOptions}
                                     placeholder="Address"
                                     className="lg:w-2/4 outline-[#13C265]"
+                                    notFoundContent={fetchLocationsMutation?.isLoading ? <Spin size="small" /> : null}
                                     onFocus={() => handleInputStateChange("isVisible_2", true)}
                                     onClick={() => handleInputStateChange("isVisible_2", true)}
                                 />
@@ -691,13 +727,13 @@ function MovingType() {
                             </div>
                         )}
                         {inputStates.isVisible_9 && (
-                            <div className="text-start flex flex-col items-center p-4">
+                            <div className="text-start flex flex-col  items-center p-4">
                                 <p className="lg:w-1/2 ">Budget range</p>
-                                <div className="flex flex-wrap gap-2 justify-center items-center mt-4 xl:mr-40">
+                                <div className="flex  flex-wrap justify-center items-center mt-4 40">
                                     <div>
                                         <Input
                                             type="number" placeholder="Min range"
-                                            className="lg:w-11/12 outline-[#13C265]"
+                                            className="lg:w-44 mx-1 my-1 outline-[#13C265]"
                                             onClick={() => handleInputStateChange("isVisible_10", true)}
                                             value={data.budgetRange.minimum}
                                             onChange={(e) => {
@@ -705,12 +741,13 @@ function MovingType() {
                                                 handleRangeChange("minimum", e.target.value)
                                             }
                                             }
+                                            onFocus={() => handleInputStateChange("isVisible_10", true)}
                                         />
                                     </div>
                                     <div>
                                         <Input
                                             type="number" placeholder="Max range"
-                                            className="lg:w-11/12 outline-[#13C265]"
+                                            className="lg:w-44 mx-1 my-1 outline-[#13C265]"
                                             onClick={() => handleInputStateChange("isVisible_10", true)}
                                             value={data.budgetRange.maximum}
                                             onChange={(e) => {
@@ -718,6 +755,7 @@ function MovingType() {
                                                 handleRangeChange("maximum", e.target.value)
                                             }
                                             }
+                                            onFocus={() => handleInputStateChange("isVisible_10", true)}
                                         />
                                     </div>
 
@@ -754,7 +792,7 @@ function MovingType() {
 
 export default MovingType;
 
-const HeadButton = ({ active, setActive, handleInputStateChange }) => {
+const HeadButton = ({ handleDataChange, active, setActive, handleInputStateChange }) => {
     return (
         <div className="felx items-center justify-between">
             <button
@@ -762,6 +800,7 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
                 onClick={() => {
                     active === 1 ? setActive(null) : setActive(1);
                     handleInputStateChange("isVisible_0", true);
+                    handleDataChange("movingType", "Local")
                 }}
             >
                 Local
@@ -770,6 +809,7 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
                 onClick={() => {
                     active === 2 ? setActive(null) : setActive(2);
                     handleInputStateChange("isVisible_0", true);
+                    handleDataChange("movingType", "Commercial")
                 }}
                 className={` w-40 ${active === 2 ? selectBg + " text-white" : " bg-[#D1D1D1] "} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`} >
                 Commerical
@@ -778,6 +818,7 @@ const HeadButton = ({ active, setActive, handleInputStateChange }) => {
                 onClick={() => {
                     active === 3 ? setActive(null) : setActive(3);
                     handleInputStateChange("isVisible_0", true);
+                    handleDataChange("movingType", "International")
                 }}
                 className={` w-40 ${active === 3 ? selectBg + " text-white" : " bg-[#D1D1D1] "} flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
                 International

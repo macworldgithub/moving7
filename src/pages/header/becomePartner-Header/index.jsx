@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import QuoteDropdown from '../../quotesRequest/DropDown';
+import {Dropdown} from 'antd';
 import { toast } from 'react-toastify';
 import Logo from "../../../assets/images/partner-logo/icon-32-logo 1.svg";
 import { IoIosArrowDown } from "react-icons/io";
@@ -8,14 +10,17 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export default function PartnerHeader({ user }) {
+export default function PartnerHeader({ user , setUser}) {
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false);
+
+
+console.log(user,"idharrrrrrrr")
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
     }
-
+console.log(user,"USERRRR")
     return (
         <>
             <ToastContainer />
@@ -57,7 +62,7 @@ export default function PartnerHeader({ user }) {
                             }
                             }
                             className='cursor-pointer'>Company Profile</h2>
-                        <h2
+                        {/*<h2
                             onClick={() => {
                                 if (user?.proof) {
                                     navigate(`/partner/targeting/${user?._id}`)
@@ -66,11 +71,11 @@ export default function PartnerHeader({ user }) {
                                 }
                             }
                             }
-                            className='cursor-pointer'>Targeting</h2>
+                            className='cursor-pointer'>Targeting</h2> */}
                         <h2
                             onClick={() => {
                                 if (user?.proof) {
-                                    navigate(`/partner/overview/${user?._id}`)
+                                    navigate(`/partner/helpdesk`)
                                 } else {
                                     toast.error("Please complete your profile first")
                                 }
@@ -89,13 +94,17 @@ export default function PartnerHeader({ user }) {
                                         }
                                         }
                                     >Account</h2>
-                                    <IoIosArrowDown />
+                                <QuoteDropdown setUser={setUser} />
                                 </>
                             ) : (
-                                <h2 onClick={() => {
-                                    window.localStorage.removeItem('userData');
+                                <>
+                                <button onClick={() => {
+                                    console.log("clicked here")
+                                    localStorage.removeItem('userData')
+                                    setUser({})
                                     navigate('/')
-                                }} className="cursor-pointer">Logout </h2>
+                                }} className=" cursor-pointer">Logout </button>
+                                </>
                             )
                         }
                     </div>

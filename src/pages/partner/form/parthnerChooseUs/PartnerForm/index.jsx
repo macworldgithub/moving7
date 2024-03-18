@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { setKey, setDefaults, fromAddress } from "react-geocode";
+import { setKey, fromAddress } from "react-geocode";
+import LoaderLayout from "../../../../../components/Loaders/LoaderLayout";
+import Truck from "../../../../../components/Loaders/Truck";
 import RegionAccordion from "../../Accordion";
 import { AutoComplete } from "antd";
-import { getLocationSuggestions } from "../../../../../apiFunctions/partner";
-import { GoogleMap, Marker, useJsApiLoader, Circle } from "@react-google-maps/api";
+import { getLocationSuggestions, getPolygon, getUAERegions } from "../../../../../apiFunctions/partner";
+import { GoogleMap, Marker, useJsApiLoader, Circle, Polygon } from "@react-google-maps/api";
 import { useQuery, useMutation } from "react-query";
 import { toast } from "react-toastify";
 import PhoneInput from "react-phone-number-input";
@@ -16,7 +18,7 @@ const containerStyle = {
     height: "400px",
 };
 
-setKey("AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ");
+setKey("AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM");
 export default function FreeTrialForm() {
     const navigate = useNavigate()
     const [latlong, setLatlong] = useState({
@@ -28,13 +30,47 @@ export default function FreeTrialForm() {
         mutationKey: "PostPartner",
         mutationFn: partnerSignUp,
         onSuccess: (data) => {
-            console.log(data?.data?.toString(),"signupdata")
-            window.localStorage.setItem("userData", JSON.stringify(data?.data))
-            navigate("/partner/documentsVerification")
-            toast.success("Successfully Created!")
+            console.log(data?.data?.toString(), "signupdata");
+            window.localStorage.setItem("userData", JSON.stringify(data?.data));
+            navigate("/partner/documentsVerification");
+            window.location.reload()
+            toast.success("Successfully Created!");
         },
+        onError:(e) => toast.error(e?.response?.data?.message),
         onSettled: (d, e) => console.log(d, e),
     });
+    const getRegionsQuery = useQuery({
+        queryKey: ["fetchRegions"],
+        queryFn: getUAERegions,
+    });
+    const [data, setData] = useState({
+        removalType: "",
+        areaPreference: "",
+        location: "",
+        radius: 0,
+        companyName: "",
+        businessType: "",
+        noOfEmployees: "0",
+        email: "",
+        telephone: "",
+        addressLine1: "",
+        regions: [],
+        city: "",
+        state: "",
+        salutation: "",
+        firstName: "",
+        lastName: "",
+        password: "",
+        confirmPassword: "",
+    });
+    const getRegionsPolygon = useQuery({
+        queryKey: ["fetchRegionsPolygon", data.regions],
+        queryFn: getPolygon,
+    });
+    const RegionData = getRegionsQuery?.data?.data
+    const RegionPolygonData = getRegionsPolygon?.data?.data
+    console.log(getRegionsPolygon, "polygonnnnn")
+    console.log(RegionPolygonData, "polygonnnnnDataa")
     const fetchLocationsMutation = useMutation({
         mutationKey: "fetchLocation",
         mutationFn: getLocationSuggestions,
@@ -49,45 +85,33 @@ export default function FreeTrialForm() {
         },
         onSettled: (d, e) => console.log(d, e),
     });
-    const [data, setData] = useState({
-        removalType: "",
-        areaPreference: "",
-        location: null,
-        radius: null,
-        companyName: null,
-        businessType: "",
-        noOfEmployees: null,
-        email: "",
-        telephone: "",
-        addressLine1: "",
-        regions: [],
-        city: "",
-        state: "",
-        salutation: "",
-        firstName: "",
-        lastName: "",
-        password: "",
-        confirmPassword: "",
-    });
-
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: "AIzaSyBmlfCX9N5NAKdGidMbSxMXkc4CNHcT6rQ",
+        googleMapsApiKey:  "AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM"
     });
+    // const onUnmount = useCallback(function callback(map) {
+    //     setMap(null);
+    // }, []);
+    // const [map, setMap] = useState(null);
+    // const onLoad = useCallback(function callback(map) {
+    //     // This is just an example of getting and using the map instance!!! don't just blindly copy!
+    //     const bounds = new window.google.maps.LatLngBounds(latlong);
+    //     map.fitBounds(bounds);
 
-    const onUnmount = React.useCallback(function callback(map) {
-        setMap(null);
+    //     setMap(map);
+    // }, []);
+
+    useEffect(() => {
+        getRegionsQuery.refetch();
     }, []);
 
-    const [map, setMap] = React.useState(null);
-
-    const onLoad = React.useCallback(function callback(map) {
-        // This is just an example of getting and using the map instance!!! don't just blindly copy!
-        const bounds = new window.google.maps.LatLngBounds(latlong);
-        map.fitBounds(bounds);
-
-        setMap(map);
-    }, []);
+    if (getRegionsQuery.isLoading || partnerSignUpMutation.isLoading) {
+        return (
+            <LoaderLayout>
+                <Truck />
+            </LoaderLayout>
+        )
+    }
 
     const handleDataChange = (key, value) => {
         setData({
@@ -116,7 +140,6 @@ export default function FreeTrialForm() {
             })
             .catch(console.error);
     };
-
 
     const submit = () => {
         const isEmpty = !data.areaPreference || !data.companyName || !data.businessType || !data.noOfEmployees || !data.email || !data.telephone || !data.addressLine1 || !data.city || !data.state || !data.salutation || !data.firstName || !data.lastName || !data.password || !data.confirmPassword;
@@ -273,7 +296,42 @@ export default function FreeTrialForm() {
                     {
                         data.areaPreference === "region" && (
                             <>
-                                <RegionAccordion setData={setData} data={data} />
+                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData} setData={setData} data={data} />
+                                <div className="-ml-8 mb-3 mt-5">
+                                    {isLoaded && data.areaPreference === "region" ? (
+                                        <GoogleMap
+                                            mapContainerStyle={containerStyle}
+                                            center={{
+                                                lat: 25.276987,
+                                                lng: 55.296249
+                                            }}
+                                            zoom={9}
+                                        >
+                                            {RegionPolygonData && (
+                                                RegionPolygonData?.map((reg) => {
+                                                    return reg?.multiPolygon?.map((elem) => {
+                                                        return (<Polygon
+                                                            path={elem}
+                                                            options={{
+                                                                fillColor: '#1ABD5E',
+                                                                fillOpacity: 0.1,
+                                                                strokeColor: '#1ABD5E',
+                                                                strokeOpacity: 0.5,
+                                                                strokeWeight: 1,
+                                                            }}
+
+                                                        />)
+                                                    })
+                                                })
+                                            )
+                                            }
+                                            <Marker position={latlong} />
+                                        </GoogleMap>
+                                    ) : (
+                                        <>
+                                        </>
+                                    )}
+                                </div>
                                 <div className='md:w-[47%] mx-auto'>
                                     <p className='text-gray-500'>Selected Areas:</p>
                                     <div className="flex flex-wrap">
@@ -282,12 +340,11 @@ export default function FreeTrialForm() {
                                                 return (
                                                     <div className="my-1 flex px-2 py-0 h-max items-center justify-between rounded-lg text-white me-2 bg-[#13C265]">
                                                         <p className="m-0 p-0">
-                                                            {selectedCity}
+                                                            {selectedCity.name}
                                                         </p>
                                                         <span onClick={() => {
-
                                                             let temp = data
-                                                            temp.regions.splice(temp.regions.indexOf(selectedCity), 1)
+                                                            temp.regions.splice(temp.regions.findIndex(region => region.name === selectedCity.name), 1)
                                                             setData({
                                                                 ...data,
                                                                 regions: temp.regions

@@ -7,6 +7,8 @@ import UserIcon from '../../assets/images/login/Vector (1).svg'
 import Lock from '../../assets/images/login/Vector (2).svg'
 import Footer from '../footer/footer'
 import { toast } from 'react-toastify'
+import LoaderLayout from '../../components/Loaders/LoaderLayout'
+import Truck from '../../components/Loaders/Truck'
 
 export default function Login() {
     const navigate = useNavigate()
@@ -21,6 +23,7 @@ export default function Login() {
             }else {
                 navigate("/partner/documentsverification")
             }
+            window.location.reload()
         },
         onError:(err) => {
             console.log(err)
@@ -33,6 +36,12 @@ export default function Login() {
         password: "",
         email: ""
     })
+
+    if (partnerSigInMutation.isLoading){
+            return (<LoaderLayout>
+                <Truck />
+            </LoaderLayout>)
+    }
 
     const handleChange = (key, val) => {
         setCredentials({
@@ -76,7 +85,7 @@ export default function Login() {
                         </div>
                     </div>
                     <div>
-                        <Link to={"/partner"}>
+                        <Link to={"/partnerSignUp"}>
                             <h2 className='italic text-[#13C265] font-medium cursor-pointer mt-3 mb-3'>Create account</h2>
                         </Link>
                     </div>

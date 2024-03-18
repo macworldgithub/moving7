@@ -1,15 +1,30 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 import { IoIosArrowForward } from "react-icons/io";
 import UserImg from '../../../assets/images/overview/Group 17.png'
 import SmalllFooter from '../../footer/smalllFooter';
 import { Collapse, Divider } from 'antd';
+import { getContactManagerDetails } from '../../../apiFunctions/partner';
 const text = `
   A dog is a type of domesticated animal.
   Known for its loyalty and faithfulness,
   it can be found as a welcome guest in many households across the world.
 `;
-const Help_Desk = () => (
-    <>
+const Help_Desk = () => {
+
+    const contactManagerRes = useQuery({
+        queryKey:["getContactManagerDetails"],
+        queryFn:getContactManagerDetails
+    })
+
+    const data = contactManagerRes?.data?.data ?? {}
+
+  const openWhatsApp = () => {
+    window.open(`https://wa.me/${data?.contactManagerContactNumber}`, '_blank');
+  };
+
+
+    return (<>
         <div className='flex xl:px-32 flex-col lg:flex-row justify-evenly gap-8 lg:gap-0 items-baseline xxl:justify-around'>
             {/* <div orientation="left">Large Size</div> */}
             <div className='w-11/12 m-auto lg:w-[60%] xl:w-[65%] mt-10'>
@@ -296,19 +311,19 @@ const Help_Desk = () => (
 
                 <div className='flex flex-col justify-between'>
                     <div>
-                        <p className='text-md md:text-lg text-gray-400 mt-4'>Create your Account Manager</p>
+                        <p className='text-md md:text-lg text-gray-400 mt-4'>Contact our Account Manager</p>
                     </div>
                     <div className='flex gap-6 mt-3'>
-                        <img src={UserImg} alt="" className=' cursor-pointer' />
+                        <img src={"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"} alt="" className='w-20 h-20 rounded-full cursor-pointer' />
                         <div>
-                            <h2 className='text-md md:text-lg'>Asad Khan</h2>
-                            <button className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
+                            <h2 className='text-md md:text-lg'>{data?.contactManagerName}</h2>
+                            <button onClick={openWhatsApp} className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <SmalllFooter />
-    </>
-);
+    </>)
+}
 export default Help_Desk;

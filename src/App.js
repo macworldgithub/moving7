@@ -2,7 +2,6 @@ import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./App.css";
-import { QueryClient, QueryClientProvider } from "react-query";
 import Home from "../src/pages/Home/index";
 import Partner from "../src/pages/partner/partner";
 import Login from "./pages/login";
@@ -16,7 +15,12 @@ import Overview from "./pages/Overview";
 import Account from "./pages/Account";
 import MobileMenu from "./pages/header/becomePartner-Header/forMobile";
 import PartnerLayout from "./layout/partnerLayout";
+import { QueryClient, QueryClientProvider } from "react-query";
 import Help_Desk from "./pages/Account/Help_Desk";
+import Home2 from "./pages/Home2";
+import UserCompanyProfile from "./pages/UserCompanyProfile";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -28,17 +32,29 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+    const userJson = JSON.parse(window.localStorage.getItem("userData"))
+    const [user, setUser] = useState()
+
+    useEffect(()=>{
+        setUser(userJson)
+    },[])
+    console.log(user,"from header")
     return (
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
                 <Routes>
-                    <Route path="/" element={<LayoutMain />}>
-                        <Route path="" element={<Home />} />
+                    <Route path="/" element={<LayoutMain user={user} setUser={setUser}/>}>
                         <Route path="login" element={<Login />} />
+                        <Route path="" element={<Home />} />
                         <Route path="partnerSignUp" element={<Partner />} />
                         <Route path="mobile" element={<MobileMenu />} />
+                        <Route path="/response" element={<Home2 />} />
+                        <Route path="companyprofile/:id" element={<UserCompanyProfile />} />
                     </Route>
-                    <Route path="partner" element={<PartnerLayout />} >
+
+        {
+            user?.isPartner && (
+                    <Route path="partner" element={<PartnerLayout user={user} setUser={setUser} />} >
                         <Route
                             path="documentsVerification"
                             element={<DocumentVerification />}
@@ -49,10 +65,10 @@ function App() {
                         <Route path="account/:id" element={<Account />} />
                         <Route path="companyprofile/:id" element={<CompanyProfile />} />
                         <Route path="helpdesk" element={<Help_Desk />} />
-                    </ Route>     
-                    <Route path="admin" element={<PartnerLayout />} >
-                        <Route path="login" element={<AdminLogin/>} />
                     </ Route>
+            )
+        }
+
                 </Routes>
             </QueryClientProvider>
         </BrowserRouter>

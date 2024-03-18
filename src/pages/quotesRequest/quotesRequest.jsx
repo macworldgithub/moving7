@@ -3,9 +3,16 @@ import React from 'react'
 import QuotePicker from '../quotesRequest/datePicker'
 import QuoteDropdown from '../quotesRequest/DropDown'
 import TimeLine from '../quotesRequest/Timeline'
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import UserImg from '../../assets/images/overview/Group 17.png'
 import SmalllFooter from '../footer/smalllFooter';
+import { getContactManagerDetails, getPartnerQuotes } from '../../apiFunctions/partner';
+import { useState } from 'react';
+import { useQuery } from 'react-query';
+import { Modal } from 'antd';
+import MyModal from '../../components/Modal/Modal';
+import LoaderLayout from '../../components/Loaders/LoaderLayout';
+import Truck from '../../components/Loaders/Truck';
 
 let Projects = [
     { Name: "Bilal" },
@@ -15,6 +22,49 @@ let Projects = [
 ]
 
 export default function QuotesRequest() {
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    const [dates, setDates] = useState({
+        fromDate: "",
+        toDate: ""
+    })
+    const [searchQuery, setSearchQuery] = useState("")
+    const [quotationData, setQuotationData] = useState("")
+    const [showModal, setShowModal] = useState(false)
+    const [pageNo, setPageNo] = useState(0)
+    const partnerQuotesRes = useQuery({
+        queryKey: ["fetchPartnerQuotes", {
+            email: json?.email,
+            pageNo,
+            fromDate: dates.fromDate,
+            toDate: dates.toDate,
+            searchQuery,
+        }],
+        queryFn: getPartnerQuotes,
+    });
+    const contactManagerRes = useQuery({
+        queryKey:["getContactManagerDetails"],
+        queryFn:getContactManagerDetails
+    })
+
+    if (partnerQuotesRes.isLoading || contactManagerRes.isLoading) {
+        return (<LoaderLayout>
+            <Truck />
+        </LoaderLayout>)
+    }
+
+    console.log(quotationData,"quooo")
+
+    const ManagerData = contactManagerRes?.data?.data ?? {}
+
+  const openWhatsApp = () => {
+    window.open(`https://wa.me/${ManagerData?.contactManagerContactNumber}`, '_blank');
+  };
+    const partnerQuotesData = partnerQuotesRes?.data?.data?.quotes ?? []
+    const totalRequests = partnerQuotesRes?.data?.data?.total ?? []
+    const refetchQuotes = partnerQuotesRes.refetch
+    console.log(pageNo, "pageno")
+    console.log(partnerQuotesData, "partnerQuotesData", partnerQuotesRes, "partnerQuotesRes")
     return (
         <>
             <div className='flex flex-col md:flex-row mt-8 lg:mt-10 gap-4 px-4 lg:mb-96'>
@@ -22,35 +72,72 @@ export default function QuotesRequest() {
                     <div className='w-full'>
                         <h2 className='text-lg font-medium mb-2'>Quote Request</h2>
                         <div className='flex flex-col lg:flex-row justify-between items-center gap-2 xl:gap-10 '>
-                            <QuotePicker />
-                            <QuoteDropdown />
+                            <QuotePicker dates={dates} setDate={setDates} />
+                            {/*<QuoteDropdown />*/}
                             <div className='flex'>
-                                <input type="search" placeholder='E.g. Peter' className='border rounded-r-none border-gray-300 px-6 w-28 outline-none rounded-md' />
+                                <input type="search" placeholder='E.g. Peter' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className='border rounded-r-none border-gray-300 px-6 w-28 outline-none rounded-md' />
                                 <button className=' bg-[#13C265] text-white py-2 px-6 text-md rounded-sm rounded-l-none'>Search</button>
                             </div>
                         </div>
-                        <div className='lg:mt-[19px] w-full mt-4 sm:mt-4 -ml-8 lg:-ml-8 rounded-b-md absolute'>
-                            <div className='flex justify-between px-4 py-2 bg-[#E6EBEC]'>
-                                <h2 className='md:w-28'>Name</h2>
-                                <h2 className='md:w-28'>Status</h2>
-                                <h2 className='md:w-28'>Date</h2>
-                            </div>
-                            {Projects.length > 0 ? (
-                                <div className='flex justify-between py-4 px-4 h-52 bg-[#EFF2F3] overflow-x-scroll'>
-                                    {Projects.map((project, index) => (
-                                        <div key={index}>
-                                            <h2 className=' md:w-28'>{project.Name}</h2>
-                                            <h2 className=' md:w-28'>{project.Status}</h2>
-                                            <h2 className=' md:w-28'>{project.Date}</h2>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className='bg-[#EFF2F3]'>
-                                    <p className='py-16 px-4 text-center text-gray-400'>No quote requests received yet. We will email you once we have suitable projects.</p>
-                                </div>
-                            )}
-                        </div>
+                        <table className='lg:mt-[12px] w-full mt-4 sm:mt-4 mt-5 -ml-8 lg:-ml-8 rounded-b-md absolute'>
+                            <thead className='px-4 py-3 bg-[#E6EBEC]'>
+                                <tr>
+                                    <th className='py-3'>Name</th>
+                                    <th className='py-3'>Email</th>
+                                    <th className='py-3'>Requested At</th>
+                                </tr>
+                            </thead>
+                            <tbody className='bg-gray-100'>
+                                {partnerQuotesData?.length > 0 ? (
+                                    partnerQuotesData?.map((quote, index) => {
+                                        return (
+                                            <tr key={index} className="cursor-pointer" onClick={() => {
+                                                setShowModal(true)
+                                                setQuotationData(quote)
+                                            }}>
+                                                <td className='text-center py-2'>{quote?.name}</td>
+                                                <td className='text-center'>{quote?.email}</td>
+                                                <td className='text-center'>{new Date(quote?.requestTime)?.toLocaleString()}</td>
+                                            </tr>
+
+                                        )
+                                    }
+                                    )) : (
+                                    <tr className='bg-[#EFF2F3]'>
+                                        <td></td>
+                                        <td className='py-16 w-80 px-4 text-center text-gray-400'>No quote requests received yet. We will email you once we have suitable projects.</td>
+                                        <td></td>
+                                    </tr>
+                                )}
+                            </tbody>
+                            <tfoot>
+                                <tr bg-gray-100>
+                                    <td className="p-2 bg-gray-100 fs-5 text-dark font-primary text-center">
+                                        Total Records : {totalRequests}
+                                    </td>
+                                    <td className="p-2 bg-gray-100 fs-5 text-dark font-primary text-center">
+                                        Page {pageNo + 1} of {Math.ceil(totalRequests / 10)}
+                                    </td>
+                                    <td class=" text-center bg-gray-100">
+                                        <button
+                                            onClick={() => setPageNo(pageNo - 1)}
+                                            disabled={pageNo === 0}
+                                            className="border-0 mx-1 text-dgreen bg-white fs-4"
+                                        >
+                                            <IoIosArrowBack size={20} className="bg-gray-100" />
+                                        </button>
+                                        <button
+                                            onClick={() => setPageNo(pageNo + 1)}
+                                            disabled={pageNo === Math.ceil(totalRequests / 10) - 1}
+                                            className="border-0 mx-1 text-dgreen bg-white fs-4"
+                                        >
+                                            <IoIosArrowForward size={20} className="bg-gray-100" />
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+
+                        </table>
                     </div>
                 </div>
 
@@ -78,14 +165,343 @@ export default function QuotesRequest() {
                         <div className='flex gap-6 mt-3 py-4'>
                             <img src={UserImg} alt="" className=' cursor-pointer' />
                             <div>
-                                <h2 className='text-md md:text-lg'>Asad Khan</h2>
-                                <button className='bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
+                                <h2 className='text-md md:text-lg'>{ManagerData?.contactManagerName}</h2>
+                                <button className='bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1' onClick={openWhatsApp}>Contact</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div >
             <SmalllFooter />
+
+        {
+            showModal && 
+            <MyModal >
+
+
+
+                        <div className="lg:w-[40%] min-h-[70%] max-h-[70%] overflow-y-scroll pb-5 bg-white rounded-xl p-2 shadow-green-500 shadow-md flex flex-col  ">
+                <div className="flex justify-end">
+
+            <p className='cursor-pointer' onClick={() => setShowModal(false)}>
+            X
+            </p>
+                </div>
+                <div className=" gap-2 w-full h-full">
+                    <h1 className="px-10 text-3xl text-[#13C265] fontbold bold">
+                        Details
+                    </h1>
+                    <div className="flex mx-10 my-2 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+                                Move From
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.moveFrom}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+                                Move To
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.moveTo}
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <h1 className="text-2xl my-4 text-[#13C265] mx-10">
+                        Current Property
+                    </h1>
+
+
+                    <div className="flex my-2 mx-10 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+                                Type
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.currPropertyType}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+                                Bedrooms
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.currPropertyBedrooms}
+                            </p>
+                        </div>
+                    </div>
+
+
+                    {
+                        quotationData?.currPropertyType === "appartment" ? (
+                            <div className="flex my-2 mx-10 justify-between flex-wrap">
+                                <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                                    <p className="text-[#13C265]">
+                                        No of Floors
+                                    </p>
+
+                                    <p className="text-gray-500 py-1 w-ful">
+                                        {quotationData?.currPropertyFloorNo}
+                                    </p>
+                                </div>
+
+                                <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                                    <p className="text-[#13C265]">
+                                        Lift
+                                    </p>
+
+                                    <p className="text-gray-500">
+                                        {quotationData?.hasCurrPropertyLift}
+                                    </p>
+                                </div>
+                            </div>
+
+                        ) : (
+                            null
+                        )
+                    }
+
+
+
+
+
+
+
+
+                    <h1 className="text-2xl my-4 text-[#13C265] mx-10">
+                        New Property
+                    </h1>
+
+
+                    <div className="flex my-2 mx-10 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+                                Type
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.newPropertyType}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+                                Bedrooms
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.newPropertyBedrooms}
+                            </p>
+                        </div>
+                    </div>
+
+
+                    {
+                        quotationData?.newPropertyType === "appartment" ? (
+                            <div className="flex my-2 mx-10 justify-between flex-wrap">
+                                <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                                    <p className="text-[#13C265]">
+                                        No of Floors
+                                    </p>
+
+                                    <p className="text-gray-500 py-1 w-ful">
+                                        {quotationData?.newPropertyFloorNo}
+                                    </p>
+                                </div>
+
+                                <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                                    <p className="text-[#13C265]">
+                                        Lift
+                                    </p>
+
+                                    <p className="text-gray-500">
+                                        {quotationData?.hasNewPropertyLift}
+                                    </p>
+                                </div>
+                            </div>
+
+                        ) : (
+                            null
+                        )
+                    }
+
+
+
+
+
+
+                    <div className="flex mx-10 my-2 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+                                Scope of Work
+                            </p>
+
+                            <p className="text-gray-500 text-left py-1 w-ful">
+                                {quotationData?.newPropertyAdditionalInfo?.join(" , ")}
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <h1 className="text-2xl my-4 text-[#13C265] mx-10">
+        Date
+                    </h1>
+
+
+                    <div className="flex mx-10 my-2 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+        Moving Date Preference
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.movingDatePref}
+                            </p>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div className="flex mx-10 my-2 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+        {quotationData?.movingDatePref === "flexible" ? "Start Date" : "Date"}
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+        {quotationData?.movingDatePref === "flexible" ? quotationData?.startDate : quotationData?.specificDate}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+        {quotationData?.movingDatePref === "flexible" ? "End Date" : "Time"}
+                            </p>
+
+                            <p className="text-gray-500">
+        {quotationData?.movingDatePref === "flexible" ? quotationData?.endDate: quotationData?.specificTime}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <h1 className="text-2xl my-4 text-[#13C265] mx-10">
+        Customer Details
+                    </h1>
+
+
+                    <div className="flex my-2 mx-10 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+        Name
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.name}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+        Email
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.email}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <div className="flex my-2 mx-10 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+        Contact number
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.wappNum}
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+        Flat name / Office / Villa
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.building}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <h1 className="text-2xl my-4 text-[#13C265] mx-10">
+        Budget Range
+                    </h1>
+
+
+                    <div className="flex my-2 mx-10 justify-between flex-wrap">
+                        <div className="flex w-64  me-5 flex-col items-start border-b-2 justify-start">
+                            <p className="text-[#13C265]">
+        From
+                            </p>
+
+                            <p className="text-gray-500 py-1 w-ful">
+                                {quotationData?.minBudgetRange} AED
+                            </p>
+                        </div>
+
+                        <div className="flex w-64 flex-col items-start justify-start border-b-2 ">
+                            <p className="text-[#13C265]">
+        To
+                            </p>
+
+                            <p className="text-gray-500">
+                                {quotationData?.maxBudgetRange} AED
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+        
+                    
+            </MyModal >
+        }
         </>
     )
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import BenefitsSteps from "./steps";
 import Tickimg from "../../../assets/images/partnerChooseimg/Vector 7.svg";
-import Login from "../../login";
+// import Login from "../../login";
 export default function PartnerBenefits() {
   return (
     <>

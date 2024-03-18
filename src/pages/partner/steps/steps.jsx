@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Steps } from "antd";
 import "./Partnerbenefits";
 import "./steps.css";
-import { hover } from "@testing-library/user-event/dist/hover";
+// import { hover } from "@testing-library/user-event/dist/hover";
 const BenefitsSteps = () => {
   const [current, setCurrent] = useState(0);
   const onChange = (value) => {
     console.log("onChange:", value);
     setCurrent(value);
   };
-  const description = "This is a description.";
+  // const description = "This is a description.";
   return (
     <>
       <Steps
