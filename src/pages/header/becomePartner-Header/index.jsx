@@ -10,7 +10,7 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export default function PartnerHeader({ user }) {
+export default function PartnerHeader({ user , setUser}) {
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false);
 
@@ -94,13 +94,17 @@ console.log(user,"USERRRR")
                                         }
                                         }
                                     >Account</h2>
-                                <QuoteDropdown />
+                                <QuoteDropdown setUser={setUser} />
                                 </>
                             ) : (
-                                <h2 onClick={() => {
-                                    window.localStorage.removeItem('userData');
+                                <>
+                                <button onClick={() => {
+                                    console.log("clicked here")
+                                    localStorage.removeItem('userData')
+                                    setUser({})
                                     navigate('/')
-                                }} className="cursor-pointer">Logout </h2>
+                                }} className=" cursor-pointer">Logout </button>
+                                </>
                             )
                         }
                     </div>

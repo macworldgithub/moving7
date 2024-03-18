@@ -4,12 +4,13 @@ import { Button, Dropdown, message, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 
-const QuoteDropdown = () => {
+const QuoteDropdown = ({setUser}) => {
     const navigate = useNavigate()
     const items = [
         {
             label: (<p onClick={() => {
                 localStorage.removeItem('userData')
+                setUser({})
                 navigate('/')
             }} className='px-3 py-1 text-red-500'>Logout</p>),
             key: '1'

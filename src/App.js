@@ -37,13 +37,13 @@ function App() {
 
     useEffect(()=>{
         setUser(userJson)
-    },[user])
+    },[])
     console.log(user,"from header")
     return (
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
                 <Routes>
-                    <Route path="/" element={<LayoutMain user={user}/>}>
+                    <Route path="/" element={<LayoutMain user={user} setUser={setUser}/>}>
                         <Route path="login" element={<Login />} />
                         <Route path="" element={<Home />} />
                         <Route path="partnerSignUp" element={<Partner />} />
@@ -54,7 +54,7 @@ function App() {
 
         {
             user?.isPartner && (
-                    <Route path="partner" element={<PartnerLayout user={user} />} >
+                    <Route path="partner" element={<PartnerLayout user={user} setUser={setUser} />} >
                         <Route
                             path="documentsVerification"
                             element={<DocumentVerification />}

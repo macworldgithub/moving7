@@ -33,6 +33,7 @@ export default function FreeTrialForm() {
             console.log(data?.data?.toString(), "signupdata");
             window.localStorage.setItem("userData", JSON.stringify(data?.data));
             navigate("/partner/documentsVerification");
+            window.location.reload()
             toast.success("Successfully Created!");
         },
         onError:(e) => toast.error(e?.response?.data?.message),

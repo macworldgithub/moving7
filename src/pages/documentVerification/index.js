@@ -62,10 +62,11 @@ const DocumentVerification = () => {
         }
         temp[idx].file = value
         temp[idx].status = true
-        setCurrStep(currStep + 1)
+        if (currStep < 3){
+            setCurrStep(currStep + 1)
+        }
         setFiles([...temp])
     }
-
     const submit = async () => {
         files.forEach((file) => {
             if (!file.file) {
@@ -98,7 +99,7 @@ const DocumentVerification = () => {
         postProofsMutation.mutate(result)
     }
 
-
+console.log(selectedItem,"Selectedddddd")
 
 
     return (
@@ -128,11 +129,11 @@ const DocumentVerification = () => {
 
 
                                 {
-                                    files[selectedItem]?.file ? (
+                                    files[selectedItem ?? currStep]?.file ? (
                                         <Result
                                             className='p-0 m-0'
                                             status="success"
-                                            title={`Successfully Uploaded ${files[selectedItem]?.name}`}
+                                            title={`Successfully Uploaded ${files[selectedItem ?? currStep]?.name}`}
                                         />
                                     ) : (
                                         <>
