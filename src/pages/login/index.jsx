@@ -67,13 +67,13 @@ export default function Login() {
                         <div className='bg-[#13C265] p-2'>
                             <img src={UserIcon} alt="" className='md:w-6' />
                         </div>
-                        <input type="text" value={credentials.email} onChange={(e) => handleChange("email", e.target.value)} placeholder='Email ID' className=' md:h-12 md:w-80 pl-3 bg-[#BEDBBE] placeholder:text-white' />
+                        <input type="text" value={credentials.email} onChange={(e) => handleChange("email", e.target.value)} placeholder='Email ID' className=' md:h-12 md:w-80 pl-3 bg-[#BEDBBE] placeholder:text-white outline-none' />
                     </div>
                     <div className='flex mt-4'>
                         <div className='bg-[#13C265] p-2'>
                             <img src={Lock} alt="" className='md:w-6 flex items-center justify-between' />
                         </div>
-                        <input type="password" value={credentials.password} onChange={(e) => handleChange("password", e.target.value)}  placeholder='Password' className=' md:h-12 md:w-80 pl-3 bg-[#BEDBBE] placeholder:text-white' />
+                        <input type="password" value={credentials.password} onChange={(e) => handleChange("password", e.target.value)}  placeholder='Password' className=' md:h-12 md:w-80 pl-3 bg-[#BEDBBE] placeholder:text-white outline-none' />
                     </div>
                     <div className='flex flex-col flex-wrap sm:flex-row gap-4 lg:gap-6 mt-11'>
                         <div className='flex gap-2'>
