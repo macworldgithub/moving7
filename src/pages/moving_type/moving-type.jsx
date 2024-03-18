@@ -312,7 +312,7 @@ function MovingType() {
                                 onSearch={onLocationChange}
                                 options={locationOptions}
                                 placeholder="Address"
-                                className="lg:w-2/4 outline-[#13C265]"
+                                className="w-3/4 lg:w-2/4 outline-[#13C265]"
                                 notFoundContent={fetchLocationsMutation?.isLoading ? <Spin size="ps-3 small" /> : null}
                                 onClick={() => handleInputStateChange("isVisible_1", true)}
                                 onFocus={() => handleInputStateChange("isVisible_1", true)}
@@ -327,7 +327,7 @@ function MovingType() {
                                     onSearch={onLocationChange}
                                     options={locationOptions}
                                     placeholder="Address"
-                                    className="lg:w-2/4 outline-[#13C265]"
+                                    className="w-3/4 lg:w-2/4 outline-[#13C265]"
                                     notFoundContent={fetchLocationsMutation?.isLoading ? <Spin size="small" /> : null}
                                     onFocus={() => handleInputStateChange("isVisible_2", true)}
                                     onClick={() => handleInputStateChange("isVisible_2", true)}
