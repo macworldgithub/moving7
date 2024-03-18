@@ -1,4 +1,5 @@
 import MyModal from "../../components/Modal/Modal"
+import NoProfileImage from '../../assets/images/overview/NOprofile.jpg'
 import { setKey, setDefaults, fromAddress } from "react-geocode";
 import AddImage from "../../assets/images/partnerChooseimg/addimage.png"
 import { copyToClipboard } from "../../utils/CopyFun";
@@ -89,7 +90,7 @@ const UserCompanyProfile = () => {
                 <div className="flex flex-wrap">
                     <div className=" flex lg:w-3/4 flex-wrap sm:w-96">
                         <div>
-                            <img onClick={() => setShowProfileModal(true)} src={`${partnerData?.profileImage ?? "https://t4.ftcdn.net/jpg/05/42/36/11/360_F_542361185_VFRJWpR2FH5OiAEVveWO7oZnfSccZfD3.jpg"}`} className="cursor-pointer rounded-full lg:w-[240px] sm:w-full z-10 relative" />
+                            <img onClick={() => setShowProfileModal(true)} src={`${partnerData?.profileImage ? partnerData?.profileImage : NoProfileImage}`} className="cursor-pointer rounded-full lg:w-[240px] sm:w-full z-10 relative" />
                         </div>
                         <div className="mx-8 flex justify-between flex-col mt-2">
                             <div>
