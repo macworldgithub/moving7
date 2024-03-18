@@ -35,6 +35,7 @@ export default function FreeTrialForm() {
             navigate("/partner/documentsVerification");
             toast.success("Successfully Created!");
         },
+        onError:(e) => toast.error(e?.response?.data?.message),
         onSettled: (d, e) => console.log(d, e),
     });
     const getRegionsQuery = useQuery({
