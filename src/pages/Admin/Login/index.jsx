@@ -28,7 +28,7 @@ export default function Admin_Login() {
                         <input type="checkbox" name="" id="" />
                         <p className='text-gray-400'>Remember Me</p>
                     </div>
-                    <div className='text-primary'>
+                    <div className='text-primary cursor-pointer'>
                         Forget Password
                     </div>
                 </div>
