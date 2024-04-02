@@ -36,7 +36,7 @@ const SpecificDate = ({ handleInputStateChange, handleDataChange }) => {
                     handleDataChange("specificDate", dateStr);
                 }}
             />
-            <TimePicker className="w-2/5 ms-2" onChange={(_, dateStr) => handleDataChange("specificTime",dateStr)} defaultOpenValue={dayjs('00:00:00', 'HH:mm:ss')} />
+            <TimePicker className="w-2/5 ms-2" placeholder="Select Hour" onChange={(_, dateStr) => handleDataChange("specificTime",dateStr)} defaultOpenValue={dayjs('00', 'HH')} format={"HH"} />
         </div>
     );
 };

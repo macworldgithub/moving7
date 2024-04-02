@@ -33,6 +33,7 @@ function MovingType() {
         currPropertyFloorNo: "",
         hasCurrPropertyLift: "",
         newPropertyType: "",
+        newPropertyBedrooms: "",
         newPropertyAdditionalInfo: "",
         newPropertyFloorNo: "",
         hasNewPropertyLift: "",
@@ -190,6 +191,7 @@ function MovingType() {
             !data.currPropertyType ||
             !data.newPropertyType ||
             !data.movingDatePref ||
+            !data.newPropertyBedrooms ||
             !data.moveTo ||
             !data.name ||
             !data.email ||
@@ -209,7 +211,7 @@ function MovingType() {
             toast.error("Fields can't be empty!");
             return;
         }
-        if ((data.newPropertyType === "house") && (!data.newPropertyAdditionalInfo)) {
+        if ((data.newPropertyType === "house") && (!data.newPropertyAdditionalInfo )) {
             toast.error("Fields can't be empty!");
             return;
         }
@@ -545,6 +547,36 @@ function MovingType() {
                                 }
                                 {
                                     inputStates.isVisible_3c && (
+                                        <>
+                                <Select
+                                    placeholder="Bedrooms?"
+                                    onFocus={() => handleInputStateChange("isVisible_4", true)}
+                                    className="lg:w-2/4 mt-2 outline-[#13C265] w-full"
+                                    onChange={(val) => handleDataChange("newPropertyBedrooms", val)}
+                                    onClick={() => handleInputStateChange("isVisible_4", true)}
+                                    options={[
+                                        {
+                                            value: '1',
+                                            label: '1',
+                                        },
+                                        {
+                                            value: '2',
+                                            label: '2',
+                                        },
+                                        {
+                                            value: '3',
+                                            label: '3',
+                                        },
+                                        {
+                                            value: '4',
+                                            label: '4',
+                                        },
+                                        {
+                                            value: '5+',
+                                            label: '5+',
+                                        },
+                                    ]}
+                                />
                                         <Select
                                             mode="multiple"
                                             allowClear
@@ -566,6 +598,7 @@ function MovingType() {
 
                                             ]}
                                         />
+                                        </>
                                     )
                                 }
                             </div>
@@ -574,6 +607,35 @@ function MovingType() {
 
                         {data.newPropertyType === "house" && (
                             <div className="text-start flex flex-col mt-4 items-center">
+                                <Select
+                                    placeholder="Bedrooms?"
+                                    onFocus={() => handleInputStateChange("isVisible_4", true)}
+                                    className="lg:w-2/4 mt-2 outline-[#13C265] w-full"
+                                    onChange={(val) => handleDataChange("newPropertyBedrooms", val)}
+                                    onClick={() => handleInputStateChange("isVisible_4", true)}
+                                    options={[
+                                        {
+                                            value: '1',
+                                            label: '1',
+                                        },
+                                        {
+                                            value: '2',
+                                            label: '2',
+                                        },
+                                        {
+                                            value: '3',
+                                            label: '3',
+                                        },
+                                        {
+                                            value: '4',
+                                            label: '4',
+                                        },
+                                        {
+                                            value: '5+',
+                                            label: '5+',
+                                        },
+                                    ]}
+                                />
                                 <Select
                                     mode="multiple"
                                     allowClear
