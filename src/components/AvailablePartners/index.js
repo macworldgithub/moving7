@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import NoProfileImage from '../../assets/images/overview/NOprofile.jpg'
 import { useQuery } from "react-query";
 import { getPartnerByEmails } from "../../apiFunctions/partner";
 
@@ -32,7 +33,7 @@ const AvailablePartners  = ()=>{
                         {partnerData.map((item , index)=>(
                     <Link to={`/companyprofile/${item?._id}`}>
                             <div className="flex flex-row w-[20rem] px-4 cursor-pointer bg-gray-100 p-2 py-4 gap-6">
-                                <img  img src={item?.profileImage ?? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}  className="w-12 h-12 rounded-full bg-gray-300" />
+                                <img  img src={item?.profileImage ? item?.profileImage : NoProfileImage}  className="w-12 h-12 rounded-full bg-gray-300" />
                                 <div className="flex flex-col">
                                     <p className="text-bleck w-full text-wrap font-bold">{item?.companyName}</p>
                                     <p className="text-wrap w-full text-wrap">{item?.email}</p>

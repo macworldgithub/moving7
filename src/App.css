@@ -25,3 +25,6 @@
 .customeOTPclass:focus-visible{
     outline:none !important
 }
+.ant-btn-primary{
+    background:#4096ff !important
+}

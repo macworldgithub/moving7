@@ -5,7 +5,7 @@ import Ellipse2 from "../../assets/images/Ellipse 2.svg";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "./header.css";
-function Header({user}) {
+function Header({user, setUser}) {
     console.log(user,"from header")
   return (
     <>
@@ -32,7 +32,7 @@ function Header({user}) {
             <Link to={`/partnerSignUp`}>Become a partner</Link>
           </button>
           <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2  font-bold">
-            <Link to={`${user?.isPartner ? "/partner/overview/"+user?._id : "/login"}`}>{user?.isPartner ? "Dashboard" : "Login"}</Link>
+            <Link to={`${user?.isPartner && user?.proof ? "/partner/overview/"+user?._id : user?.isPartner && !user?.proof ? "/partner/documentsVerification" : "/login"}`}>{user?.isPartner ? "Dashboard" : "Login"}</Link>
           </button>
         </div>
 
