@@ -1,6 +1,7 @@
 import { EditOutlined } from '@ant-design/icons';
+import { DatePicker } from "antd";
 import { Avatar, Progress, Button, Result } from 'antd';
-import { useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { uploadImageAndGetURL } from '../../firebase/utils';
 import { useMutation } from 'react-query';
@@ -23,7 +24,7 @@ const DocumentVerification = () => {
             toast.success("Proofs Uploaded Successfully!")
             navigate(`/partner/overview/${user._id}`)
         },
-        onError:(e) => {
+        onError: (e) => {
             console.log(e)
             toast.error("Ops! Error couldn't be uploaded!")
         }
@@ -31,29 +32,32 @@ const DocumentVerification = () => {
     const [files, setFiles] = useState([{
         name: "Trade license of company",
         status: false,
+        expirationDate: null,
         file: null
     }, {
         name: "VAT Certificate",
+        expirationDate: null,
         status: false,
         file: null
     }, {
         name: "Emirates ID of Manager / Partner",
         status: false,
+        expirationDate: null,
         file: null
     }, {
         name: "Insurance certificates",
         status: false,
+        expirationDate: null,
         file: null
     }])
-    const [currStep, setCurrStep] = useState(0)
-    const [selectedItem, setSelectedItem] = useState(null)
-    
+    const [selectedItem, setSelectedItem] = useState(0)
+
     useEffect(() => {
         if (user?.proof) {
             navigate(`/partner/overview/${user._id}`)
         }
     }
-    , [])
+        , [])
 
     const handleFileChange = (idx, value) => {
         let temp = files
@@ -62,18 +66,20 @@ const DocumentVerification = () => {
         }
         temp[idx].file = value
         temp[idx].status = true
-        if (currStep < 3){
-            setCurrStep(currStep + 1)
-        }
         setFiles([...temp])
     }
     const submit = async () => {
-        files.forEach((file) => {
+
+        for (const file of files) {
             if (!file.file) {
                 toast.error(`${file.name} Must Be Provided!`)
                 return
             }
-        })
+            if (!file.expirationDate) {
+                toast.error(`${file.name} Expiration Date Must Be Provided!`)
+                return
+            }
+        }
         let temp = files.map((file) => {
             return file.file
         })
@@ -102,16 +108,17 @@ const DocumentVerification = () => {
         let result = {}
         res.forEach((url, idx) => {
             result[keys[idx]] = {
-                name : labels[idx],
+                name: labels[idx],
                 url,
-                verified:false,
-                firebasePath: user._id + "/proofs/" + num + idx + 1 
+                verified: false,
+                firebasePath: user._id + "/proofs/" + num + idx + 1,
+                expirationDate: files[idx].expirationDate
             }
         })
         postProofsMutation.mutate(result)
     }
 
-console.log(selectedItem,"Selectedddddd")
+    console.log(files, "Selectedddddd")
 
 
     return (
@@ -129,10 +136,10 @@ console.log(selectedItem,"Selectedddddd")
                 <div className="flex flex-wrap">
                     <div className="md:w-48 sm:w-48 lg:w-1/2">
                         <div className="flex items-start mt-3">
-                            <Avatar size={30} className="bg-primary me-3 mt-">{selectedItem !== null ? selectedItem + 1 : currStep + 1}</Avatar>
+                            <Avatar size={30} className="bg-primary me-3 mt-">{selectedItem + 1}</Avatar>
                             <p>
                                 Upload an {
-                                    selectedItem !== null ? files[selectedItem]?.name : files[currStep]?.name
+                                    files[selectedItem]?.name
                                 }
                             </p>
                         </div>
@@ -141,11 +148,11 @@ console.log(selectedItem,"Selectedddddd")
 
 
                                 {
-                                    files[selectedItem ?? currStep]?.file ? (
+                                    files[selectedItem]?.file ? (
                                         <Result
                                             className='p-0 m-0'
                                             status="success"
-                                            title={`Successfully Uploaded ${files[selectedItem ?? currStep]?.name}`}
+                                            title={`Successfully Uploaded ${files[selectedItem]?.name}`}
                                         />
                                     ) : (
                                         <>
@@ -158,7 +165,7 @@ console.log(selectedItem,"Selectedddddd")
                                             <div className='relative'>
                                                 <input className='absolute opacity-0 z-0' onChange={(e) => {
                                                     const file = e.target.files[0]
-                                                    handleFileChange(currStep, file)
+                                                    handleFileChange(selectedItem, file)
                                                 }} type={"file"}  >
                                                 </input>
                                                 <button className=' z-10 border-0 my-1 bg-primary rounded-full py-1 text-white px-5'>
@@ -179,12 +186,22 @@ console.log(selectedItem,"Selectedddddd")
 
                             {
                                 files.map((elem, idx) => {
-                                    console.log(idx, currStep, elem)
                                     return (
-                                        <div className={`${currStep < idx ? "hidden" : ""} mb-5 cursor-pointer`} onClick={() => setSelectedItem(idx)}>
+                                        <div className={` mb-5 cursor-pointer`} onClick={() => setSelectedItem(idx)}>
                                             <h1 className='font-medium text-lg p-0 m-0'>
                                                 {elem.name}
                                             </h1>
+                                            <DatePicker onChange={(_, dateStr) => {
+                                                setFiles((prev) => {
+                                                    let temp = prev
+                                                    temp[idx].expirationDate = dateStr
+                                                    return [...temp]
+                                                })
+                                            }}
+                                                className="w-[85%]"
+                                                placeholder="Select Expiration Data"
+                                            />
+
                                             <Progress percent={elem.status ? 100 : 0} className="p-0 m-0" />
                                             <p className='text-gray-500 text-sm p-0 m-0'>
                                                 {elem?.file ? elem.file?.name?.slice(0, 40) + "..." : "Not selected"}  <br />
