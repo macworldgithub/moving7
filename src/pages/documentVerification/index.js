@@ -79,21 +79,33 @@ const DocumentVerification = () => {
         let a = new Date();
         const num = Math.round(Math.random() * 10000 + a.getMilliseconds());
         const res = await Promise.all([
-            uploadImageAndGetURL(num + 1, temp[0]),
-            uploadImageAndGetURL(num + 2, temp[1]),
-            uploadImageAndGetURL(num + 3, temp[2]),
-            uploadImageAndGetURL(num + 4, temp[3])
+            uploadImageAndGetURL(`${user._id}/proofs/${num + 1}`, temp[0]),
+            uploadImageAndGetURL(`${user._id}/proofs/${num + 2}`, temp[1]),
+            uploadImageAndGetURL(`${user._id}/proofs/${num + 3}`, temp[2]),
+            uploadImageAndGetURL(`${user._id}/proofs/${num + 4}`, temp[3]),
         ])
 
-        let names = [
+        let keys = [
             "license",
             "VATcert",
             "emiratesId",
             "insuranceCert",
         ]
+        let labels = [
+            "License",
+            "VAT Certificate",
+            "Emirates Id",
+            "Insurance Certificate",
+        ]
+
         let result = {}
         res.forEach((url, idx) => {
-            result[names[idx]] = url
+            result[keys[idx]] = {
+                name : labels[idx],
+                url,
+                verified:false,
+                firebasePath: user._id + "/proofs/" + num + idx + 1 
+            }
         })
         postProofsMutation.mutate(result)
     }
