@@ -107,11 +107,12 @@ const DocumentVerification = () => {
 
         let result = {}
         res.forEach((url, idx) => {
+            const tempNum = parseInt(num) + parseInt(idx) + 1
             result[keys[idx]] = {
                 name: labels[idx],
                 url,
                 verified: false,
-                firebasePath: user._id + "/proofs/" + num + idx + 1,
+                firebasePath: user._id + "/proofs/" + tempNum ,
                 expirationDate: files[idx].expirationDate
             }
         })
