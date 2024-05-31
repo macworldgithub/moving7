@@ -13,6 +13,7 @@ import Targeting from "./pages/Targeting";
 import QuotesRequest from "./pages/quotesRequest/quotesRequest";
 import Overview from "./pages/Overview";
 import Account from "./pages/Account";
+import Documents from "./pages/Documents";
 import MobileMenu from "./pages/header/becomePartner-Header/forMobile";
 import PartnerLayout from "./layout/partnerLayout";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -63,6 +64,7 @@ function App() {
                         <Route path="quoteRequest/:id" element={<QuotesRequest />} />
                         <Route path="targeting/:id" element={<Targeting />} />
                         <Route path="account/:id" element={<Account />} />
+                        <Route path="documents/:id" element={<Documents/>} />
                         <Route path="companyprofile/:id" element={<CompanyProfile />} />
                         <Route path="helpdesk" element={<Help_Desk />} />
                     </ Route>
