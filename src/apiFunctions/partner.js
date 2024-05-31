@@ -200,3 +200,6 @@ export function updateProofs(data) {
         }
     })
 }
+export function fetchMinimumBudgetRange() {
+    return axios.get(`${MOVING24_URL}/admin/getMinimumBudgetRange`)
+}

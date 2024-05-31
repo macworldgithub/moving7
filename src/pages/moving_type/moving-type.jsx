@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { AutoComplete, Select, Spin, TimePicker } from "antd";
 import { useQuery, useMutation } from "react-query";
 import MyModal from '../../components/Modal/Modal'
-import { fetchOnePartner, getLocationSuggestions, quoteRequest, requestOTP, sendEmailToPartners, verifyOTP } from "../../apiFunctions/partner";
+import { fetchMinimumBudgetRange, fetchOnePartner, getLocationSuggestions, quoteRequest, requestOTP, sendEmailToPartners, verifyOTP } from "../../apiFunctions/partner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-phone-number-input/style.css";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
@@ -46,12 +46,27 @@ function MovingType() {
         email: "",
         wappNum: "",
         budgetRange: {
-            minimum: 0,
+            minimum: 500,
             maximum: 0
         },
         building: "",
     });
     const navigate = useNavigate()
+    const minimumBudgetRange = useQuery({
+        queryKey: ["fetchMinimumBudgetRange"],
+        queryFn: fetchMinimumBudgetRange,
+        onSuccess: (d) => {
+            console.log(d?.data, "minnnnnn")
+            setData({
+                ...data,
+                budgetRange: {
+                    ...data.budgetRange,
+                    minimum: d?.data?.minimumBudgetRange
+                }
+            })
+        }
+    })
+    const minBudget = minimumBudgetRange?.data?.data?.minimumBudgetRange ?? 0
     const sendEmailToPartnersMutation = useMutation({
         mutationKey: "sendToPartners",
         mutationFn: sendEmailToPartners,
@@ -110,6 +125,7 @@ function MovingType() {
         },
         onSettled: (d, e) => console.log(d, e),
     });
+
     const fetchLocationsMutation = useMutation({
         mutationKey: "fetchLocation",
         mutationFn: getLocationSuggestions,
@@ -211,7 +227,7 @@ function MovingType() {
             toast.error("Fields can't be empty!");
             return;
         }
-        if ((data.newPropertyType === "house") && (!data.newPropertyAdditionalInfo )) {
+        if ((data.newPropertyType === "house") && (!data.newPropertyAdditionalInfo)) {
             toast.error("Fields can't be empty!");
             return;
         }
@@ -233,6 +249,14 @@ function MovingType() {
         }
         if (!data?.wappNum || !isValidPhoneNumber(data?.wappNum.toString())) {
             toast.error("Invalid PhoneNumber!");
+            return;
+        }
+        if (data?.budgetRange.minimum > data.budgetRange.maximum) {
+            toast.error("Minimum budget range cant be greater than maximum budget range!");
+            return;
+        }
+        if (data?.budgetRange.minimum < minBudget) {
+            toast.error("Minimum budget should be atleast " + minBudget + " !");
             return;
         }
         getOtpMutation.mutate(data.email)
@@ -548,56 +572,56 @@ function MovingType() {
                                 {
                                     inputStates.isVisible_3c && (
                                         <>
-                                <Select
-                                    placeholder="Bedrooms?"
-                                    onFocus={() => handleInputStateChange("isVisible_4", true)}
-                                    className="lg:w-2/4 mt-2 outline-[#13C265] w-full"
-                                    onChange={(val) => handleDataChange("newPropertyBedrooms", val)}
-                                    onClick={() => handleInputStateChange("isVisible_4", true)}
-                                    options={[
-                                        {
-                                            value: '1',
-                                            label: '1',
-                                        },
-                                        {
-                                            value: '2',
-                                            label: '2',
-                                        },
-                                        {
-                                            value: '3',
-                                            label: '3',
-                                        },
-                                        {
-                                            value: '4',
-                                            label: '4',
-                                        },
-                                        {
-                                            value: '5+',
-                                            label: '5+',
-                                        },
-                                    ]}
-                                />
-                                        <Select
-                                            mode="multiple"
-                                            allowClear
-                                            onFocus={() => handleInputStateChange("isVisible_4", true)}
-                                            placeholder="Scope of work"
-                                            className="lg:w-2/4 mt-2 outline-[#13C265] w-full"
-                                            onChange={(e) => {
-                                                let temp = data
-                                                temp.newPropertyAdditionalInfo = e
-                                                setData(temp)
-                                            }}
-                                            onClick={() => handleInputStateChange("isVisible_4", true)}
-                                            options={[
-                                                { "label": "Packing services", "value": "Packingservices" },
-                                                { "label": "Packing materials", "value": "Packingmaterials" },
-                                                { "label": "Disassemble furniture", "value": "Disassemblefurniture" },
-                                                { "label": "Assemble furniture", "value": "Assemblefurniture" },
-                                                { "label": "Storage", "value": "Storage" },
+                                            <Select
+                                                placeholder="Bedrooms?"
+                                                onFocus={() => handleInputStateChange("isVisible_4", true)}
+                                                className="lg:w-2/4 mt-2 outline-[#13C265] w-full"
+                                                onChange={(val) => handleDataChange("newPropertyBedrooms", val)}
+                                                onClick={() => handleInputStateChange("isVisible_4", true)}
+                                                options={[
+                                                    {
+                                                        value: '1',
+                                                        label: '1',
+                                                    },
+                                                    {
+                                                        value: '2',
+                                                        label: '2',
+                                                    },
+                                                    {
+                                                        value: '3',
+                                                        label: '3',
+                                                    },
+                                                    {
+                                                        value: '4',
+                                                        label: '4',
+                                                    },
+                                                    {
+                                                        value: '5+',
+                                                        label: '5+',
+                                                    },
+                                                ]}
+                                            />
+                                            <Select
+                                                mode="multiple"
+                                                allowClear
+                                                onFocus={() => handleInputStateChange("isVisible_4", true)}
+                                                placeholder="Scope of work"
+                                                className="lg:w-2/4 mt-2 outline-[#13C265] w-full"
+                                                onChange={(e) => {
+                                                    let temp = data
+                                                    temp.newPropertyAdditionalInfo = e
+                                                    setData(temp)
+                                                }}
+                                                onClick={() => handleInputStateChange("isVisible_4", true)}
+                                                options={[
+                                                    { "label": "Packing services", "value": "Packingservices" },
+                                                    { "label": "Packing materials", "value": "Packingmaterials" },
+                                                    { "label": "Disassemble furniture", "value": "Disassemblefurniture" },
+                                                    { "label": "Assemble furniture", "value": "Assemblefurniture" },
+                                                    { "label": "Storage", "value": "Storage" },
 
-                                            ]}
-                                        />
+                                                ]}
+                                            />
                                         </>
                                     )
                                 }
@@ -794,6 +818,7 @@ function MovingType() {
                                 <div className="flex  flex-wrap justify-center items-center mt-4 40">
                                     <div>
                                         <Input
+                                            defaultValue={500}
                                             type="number" placeholder="Min range"
                                             className="lg:w-44 w-full mx-1 my-1 outline-[#13C265]"
                                             onClick={() => handleInputStateChange("isVisible_10", true)}
