@@ -180,3 +180,26 @@ export function getContactManagerDetails() {
 }
 
 
+export function getPartnerProofs(data) {
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    console.log(data, "going")
+    return axios.get(`${MOVING24_URL}/partner/getPartnerProofs`, {
+        headers: {
+            Authorization: `Bearer ${json?.token}`
+        }
+    })
+}
+export function updateProofs(data) {
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    console.log(data, "going")
+    return axios.put(`${MOVING24_URL}/partner/updatePartnerProofs`,data, {
+        headers: {
+            Authorization: `Bearer ${json?.token}`
+        }
+    })
+}
+export function fetchMinimumBudgetRange() {
+    return axios.get(`${MOVING24_URL}/admin/getMinimumBudgetRange`)
+}

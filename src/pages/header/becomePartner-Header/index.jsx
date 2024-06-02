@@ -82,6 +82,16 @@ console.log(user,"USERRRR")
                             }
                             }
                             className='cursor-pointer'>Help Desk</h2>
+                        <h2
+                            onClick={() => {
+                                if (user?.proof) {
+                                    navigate(`/partner/documents/${user?._id}`)
+                                } else {
+                                    toast.error("Please complete your profile first")
+                                }
+                            }
+                            }
+                            className='cursor-pointer'>Documents</h2>
                     </div>
                     <div className='flex items-center gap-3'>
                         {
