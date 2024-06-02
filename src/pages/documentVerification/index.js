@@ -194,7 +194,7 @@ const DocumentVerification = () => {
                                             <DatePicker onChange={(_, dateStr) => {
                                                 setFiles((prev) => {
                                                     let temp = prev
-                                                    temp[idx].expirationDate = dateStr
+                                                    temp[idx].expirationDate = new Date(dateStr)
                                                     return [...temp]
                                                 })
                                             }}
