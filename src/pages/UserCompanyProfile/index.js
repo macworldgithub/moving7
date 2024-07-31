@@ -16,7 +16,7 @@ import LoaderLayout from "../../components/Loaders/LoaderLayout";
 import Truck from "../../components/Loaders/Truck";
 
 
-setKey("AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM");
+setKey("AIzaSyCqw1dzXk74gdrqunxHYiuVLSEIHu4fbcM");
 
 
 
@@ -69,7 +69,7 @@ const UserCompanyProfile = () => {
     }, [partnerDataRes.data]);
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: "AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM"
+        googleMapsApiKey: "AIzaSyCqw1dzXk74gdrqunxHYiuVLSEIHu4fbcM"
     });
 
 

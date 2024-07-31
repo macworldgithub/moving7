@@ -18,7 +18,7 @@ const containerStyle = {
     height: "400px",
 };
 
-setKey("AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM");
+setKey("AIzaSyCqw1dzXk74gdrqunxHYiuVLSEIHu4fbcM");
 export default function FreeTrialForm() {
     const navigate = useNavigate()
     const [latlong, setLatlong] = useState({
@@ -87,7 +87,7 @@ export default function FreeTrialForm() {
     });
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey:  "AIzaSyDNtTiWsqgeSv0IdENvpBY1d0vhqcl5epM"
+        googleMapsApiKey:  "AIzaSyCqw1dzXk74gdrqunxHYiuVLSEIHu4fbcM"
     });
     // const onUnmount = useCallback(function callback(map) {
     //     setMap(null);
