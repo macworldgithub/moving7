@@ -9,6 +9,7 @@ import MobileMenu from './forMobile';
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import logo2 from "../../../assets/images/logo/logo3.svg"
 
 export default function PartnerHeader({ user , setUser}) {
     const navigate = useNavigate()
@@ -26,7 +27,7 @@ console.log(user,"USERRRR")
             <ToastContainer />
             <div className='flex items-center justify-between px-5 md:px-12 md:justify-between lg:justify-evenly py-4 shadow-md font-medium text-lg lg:flex'>
                 <div className='w-2/5 ml-8 lg:ml-0 md:w-auto'>
-                    <img src={Logo} alt="" />
+                    <img src={logo2} alt="" />
                 </div>
                 <div className='hidden lg:gap-10 lg:flex'>
                     <div className='flex gap-4 border-r-2 px-2'>
