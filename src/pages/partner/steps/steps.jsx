@@ -19,18 +19,18 @@ const BenefitsSteps = () => {
         style={{ width: "260px"}}
         items={[
           {
-            title: "Get registered",
+            title: "How to Register",
             description:
-              "Get started with your free trial by completing the registration form.",
+              "To join our network, simply fill out our quick application form.",
           },
           {
-            title: "Set your preferences",
+            title: "Decide on your preferences",
             description:
-              "Let us know what your preferences are, so we can send you relevant leads.",
+              "Tailor your internet profile to attract leads that are pertinent to your requirements and offerings.",
           },
           {
-            title: "Receive leads",
-            description: "Start winning jobs from customers in your area.",
+            title: "Get leads",
+            description: "Get removal leads sent straight to your inbox.",
           },
         ]}
       />

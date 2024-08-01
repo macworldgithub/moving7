@@ -6,7 +6,7 @@ const text = `
   Known for its loyalty and faithfulness,
   it can be found as a welcome guest in many households across the world.
 `;
-const App = () => {
+const App = ({question, answer}) => {
   const [expandIconPosition, setExpandIconPosition] = useState("right");
   const onPositionChange = (newExpandIconPosition) => {
     setExpandIconPosition(newExpandIconPosition);
@@ -17,14 +17,14 @@ const App = () => {
   const items = [
     {
       key: "1",
-      label: "What are the benefits after my Free Trial?",
-      children: <div>{text}</div>,
+      label: question,
+      children: <div>{answer}</div>,
     },
   ];
   return (
     <>
       <Collapse
-        defaultActiveKey={["1"]}
+        defaultActiveKey={["3"]}
         onChange={onChange}
         accordion
         expandIconPosition={expandIconPosition}

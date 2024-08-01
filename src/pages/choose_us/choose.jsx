@@ -13,9 +13,7 @@ function ChooseUs() {
             Why choose us for moving?
           </h2>
           <p className="pt-6 pb-6 sm:text-lg text-justify lg:flex lg:flex-row">
-            Choose us for your moving needs because we prioritize your peace of
-            mind. Our experienced team is dedicated to ensuring a seamless and
-            stress-free relocation process.
+          We have Professional expertise in the industry of packing and transportation safely and efficiently. Our moving packing services use high-quality equipment to keep your belongings safe and secure during transit. Our efficient processes and skilled team guarantee that your move goes as smoothly as possible, letting you focus on settling into your new space.
           </p>
         </div>
         <div className="flex flex-wrap flex-col items-center text-center sm:flex sm:flex-row justify-evenly pt-4 basis-1/2 gap-6  md:flex md:flex-row lg:flex lg:flex-nowrap lg:gap-4">
