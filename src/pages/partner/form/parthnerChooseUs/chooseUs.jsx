@@ -3,6 +3,7 @@ import React from "react";
 import trust1 from "../../../../assets/images/partnerChooseimg/trust 1.svg";
 import together from "../../../../assets/images/partnerChooseimg/together 1.svg";
 import play from "../../../../assets/images/partnerChooseimg/Vector (1).svg";
+import us from "../../../../assets/images/benefits/business-profile 1.svg"
 
 import "./choose.css";
 
@@ -21,7 +22,7 @@ export default function ChooseUs() {
                         </div>
                     </div>
                     <div className='pt-2'>
-                        <h4>Trust</h4>
+                        <h4>Professional Assistance</h4>
                     </div>
                 </div>
 
@@ -30,7 +31,7 @@ export default function ChooseUs() {
                         <img src={together} alt="" />
                     </div>
                     <div className='pt-2'>
-                        <h4>Expertise</h4>
+                        <h4>Flexible Leads</h4>
                     </div>
                 </div>
                 <div>
@@ -38,7 +39,16 @@ export default function ChooseUs() {
                         <img src={play} alt="" />
                     </div>
                     <div className='pt-2'>
-                        <h4>Flexibility</h4>
+                        <h4>Economical</h4>
+                    </div>
+                </div>
+
+                <div>
+                    <div className=' w-40 h-36 shadow-sm bg-[#f5f5f5] flex items-center justify-center rounded-2xl'>
+                        <img src={us} alt="" />
+                    </div>
+                    <div className='pt-2'>
+                        <h4>Simple Procedure</h4>
                     </div>
                 </div>
             </div>

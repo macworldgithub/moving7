@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div>
       <MainBanner />
-      <Compare title={"Compare moving companies like:"} />
+      <Compare title={"Moving7 - Your Trusted Partner in Moving Services!"} />
       <MovingType />
       <Experience />
       <Service />

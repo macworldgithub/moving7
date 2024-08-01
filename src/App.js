@@ -22,6 +22,7 @@ import Home2 from "./pages/Home2";
 import UserCompanyProfile from "./pages/UserCompanyProfile";
 import { useEffect } from "react";
 import { useState } from "react";
+import AboutUs from "./pages/AboutUs";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -51,6 +52,7 @@ function App() {
                         <Route path="mobile" element={<MobileMenu />} />
                         <Route path="/response" element={<Home2 />} />
                         <Route path="companyprofile/:id" element={<UserCompanyProfile />} />
+                        <Route path="aboutus" element={<AboutUs/>}/>
                     </Route>
 
         {
