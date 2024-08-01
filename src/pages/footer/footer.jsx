@@ -2,6 +2,7 @@ import React from "react";
 import "./footer.css";
 import img from "../../assets/images/Truck.svg";
 import footerLogo from "../../assets/images/icon-32-logo 2.svg";
+import logo2 from "../../assets/images/logo/logo3.svg"
 
 function Footer() {
   return (
@@ -12,7 +13,7 @@ function Footer() {
         </div>
 
         <div>
-          <img src={footerLogo} alt="Logo" />
+          <img src={logo2} alt="Logo" />
           <p className="text-gray-4 text-lg">
             We connect people and removal
             <br /> companies
