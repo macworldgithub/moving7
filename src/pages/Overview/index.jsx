@@ -46,7 +46,7 @@ export default function Overview() {
             <div className='flex flex-col lg:flex-row items-center justify-center p-8'>
                 <div className='flex items-center justify-center flex-col'>
                     <div className='w-11/12 md:w-4/6 lg:w-11/12 bg-[#D0E9F4] px-6 py-8 mt-20 lg:-mt-20 lg:-ml-[4rem]'>
-                        <h2 className='text-md md:text-2xl font-semibold'>Welcome to Moving24!</h2>
+                        <h2 className='text-md md:text-2xl font-semibold'>Welcome to Moving7!</h2>
                         <p className='text-md md:text-lg pt-2'>We are currently verifying your business. This usually takes
                             1-2 working days. You may start to receive job requests - if so, you will find them below,
                             and we will send them your email.</p>
@@ -55,7 +55,7 @@ export default function Overview() {
                         <h2 className=' text-lg md:text-2xl font-semibold'>More accepted quotes?</h2>
                         <p className='text-md md:text-lg pt-2'>Did you know that 84% of customers first check your company profile? Complete your
                             company profile and request (external) reviews.</p>
-                        <button className='bg-[#1ABD5E] px-4 py-2 text-white mt-6 rounded-sm'>Let’s get started!</button>
+                        {/* <button className='bg-[#1ABD5E] px-4 py-2 text-white mt-6 rounded-sm'>Let’s get started!</button> */}
                     </div>
 
                 </div>
