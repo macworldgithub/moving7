@@ -12,16 +12,18 @@ import MainBanner from "../../components/banner";
 import AvailablePartners from "../../components/AvailablePartners";
 
 export default function Home() {
-  return (
-    <div>
-      <MainBanner />
-      <Compare title={"Moving7 - Your Trusted Partner in Moving Services!"} />
-      <MovingType />
-      <Experience />
-      <Service />
-      <CarouselSlider />
-      <ChooseUs />
-      <Footer />
-    </div>
-  );
+    return (
+        <div>
+            <MainBanner />
+            {/*
+          <Compare title={"Moving7 - Your Trusted Partner in Moving Services!"} />
+          */}
+            <MovingType />
+            <Experience />
+            <Service />
+            <CarouselSlider />
+            <ChooseUs />
+            <Footer />
+        </div>
+    );
 }
