@@ -85,6 +85,7 @@ const DocumentVerification = () => {
         })
         let a = new Date();
         const num = Math.round(Math.random() * 10000 + a.getMilliseconds());
+        console.log(temp,"HERE FILES")
         const res = await Promise.all([
             uploadImageAndGetURL(`${user._id}/proofs/${num + 1}`, temp[0]),
             uploadImageAndGetURL(`${user._id}/proofs/${num + 2}`, temp[1]),
