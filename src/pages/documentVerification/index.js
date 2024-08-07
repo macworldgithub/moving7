@@ -112,7 +112,7 @@ const DocumentVerification = () => {
                 name: labels[idx],
                 url,
                 verified: false,
-                firebasePath: user._id + "/proofs/" + tempNum ,
+                firebasePath: user._id + "/proofs/" + tempNum,
                 expirationDate: files[idx].expirationDate
             }
         })
@@ -166,6 +166,12 @@ const DocumentVerification = () => {
                                             <div className='relative'>
                                                 <input className='absolute opacity-0 z-0' onChange={(e) => {
                                                     const file = e.target.files[0]
+                                                    const size = file.size / (1000 * 1000)
+                                                    if (size > 20) {
+                                                        toast.error("File greater than 20mb cannot be uploaded! ")
+                                                        return
+                                                    }
+                                                    console.log(size, "size")
                                                     handleFileChange(selectedItem, file)
                                                 }} type={"file"}  >
                                                 </input>
@@ -206,13 +212,19 @@ const DocumentVerification = () => {
                                             <Progress percent={elem.status ? 100 : 0} className="p-0 m-0" />
                                             <p className='text-gray-500 text-sm p-0 m-0'>
                                                 {elem?.file ? elem.file?.name?.slice(0, 40) + "..." : "Not selected"}  <br />
-                                                {elem?.file ? elem.file?.size : 0} kbs
+                                                {elem?.file ? elem.file?.size/(1000*1000) : 0} mbs
                                                 {
                                                     elem?.file &&
                                                     <div className=' inline relative mx-3 left-0'>
                                                         <input type={"file"}
                                                             onChange={(e) => {
                                                                 const file = e.target.files[0]
+                                                                const size = file.size / (1000 * 1000)
+                                                                if (size > 20) {
+                                                                    toast.error("File greater than 20mb cannot be uploaded! ")
+                                                                    return
+                                                                }
+                                                                console.log(size, "size")
                                                                 handleFileChange(idx, file)
                                                             }} className="absolute w-10 z-10 cursor-pointer opacity-0" />
                                                         <EditOutlined className='absolute font-bold z-0 left-1 cursor-pointer' />

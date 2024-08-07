@@ -39,8 +39,8 @@ export default function Overview() {
   };
     const quotesData = quotes?.data?.data ?? []
     const partnerOverviewData = partnerOverviewRes?.data?.data ?? {}
-    console.log(quotesData, "dataaaa")
-    console.log(partnerOverviewData, "overviewdataaaa")
+
+
     return (
         <div>
             <div className='flex flex-col lg:flex-row items-center justify-center p-8'>

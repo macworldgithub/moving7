@@ -8,6 +8,15 @@ const API_URL_NEW = "https://realestatebackend-woad.vercel.app";
 const MOVING24_URL = env === "LOCAL" ? LOCALHOST_URL : "https://moving24-backend-beige.vercel.app";
 
 
+export function getIsPartnerWappVerified({queryKey}) {
+    const id = queryKey[1]
+    console.log("Send the request", id);
+    return axios.get(`${MOVING24_URL}/auth/isPartnerWappVerified`, {
+        params :{
+            id
+        }
+    });
+}
 
 
 export function getLocationSuggestions(data) {
@@ -35,10 +44,24 @@ export function postProofs(data) {
     })
 }
 
+
+export function requestPartnerWAppOTP(tel) {
+    console.log("Send the request OTP", tel);
+    return axios.post(`${MOVING24_URL}/auth/sendPartnerWappVerificationCode`, {
+        telephone:tel
+    });
+}
+
 export function requestOTP(email) {
     console.log("Send the request OTP", email);
     return axios.post(`${MOVING24_URL}/auth/sendVerificationCode`, {
         email
+    });
+}
+export function verifyPartnerWappOTP(data) {
+    return axios.post(`${MOVING24_URL}/auth/verifyPartnerWappCode`, {
+        telephone: data.telephone,
+        code: data.code
     });
 }
 export function verifyOTP(data) {
