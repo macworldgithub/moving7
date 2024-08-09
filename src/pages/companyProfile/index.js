@@ -874,7 +874,14 @@ const CompanyProfile = () => {
                             {
                                 partnerData?.areaPreference === "region" && (
                                     <>
-                                        <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData} setData={setPartnerData} data={partnerData} />
+                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "UAE")} name="UAE" setData={setPartnerData} data={partnerData} />
+                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Bahrain")} name="Bahrain" setData={setPartnerData} data={partnerData} />
+                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Oman")} name="Oman" setData={setPartnerData} data={partnerData} />
+                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Qatar")} name="Qatar" setData={setPartnerData} data={partnerData} />
+                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Kuwait")} name="Kuwait" setData={setPartnerData} data={partnerData} />
+                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Saudi Arabia")} name="Saudi Arabia" setData={setPartnerData} data={partnerData} />
+                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "UK")} name="UK" setData={setPartnerData} data={partnerData} />
+                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "USA")} name="USA" setData={setPartnerData} data={partnerData} />
                                         <div className="-ml-8 mb-3 mt-5">
                                             {isLoaded && partnerData?.areaPreference === "region" ? (
                                                 <GoogleMap

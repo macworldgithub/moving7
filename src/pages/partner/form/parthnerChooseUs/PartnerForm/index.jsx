@@ -13,9 +13,12 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import { partnerSignUp } from "../../../../../apiFunctions/partner";
 import { useNavigate } from "react-router-dom";
 
+const width = window.innerWidth
+const height = window.innerHeight
+
 const containerStyle = {
-    width: "400px",
-    height: "400px",
+    width: width > 1280 ? "500px" : width > 780 && width < 1280 ? "400px" : width < 780 && width > 480 ? "350px" : "250px",
+    height: width > 1280 ? "500px" : width > 780 && width < 1280 ? "400px" : width < 780 && width > 480 ? "350px" : "250px",
 };
 
 setKey("AIzaSyCqw1dzXk74gdrqunxHYiuVLSEIHu4fbcM");
@@ -36,7 +39,7 @@ export default function FreeTrialForm() {
             window.location.reload()
             toast.success("Successfully Created!");
         },
-        onError:(e) => toast.error(e?.response?.data?.message),
+        onError: (e) => toast.error(e?.response?.data?.message),
         onSettled: (d, e) => console.log(d, e),
     });
     const getRegionsQuery = useQuery({
@@ -87,7 +90,7 @@ export default function FreeTrialForm() {
     });
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey:  "AIzaSyCqw1dzXk74gdrqunxHYiuVLSEIHu4fbcM"
+        googleMapsApiKey: "AIzaSyCqw1dzXk74gdrqunxHYiuVLSEIHu4fbcM"
     });
     // const onUnmount = useCallback(function callback(map) {
     //     setMap(null);
@@ -174,15 +177,15 @@ export default function FreeTrialForm() {
     console.log(data.regions, "loooooooooooooooo")
 
     return (
-        <div className="flex items-center justify-center mx-auto">
+        <div className="flex items-center max-md:px-2 justify-center mx-auto">
             {/* <button >
                 submit
             </button> */}
-            <div>
+            <div className="max-md:w-full md:w-[70%]">
                 <h2 className="lg:font-semibold text-3xl text-center p-6 mb-4">
                     Welcome to free trial
                 </h2>
-                <div className=" bg-[#E8FFF3] flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w-11/12 lg:w-[940px] mx-auto">
+                <div className=" bg-[#E8FFF3] max-sm:w-full  max-md:w-full flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w11/12 w-full mx-auto">
                     <h2 className="text-[#13C265] text-2xl">Select removal types</h2>
                     <div className="flex flex-col flex-wrap md:flex-row md:justify-center">
                         <button onClick={() => handleDataChange("removalType", "local")} className={`${data.removalType === "local" ? "bg-[#13C265] text-white" : "bg-[#f0f0f0] text-black"} w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
@@ -294,16 +297,32 @@ export default function FreeTrialForm() {
                         </>
                     )}
                     {
+                        console.log(RegionData, "Regions")
+                    }
+                    {
                         data.areaPreference === "region" && (
                             <>
-                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData} setData={setData} data={data} />
-                                <div className="-ml-8 mb-3 mt-5">
+                                <h2 className='text-lg font-medium mt-4'>Select your areas</h2>
+                                <p className='text-gray-500'>You can select 5 areas during free trial</p>
+                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "UAE")} name="UAE" setData={setData} data={data} />
+                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Bahrain")} name="Bahrain" setData={setData} data={data} />
+                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Oman")} name="Oman" setData={setData} data={data} />
+                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Qatar")} name="Qatar" setData={setData} data={data} />
+                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Kuwait")} name="Kuwait" setData={setData} data={data} />
+                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Saudi Arabia")} name="Saudi Arabia" setData={setData} data={data} />
+                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "UK")} name="UK" setData={setData} data={data} />
+                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "USA")} name="USA" setData={setData} data={data} />
+
+
+                                <div className=" mb-3 mt-5">
+                                    {console.log(RegionPolygonData?.length, "POLOOOOOOOO")}
+                                    {console.log(RegionPolygonData, "POL")}
                                     {isLoaded && data.areaPreference === "region" ? (
                                         <GoogleMap
                                             mapContainerStyle={containerStyle}
                                             center={{
-                                                lat: 25.276987,
-                                                lng: 55.296249
+                                                lat: RegionPolygonData ? RegionPolygonData[RegionPolygonData?.length - 1]?.multiPolygon[0]?.lat : 25.276987,
+                                                lng: RegionPolygonData ? RegionPolygonData[RegionPolygonData?.length - 1]?.multiPolygon[0]?.lng : 55.296249,
                                             }}
                                             zoom={9}
                                         >

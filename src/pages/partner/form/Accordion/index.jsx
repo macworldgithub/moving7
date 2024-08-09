@@ -4,18 +4,15 @@ const { Panel } = Collapse;
 
 let arr = [{ name: "Lahore" }, { name: "Karachi" }, { name: "Sialkot" }]
 
-const RegionAccordion = ({ areas,fetchPolygon, setData, data }) => {
-    // const onChange = (key) => {
-    //     console.log(renderData);
-    // };
+const RegionAccordion = ({name, areas,fetchPolygon, setData, data }) => {
+
+    
     console.log(data, "accc");
     let renderData = areas ?? arr
     return (
-        <div className='md:w-[47%] mx-auto'>
-            <h2 className='text-lg font-medium mt-4'>Select your areas</h2>
-            <p className='text-gray-500'>You can select 5 areas during free trial</p>
+        <div className='md:w-[52%] w-[90%] my-1 mx-auto'>
             <Collapse expandIconPosition="right" style={{ backgroundColor: "white", borderColor: "#13C26580", borderBottomColor: "#13C26580", borderWidth: "1.5px" }} >
-                <Panel style={{ fontWeight: "500" }} header="UAE" key="1">
+                <Panel style={{ fontWeight: "500" }} header={name} key="1">
                     <div className='flex  flex-wrap gap-x-10 lg:gap-x-60 '>
                         {
                             renderData?.map((city, i) => {

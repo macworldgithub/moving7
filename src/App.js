@@ -5,7 +5,6 @@ import "./App.css";
 import Home from "../src/pages/Home/index";
 import Partner from "../src/pages/partner/partner";
 import Login from "./pages/login";
-import AdminLogin from "./pages/Admin/Login/index";
 import LayoutMain from "./layout/layout";
 import DocumentVerification from "./pages/documentVerification";
 import CompanyProfile from "./pages/companyProfile";
@@ -23,6 +22,7 @@ import UserCompanyProfile from "./pages/UserCompanyProfile";
 import { useEffect } from "react";
 import { useState } from "react";
 import AboutUs from "./pages/AboutUs";
+import Contract from "./pages/Contract";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -53,6 +53,7 @@ function App() {
                         <Route path="/response" element={<Home2 />} />
                         <Route path="companyprofile/:id" element={<UserCompanyProfile />} />
                         <Route path="aboutus" element={<AboutUs/>}/>
+                        <Route path="contract" element={<Contract />}/>
                     </Route>
 
         {

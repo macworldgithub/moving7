@@ -46,26 +46,6 @@ const PartnerLayout = ({ user, setUser }) => {
 
     const refetchStatus = fetchPartnerWappStatus.refetch
 
-    const verifyOtpMutation = useMutation({
-        mutationKey: "verifyWappOTP",
-        mutationFn: verifyPartnerWappOTP,
-        onSuccess: (d) => {
-            console.log(d, "OTPPPPPPPPPPP RESSSSSSSSSSSS")
-            if (d?.data?.verified) {
-                toast.success("OTP verified successfully!")
-                refetchStatus()
-                setShowVerificationModal(false)
-            }
-        },
-        onError: (err) => {
-            if (err?.response?.data?.message === "wrong code") {
-                toast.error("Wrong Code!")
-            } else {
-                toast.error(err.message)
-            }
-        },
-        onSettled: (d, e) => console.log(d, e),
-    });
 
     if (getIsPartnerWappVerified.isLoading) {
         return <LoaderLayout>
@@ -88,10 +68,10 @@ const PartnerLayout = ({ user, setUser }) => {
                 showVerificationModal ? (
                     <MyModal>
                         <div onClick={() => {
-                                    localStorage.removeItem('userData')
-                                    setUser({})
-                                    navigate('/')
-                                }} className="absolute cursor-pointer top-10 right-10  py-2 px-4 rounded bg-primary text-white">
+                            localStorage.removeItem('userData')
+                            setUser({})
+                            navigate('/')
+                        }} className="absolute cursor-pointer top-10 right-10  py-2 px-4 rounded bg-primary text-white">
                             Logout
                         </div>
                         <div className="bg-white rounded-lg h-48 w-96">
