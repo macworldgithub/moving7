@@ -1,13 +1,21 @@
 import { Collapse } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 const { Panel } = Collapse;
 
 let arr = [{ name: "Lahore" }, { name: "Karachi" }, { name: "Sialkot" }];
 
-const RegionAccordion = ({ name, areas, fetchPolygon, setData, data }) => {
+const RegionAccordion = ({ RegionPolygonData, name, areas, fetchPolygon, setData, data, setLatLng }) => {
 
-    console.log(areas, "accc");
     let renderData = areas ?? arr;
+
+    useEffect(() => {
+                                                setLatLng({
+                                                    lat: RegionPolygonData ? RegionPolygonData[RegionPolygonData?.length - 1]?.multiPolygon[0][0]?.lat : 25.276987,
+                                                    lng: RegionPolygonData ? RegionPolygonData[RegionPolygonData?.length - 1]?.multiPolygon[0][0]?.lng : 55.296249,
+                                                })
+    },[RegionPolygonData])
+
+    console.log(RegionPolygonData,"DATA");
 
     return (
         <div className='md:w-[52%] w-[90%] my-1 mx-auto'>
@@ -33,6 +41,7 @@ const RegionAccordion = ({ name, areas, fetchPolygon, setData, data }) => {
                                                 } else {
                                                     temp.regions.splice(temp.regions.findIndex(region => region.name === city.name), 1);
                                                 }
+
                                                 setData(temp);
                                                 fetchPolygon();
                                             }}

@@ -28,6 +28,7 @@ export default function FreeTrialForm() {
         lat: -3.745,
         lng: -38.523,
     });
+    console.log(latlong, " LATLONG")
     const [locationOptions, setLocationOptions] = useState([]);
     const partnerSignUpMutation = useMutation({
         mutationKey: "PostPartner",
@@ -72,8 +73,6 @@ export default function FreeTrialForm() {
     });
     const RegionData = getRegionsQuery?.data?.data
     const RegionPolygonData = getRegionsPolygon?.data?.data
-    console.log(getRegionsPolygon, "polygonnnnn")
-    console.log(RegionPolygonData, "polygonnnnnDataa")
     const fetchLocationsMutation = useMutation({
         mutationKey: "fetchLocation",
         mutationFn: getLocationSuggestions,
@@ -126,7 +125,6 @@ export default function FreeTrialForm() {
         fetchLocationsMutation.mutate(e);
     };
 
-    console.log(data);
 
     const onLocationSelect = (val) => {
         setData({
@@ -174,7 +172,6 @@ export default function FreeTrialForm() {
 
     }
 
-    console.log(data.regions, "loooooooooooooooo")
 
     return (
         <div className="flex items-center max-md:px-2 justify-center mx-auto">
@@ -297,34 +294,26 @@ export default function FreeTrialForm() {
                         </>
                     )}
                     {
-                        console.log(RegionData, "Regions")
-                    }
-                    {
                         data.areaPreference === "region" && (
                             <>
                                 <h2 className='text-lg font-medium mt-4'>Select your areas</h2>
                                 <p className='text-gray-500'>You can select 5 areas during free trial</p>
-                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "UAE")} name="UAE" setData={setData} data={data} />
-                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Bahrain")} name="Bahrain" setData={setData} data={data} />
-                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Oman")} name="Oman" setData={setData} data={data} />
-                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Qatar")} name="Qatar" setData={setData} data={data} />
-                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Kuwait")} name="Kuwait" setData={setData} data={data} />
-                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Saudi Arabia")} name="Saudi Arabia" setData={setData} data={data} />
-                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "UK")} name="UK" setData={setData} data={data} />
-                                <RegionAccordion fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "USA")} name="USA" setData={setData} data={data} />
+                                <RegionAccordion setLatLng={setLatlong} RegionPolygonData={RegionPolygonData} fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "UAE")} name="UAE" setData={setData} data={data} />
+                                <RegionAccordion setLatLng={setLatlong} RegionPolygonData={RegionPolygonData} fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Bahrain")} name="Bahrain" setData={setData} data={data} />
+                                <RegionAccordion setLatLng={setLatlong} RegionPolygonData={RegionPolygonData} fetchPolygon={getRegionsPolygon.refetch}  areas={RegionData.filter((reg) => reg.country === "Oman")} name="Oman" setData={setData} data={data} />
+                                <RegionAccordion setLatLng={setLatlong} RegionPolygonData={RegionPolygonData} fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Qatar")} name="Qatar" setData={setData} data={data} />
+                                <RegionAccordion setLatLng={setLatlong} RegionPolygonData={RegionPolygonData} fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Kuwait")} name="Kuwait" setData={setData} data={data} />
+                                <RegionAccordion setLatLng={setLatlong} RegionPolygonData={RegionPolygonData} fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "Saudi Arabia")} name="Saudi Arabia" setData={setData} data={data} />
+                                <RegionAccordion setLatLng={setLatlong} RegionPolygonData={RegionPolygonData} fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "UK")} name="UK" setData={setData} data={data} />
+                                <RegionAccordion setLatLng={setLatlong} RegionPolygonData={RegionPolygonData} fetchPolygon={getRegionsPolygon.refetch} areas={RegionData.filter((reg) => reg.country === "USA")} name="USA" setData={setData} data={data} />
 
 
                                 <div className=" mb-3 mt-5">
-                                    {console.log(RegionPolygonData?.length, "POLOOOOOOOO")}
-                                    {console.log(RegionPolygonData, "POL")}
                                     {isLoaded && data.areaPreference === "region" ? (
                                         <GoogleMap
                                             mapContainerStyle={containerStyle}
-                                            center={{
-                                                lat: RegionPolygonData ? RegionPolygonData[RegionPolygonData?.length - 1]?.multiPolygon[0]?.lat : 25.276987,
-                                                lng: RegionPolygonData ? RegionPolygonData[RegionPolygonData?.length - 1]?.multiPolygon[0]?.lng : 55.296249,
-                                            }}
-                                            zoom={9}
+                                            center={latlong}
+                                            zoom={6}
                                         >
                                             {RegionPolygonData && (
                                                 RegionPolygonData?.map((reg) => {
