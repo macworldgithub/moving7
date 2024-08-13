@@ -18,6 +18,12 @@ export function getIsPartnerWappVerified({queryKey}) {
     });
 }
 
+export function signContract(data) {
+    console.log("Send the request", data);
+    return axios.post(`${MOVING24_URL}/partner/signContract`, {
+        data
+    });
+}
 
 export function getLocationSuggestions(data) {
     console.log("Send the request", data);

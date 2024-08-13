@@ -1,10 +1,11 @@
 import { ClearOutlined, EditOutlined } from "@ant-design/icons"
 import { isReactNative } from "@firebase/util"
 import { useRef, useState } from "react"
-import { useQuery } from "react-query"
-import { useParams } from "react-router-dom"
+import { useMutation, useQuery } from "react-query"
+import { useNavigate, useParams } from "react-router-dom"
 import ReactSignatureCanvas from "react-signature-canvas"
-import { fetchOnePartner } from "../apiFunctions/partner"
+import { toast } from "react-toastify"
+import { fetchOnePartner, signContract } from "../apiFunctions/partner"
 import AntdModal from "../components/AntdModal"
 
 const Contract = () => {
@@ -13,7 +14,9 @@ const Contract = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isRejectionModalOpen, setIsRejectionModalOpen] = useState(false)
+    const [rejectionReason, setRejectionReason] = useState(false)
     const [personName, setPersonName] = useState("")
+    const navigate = useNavigate()
 
     const sigCanvas = useRef({});
 
@@ -22,6 +25,19 @@ const Contract = () => {
         queryKey: ["fetchOnepartner", id],
         queryFn: fetchOnePartner,
     })
+
+
+    const submitContractMutation = useMutation({
+        mutationKey: "SignContracy",
+        mutationFn: signContract,
+        onSuccess: (data) => {
+            console.log(data)
+            navigate("/");
+            toast.success("Contract Signed Successfully");
+        },
+        onError: (e) => toast.error(e?.response?.data?.message),
+        onSettled: (d, e) => console.log(d, e),
+    });
 
     const partnerData = partnerDataRes?.data?.data ?? {}
 
@@ -33,7 +49,34 @@ const Contract = () => {
     const saveSignature = () => {
         const dataUrl = sigCanvas.current.getTrimmedCanvas().toDataURL('image/png');
         console.log(dataUrl); // This can be saved or used as needed
-    };
+        return dataUrl
+    }
+
+    const submit = async (status) => {
+
+        let contract = {}
+        if (status) {
+            contract = {
+                status: "Accepted",
+                signedAt: new Date(),
+                signature: saveSignature(),
+                authorizedPersonName: personName,
+                feedback: null
+            }
+        } else {
+            contract = {
+                status: "Rejected",
+                signedAt: new Date(),
+                feedback: rejectionReason,
+                signature: null,
+                authorizedPersonName: null
+            }
+        }
+
+        submitContractMutation.mutate({id, contract})
+
+
+    }
 
 
     return (
@@ -223,7 +266,7 @@ const Contract = () => {
                                     />
                                     <ClearOutlined className="absolute top-0 right-[-2rem] w-6 h-6" onClick={() => clearSignature()} />
                                 </div>
-                                <p className="font-formal cursor-pointer" onClick={() => saveSignature()}>
+                                <p className="font-formal cursor-pointer" >
                                     Signature
                                 </p>
                             </div>
@@ -239,11 +282,13 @@ const Contract = () => {
                     </div>
 
                     <AntdModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
-                        <input value={personName} onChange={(e) => setPersonName(e.target.value)} className="border w-full py-2 px-2 focus:outline-none text-lg font-formal" />
+                        <input value={personName} onChange={(e) => setPersonName(e.target.value)} title={"Authorized Person Name"} className="border w-full py-2 px-2 focus:outline-none text-lg font-formal" />
                     </AntdModal>
 
-                    <AntdModal isModalOpen={isRejectionModalOpen} setIsModalOpen={setIsRejectionModalOpen}>
-                        <textarea className="border w-full h-40 font-formal text-base" />
+                    <AntdModal handleSubmit={() => {
+                        submit(false)
+                    }} isModalOpen={isRejectionModalOpen} title={"Specify the reason for rejecting contract."} setIsModalOpen={setIsRejectionModalOpen}>
+                        <textarea value={rejectionReason} onChange={(e) => setRejectionReason(e.target.value)} className="border w-full h-40 font-formal text-base px-2 py-2" />
                     </AntdModal>
 
                 </div>
@@ -253,7 +298,7 @@ const Contract = () => {
                 <button onClick={() => setIsRejectionModalOpen(true)} className="bg-red-700 font-formal text-white rounded  px-4 py-2">
                     Reject
                 </button>
-                <button className="bg-green-700 font-formal text-white rounded  px-4 py-2">
+                <button onClick={() => submit(true)} className="bg-green-700 font-formal text-white rounded  px-4 py-2">
                     Accept
                 </button>
             </div>

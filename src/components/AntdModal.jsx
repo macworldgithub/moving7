@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
 
-const AntdModal = ({ isModalOpen, setIsModalOpen, children }) => {
+const AntdModal = ({ handleSubmit, title, isModalOpen, setIsModalOpen, children }) => {
 
 
     const handleOk = () => {
@@ -14,7 +14,7 @@ const AntdModal = ({ isModalOpen, setIsModalOpen, children }) => {
 
     return (
         <>
-            <Modal title="Authorize Person Name:" className='font-formal' open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <Modal title={title} className='font-formal' open={isModalOpen} onOk={handleSubmit ? handleSubmit : handleOk} onCancel={handleCancel}>
                 {children}
             </Modal>
         </>
