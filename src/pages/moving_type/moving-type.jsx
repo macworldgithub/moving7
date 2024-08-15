@@ -772,7 +772,7 @@ function MovingType() {
 
                         {inputStates.isVisible_6 && (
                             <div className="text-start flex flex-col items-center pt-4">
-                                <p className="lg:w-1/2  w-full">Personal details</p>
+                                <p className="lg:w-1/2  w-full">Applicant Name</p>
                                 <Input
                                     className=" lg:w-2/4 w-full outline-[#13C265]"
                                     placeholder="Name"
@@ -786,7 +786,7 @@ function MovingType() {
 
                         {inputStates.isVisible_7 && (
                             <div className="text-start flex flex-col items-center pt-4">
-                                <p className="lg:w-1/2 w-full ">Contact details</p>
+                                <p className="lg:w-1/2 w-full ">Email</p>
                                 <Input
                                     className=" lg:w-2/4 w-full outline-[#13C265]"
                                     placeholder="Email"

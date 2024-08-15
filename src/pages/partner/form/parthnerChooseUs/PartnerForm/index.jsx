@@ -22,6 +22,7 @@ const containerStyle = {
 };
 
 setKey("AIzaSyCqw1dzXk74gdrqunxHYiuVLSEIHu4fbcM");
+
 export default function FreeTrialForm() {
     const navigate = useNavigate()
     const [latlong, setLatlong] = useState({
