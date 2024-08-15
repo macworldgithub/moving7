@@ -11,13 +11,16 @@ import LoaderLayout from '../../components/Loaders/LoaderLayout';
 import Truck from '../../components/Loaders/Truck';
 import { DatePicker } from 'antd';
 import { uploadImageAndGetURL } from '../../firebase/utils';
+import { useNavigate } from 'react-router-dom';
+import Contract from '../Contract';
 
 export default function Documents() {
+
+    const navigate = useNavigate()
 
     const updateProofsMutation = useMutation({
         mutationFn: updateProofs,
         onSuccess: (data) => {
-            console.log(data)
             toast.success('Proofs updated successfully')
             window.location.reload()
         },
@@ -66,6 +69,7 @@ export default function Documents() {
     }
     const ManagerData = contactManagerRes?.data?.data ?? {}
     const ProofsData = proofsRes?.data?.data?.proof ?? {}
+    const ContractData = proofsRes?.data?.data?.contract ?? {}
 
     console.log(ProofsData, "proooooooooofs")
 
@@ -77,10 +81,10 @@ export default function Documents() {
     let isDisabled = () => {
         for (let key in isEditable) {
             if (isEditable[key]) {
-                return false 
+                return false
             }
         }
-        return true 
+        return true
     }
 
     const submit = async () => {
@@ -118,9 +122,29 @@ export default function Documents() {
 
     return (
         <>
-            <div className='w-full flex flex-col lg:flex-row items-center justify-center gap-6 mt-2 lg:mb-96'>
-                <div className='flex flex-col w-11/12 md:w-[60%] mt-10 lg:mt-40'>
-                    <div className='ml-0 lg:ml-12 lg:-mt-36 rounded-md shadow-xl border-2'>
+            <div className='w-full flex flex-col lg:flex-row items-start justify-center bg-lue-300 pb-6 gap-6 '>
+                <div className='flex flex-col w-11/12 md:w-[60%] mt-10 g-red-400 '>
+
+                    <div className='ml-0  rounded-md shadow- border-2 mb-5'>
+                        <div className='px-8 py-4 flex justify-between items-center border-b-2'>
+                            <h2 className='text-lg font-medium'>Contract</h2>
+                            {
+                                !ContractData?.status || Contract?.status === "Rejected" ?
+                                    <p>You have not received a contract proposal yet. </p>
+                                    :
+                                    <button onClick={() => window.open(window.location.origin + "/contract/" + proofsRes?.data?.data?._id, '_blank', 'noopener,noreferrer')} className={`bg-primary  px-6 py-1 rounded-sm text-white`}>
+                                        {
+                                            ContractData?.status === "Accepted" ?
+                                                "View"
+                                                :
+                                                "Sign Contract"
+                                        }
+                                    </button>
+                            }
+                        </div>
+                    </div>
+
+                    <div className='ml-0  rounded-md shadow-xl border-2'>
                         <div className='px-8 py-4 flex justify-between items-center border-b-2'>
                             <h2 className='text-lg font-medium'>Partner Documents</h2>
                             <button onClick={submit} className={`${isDisabled() ? 'bg-gray-500' : "bg-primary"}  px-6 py-1 rounded-sm text-white`}>Save</button>
@@ -301,18 +325,6 @@ export default function Documents() {
 
                         </div>
                     </div>
-
-                    <div className='ml-0 lg:ml-12 mt-10 '>
-                        <div className='px-6 lg:px-8 py-4 flex justify-between items-center borderb-2'>
-                            <h2 className='text-lg font-medium'></h2>
-                            <p className='bg-prmary px-6 py-1 rounded-sm text-white'></p>
-                        </div>
-                        <div className='flex gap-6 p-4'>
-                            <h2 className='text-ray-400 px-2 lg:px-4'></h2>
-                            <h2 className='text-rimary font-medium'></h2>
-                        </div>
-                    </div>
-
                 </div>
 
                 <div className=' w-11/12 md:w-7/12 lg:w-[22%] mt-8 rounded-md shadow-xl'>

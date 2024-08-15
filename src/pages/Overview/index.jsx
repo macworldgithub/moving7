@@ -71,7 +71,7 @@ export default function Overview() {
                         <div className='flex items-center justify-between'>
                             <div>
                                 <h2 className='w-full font-semibold pt-2 text-md md:text-lg'>Account status</h2>
-                                <p className='text-md md:text-lg font-light'>{partnerOverviewData?.isVerified ? "Verified" : "Not yet verified"}</p>
+                                <p className='text-md md:text-lg font-light'>{partnerOverviewData?.accountStatus}</p>
                             </div>
                         </div>
                         <div className='flex items-center justify-between'>

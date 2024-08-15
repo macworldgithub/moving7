@@ -23,6 +23,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import AboutUs from "./pages/AboutUs";
 import Contract from "./pages/Contract";
+import ServiceAgreement from "./components/ContractPDF";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -55,6 +56,7 @@ function App() {
                         <Route path="aboutus" element={<AboutUs />} />
                     </Route>
                     <Route path="contract/:id" element={<Contract />} />
+                    <Route path="pdf" element={<ServiceAgreement />} />
 
                     {
                         user?.isPartner && (
