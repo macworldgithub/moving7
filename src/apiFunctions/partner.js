@@ -7,12 +7,35 @@ const API_URL_NEW = "https://realestatebackend-woad.vercel.app";
 
 const MOVING24_URL = env === "LOCAL" ? LOCALHOST_URL : "https://moving24-backend-beige.vercel.app";
 
+export function createIntent() {
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    return axios.get(`${MOVING24_URL}/payment/createSetupIntent`, {
+        headers: {
+            Authorization: `Bearer ${json?.token}`
+        }
+    });
+}
 
-export function getIsPartnerWappVerified({queryKey}) {
+
+export function fetchPaymentMethods() {
+
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    return axios.get(`${MOVING24_URL}/partner/getPaymentMethods`, {
+        headers: {
+            Authorization: `Bearer ${json?.token}`
+        }
+    });
+}
+
+
+
+export function getIsPartnerWappVerified({ queryKey }) {
     const id = queryKey[1]
     console.log("Send the request", id);
     return axios.get(`${MOVING24_URL}/auth/isPartnerWappVerified`, {
-        params :{
+        params: {
             id
         }
     });
@@ -54,7 +77,7 @@ export function postProofs(data) {
 export function requestPartnerWAppOTP(tel) {
     console.log("Send the request OTP", tel);
     return axios.post(`${MOVING24_URL}/auth/sendPartnerWappVerificationCode`, {
-        telephone:tel
+        telephone: tel
     });
 }
 
@@ -223,7 +246,7 @@ export function updateProofs(data) {
     const userData = window.localStorage.getItem("userData")
     const json = JSON.parse(userData)
     console.log(data, "going")
-    return axios.put(`${MOVING24_URL}/partner/updatePartnerProofs`,data, {
+    return axios.put(`${MOVING24_URL}/partner/updatePartnerProofs`, data, {
         headers: {
             Authorization: `Bearer ${json?.token}`
         }
