@@ -76,7 +76,7 @@ export default function QuotesRequest() {
                             {/*<QuoteDropdown />*/}
                             <div className='flex'>
                                 <input type="search" placeholder='E.g. Peter' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className='border rounded-r-none border-gray-300 px-6 w-28 outline-none rounded-md' />
-                                <button className=' bg-[#13C265] text-white py-2 px-6 text-md rounded-sm rounded-l-none'>Search</button>
+                                <button className=' bg-[#C1E1EE] text-black py-2 px-6 text-md rounded-sm rounded-l-none'>Search</button>
                             </div>
                         </div>
                         <table className='lg:mt-[12px] w-full mt-4 sm:mt-4 mt-5 -ml-8 lg:-ml-8 rounded-b-md absolute'>
@@ -166,7 +166,7 @@ export default function QuotesRequest() {
                             <img src={UserImg} alt="" className=' cursor-pointer' />
                             <div>
                                 <h2 className='text-md md:text-lg'>{ManagerData?.contactManagerName}</h2>
-                                <button className='bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1' onClick={openWhatsApp}>Contact</button>
+                                <button className='bg-[#C1E1EE] text-black text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1' onClick={openWhatsApp}>Contact</button>
                             </div>
                         </div>
                     </div>

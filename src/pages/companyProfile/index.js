@@ -266,7 +266,7 @@ const CompanyProfile = () => {
 
                             )
                         }
-                        <div onClick={() => copyToClipboard(window.location.href)} className="bg-primary w-max px-3 py-1 rounded text-white mt-6 cursor-pointer">
+                        <div onClick={() => copyToClipboard(window.location.href)} className="bg-primary w-max px-3 py-1 rounded text-black mt-6 cursor-pointer">
                             Copy Profile URL
                         </div>
                     </div>
@@ -345,7 +345,7 @@ const CompanyProfile = () => {
                                     updatePartnerDetailsMutation.mutate({
                                         images: [...uploadedUrls, ...uploadedImages]
                                     })
-                                }} className="my-2 bg-primary text-white px-4 py-1 rounded">
+                                }} className="my-2 bg-primary text-black px-4 py-1 rounded">
                                     Save
                                 </button>
                             </div>
@@ -419,14 +419,6 @@ const CompanyProfile = () => {
                                     <p className="mx-1 text-gray-500" s>
                                         No reviews
                                     </p>
-                                </div>
-                                <div className="flex">
-                                    <p className="me-3">
-                                        Finished a project?
-                                    </p>
-                                    <div className="bg-primary cursor-pointer text-white px-2 mx-1 rounded flex items-center">
-                                        Request new
-                                    </div>
                                 </div>
                             </div>
 

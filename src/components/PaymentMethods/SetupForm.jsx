@@ -67,7 +67,7 @@ export default function SetupForm() {
             </h1>
             <hr className="pb-4 h-2" />
             <PaymentElement />
-            <button type='submit' className='text-white bg-primary rounded px-4 py-2 my-2'>Submit</button>
+            <button type='submit' className='text-black bg-primary rounded px-4 py-2 my-2'>Submit</button>
             {errorMessage && <div>{errorMessage}</div>}
             {loading}
             <div>

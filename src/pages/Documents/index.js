@@ -132,7 +132,7 @@ export default function Documents() {
                                 !ContractData?.status || Contract?.status === "Rejected" ?
                                     <p>You have not received a contract proposal yet. </p>
                                     :
-                                    <button onClick={() => window.open(window.location.origin + "/contract/" + proofsRes?.data?.data?._id, '_blank', 'noopener,noreferrer')} className={`bg-primary  px-6 py-1 rounded-sm text-white`}>
+                                    <button onClick={() => window.open(window.location.origin + "/contract/" + proofsRes?.data?.data?._id, '_blank', 'noopener,noreferrer')} className={`bg-primary  px-6 py-1 rounded-sm text-black`}>
                                         {
                                             ContractData?.status === "Accepted" ?
                                                 "View"
@@ -147,7 +147,7 @@ export default function Documents() {
                     <div className='ml-0  rounded-md shadow-xl border-2'>
                         <div className='px-8 py-4 flex justify-between items-center border-b-2'>
                             <h2 className='text-lg font-medium'>Partner Documents</h2>
-                            <button onClick={submit} className={`${isDisabled() ? 'bg-gray-500' : "bg-primary"}  px-6 py-1 rounded-sm text-white`}>Save</button>
+                            <button onClick={submit} className={`${isDisabled() ? 'bg-gray-500 text-white' : "bg-primary text-black"}  px-6 py-1 rounded-sm `}>Save</button>
                         </div>
                         <div className='flex flex-col p-4'>
 
@@ -160,7 +160,7 @@ export default function Documents() {
                                                 {proofs?.VATcert?.url?.name}
                                             </p>
                                         ) : (
-                                            <a href={ProofsData?.VATcert?.url} target="_blank" className='z-10 text-primary'>
+                                            <a href={ProofsData?.VATcert?.url} target="_blank" className='z-10 text-black'>
                                                 Show
                                             </a>
                                         )
@@ -202,7 +202,7 @@ export default function Documents() {
                                                 {proofs?.emiratesId?.url?.name}
                                             </p>
                                         ) : (
-                                            <a href={ProofsData?.emiratesId?.url} target="_blank" className='z-10 text-primary'>
+                                            <a href={ProofsData?.emiratesId?.url} target="_blank" className='z-10 text-black'>
                                                 Show
                                             </a>
                                         )
@@ -244,7 +244,7 @@ export default function Documents() {
                                                 {proofs?.insuranceCert?.url?.name}
                                             </p>
                                         ) : (
-                                            <a href={ProofsData?.insuranceCert?.url} target="_blank" className='z-10 text-primary'>
+                                            <a href={ProofsData?.insuranceCert?.url} target="_blank" className='z-10 text-black'>
                                                 Show
                                             </a>
                                         )
@@ -287,7 +287,7 @@ export default function Documents() {
                                                 {proofs?.license?.url?.name}
                                             </p>
                                         ) : (
-                                            <a href={ProofsData?.license?.url} target="_blank" className='z-10 text-primary'>
+                                            <a href={ProofsData?.license?.url} target="_blank" className='z-10 text-black'>
                                                 Show
                                             </a>
                                         )
@@ -347,7 +347,7 @@ export default function Documents() {
                             <img src={UserImg} alt="" className=' cursor-pointer' />
                             <div>
                                 <h2 className='text-md md:text-lg'>{ManagerData?.contactManagerName}</h2>
-                                <button onClick={openWhatsApp} className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
+                                <button onClick={openWhatsApp} className=' bg-[#C1E1EE] text-black text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
                             </div>
                         </div>
                     </div>

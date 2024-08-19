@@ -183,21 +183,21 @@ export default function FreeTrialForm() {
                 <h2 className="lg:font-semibold text-3xl text-center p-6 mb-4">
                     Welcome to free trial
                 </h2>
-                <div className=" bg-[#E8FFF3] max-sm:w-full  max-md:w-full flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w11/12 w-full mx-auto">
-                    <h2 className="text-[#13C265] text-2xl">Select removal types</h2>
+                <div className=" bg-[#C1E1EE] max-sm:w-full  max-md:w-full flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w11/12 w-full mx-auto">
+                    <h2 className="text-black text-2xl">Select removal types</h2>
                     <div className="flex flex-col flex-wrap md:flex-row md:justify-center">
-                        <button onClick={() => handleDataChange("removalType", "local")} className={`${data.removalType === "local" ? "bg-[#13C265] text-white" : "bg-[#f0f0f0] text-black"} w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
+                        <button onClick={() => handleDataChange("removalType", "local")} className={`${data.removalType === "local" ? "bg-[#EE504C] text-white" : "bg-[#f0f0f0] text-black"} w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
                             Local
                         </button>
-                        <button onClick={() => handleDataChange("removalType", "international")} className={`${data.removalType === "international" ? "bg-[#13C265] text-white" : "bg-[#f0f0f0]"}  w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
+                        <button onClick={() => handleDataChange("removalType", "international")} className={`${data.removalType === "international" ? "bg-[#EE504C] text-white" : "bg-[#f0f0f0]"}  w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
                             International
                         </button>
-                        <button onClick={() => handleDataChange("removalType", "storage")} className={`${data.removalType === "storage" ? "bg-[#13C265] text-white" : "bg-[#f0f0f0]"}  w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
+                        <button onClick={() => handleDataChange("removalType", "storage")} className={`${data.removalType === "storage" ? "bg-[#EE504C] text-white" : "bg-[#f0f0f0]"}  w-40 flex-wrap m-2 p-1 rounded shadow text-md sm:text-base lg:text-lg active:text-red-blue`}>
                             Storage
                         </button>
                     </div>
                     <div>
-                        <h2 className="text-[#13C265] text-2xl text-center p-3">
+                        <h2 className="text-black text-2xl text-center p-3">
                             Set a radius or select areas
                         </h2>
                         <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px]">
@@ -228,16 +228,16 @@ export default function FreeTrialForm() {
                             {" "}
                             <div className="p-3">
                                 <div>
-                                    <h2 className="text-[#13C265] text-2xl text-center">
+                                    <h2 className="text-black text-2xl text-center">
                                         Provide your location and select a radius
                                     </h2>
-                                    <h3 className="text-gray-400 font-extralight text-xl">
+                                    <h3 className="text-black font-extralight text-xl">
                                         Maximum of 20 miles during free trial
                                     </h3>
                                 </div>
                                 <div className="flex flex-wrap gap-2 md:gap-4 mt-4">
                                     <div>
-                                        <h3 className="text-[#13C265]">Your Location</h3>
+                                        <h3 className="text-black">Your Location</h3>
                                         <AutoComplete
                                             style={{
                                                 width: 200,
@@ -249,7 +249,7 @@ export default function FreeTrialForm() {
                                         />
                                     </div>
                                     <div>
-                                        <h3 className="text-[#13C265]">Radius</h3>
+                                        <h3 className="text-black">Radius</h3>
                                         <input
                                             type="number"
                                             placeholder="5 miles"
@@ -274,10 +274,10 @@ export default function FreeTrialForm() {
                                             center={latlong}
                                             radius={1609.34 * data.radius}
                                             options={{
-                                                fillColor: "coral",
+                                                fillColor: "#2596be",
                                                 fillOpacity: 0.3,
                                                 strokeWeight: 2,
-                                                strokeColor: "coral",
+                                                strokeColor:"#2596be",
                                                 clickable: false,
                                                 editable: true,
                                                 zIndex: 1
@@ -322,9 +322,9 @@ export default function FreeTrialForm() {
                                                         return (<Polygon
                                                             path={elem}
                                                             options={{
-                                                                fillColor: '#1ABD5E',
+                                                                fillColor: '#2596be',
                                                                 fillOpacity: 0.1,
-                                                                strokeColor: '#1ABD5E',
+                                                                strokeColor: '#2596be',
                                                                 strokeOpacity: 0.5,
                                                                 strokeWeight: 1,
                                                             }}
@@ -347,7 +347,7 @@ export default function FreeTrialForm() {
                                         {
                                             data.regions.map((selectedCity) => {
                                                 return (
-                                                    <div className="my-1 flex px-2 py-0 h-max items-center justify-between rounded-lg text-white me-2 bg-[#13C265]">
+                                                    <div className="my-1 flex px-2 py-0 h-max items-center justify-between rounded-lg text-white me-2 bg-[#EE504C]">
                                                         <p className="m-0 p-0">
                                                             {selectedCity.name}
                                                         </p>
@@ -369,7 +369,7 @@ export default function FreeTrialForm() {
                         )
                     }
                     <div>
-                        <h2 className="text-[#13C265] text-2xl text-center p-4">
+                        <h2 className="text-[#black] text-2xl text-center p-4">
                             Company details
                         </h2>
                         <div>
@@ -384,7 +384,7 @@ export default function FreeTrialForm() {
                             />
                         </div>
                         <div className="mt-2">
-                            <h3 className="text-[#13C265]">Business type</h3>
+                            <h3 className="text-black">Business type</h3>
                             <div className=" bg-white rounded-md border-[#13C26580] border-[1.5px] outline-[#13C265]">
                                 <div className="flex w-[255px] md:w-[480px] px-2 py-1">
                                     <input
@@ -409,7 +409,7 @@ export default function FreeTrialForm() {
                             </div>
                         </div>
                         <div className="mt-2 mb-4">
-                            <h3 className="text-[#13C265]">Number of employees</h3>
+                            <h3 className="text-black">Number of employees</h3>
                             <input
                                 type="number"
                                 placeholder="Select"
@@ -421,7 +421,7 @@ export default function FreeTrialForm() {
                             />
                         </div>
                         <div>
-                            <h2 className=" text-[#13C265]">Email</h2>
+                            <h2 className=" text-black">Email</h2>
                             <input
                                 type="text"
                                 onChange={(e) => handleDataChange("email", e.target.value)}
@@ -431,7 +431,7 @@ export default function FreeTrialForm() {
                             />
                         </div>
                         <div>
-                            <h2 className=" text-[#13C265] mt-3">Telephone</h2>
+                            <h2 className=" text-black mt-3">Telephone</h2>
                             <PhoneInput
                                 placeholder="Enter phone number"
                                 value={data.telephone}
@@ -440,7 +440,7 @@ export default function FreeTrialForm() {
                             />
                         </div>
                         <div>
-                            <h2 className=" text-[#13C265] mt-3">Address line 1</h2>
+                            <h2 className=" text-black mt-3">Address line 1</h2>
                             <input
                                 onChange={(e) =>
                                     handleDataChange("addressLine1", e.target.value)
@@ -452,7 +452,7 @@ export default function FreeTrialForm() {
                             />
                         </div>
                         <div>
-                            <h2 className=" text-[#13C265] mt-3">Town/City</h2>
+                            <h2 className=" text-black mt-3">Town/City</h2>
                             <input
                                 onChange={(e) => handleDataChange("city", e.target.value)}
                                 value={data.city}
@@ -462,7 +462,7 @@ export default function FreeTrialForm() {
                             />
                         </div>
                         <div>
-                            <h2 className=" text-[#13C265] mt-3">State </h2>
+                            <h2 className=" text-black mt-3">State </h2>
                             <input
                                 onChange={(e) => handleDataChange("state", e.target.value)}
                                 value={data.state}
@@ -472,11 +472,11 @@ export default function FreeTrialForm() {
                             />
                         </div>
                         <div>
-                            <h2 className="text-[#13C265] text-2xl text-center pt-6">
+                            <h2 className="text-black text-2xl text-center pt-6">
                                 Contact person
                             </h2>
                             <div>
-                                <h2 className=" text-[#13C265]">Salutation</h2>
+                                <h2 className=" text-black">Salutation</h2>
                                 <input
                                     onChange={(e) =>
                                         handleDataChange("salutation", e.target.value)
@@ -488,7 +488,7 @@ export default function FreeTrialForm() {
                                 />
                             </div>
                             <div>
-                                <h2 className=" text-[#13C265] mt-3">First name</h2>
+                                <h2 className=" text-black mt-3">First name</h2>
                                 <input
                                     onChange={(e) =>
                                         handleDataChange("firstName", e.target.value)
@@ -500,7 +500,7 @@ export default function FreeTrialForm() {
                                 />
                             </div>
                             <div>
-                                <h2 className=" text-[#13C265] mt-3">Last name</h2>
+                                <h2 className=" text-black mt-3">Last name</h2>
                                 <input
                                     onChange={(e) => handleDataChange("lastName", e.target.value)}
                                     value={data.lastName}
@@ -512,15 +512,15 @@ export default function FreeTrialForm() {
                         </div>
                         <div>
                             <div>
-                                <h2 className=' text-[#13C265] mt-3'>Choose your password</h2>
+                                <h2 className=' text-black mt-3'>Choose your password</h2>
                                 <input onChange={(e) => handleDataChange("password", e.target.value)} type="password" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] outline-[#00DD68]' />
                             </div>
                             <div>
-                                <h2 className=' text-[#13C265] mt-3'>Confirm your password</h2>
+                                <h2 className=' text-black mt-3'>Confirm your password</h2>
                                 <input onChange={(e) => handleDataChange("confirmPassword", e.target.value)} type="password" className='w-[255px] md:w-[480px] px-2 py-1 rounded-md border-[#13C26580] border-[1.5px] mb-4 outline-[#00DD68]' />
                             </div>
                         </div>
-                        <button className='w-[200px] md:w-[480px] text-white p-2 bg-[#00DD68] mt-4 lg:mb-4 rounded-md' onClick={submit}>Create account</button>
+                        <button className='w-[200px] md:w-[480px] text-white p-2 bg-[#EE504C] mt-4 lg:mb-4 rounded-md' onClick={submit}>Create account</button>
                     </div>
                 </div>
             </div>

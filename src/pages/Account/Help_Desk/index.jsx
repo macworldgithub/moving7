@@ -317,7 +317,7 @@ const Help_Desk = () => {
                         <img src={"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"} alt="" className='w-20 h-20 rounded-full cursor-pointer' />
                         <div>
                             <h2 className='text-md md:text-lg'>{data?.contactManagerName}</h2>
-                            <button onClick={openWhatsApp} className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
+                            <button onClick={openWhatsApp} className=' bg-[#C1E1EE] text-black text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
                         </div>
                     </div>
                 </div>

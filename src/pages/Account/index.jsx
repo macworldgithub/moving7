@@ -64,7 +64,7 @@ export default function Account() {
                     <div className=' rounded-md shadow-xl border-2'>
                         <div className='px-8 py-4 flex justify-between items-center border-b-2'>
                             <h2 className='text-lg font-medium'>Change Password</h2>
-                            <button onClick={submit} className='bg-primary px-6 py-1 rounded-sm text-white'>Save</button>
+                            <button onClick={submit} className='bg-primary px-6 py-1 rounded-sm text-black'>Save</button>
                         </div>
                         <div className='flex flex-col p-4'>
                             <div className='flex gap-2 lg:gap-10 p-4 border-b-2 items-center'>
@@ -94,7 +94,7 @@ export default function Account() {
                             client, send an email to start the
                             converstation</p>
                         <p className='p-1 text-gray-400'>Use our fair reclaims services for
-                            incorrect telephone numbers. <span className='text-[#13C265]'>Terms & Conditions</span></p>
+                            incorrect telephone numbers. <span className='text-black'>Terms & Conditions</span></p>
 
                         <div className='flex items-center justify-between border-b-2 mt-4'>
                             <h2 className=' font-medium mb-4'>Help Desk</h2>
@@ -104,7 +104,7 @@ export default function Account() {
                             <img src={UserImg} alt="" className=' cursor-pointer' />
                             <div>
                                 <h2 className='text-md md:text-lg'>{ManagerData?.contactManagerName}</h2>
-                                <button onClick={openWhatsApp} className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
+                                <button onClick={openWhatsApp} className=' bg-[#C1E1EE] text-black text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1'>Contact</button>
                             </div>
                         </div>
                     </div>

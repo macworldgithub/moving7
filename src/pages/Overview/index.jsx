@@ -45,13 +45,13 @@ export default function Overview() {
         <div>
             <div className='flex flex-col lg:flex-row items-center justify-center p-8'>
                 <div className='flex items-center justify-center flex-col'>
-                    <div className='w-11/12 md:w-4/6 lg:w-11/12 bg-[#D0E9F4] px-6 py-8 mt-20 lg:-mt-20 lg:-ml-[4rem]'>
+                    <div className='w-11/12 md:w-4/6 lg:w-11/12 bg-[#C1E1EE] px-6 py-8 mt-20 lg:-mt-20 lg:-ml-[4rem]'>
                         <h2 className='text-md md:text-2xl font-semibold'>Welcome to Moving7!</h2>
                         <p className='text-md md:text-lg pt-2'>We are currently verifying your business. This usually takes
                             1-2 working days. You may start to receive job requests - if so, you will find them below,
                             and we will send them your email.</p>
                     </div>
-                    <div className='w-11/12 md:w-4/6 lg:lg:w-11/12 bg-[#D1F2DF] px-6 py-8 mt-8 lg:-ml-[4rem]'>
+                    <div className='w-11/12 md:w-4/6 lg:lg:w-11/12 bg-[#C1E1EE] px-6 py-8 mt-8 lg:-ml-[4rem]'>
                         <h2 className=' text-lg md:text-2xl font-semibold'>More accepted quotes?</h2>
                         <p className='text-md md:text-lg pt-2'>Did you know that 84% of customers first check your company profile? Complete your
                             company profile and request (external) reviews.</p>
@@ -102,7 +102,7 @@ export default function Overview() {
                                 <img src={UserImg} alt="" className=' cursor-pointer' />
                                 <div>
                                     <h2 className='text-md md:text-lg'>{ManagerData?.contactManagerName}</h2>
-                                    <button className=' bg-[#1ABD5E] text-white text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1' onClick={openWhatsApp}>Contact</button>
+                                    <button className=' bg-[#C1E1EE] text-black text-sm md:text-lg px-4 lg:px-4 rounded-sm py-1 mt-1' onClick={openWhatsApp}>Contact</button>
                                 </div>
                             </div>
                         </div>

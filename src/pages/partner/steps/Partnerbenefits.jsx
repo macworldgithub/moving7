@@ -6,7 +6,7 @@ export default function PartnerBenefits() {
   return (
     <>
 
-      <div className=" w-[90%] flex items-center gap-7 flex-col sm:flex-row lg:mt-16 p-6 justify-around mx-auto shadow-sm bg-[#D0F3E0]">
+      <div className=" w-[90%] flex items-center gap-7 flex-col sm:flex-row lg:mt-16 p-6 justify-around mx-auto shadow-sm bg-[#C1E1EE]">
         <div className="sm:w-80">
           <h4 className="text-md lg:text-lg">How it works</h4>
           <h2 className="text-lg lg:text-2xl font-medium lg:w-96 mt-4">
@@ -16,7 +16,7 @@ export default function PartnerBenefits() {
             Only a few easy steps between you and qualified leads.
           </p>
           <div className="flex items-center gap-4">
-            <button className="bg-[#13C265] w-32 h-11 text-white rounded-sm">
+            <button className="bg-[#EE504C] w-32 h-11 text-white rounded-sm">
               Get Started
             </button>
             <img src={Tickimg} alt="" />

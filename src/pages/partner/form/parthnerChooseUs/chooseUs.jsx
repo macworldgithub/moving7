@@ -18,7 +18,7 @@ export default function ChooseUs() {
             </div>
             <div className='flex justify-center md:flex-start flex-col sm:flex-row flex-wrap text-center md:items-top gap-8 custom-flex'>
                 <div>
-                    <div className=' w-40 h-36 shadow-sm bg-[#f5f5f5] flex items-center justify-center rounded-2xl'>
+                    <div className=' w-40 h-36 shadow-sm bg-[#C1E1EE] flex items-center justify-center rounded-2xl'>
                         <div>
                             <img src={trust1} alt="" />
                         </div>
@@ -29,7 +29,7 @@ export default function ChooseUs() {
                 </div>
 
                 <div>
-                    <div className=' w-40 h-36 shadow-sm bg-[#f5f5f5] flex items-center justify-center rounded-2xl'>
+                    <div className=' w-40 h-36 shadow-sm bg-[#C1E1EE] flex items-center justify-center rounded-2xl'>
                         <img src={together} alt="" />
                     </div>
                     <div className='pt-2'>
@@ -37,7 +37,7 @@ export default function ChooseUs() {
                     </div>
                 </div>
                 <div>
-                    <div className=' w-40 h-36 shadow-sm bg-[#f5f5f5] flex items-center justify-center rounded-2xl'>
+                    <div className=' w-40 h-36 shadow-sm bg-[#C1E1EE] flex items-center justify-center rounded-2xl'>
                         <img src={play} alt="" />
                     </div>
                     <div className='pt-2'>
@@ -46,7 +46,7 @@ export default function ChooseUs() {
                 </div>
 
                 <div>
-                    <div className=' w-40 h-36 shadow-sm bg-[#f5f5f5] flex items-center justify-center rounded-2xl'>
+                    <div className=' w-40 h-36 shadow-sm bg-[#C1E1EE] flex items-center justify-center rounded-2xl'>
                         <img src={us} alt="" />
                     </div>
                     <div className='pt-2'>
