@@ -125,7 +125,7 @@ const DocumentVerification = () => {
 
     return (
         <div className="items-center flex justify-center">
-            <div className="mt-20 bg-Glight p-10 md:w-3/5 sm:w-4/5 ssm:w-4/5 rounded-3xl">
+            <div className="mt-20 bg-primary p-10 md:w-3/5 sm:w-4/5 ssm:w-4/5 rounded-3xl">
                 <h1 className="text-3xl font-medium ">
                     Upload documents to get verified
                 </h1>
@@ -138,7 +138,7 @@ const DocumentVerification = () => {
                 <div className="flex flex-wrap">
                     <div className="md:w-48 sm:w-48 lg:w-1/2">
                         <div className="flex items-start mt-3">
-                            <Avatar size={30} className="bg-primary me-3 mt-">{selectedItem + 1}</Avatar>
+                            <Avatar size={30} className="bg-blue-300 me-3 mt-">{selectedItem + 1}</Avatar>
                             <p>
                                 Upload an {
                                     files[selectedItem]?.name
@@ -176,7 +176,7 @@ const DocumentVerification = () => {
                                                     handleFileChange(selectedItem, file)
                                                 }} type={"file"}  >
                                                 </input>
-                                                <button className=' z-10 border-0 my-1 bg-primary rounded-full py-1 text-white px-5'>
+                                                <button className=' z-10 border-0 my-1 bg-blue-300 rounded-full py-1 text-white px-5'>
                                                     Browse
                                                 </button>
                                             </div>
@@ -239,7 +239,7 @@ const DocumentVerification = () => {
                                 })
                             }
                         </div>
-                        <button onClick={submit} className='bg-primary text-white  px-16 rounded-full py-1 '>
+                        <button onClick={submit} className='bg-blue-300 text-white  px-16 rounded-full py-1 '>
                             To The Quotes Request
                         </button>
                     </div>

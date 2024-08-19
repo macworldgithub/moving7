@@ -1,5 +1,5 @@
 import axios from "axios";
-const env = "PROD"
+const env = "LOCAL"
 const LOCALHOST_URL = "http://localhost:4000"
 const API_URL_NEW = "https://realestatebackend-woad.vercel.app";
 
@@ -13,6 +13,47 @@ export function createIntent() {
     return axios.get(`${MOVING24_URL}/payment/createSetupIntent`, {
         headers: {
             Authorization: `Bearer ${json?.token}`
+        }
+    });
+}
+
+export function getStripeCustomer() {
+    console.log("ran get cust")
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    return axios.get(`${MOVING24_URL}/partner/getStripeCustomer`,{
+        headers: {
+            Authorization: `Bearer ${json?.token}`
+        }
+    });
+}
+
+export function setDefaultPM(pmId) {
+    console.log("ran default")
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    return axios.put(`${MOVING24_URL}/partner/setDefaultPaymentMethod`, {},
+        {
+            headers: {
+                Authorization: `Bearer ${json?.token}`
+            },
+            params: {
+                pmId
+            }
+        }
+    );
+}
+
+
+export function detachPaymentMethod(pmId) {
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    return axios.delete(`${MOVING24_URL}/partner/deletePaymentMethod`, {
+        headers: {
+            Authorization: `Bearer ${json?.token}`
+        },
+        params: {
+            pmId
         }
     });
 }

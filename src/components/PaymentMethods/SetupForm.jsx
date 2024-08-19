@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
-import { createIntent } from '../../apiFunctions/partner';
+import { createIntent, setDefaultPM } from '../../apiFunctions/partner';
 import { toast } from 'react-toastify';
 import PaymentMethodList from './PaymentMethodList';
+import { useMutation } from 'react-query';
 
 export default function SetupForm() {
-    
+
 
     const stripe = useStripe();
     const elements = useElements();
 
     const [errorMessage, setErrorMessage] = useState();
     const [loading, setLoading] = useState(false);
+
+
+    const setDefaultPaymentMethod = useMutation({
+        mutationKey: "setDefaultPaymentMethod",
+        mutationFn: setDefaultPM,
+        onSuccess: (data) => {
+            console.log(data)
+        },
+        onError: (e) => console.log(e),
+        onSettled: (d, e) => console.log(d, e),
+    });
 
     const handleError = (error) => {
         setLoading(false);
@@ -37,14 +49,14 @@ export default function SetupForm() {
 
         const res = await createIntent()
 
-    
-        console.log(res," resssss")
 
-        const  clientSecret = res?.data?.client_secret
+        console.log(res, " resssss")
+
+        const clientSecret = res?.data?.client_secret
 
         console.log(clientSecret, "client secret")
 
-        const { error } = await stripe.confirmSetup({
+        const cardRes = await stripe.confirmSetup({
             elements,
             clientSecret,
             confirmParams: {
@@ -53,9 +65,12 @@ export default function SetupForm() {
             redirect: "if_required"
         });
 
-        if (error) {
-            handleError(error);
+        console.log(cardRes?.setupIntent?.payment_method, "card")
+
+        if (cardRes.error) {
+            handleError(cardRes.error);
         } else {
+            setDefaultPaymentMethod.mutate(cardRes?.setupIntent?.payment_method)
             toast.success("Payment Method Successfully Added!")
         }
     };
