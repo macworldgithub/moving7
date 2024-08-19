@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import LoaderLayout from "../../components/Loaders/LoaderLayout";
 import Truck from "../../components/Loaders/Truck";
 
-const selectBg = "bg-[#00DD68]";
+const selectBg = "bg-[#EE504C]";
 
 function MovingType() {
 
@@ -312,13 +312,13 @@ function MovingType() {
                 ) : null
             }
             <div className=" flex justify-center items-center header-btn mt-2 lg:mt-10">
-                <button className="text-sm py-2 bg-[#13C265] w-40 font-bold lg:text-lg">
+                <button className="text-sm py-2 bg-[#EE504C] w-40 font-bold lg:text-lg">
                     Get Quotes
                 </button>
             </div>
-            <div className=" bg-[#8AFFC133] mx-auto w-11/12 h-auto items-center justify-center text-center p-8 lg:w-4/5 rounded-lg border-neutral-600 m-8 border">
+            <div className=" bg-[#C1E1EE] mx-auto w-11/12 h-auto items-center justify-center text-center p-8 lg:w-4/5 rounded-lg border-neutral-600 m-8 border">
                 <div>
-                    <h2 className=" text-[#13C265] text-2xl font-semibold mb-4">
+                    <h2 className=" text-black text-2xl font-semibold mb-4">
                         Moving Type
                     </h2>
                 </div>
@@ -866,7 +866,7 @@ function MovingType() {
 
                         <button
                             onClick={handleSubmit}
-                            className=" w-2/3 lg:w-80 bg-[#00DD68] p-2 rounded-lg text-white mt-4"
+                            className=" w-2/3 lg:w-80 bg-[#EE504C] p-2 rounded-lg text-white mt-4"
                         >
                             Request quoets
                         </button>

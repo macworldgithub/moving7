@@ -8,7 +8,7 @@ module.exports = {
     },
             colors: {
                 'Glight': '#D0F3E0',
-                'primary': '#1ABD5E',
+                'primary': '#C1E1EE',
             },
         },
     },

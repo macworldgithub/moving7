@@ -23,17 +23,17 @@ function Header({user, setUser}) {
         </div>
 
         <div className="header-btn hidden sm:flex sm:flex-row lg:flex gap-6 lg:text-xl">
-          <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2 font-bold">
-            <Link to={`/`}>Review</Link>
+          <button className="text-sm bg-[#C1E1EE] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2 font-bold">
+            <Link className="text-black" to={`/`}>Review</Link>
           </button>
-          <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2 font-bold">
-            <Link to={`/aboutus`}>About Us</Link>
+          <button className="text-sm bg-[#C1E1EE] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2 font-bold">
+            <Link className="text-black" to={`/aboutus`}>About Us</Link>
           </button>
-          <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2  font-bold">
-            <Link to={`/partnerSignUp`}>Become a partner</Link>
+          <button className="text-sm bg-[#C1E1EE] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2  font-bold">
+            <Link className="text-black" to={`/partnerSignUp`}>Become a partner</Link>
           </button>
-          <button className="text-sm bg-[#13C265] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2  font-bold">
-            <Link to={`${user?.isPartner && user?.proof ? "/partner/overview/"+user?._id : user?.isPartner && !user?.proof ? "/partner/documentsVerification" : "/login"}`}>{user?.isPartner ? "Dashboard" : "Login"}</Link>
+          <button className="text-sm bg-[#C1E1EE] lg:text-lg sm:p-3 md:w-26 lg:w-44 md:py-2 md:px-6 lg:px-0 lg:py-2  font-bold">
+            <Link to={`${user?.isPartner && user?.proof ? "/partner/overview/"+user?._id : user?.isPartner && !user?.proof ? "/partner/documentsVerification" : "/login"}`} className="text-black">{user?.isPartner ? "Dashboard" : "Login"}</Link>
           </button>
         </div>
 
