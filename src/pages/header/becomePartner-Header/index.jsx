@@ -86,6 +86,16 @@ console.log(user,"USERRRR")
                         <h2
                             onClick={() => {
                                 if (user?.proof) {
+                                    navigate(`/partner/invoices/${user?._id}`)
+                                } else {
+                                    toast.error("Please complete your profile first")
+                                }
+                            }
+                            }
+                            className='cursor-pointer'>Invoices</h2>
+                        <h2
+                            onClick={() => {
+                                if (user?.proof) {
                                     navigate(`/partner/documents/${user?._id}`)
                                 } else {
                                     toast.error("Please complete your profile first")

@@ -24,6 +24,7 @@ import { useState } from "react";
 import AboutUs from "./pages/AboutUs";
 import Contract from "./pages/Contract";
 import ServiceAgreement from "./components/ContractPDF";
+import Invoices from "./pages/Invoice/Invoices";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -70,6 +71,7 @@ function App() {
                                 <Route path="targeting/:id" element={<Targeting />} />
                                 <Route path="account/:id" element={<Account />} />
                                 <Route path="documents/:id" element={<Documents />} />
+                                <Route path="invoices/:id" element={<Invoices />} />
                                 <Route path="companyprofile/:id" element={<CompanyProfile />} />
                                 <Route path="helpdesk" element={<Help_Desk />} />
                             </ Route>

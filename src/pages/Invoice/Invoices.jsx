@@ -21,7 +21,7 @@ let Projects = [
 
 ]
 
-export default function QuotesRequest() {
+export default function Invoices() {
     const userData = window.localStorage.getItem("userData")
     const json = JSON.parse(userData)
     const [dates, setDates] = useState({
@@ -109,7 +109,6 @@ export default function QuotesRequest() {
                                     <tr className='bg-[#EFF2F3]'>
                                         <td></td>
                                         <td className='py-16 w-80 px-4 text-center text-gray-400'>No quote requests received yet. We will email you once we have suitable projects.</td>
-                                        <td></td>
                                         <td></td>
                                     </tr>
                                 )}
