@@ -7,6 +7,40 @@ const API_URL_NEW = "https://realestatebackend-woad.vercel.app";
 
 const MOVING24_URL = env === "LOCAL" ? LOCALHOST_URL : "https://moving24-backend-beige.vercel.app";
 
+export function getClaimQuote({ queryKey }) {
+
+    const id = queryKey[1]
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    console.log("halaaaa", id)
+    return axios.get(`${MOVING24_URL}/partner/claimQuote`, {
+        headers: {
+            Authorization: `Bearer ${json?.token}`
+        },
+        params: {
+            partnerEmail: json.email,
+            quoteId : id
+        }
+    });
+}
+
+export function claimQuote({ reason, quoteId }) {
+    const userData = window.localStorage.getItem("userData")
+    const json = JSON.parse(userData)
+    console.log("halaaaa", quoteId, reason)
+    return axios.post(`${MOVING24_URL}/partner/claimQuote`, {
+        reason
+    }, {
+        headers: {
+            Authorization: `Bearer ${json?.token}`
+        },
+        params: {
+            partnerEmail: json.email,
+            quoteId
+        }
+    });
+}
+
 export function createIntent() {
     const userData = window.localStorage.getItem("userData")
     const json = JSON.parse(userData)
@@ -21,7 +55,7 @@ export function getStripeCustomer() {
     console.log("ran get cust")
     const userData = window.localStorage.getItem("userData")
     const json = JSON.parse(userData)
-    return axios.get(`${MOVING24_URL}/partner/getStripeCustomer`,{
+    return axios.get(`${MOVING24_URL}/partner/getStripeCustomer`, {
         headers: {
             Authorization: `Bearer ${json?.token}`
         }
@@ -232,6 +266,29 @@ export function getPartnerOverview({ queryKey }) {
 }
 
 
+export function getPartnerReqOfInvoice({ queryKey }) {
+    const data = queryKey[1]
+    console.log(data, "going")
+    return axios.get(`${MOVING24_URL}/partner/getPartnerReqOfInvoice`, {
+        params: data
+    })
+}
+
+export function getOnePartnerInvoice({ queryKey }) {
+    const data = queryKey[1]
+    console.log(data, "going")
+    return axios.get(`${MOVING24_URL}/partner/getOnePartnerInvoice`, {
+        params: data
+    })
+}
+
+export function getPartnerInvoices({ queryKey }) {
+    const data = queryKey[1]
+    console.log(data, "going")
+    return axios.get(`${MOVING24_URL}/partner/getpartnerinvoices`, {
+        params: data
+    })
+}
 
 export function getPartnerQuotes({ queryKey }) {
     const data = queryKey[1]
