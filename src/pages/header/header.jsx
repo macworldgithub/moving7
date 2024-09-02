@@ -6,6 +6,8 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import logo3 from "../../assets/images/logo/logo3.svg"
 import "./header.css";
+import MobileMenu from "./becomePartner-Header/forMobile";
+import MobileNavbar from "../../components/Navbar/MobileNavbar";
 function Header({user, setUser}) {
     console.log(user,"from header")
   return (
@@ -37,8 +39,8 @@ function Header({user, setUser}) {
           </button>
         </div>
 
-        <div className="block sm:hidden">
-          <AiOutlineMenu />
+        <div className="block cursor-pointer sm:hidden">
+            <MobileNavbar />
         </div>
       </div>
       <div>

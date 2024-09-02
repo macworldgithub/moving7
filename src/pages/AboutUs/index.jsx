@@ -1,11 +1,12 @@
 import React from "react";
 import Footer from "../footer/footer";
 import MainBanner from "../../components/banner";
+import Banner from '../../assets/images/02-01.svg'
 
 export default function AboutUs() {
     return (
         <div>
-            <MainBanner />
+            <MainBanner banner={Banner} showCenterCircle={"no"} />
             <div className="mt-20 mx-5 md:mx-20 mb-20">
                 <h1 className="text-[25px] md:text-[30px] font-medium mb-5">About Us.</h1>
                 <p className="text-[20px] md:text-[20px] font-light 2xl:mr-[14rem]">Welcome to Moving 7- the ultimate destination for seamless relocations. Whether you're a relocation company seeking to expand your reach or an individual ready to make your big move, we're here to make the process smoother, smarter, and more efficient.</p>

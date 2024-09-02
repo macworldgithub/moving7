@@ -1,4 +1,4 @@
-import Banner from "../assets/images/banner.png";
+import Banner from "../assets/images/banner.svg";
 import Youtube from "../assets/images/youtube.svg";
 import YoutubeIcon from "../assets/images/youtubeicon.svg";
 import CircleImg from "../assets/images/Ellipse 4.svg";
@@ -6,17 +6,23 @@ import BgRing from "../assets/images/Ellipse 5.svg";
 
 import "./banner.css";
 
-function MainBanner() {
+function MainBanner({ banner, showCenterCircle }) {
     return (
         <div className="w-full relative  text-center  ">
             <div className="">
-                <img src={Banner} alt="banner" className="w-full" />
+                <img src={banner ?? Banner} alt="banner" className="w-full" />
             </div>
             <div className="absolute top-[-4rem] right-0">
-                <img src={CircleImg}  alt="" />
+                <img src={CircleImg} alt="" />
             </div>
             <div className="absolute top-8 right-[44%]">
-                <img src={BgRing} alt="" />
+                {
+                    showCenterCircle === "no" ? (
+                        null
+                    ) : (
+                        <img className="max-sm:hidden" src={BgRing} alt="" />
+                    )
+                }
             </div>
             {
                 /*

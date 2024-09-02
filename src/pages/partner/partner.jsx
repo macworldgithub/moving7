@@ -11,7 +11,7 @@ import FreeTrialForm from './form/parthnerChooseUs/PartnerForm/index';
 import RingImg from '../../assets/images/Ellipse 5.svg'
 //import Banner from "../../assets/images/Banner-01.png"
 import Footer from '../footer/footer'
-import Banner from "../../assets/images/partner_banner.png";
+import Banner from "../../assets/images/03-01.svg";
 import CircleImg from "../../assets/images/Ellipse 4.svg";
 import BgRing from "../../assets/images/Ellipse 5.svg";
 
