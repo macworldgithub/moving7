@@ -318,9 +318,9 @@ function MovingType() {
             </div>
             <div className=" bg-[#C1E1EE] mx-auto w-11/12 h-auto items-center justify-center text-center p-8 lg:w-4/5 rounded-lg border-neutral-600 m-8 border">
                 <div>
-                    <h2 className=" text-black text-2xl font-semibold mb-4">
+                    <h1 className=" text-black text-2xl font-semibold mb-4">
                         Moving Type
-                    </h2>
+                    </h1>
                 </div>
                 <HeadButton
                     handleInputStateChange={handleInputStateChange}
@@ -755,7 +755,7 @@ function MovingType() {
                             //                                        handleDataChange("movingDate", e.target.value)
                             //                                    }
                             //                                />
-                            //                            </div>
+                            //                            </div>movingtype
                             //                        )
                         }
 

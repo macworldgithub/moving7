@@ -1,4 +1,4 @@
-import Banner from "../assets/images/banner.svg";
+import Banner from "../assets/images/banner.png";
 import Youtube from "../assets/images/youtube.svg";
 import YoutubeIcon from "../assets/images/youtubeicon.svg";
 import CircleImg from "../assets/images/Ellipse 4.svg";
@@ -10,7 +10,7 @@ function MainBanner({ banner, showCenterCircle }) {
     return (
         <div className="w-full relative  text-center  ">
             <div className="">
-                <img src={banner ?? Banner} alt="banner" className="w-full" />
+                <img src={banner ?? Banner} alt="banner" className={`${banner ? ""  :"md:h-[80vh]"} w-full `} />
             </div>
             <div className="absolute top-[-4rem] right-0">
                 <img src={CircleImg} alt="" />

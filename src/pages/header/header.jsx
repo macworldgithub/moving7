@@ -40,7 +40,7 @@ function Header({user, setUser}) {
         </div>
 
         <div className="block cursor-pointer sm:hidden">
-            <MobileNavbar />
+            <MobileNavbar user={user} />
         </div>
       </div>
       <div>

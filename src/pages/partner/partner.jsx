@@ -26,7 +26,7 @@ export default function Partner() {
                 <img src={CircleImg}  alt="" />
             </div>
             <div className="absolute top-8 right-[44%]">
-                <img src={BgRing} alt="" />
+                <img className="max-sm:hidden" src={BgRing} alt="" />
             </div>
             {
                 /*
