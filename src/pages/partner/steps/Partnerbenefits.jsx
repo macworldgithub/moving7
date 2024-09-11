@@ -1,8 +1,10 @@
 import React from "react";
 import BenefitsSteps from "./steps";
 import Tickimg from "../../../assets/images/partnerChooseimg/Vector 7.svg";
+import { useNavigate } from "react-router-dom";
 // import Login from "../../login";
 export default function PartnerBenefits() {
+    const navigate = useNavigate()
   return (
     <>
 
@@ -16,7 +18,7 @@ export default function PartnerBenefits() {
             Only a few easy steps between you and qualified leads.
           </p>
           <div className="flex items-center gap-4">
-            <button className="bg-[#EE504C] w-32 h-11 text-white rounded-sm">
+            <button onClick={() => navigate("/login")} className="bg-[#EE504C] w-32 h-11 text-white rounded-sm">
               Get Started
             </button>
             <img src={Tickimg} alt="" />

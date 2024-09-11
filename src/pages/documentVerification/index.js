@@ -40,7 +40,7 @@ const DocumentVerification = () => {
         status: false,
         file: null
     }, {
-        name: "Emirates ID of Manager / Partner",
+        name: "National ID of Authorize Person",
         status: false,
         expirationDate: null,
         file: null
@@ -140,7 +140,7 @@ const DocumentVerification = () => {
                         <div className="flex items-start mt-3">
                             <Avatar size={30} className="bg-blue-300 me-3 mt-">{selectedItem + 1}</Avatar>
                             <p>
-                                Upload an {
+                                Upload a {
                                     files[selectedItem]?.name
                                 }
                             </p>

@@ -2,10 +2,25 @@
 module.exports = {
     content: ["./src/**/*.{html,js,jsx}"],
     theme: {
+        fontSize: {
+            'heading': ['14px', {
+                lineHeight: '1.5rem',
+                letterSpacing: '-0.01em',
+            }],
+            'sub-heading': ['10px', {
+                lineHeight: '1rem',
+                letterSpacing: '-0.01em',
+                fontWeight:"bold"
+            }],
+            'para': ['10px', {
+                lineHeight: '0.8rem',
+                letterSpacing: '-0.01em',
+            }]
+        },
         extend: {
-             screens: {
-      'ssm': '400px',
-    },
+            screens: {
+                'ssm': '400px',
+            },
             colors: {
                 'Glight': '#D0F3E0',
                 'primary': '#C1E1EE',

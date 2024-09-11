@@ -94,6 +94,9 @@ const UserCompanyProfile = () => {
                         </div>
                         <div className="mx-8 flex justify-between flex-col mt-2">
                             <div>
+                                <h1 className=" flex items-center text-2xl font-semibold">
+                                    {partnerData?.companyName}
+                                </h1>
                                 <h1 className=" flex items-center text-xl font-semibold">
                                     {partnerData?.firstName + " " + partnerData?.lastName}
                                 </h1>

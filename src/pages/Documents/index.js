@@ -194,7 +194,7 @@ export default function Documents() {
 
 
                             <div className='flex justify-between gap-2 lg:gap-2 p-4 order-b-2 items-center'>
-                                <h2 className='font-medium text-black'>Emirates Id</h2>
+                                <h2 className='font-medium text-black'>National Id of Authorize Person</h2>
                                 <div className='flex items-center gap-2'>
                                     {
                                         proofs?.emiratesId?.url ? (

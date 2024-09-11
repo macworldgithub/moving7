@@ -22,10 +22,10 @@ export default function Overview() {
     });
 
     const contactManagerRes = useQuery({
-        queryKey:["getContactManagerDetails"],
-        queryFn:getContactManagerDetails
+        queryKey: ["getContactManagerDetails"],
+        queryFn: getContactManagerDetails
     })
-     
+
     if (partnerOverviewRes.isLoading || quotes.isLoading || contactManagerRes.isLoading) {
         return <LoaderLayout>
             <Truck />
@@ -34,9 +34,9 @@ export default function Overview() {
 
     const ManagerData = contactManagerRes?.data?.data ?? {}
 
-  const openWhatsApp = () => {
-    window.open(`https://wa.me/${ManagerData?.contactManagerContactNumber}`, '_blank');
-  };
+    const openWhatsApp = () => {
+        window.open(`https://wa.me/${ManagerData?.contactManagerContactNumber}`, '_blank');
+    };
     const quotesData = quotes?.data?.data ?? []
     const partnerOverviewData = partnerOverviewRes?.data?.data ?? {}
 
@@ -47,14 +47,49 @@ export default function Overview() {
                 <div className='flex items-center justify-center flex-col'>
                     <div className='w-11/12 md:w-4/6 lg:w-11/12 bg-[#C1E1EE] px-6 py-8 mt-20 lg:-mt-20 lg:-ml-[4rem]'>
                         <h2 className='text-md md:text-2xl font-semibold'>Welcome to Moving7!</h2>
-                        <p className='text-md md:text-lg pt-2'>We are currently verifying your business. This usually takes
-                            1-2 working days. You may start to receive job requests - if so, you will find them below,
-                            and we will send them your email.</p>
+                        <p className='text-md md:text-lg pt-2'>{
+                            partnerOverviewData?.accountStatus === "Active" ? "Congratulations your account is 'Active' .You may start to receive job requests - if so, you will find them below, and we will send them to your email." : "We are currently in the process of verifying your business, which usually takes 1-2 working days. In the meantime you can begin to complete your company profile"
+                        }</p>
                     </div>
                     <div className='w-11/12 md:w-4/6 lg:lg:w-11/12 bg-[#C1E1EE] px-6 py-8 mt-8 lg:-ml-[4rem]'>
                         <h2 className=' text-lg md:text-2xl font-semibold'>More accepted quotes?</h2>
-                        <p className='text-md md:text-lg pt-2'>Did you know that 84% of customers first check your company profile? Complete your
-                            company profile and request (external) reviews.</p>
+                        <p className='text-md md:text-lg pt-2'>
+                            Presentation is Key to Crafting Your Image
+                        </p>
+                        <ul className='ms-5'>
+                            <li>
+                                ⦁	65% of customers first check your company profile
+                            </li>
+                            <li>
+                                ⦁	Your online presence is crucial for making a great first impression
+                            </li>
+                        </ul>
+                        <p className='text-md md:text-lg pt-2'>
+                            Completing Your Company Profile
+                        </p>
+                        <ul className='ms-5'>
+                            <li>
+                                ⦁	Optimize your business listings and social media profiles
+                            </li>
+                            <li>
+                                ⦁	Ensure all key information is up-to-date and accurate.
+                            </li>
+                        </ul>
+                        <p className='text-md md:text-lg pt-2'>
+                            Encourage External Reviews
+                        </p>
+                        <ul className='mb-10 ms-5'>
+                            <li>
+                                ⦁	Reach out to satisfied customers to leave reviews
+                            </li>
+                            <li>
+                                ⦁	Respond professionally to all reviews, both positive and negative
+                            </li>
+                            <li>
+                                ⦁	Monitor your online reputation and address any issues promptly
+                            </li>
+                        </ul>
+
                         {/* <button className='bg-[#1ABD5E] px-4 py-2 text-white mt-6 rounded-sm'>Let’s get started!</button> */}
                     </div>
 
@@ -109,7 +144,7 @@ export default function Overview() {
                     </div>
                 </div>
             </div>
-            <div className='flex items-center justify-center w-11/12 md:w-4/5 lg:w-[74%] xl:w-[72%]
+            <div className='flex items-center justify-center w-11/12 md:w-4/5 lg:w-[64%] xl:w-[66%]
                  lg:-ml-4 flex-col mt-6 md:mt-20 lg:-mt-20 mx-auto lg:flex-col'>
                 <div className='w-[90%] py-8 mt-1 md:-mt-20 rounded-sm'>
                     <div className='bg-white shadow-lg'>

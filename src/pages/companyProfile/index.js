@@ -18,6 +18,7 @@ import { Select, Input, AutoComplete } from 'antd';
 import { getLocationSuggestions } from "../../apiFunctions/partner";
 import LoaderLayout from "../../components/Loaders/LoaderLayout";
 import Truck from "../../components/Loaders/Truck";
+import SmalllFooter from "../footer/smalllFooter";
 
 
 setKey("AIzaSyCqw1dzXk74gdrqunxHYiuVLSEIHu4fbcM");
@@ -117,7 +118,7 @@ const CompanyProfile = () => {
     }, [partnerDataRes.data]);
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey:"AIzaSyCqw1dzXk74gdrqunxHYiuVLSEIHu4fbcM"
+        googleMapsApiKey: "AIzaSyCqw1dzXk74gdrqunxHYiuVLSEIHu4fbcM"
     });
 
 
@@ -189,26 +190,35 @@ const CompanyProfile = () => {
                                 isDataEditable?.isNameLocationEditable ? (
                                     <div>
                                         <div className="flex items-center">
+                                            <input className="px-2 border-b-2 py-1 text-lg w-40 focus-visible:outline-none" placeholder="Company Name" value={partnerData?.companyName} onChange={(e) => {
+                                                handleDataChange("companyName", e.target.value)
+                                            }} />
+                                            <AiOutlineCheck onClickCapture={() => updatePartnerDetailsMutation.mutate({
+                                                firstName: partnerData.firstName,
+                                                lastName: partnerData?.lastName,
+                                                companyName: partnerData?.companyName,
+                                                addressLine1: partnerData?.addressLine1
+                                            })} className="cursor-pointer ms-2 text-lg" onClick={() => handleEditChange("isNameLocationEditable")} />
+                                        </div>
+                                        <div className="flex items-center">
                                             <input className="px-2 border-b-2 py-1 text-lg w-40 focus-visible:outline-none" placeholder="First Name" value={partnerData?.firstName} onChange={(e) => {
                                                 handleDataChange("firstName", e.target.value)
                                             }} />
                                             <input className="px-2 border-b-2 py-1 text-lg ms-3 focus-visible:outline-none w-40" value={partnerData?.lastName} placeholder="Last Name" onChange={(e) => {
                                                 handleDataChange("lastName", e.target.value)
                                             }} />
-                                            <AiOutlineCheck onClickCapture={() => updatePartnerDetailsMutation.mutate({
-                                                firstName: partnerData.firstName,
-                                                lastName: partnerData?.lastName,
-                                                addressLine1: partnerData?.addressLine1
-                                            })} className="cursor-pointer ms-2 text-lg" onClick={() => handleEditChange("isNameLocationEditable")} />
                                         </div>
-                                        <input className="px-2 border-b-2 py-1 text-lg  focus-visible:outline-none w-40" value={partnerData?.addressLine1} onChange={(e) => {
+                                        <input className="px-2 border-b-2 py-1 text-lg  focus-visible:outline-none w-40" placeholder="Address line 1" value={partnerData?.addressLine1} onChange={(e) => {
                                             handleDataChange("addressLine1", e.target.value)
                                         }} />
                                     </div>
                                 ) : (<>
+                                    <h1 className=" flex items-center text-2xl font-semibold">
+                                        {partnerData?.companyName}
+                                        <AiOutlineEdit onClick={() => handleEditChange("isNameLocationEditable")} className="cursor-pointer ms-2" />
+                                    </h1>
                                     <h1 className=" flex items-center text-xl font-semibold">
                                         {partnerData?.firstName + " " + partnerData?.lastName}
-                                        <AiOutlineEdit onClick={() => handleEditChange("isNameLocationEditable")} className="cursor-pointer ms-2" />
                                     </h1>
                                     <p className="text-gray-500">
                                         {partnerData?.addressLine1}
@@ -427,20 +437,24 @@ const CompanyProfile = () => {
                                 There is no information about the company yet.
                             </p>
 
-                            <div className="py-4 bg-[#D0E9F4] px-6 mt-4">
-                                <h1 className="font-semibold my-1 text-lg">
-                                    Request reviews
-                                </h1>
-                                <p>
-                                    To strengthen your company profile, you can request reviews from previously completed
-                                    projects outside of moving 24. The first three reviews that are submitted, will be shown
-                                    on your company profile. Before showing these reviews, we will verify them.
-                                </p>
-                                <button className="my-2 bg-primary text-white px-4 py-1 rounded">
-                                    Request Review
-                                </button>
-
-                            </div>
+                            {
+                                /*
+                                                <div className="py-4 bg-[#D0E9F4] px-6 mt-4">
+                                                    <h1 className="font-semibold my-1 text-lg">
+                                                        Request reviews
+                                                    </h1>
+                                                    <p>
+                                                        To strengthen your company profile, you can request reviews from previously completed
+                                                        projects outside of moving 24. The first three reviews that are submitted, will be shown
+                                                        on your company profile. Before showing these reviews, we will verify them.
+                                                    </p>
+                                                    <button className="my-2 bg-primary text-white px-4 py-1 rounded">
+                                                        Request Review
+                                                    </button>
+                    
+                                                </div>
+                                */
+                            }
 
 
                             <h1 className="items-center mt-8 flex font-semibold text-2xl my-5">
@@ -866,14 +880,14 @@ const CompanyProfile = () => {
                             {
                                 partnerData?.areaPreference === "region" && (
                                     <>
-                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "UAE")} name="UAE" setData={setPartnerData} data={partnerData} />
-                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Bahrain")} name="Bahrain" setData={setPartnerData} data={partnerData} />
-                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Oman")} name="Oman" setData={setPartnerData} data={partnerData} />
-                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Qatar")} name="Qatar" setData={setPartnerData} data={partnerData} />
-                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Kuwait")} name="Kuwait" setData={setPartnerData} data={partnerData} />
-                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Saudi Arabia")} name="Saudi Arabia" setData={setPartnerData} data={partnerData} />
-                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "UK")} name="UK" setData={setPartnerData} data={partnerData} />
-                                <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "USA")} name="USA" setData={setPartnerData} data={partnerData} />
+                                        <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "UAE")} name="UAE" setData={setPartnerData} data={partnerData} />
+                                        <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Bahrain")} name="Bahrain" setData={setPartnerData} data={partnerData} />
+                                        <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Oman")} name="Oman" setData={setPartnerData} data={partnerData} />
+                                        <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Qatar")} name="Qatar" setData={setPartnerData} data={partnerData} />
+                                        <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Kuwait")} name="Kuwait" setData={setPartnerData} data={partnerData} />
+                                        <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "Saudi Arabia")} name="Saudi Arabia" setData={setPartnerData} data={partnerData} />
+                                        <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "UK")} name="UK" setData={setPartnerData} data={partnerData} />
+                                        <RegionAccordion fetchPolygon={fetchPolygon} areas={RegionData.filter((reg) => reg.country === "USA")} name="USA" setData={setPartnerData} data={partnerData} />
                                         <div className="-ml-8 mb-3 mt-5">
                                             {isLoaded && partnerData?.areaPreference === "region" ? (
                                                 <GoogleMap
@@ -1074,6 +1088,7 @@ const CompanyProfile = () => {
                 )
             }
 
+            <SmalllFooter />
         </div>
     )
 }

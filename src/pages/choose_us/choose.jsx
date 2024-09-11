@@ -9,25 +9,25 @@ function ChooseUs() {
         <div className="items-center flex flex-col flex-wrap justify-between pt-6 pb-2 px-8 size-full md:flex md:flex-col lg:items-center lg:flex-wrap lg:justify-center lg:mb-20 lg:mt-9">
             <div className="lg:flex lg:flex-row lg:items-start">
                 <div className="md:px-24 lg:px-8">
-                    <h2 className="text-2xl pb-6 font-bold lg:text-3xl">
+                    <h2 className="text-heading pb-6 font-bold lg:text-3xl">
                         Why use Moving7 for relocations?
                     </h2>
-                    <h2 className="text-2xl font-bold lg:text-xl">
+                    <h2 className="text-sub-heading font-bold lg:text-xl">
                         Streamline Your Relocation Experience
                     </h2>
-                    <p className="pt-2 pb-2 sm:text-lg text-justify">
+                    <p className="pt-2 pb-2 text-para text-justify">
                         Relocating can be a complex and stressful process, whether you're moving your home or your business. <span className="font-bold">Moving 7</span> streamlines & simplifies this process by bringing together a wide range of relocation services in one convenient place.
                     </p>
 
 
-                    <p className="pt-2 pb-6 sm:text-lg text-justify ">
+                    <p className="pt-2 pb-6 text-para text-justify ">
                         Here’s why using <span className="font-bold">Moving 7</span> is incredibly useful:
                     </p>
 
-                    <h2 className="text-2xl font-bold lg:text-xl">
+                    <h2 className="text-sub-heading font-bold lg:text-xl">
                         Comparative Shopping Made Easy
                     </h2>
-                    <p className="pt-2 pb-6 sm:text-lg text-justify ">
+                    <p className="pt-2 pb-6 text-para text-justify ">
                         Comparing different relocation companies can be time-consuming. With <span className="font-bold">Moving 7</span>, you can quickly compare prices, services, and customer reviews from multiple providers. This transparency helps you make informed decisions and choose the best option based on your budget and requirements.
                     </p>
 
@@ -35,37 +35,37 @@ function ChooseUs() {
 
 
 
-                    <h2 className="text-2xl font-bold lg:text-xl">
+                    <h2 className="text-sub-heading font-bold lg:text-xl">
                         Time and Cost Efficiency
                     </h2>
-                    <p className="pt-2 pb-6 sm:text-lg text-justify ">
+                    <p className="pt-2 pb-6 text-para text-justify ">
                         Instead of spending hours researching and contacting different relocation companies, <span className="font-bold">Moving 7</span> saves you time by offering a streamlined process. You can request quotes, check availability, and even book services directly through the platform, reducing the effort and time needed to organize your move.
                     </p>
-                    <h2 className="text-2xl font-bold lg:text-xl">
+                    <h2 className="text-sub-heading font-bold lg:text-xl">
                         Trusted Reviews and Ratings
                     </h2>
-                    <p className="pt-2 pb-6 sm:text-lg text-justify ">
+                    <p className="pt-2 pb-6 text-para text-justify ">
                         <span className="font-bold">Moving 7</span> features customer reviews and ratings for each relocation company listed. These reviews provide valuable insights into the quality of service, reliability, and professionalism of the companies. You can trust the feedback from other customers to guide your choice and ensure a smooth moving experience.
                     </p>
-                    <h2 className="text-2xl font-bold lg:text-xl">
+                    <h2 className="text-sub-heading font-bold lg:text-xl">
                         Access to Specialized Services
                     </h2>
-                    <p className="pt-2 pb-6 sm:text-lg text-justify ">
+                    <p className="pt-2 pb-6 text-para text-justify ">
                         Whether you need help with packing, storage, or moving delicate items, <span className="font-bold">Moving 7</span> connects you with companies that offer specialized services tailored to your needs. This ensures that you find providers with the expertise required to handle specific aspects of your relocation efficiently.
                     </p>
 
 
 
-                    <h2 className="text-2xl font-bold lg:text-xl">
+                    <h2 className="text-sub-heading font-bold lg:text-xl">
                         Convenient and User-Friendly
                     </h2>
-                    <p className="pt-2 pb-6 sm:text-lg text-justify ">
+                    <p className="pt-2 pb-6 text-para text-justify ">
                         <span className="font-bold">Moving 7</span> platforms are designed to be user-friendly, with intuitive search and filter options. You can easily find relocation companies based on location, service type, or other criteria, making the entire process straightforward and hassle-free.
                     </p>
 
 
 
-                    <p className="pt-6 pb-6 sm:text-lg text-justify ">
+                    <p className="pt-6 pb-6 text-para text-justify ">
                         Finally, <span className="font-bold">Moving 7</span> for relocation companies is an invaluable tool for anyone planning a move. By offering a centralized platform to compare options, access specialized services, and read trusted reviews, it transforms a potentially overwhelming process into a manageable and efficient experience. Save time, reduce stress, and make informed decisions with the help of <span className="font-bold">Moving 7</span>.
                     </p>
 

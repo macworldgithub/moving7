@@ -148,6 +148,12 @@ export function postProofs(data) {
     })
 }
 
+export function requestPartnerEmailOTP(email) {
+    console.log("Send the request OTP", email);
+    return axios.post(`${MOVING24_URL}/auth/sendEmailVerificationToPartner`, {
+        email
+    });
+}
 
 export function requestPartnerWAppOTP(tel) {
     console.log("Send the request OTP", tel);
@@ -160,6 +166,12 @@ export function requestOTP(email) {
     console.log("Send the request OTP", email);
     return axios.post(`${MOVING24_URL}/auth/sendVerificationCode`, {
         email
+    });
+}
+export function verifyPartnerEmailOTP(data) {
+    return axios.post(`${MOVING24_URL}/auth/verifyPartnerEmailCode`, {
+        email: data.email,
+        code: data.code
     });
 }
 export function verifyPartnerWappOTP(data) {

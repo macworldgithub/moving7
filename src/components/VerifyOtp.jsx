@@ -2,10 +2,30 @@ import { useState } from "react";
 import OTPInput from "react-otp-input"
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
-import { verifyPartnerWappOTP } from "../apiFunctions/partner";
+import { verifyPartnerEmailOTP, verifyPartnerWappOTP } from "../apiFunctions/partner";
 
-const VerifyOTP = ({refetchStatus,telephone, showModal}) => {
+const VerifyOTP = ({ refetchStatus, telephone, email, showModal }) => {
     const [otp, setOtp] = useState('');
+    const verifyEmailOtpMutation = useMutation({
+        mutationKey: "verifyWappOTP",
+        mutationFn: verifyPartnerEmailOTP,
+        onSuccess: (d) => {
+            console.log(d, "OTPPPPPPPPPPP RESSSSSSSSSSSS")
+            if (d?.data?.verified) {
+                toast.success("OTP verified successfully!")
+                showModal(false)
+                refetchStatus()
+            }
+        },
+        onError: (err) => {
+            if (err?.response?.data?.message === "wrong code") {
+                toast.error("Wrong Code!")
+            } else {
+                toast.error(err.message)
+            }
+        },
+        onSettled: (d, e) => console.log(d, e),
+    });
 
     const verifyOtpMutation = useMutation({
         mutationKey: "verifyWappOTP",
@@ -30,13 +50,21 @@ const VerifyOTP = ({refetchStatus,telephone, showModal}) => {
 
     return (
         <OTPInput
-        value={otp}
+            value={otp}
             onChange={(val) => {
                 if (val.length === 4) {
-                    verifyOtpMutation.mutate({
-                        telephone,
-                        code: val
-                    })
+                    if (email) {
+                        verifyEmailOtpMutation.mutate({
+                            email,
+                            code: val
+                        })
+                    } else if (telephone) {
+                        verifyOtpMutation.mutate({
+                            telephone,
+                            code: val
+                        })
+                    }
+
                 }
                 console.log(val, "imvalll")
                 setOtp(val)

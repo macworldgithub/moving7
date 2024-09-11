@@ -151,6 +151,9 @@ export default function QuotesRequest() {
                         <h2 className='text-lg font-medium border-b-2 mb-4 py-3'>How to get customers reviews</h2>
                         <TimeLine />
                     </div>
+
+        {
+            /*
                     <div className='px-4 shadow-lg shadow-gray-300 rounded-lg mt-4'>
                         <h2 className='text-lg font-medium border-b-2 mb-4 py-3'>Need help?</h2>
                         <h2 className='text-gray-500 '>Tips $ Best Practices</h2>
@@ -174,6 +177,8 @@ export default function QuotesRequest() {
                             </div>
                         </div>
                     </div>
+            */
+        }
                 </div>
             </div >
             <SmalllFooter />

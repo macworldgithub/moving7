@@ -72,7 +72,7 @@ function App() {
                                 <Route path="account/:id" element={<Account />} />
                                 <Route path="documents/:id" element={<Documents />} />
                                 <Route path="invoices/:id" element={<Invoices />} />
-                                <Route path="companyprofile/:id" element={<CompanyProfile />} />
+                                <Route path="companyprofile/:companyName/:id" element={<CompanyProfile />} />
                                 <Route path="helpdesk" element={<Help_Desk />} />
                             </ Route>
                         )

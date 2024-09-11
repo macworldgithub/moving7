@@ -56,7 +56,7 @@ console.log(user,"USERRRR")
 
                             onClick={() => {
                                 if (user?.proof) {
-                                    navigate(`/partner/companyprofile/${user?._id}`)
+                                    navigate(`/partner/companyprofile/${user?.companyName}/${user?._id}`)
                                 } else {
                                     toast.error("Please complete your profile first")
                                 }

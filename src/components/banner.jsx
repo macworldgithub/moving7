@@ -10,7 +10,7 @@ function MainBanner({ banner, showCenterCircle }) {
     return (
         <div className="w-full relative  text-center  ">
             <div className="">
-                <img src={banner ?? Banner} alt="banner" className={`${banner ? ""  :"md:h-[80vh]"} w-full `} />
+                <img src={banner ?? Banner} alt="banner" className={`${banner ? ""  :"sm:h-[70vh]"} w-full `} />
             </div>
             <div className="absolute top-[-4rem] right-0">
                 <img src={CircleImg} alt="" />
