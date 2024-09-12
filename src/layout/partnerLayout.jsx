@@ -18,6 +18,7 @@ const PartnerLayout = ({ user, setUser }) => {
     const [showVerificationModal, setShowVerificationModal] = useState(false)
     const [showEmailVerificationModal, setShowEmailVerificationModal] = useState(false)
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
+    const [isVerificationEmailSend, setIsVerificationEmailSent] = useState(false)
 
     const getOtpMutation = useMutation({
         mutationKey: "fetchOtp",
@@ -45,8 +46,8 @@ const PartnerLayout = ({ user, setUser }) => {
         queryKey: ["getIsPartnerWappVerified", user._id],
         queryFn: getIsPartnerWappVerified
     })
-    const isPartnerVerified = fetchPartnerWappStatus?.data?.data?.wappVerified ?? ""
-    const isPartnerEmailVerified = fetchPartnerWappStatus?.data?.data?.emailVerified ?? ""
+    const isPartnerVerified = fetchPartnerWappStatus?.data?.data?.wappVerified ?? false
+    const isPartnerEmailVerified = fetchPartnerWappStatus?.data?.data?.emailVerified ?? false
 
     console.log(user, " statussssssss")
 
@@ -56,6 +57,8 @@ const PartnerLayout = ({ user, setUser }) => {
     }, [])
 
 
+    console.log("WHATTTTTTT", isPartnerVerified, fetchPartnerWappStatus)
+
     useEffect(() => {
         if (!isPartnerVerified) {
             setShowVerificationModal(true)
@@ -64,7 +67,10 @@ const PartnerLayout = ({ user, setUser }) => {
             console.log("idhar")
             setShowVerificationModal(false)
             setShowEmailVerificationModal(true)
-            getEmailOTPMutation.mutate(user?.email)
+            if (!isVerificationEmailSend) {
+                getEmailOTPMutation.mutate(user?.email)
+            }
+            setIsVerificationEmailSent(true)
         } else {
             setShowVerificationModal(false)
             setShowEmailVerificationModal(false)

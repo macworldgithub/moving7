@@ -181,7 +181,7 @@ export default function FreeTrialForm() {
             </button> */}
             <div className="max-md:w-full md:w-[70%]">
                 <h2 className="lg:font-semibold text-3xl text-center p-6 mb-4">
-                    Welcome to free trial
+                    Welcome 
                 </h2>
                 <div className=" bg-[#C1E1EE] max-sm:w-full  max-md:w-full flex items-center flex-col flex-wrap justify-center rounded-md border-gray-200 border-2 p-3 w11/12 w-full mx-auto">
                     <h2 className="text-black text-2xl">Select removal types</h2>

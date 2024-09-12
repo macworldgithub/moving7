@@ -3,17 +3,17 @@ module.exports = {
     content: ["./src/**/*.{html,js,jsx}"],
     theme: {
         fontSize: {
-            'heading': ['14px', {
-                lineHeight: '1.5rem',
+            'heading': ['22px', {
+                lineHeight: '2rem',
                 letterSpacing: '-0.01em',
             }],
-            'sub-heading': ['10px', {
-                lineHeight: '1rem',
+            'sub-heading': ['18px', {
+                lineHeight: '1.8rem',
                 letterSpacing: '-0.01em',
                 fontWeight:"bold"
             }],
-            'para': ['10px', {
-                lineHeight: '0.8rem',
+            'para': ['14px', {
+                lineHeight: '1.2rem',
                 letterSpacing: '-0.01em',
             }]
         },

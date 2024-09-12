@@ -256,7 +256,7 @@ const UserCompanyProfile = () => {
 
 
                             <h1 className="flex items-center mt-8 font-semibold text-2xl my-5">
-                                Company Location
+                                Targeting Regions
                             </h1>
                             {isLoaded ? (
                                 <GoogleMap
