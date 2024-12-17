@@ -11,9 +11,11 @@ export default function Benefits() {
   return (
     <div className=" flex items-center justify-center flex-col flex-wrap text-center mt-16">
       <div>
-        <h4 className="lg:text-xl text-black text-center">Why Partner with Us?</h4>
-        <h2 className=" text-2xl lg:text-3xl font-medium">
-        Enjoy These Key Benefits
+        <h4 className="text-heading text-black text-center">
+          Why Partner with Us?
+        </h4>
+        <h2 className=" text-heading lg:text-3xl font-medium">
+          Enjoy These Key Benefits
         </h2>
       </div>
       <div className="flex justify-around flex-wrap p-4 lg:px-40 mt-4">
@@ -21,11 +23,9 @@ export default function Benefits() {
           <div className="w-32 h-28 bg-[#C1E1EE] flex items-center mb-2 justify-center shadow-md rounded-2xl">
             <img src={Manager} alt="" />
           </div>
-          <h2 className="text-md md:text-lg font-medium">
-          Tailored Lead Options
-          </h2>
-          <p className="p-2 text-md mb-6 md:w-80">
-          Match your lead preferences to your company objectives.
+          <h2 className="text-sub-head font-medium">Tailored Lead Options</h2>
+          <p className="p-2 text-para mb-6 md:w-80">
+            Match your lead preferences to your company objectives.
           </p>
         </div>
 
@@ -33,9 +33,10 @@ export default function Benefits() {
           <div className="w-32 h-28 bg-[#C1E1EE] flex items-center mb-2 justify-center shadow-md rounded-2xl">
             <img src={Setting} alt="" />
           </div>
-          <h2 className="text-md md:text-lg font-medium">Pay-Per-Lead Model</h2>
-          <p className="p-2 text-md mb-6 md:w-80">
-          You only pay for the leads you receive, resulting in cost-effective growth.
+          <h2 className="text-sub-head font-medium">Pay-Per-Lead Model</h2>
+          <p className="p-2 text-para mb-6 md:w-80">
+            You only pay for the leads you receive, resulting in cost-effective
+            growth.
           </p>
         </div>
 
@@ -43,26 +44,32 @@ export default function Benefits() {
           <div className="w-32 h-28 bg-[#C1E1EE] flex items-center shadow-md mb-2 justify-center rounded-2xl">
             <img src={Leads} alt="" />
           </div>
-          <h2 className="text-md md:text-lg font-medium">Enhanced Company Profile</h2>
-          <p className="p-2 text-md mb-6 md:w-80">
-          Make an impact with a detailed profile that emphasizes your strengths.
+          <h2 className="text-sub-head font-medium">
+            Enhanced Company Profile
+          </h2>
+          <p className="p-2 text-para mb-6 md:w-80">
+            Make an impact with a detailed profile that emphasizes your
+            strengths.
           </p>
         </div>
         <div className="flex justify-center items-center flex-col cursor-pointer">
           <div className="w-32 h-28 bg-[#C1E1EE] flex items-center shadow-md mb-2 justify-center rounded-2xl">
             <img src={OnlineAcc} alt="" />
           </div>
-          <h2 className="text-md md:text-lg font-medium">Authentic, Verified Reviews</h2>
-          <p className="p-2 text-md mb-6 md:w-80">
-          Increase prospective consumers' confidence by displaying verified testimonials from prior clients.
+          <h2 className="text-sub-head font-medium">
+            Authentic, Verified Reviews
+          </h2>
+          <p className="p-2 text-para mb-6 md:w-80">
+            Increase prospective consumers' confidence by displaying verified
+            testimonials from prior clients.
           </p>
         </div>
         <div className="flex justify-center items-center flex-col cursor-pointer">
           <div className="w-32 h-28 bg-[#C1E1EE] flex items-center shadow-md mb-2 justify-center rounded-2xl">
             <img src={BusinessProfile} alt="" />
           </div>
-          <h2 className="text-md md:text-lg font-medium">Company Profile</h2>
-          <p className="p-2 text-md mb-6 md:w-80">
+          <h2 className="text-sub-head font-medium">Company Profile</h2>
+          <p className="p-2 text-para mb-6 md:w-80">
             Share your business' story with potential customers.
           </p>
         </div>
@@ -70,8 +77,8 @@ export default function Benefits() {
           <div className="w-32 h-28 bg-[#C1E1EE] flex items-center shadow-md mb-2 justify-center rounded-2xl">
             <img src={Pay} alt="" />
           </div>
-          <h2 className="text-md md:text-lg font-medium">Verified Reviews</h2>
-          <p className="p-2 text-md mb-6 md:w-80">
+          <h2 className="text-sub-head font-medium">Verified Reviews</h2>
+          <p className="p-2 text-para mb-6 md:w-80">
             Review platform to showcase happy customers.
           </p>
         </div>

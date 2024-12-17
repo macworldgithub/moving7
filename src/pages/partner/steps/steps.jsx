@@ -16,21 +16,20 @@ const BenefitsSteps = () => {
         current={current}
         onChange={onChange}
         direction="vertical"
-        style={{ width: "260px"}}
+        style={{ width: "260px" }}
+        className={"text-para"}
         items={[
           {
-            title: "How to Register",
-            description:
-              "To join our network, simply fill out our quick application form.",
+            title: "Register",
+            description: "",
           },
           {
-            title: "Decide on your preferences",
-            description:
-              "Tailor your internet profile to attract leads that are pertinent to your requirements and offerings.",
+            title: "Upload Documents",
+            description: "",
           },
           {
-            title: "Get leads",
-            description: "Get removal leads sent straight to your inbox.",
+            title: "Gain Moving7 Agent",
+            description: "AccessTap into a World of New Opportunities",
           },
         ]}
       />

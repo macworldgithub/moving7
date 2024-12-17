@@ -14,7 +14,7 @@ const firebaseConfig = {
   storageBucket: "timer-c5c18.appspot.com",
   messagingSenderId: "480459184967",
   appId: "1:480459184967:web:118a581aa38c6cac5f4a62",
-  measurementId: "G-RR27YV4K06"
+  measurementId: "G-RR27YV4K06",
 };
 
 // Initialize Firebase

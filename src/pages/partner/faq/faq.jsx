@@ -6,7 +6,7 @@ const text = `
   Known for its loyalty and faithfulness,
   it can be found as a welcome guest in many households across the world.
 `;
-const App = ({question, answer}) => {
+const App = ({ question, answer }) => {
   const [expandIconPosition, setExpandIconPosition] = useState("right");
   const onPositionChange = (newExpandIconPosition) => {
     setExpandIconPosition(newExpandIconPosition);

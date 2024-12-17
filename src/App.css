@@ -34,3 +34,15 @@
 .ant-btn-primary{
     background:#4096ff !important
 }
+
+.ant-tour-content{
+    width : 20rem !important
+}
+
+.ant-tour{
+    display: flex !important;
+    justify-content: center !important
+}
+.ant-modal{
+    width: max-content !important
+}

@@ -1,15 +1,10 @@
-import AdminLayout from "../../../layout/adminpanelLayout"
+import AdminLayout from "../../../layout/adminpanelLayout";
 
-const dashboard = ()=>{
-    return(
-        <>
-        <AdminLayout>
-            Hello
-        </AdminLayout>
-      
-        </>
-       
-        
-    )
-}
+const dashboard = () => {
+  return (
+    <>
+      <AdminLayout>Hello</AdminLayout>
+    </>
+  );
+};
 export default dashboard;

@@ -14,9 +14,8 @@ import AvailablePartners from "../../components/AvailablePartners";
 export default function Home2() {
   return (
     <div>
-        
       <MainBanner />
-      <AvailablePartners/>
+      <AvailablePartners />
       <Compare title={"Compare moving companies like:"} />
       <Experience />
       <Service />

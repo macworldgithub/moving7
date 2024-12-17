@@ -4,33 +4,27 @@ import Tickimg from "../../../assets/images/partnerChooseimg/Vector 7.svg";
 import { useNavigate } from "react-router-dom";
 // import Login from "../../login";
 export default function PartnerBenefits() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
-
-      <div className=" w-[90%] flex items-center gap-7 flex-col sm:flex-row lg:mt-16 p-6 justify-around mx-auto shadow-sm bg-[#C1E1EE]">
+      <div className=" w-[90%] flex items-center gap-7 max-sm:items-start flex-col sm:flex-row lg:mt-16 py-14 p-6 justify-around mx-auto shadow-sm bg-[#C1E1EE]">
         <div className="sm:w-80">
-          <h4 className="text-md lg:text-lg">How it works</h4>
-          <h2 className="text-lg lg:text-2xl font-medium lg:w-96 mt-4">
-            A simple 3-step process to receive removal leads
+          <h4 className="text-sub-head">Boost Your Moving Business:</h4>
+          <h2 className="text-sub-head font-medium lg:w-96 mt-4">
+            3 Easy Steps to a Stream of Qualified Moving Leads
           </h2>
-          <p className="text-md lg:text-lg lg:w-96 mt-4 mb-4 ">
-            Only a few easy steps between you and qualified leads.
-          </p>
-          <div className="flex items-center gap-4">
-            <button onClick={() => navigate("/login")} className="bg-[#EE504C] w-32 h-11 text-white rounded-sm">
-              Get Started
-            </button>
-            <img src={Tickimg} alt="" />
-            <p>It’s free to try!</p>
-          </div>
+          <button
+            onClick={() => navigate("/login")}
+            className="bg-[#EE504C] my-4  w-32 h-11 text-white rounded-sm"
+          >
+            Get Started
+          </button>
         </div>
 
         <div>
           <BenefitsSteps />
         </div>
       </div>
-      
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Experience from "../experience";
 import ChooseUs from "../choose_us/choose";
@@ -12,18 +12,19 @@ import MainBanner from "../../components/banner";
 import AvailablePartners from "../../components/AvailablePartners";
 
 export default function Home() {
-    return (
-        <div>
-            <MainBanner />
-            {/*
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <MainBanner />
+      {/*
           <Compare title={"Moving7 - Your Trusted Partner in Moving Services!"} />
           */}
-            <MovingType />
-            <Experience />
-            <Service />
-            <CarouselSlider />
-            <ChooseUs />
-            <Footer />
-        </div>
-    );
+      <MovingType open={open} setOpen={setOpen} />
+      <Experience />
+      <Service open={open} setOpen={setOpen} />
+      <CarouselSlider />
+      <ChooseUs />
+      <Footer />
+    </div>
+  );
 }

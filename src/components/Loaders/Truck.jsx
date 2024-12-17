@@ -1,14 +1,12 @@
-import './Truck.css';
-import LoaderImage from '../../assets/images/destination.gif'
-
+import "./Truck.css";
+import LoaderImage from "../../assets/images/destination.gif";
 
 const Truck = () => {
-    return (
-        <div class="loader">
-            <img src={LoaderImage} className="w-40 h-40" />
+  return (
+    <div class="loader">
+      <img src={LoaderImage} className="w-40 h-40" />
 
-            {
-                /*
+      {/*
                 <div class="truckWrapper">
                     <div class="truckBody">
                         <svg
@@ -134,10 +132,9 @@ const Truck = () => {
                         ></path>
                     </svg>
                 </div>
-                */
-            }
-        </div>
-    );
-}
+                */}
+    </div>
+  );
+};
 
 export default Truck;

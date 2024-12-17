@@ -12,16 +12,32 @@ function Experience() {
         <img src={mouse} alt="Mouse" />
       </div>
       <div>
-        <img src={k5} alt="Happy Clients" />
-        <h2 className="p-y-4 pt-2 lg:text-2xl">Happy Clients</h2>
+        <h2 className="text-primary font-bold text-[3.5rem] text-center leading-[1.8rem]">
+          100k+
+        </h2>
+        <h2 className="p-y-4 text-sub-head pt-2 lg:text-2xl">
+          Leads Generated
+        </h2>
       </div>
       <div>
-        <img src={img230} alt="Moving Companies" />
-        <h2 className="p-y-4 pt-2 lg:text-2xl">Moving Companies</h2>
+        <h2 className="text-primary font-bold text-[3.5rem] text-center leading-[1.8rem]">
+          180+
+        </h2>
+        <h2 className="p-y-4 pt-2 lg:text-2xl text-sub-head">Countries</h2>
       </div>
       <div>
-        <img src={img15} alt="Years of Experience" />
-        <h2 className="p-y-4 pt-2 lg:text-2xl">Years of Experience</h2>
+        <h2 className="text-primary font-bold text-center text-[3.5rem] leading-[1.8rem]">
+          2000+
+        </h2>
+        <h2 className="p-y-4 pt-2 text-sub-head lg:text-2xl">Cities</h2>
+      </div>
+      <div>
+        <h2 className="text-primary bg-0 text-center font-bold text-[3.5rem] leading-[1.8rem]">
+          20+
+        </h2>
+        <h2 className="p-y-4 pt-2 lg:text-2xl text-sub-head">
+          Years of Experience
+        </h2>
       </div>
     </div>
   );

@@ -25,6 +25,13 @@ import AboutUs from "./pages/AboutUs";
 import Contract from "./pages/Contract";
 import ServiceAgreement from "./components/ContractPDF";
 import Invoices from "./pages/Invoice/Invoices";
+import MovingToCountry from "./pages/MovingToCountry";
+import ScrollToTop from "./components/ScrollToTop";
+import VideoPage from "./pages/VideoPage/VideoPage";
+import ClientBoarding from "./pages/VideoPage/ClientOnBoarding";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookiesPolicy from "./pages/CookiesPolicy";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -36,18 +43,22 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-    const userJson = JSON.parse(window.localStorage.getItem("userData"))
-    const [user, setUser] = useState()
+    const userJson = JSON.parse(window.localStorage.getItem("userData"));
+    const [user, setUser] = useState();
 
     useEffect(() => {
-        setUser(userJson)
-    }, [])
-    console.log(user, "from header")
+        setUser(userJson);
+    }, []);
+    console.log(user, "from header");
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <QueryClientProvider client={queryClient}>
                 <Routes>
-                    <Route path="/" element={<LayoutMain user={user} setUser={setUser} />}>
+                    <Route
+                        path="/"
+                        element={<LayoutMain user={user} setUser={setUser} />}
+                    >
                         <Route path="login" element={<Login />} />
                         <Route path="" element={<Home />} />
                         <Route path="partnerSignUp" element={<Partner />} />
@@ -55,29 +66,41 @@ function App() {
                         <Route path="/response" element={<Home2 />} />
                         <Route path="companyprofile/:id" element={<UserCompanyProfile />} />
                         <Route path="aboutus" element={<AboutUs />} />
+                        <Route
+                            path="internationalmoving/:country"
+                            element={<MovingToCountry />}
+                        />
+                        <Route path="clientonboarding" element={<ClientBoarding />} />
+                        <Route path="partneronboarding" element={<VideoPage />} />
+                        <Route path="terms-and-conditions" element={<TermsAndConditions />} />
+                        <Route path="privacy-policy" element={<PrivacyPolicy/>} />
+                        <Route path="cookies-policy" element={<CookiesPolicy/>} />
                     </Route>
                     <Route path="contract/:id" element={<Contract />} />
                     <Route path="pdf" element={<ServiceAgreement />} />
 
-                    {
-                        user?.isPartner && (
-                            <Route path="partner" element={<PartnerLayout user={user} setUser={setUser} />} >
-                                <Route
-                                    path="documentsVerification"
-                                    element={<DocumentVerification />}
-                                />
-                                <Route path="overview/:id" element={<Overview />} />
-                                <Route path="quoteRequest/:id" element={<QuotesRequest />} />
-                                <Route path="targeting/:id" element={<Targeting />} />
-                                <Route path="account/:id" element={<Account />} />
-                                <Route path="documents/:id" element={<Documents />} />
-                                <Route path="invoices/:id" element={<Invoices />} />
-                                <Route path="companyprofile/:companyName/:id" element={<CompanyProfile />} />
-                                <Route path="helpdesk" element={<Help_Desk />} />
-                            </ Route>
-                        )
-                    }
-
+                    {user?.isPartner && (
+                        <Route
+                            path="partner"
+                            element={<PartnerLayout user={user} setUser={setUser} />}
+                        >
+                            <Route
+                                path="documentsVerification"
+                                element={<DocumentVerification />}
+                            />
+                            <Route path="overview/:id" element={<Overview />} />
+                            <Route path="quoteRequest/:id" element={<QuotesRequest />} />
+                            <Route path="targeting/:id" element={<Targeting />} />
+                            <Route path="account/:id" element={<Account />} />
+                            <Route path="documents/:id" element={<Documents />} />
+                            <Route path="invoices/:id" element={<Invoices />} />
+                            <Route
+                                path="companyprofile/:companyName/:id"
+                                element={<CompanyProfile />}
+                            />
+                            <Route path="helpdesk" element={<Help_Desk />} />
+                        </Route>
+                    )}
                 </Routes>
             </QueryClientProvider>
         </BrowserRouter>

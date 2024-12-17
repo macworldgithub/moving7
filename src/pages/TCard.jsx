@@ -11,12 +11,12 @@ function TCard({ description, name, companyname }) {
             <Image src={invertedcomma} alt="" width={15} />
           </div>
           <div>
-            <p className="ml-4">{description}</p>
+            <p className="ml-4 text-para">{description}</p>
           </div>
         </div>
         <div className="pt-4 ml-7">
-          <h5>{name}</h5>
-          <p className="text-gray-400">{companyname}</p>
+          <h5 className="text-sub-head">{name}</h5>
+          <p className="text-gray-400 text-para">{companyname}</p>
         </div>
       </div>
     </div>

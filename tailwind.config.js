@@ -12,6 +12,10 @@ module.exports = {
                 letterSpacing: '-0.01em',
                 fontWeight:"bold"
             }],
+            'sub-head': ['16px', {
+                lineHeight: '1.8rem',
+                letterSpacing: '-0.01em',
+            }],
             'para': ['14px', {
                 lineHeight: '1.2rem',
                 letterSpacing: '-0.01em',

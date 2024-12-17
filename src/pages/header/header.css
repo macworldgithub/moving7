@@ -6,8 +6,8 @@
 }
 
 .header-btn button {
-    font-family: Fredoka;
     font-style: normal;
+  font-family: 'Poppins', sans-serif;
     line-height: normal;
     border: none;
     border-radius: 10px 10px 0px 10px;
