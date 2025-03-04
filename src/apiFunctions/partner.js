@@ -4,7 +4,8 @@ const LOCALHOST_URL = "http://localhost:4000";
 const API_URL_NEW = "https://realestatebackend-woad.vercel.app";
 
 const MOVING24_URL =
-  env === "LOCAL" ? LOCALHOST_URL : "https://moving24-backend-beige.vercel.app";
+  // env === "LOCAL" ? LOCALHOST_URL : "https://moving24-backend-beige.vercel.app";
+  env === "LOCAL" ? LOCALHOST_URL : "https://moving7-backend-delta.vercel.app";
 
 export function getClaimQuote({ queryKey }) {
   const id = queryKey[1];
@@ -39,7 +40,7 @@ export function claimQuote({ reason, quoteId }) {
         partnerEmail: json.email,
         quoteId,
       },
-    },
+    }
   );
 }
 
@@ -78,7 +79,7 @@ export function setDefaultPM(pmId) {
       params: {
         pmId,
       },
-    },
+    }
   );
 }
 
@@ -263,7 +264,7 @@ export function getPartnerSentQuotes(data) {
       headers: {
         Authorization: `Bearer ${json?.token}`,
       },
-    },
+    }
   );
 }
 
